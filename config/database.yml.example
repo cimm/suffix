@@ -1,0 +1,5 @@
+development:
+  adapter: mysql
+  database: suffix_dev
+  user: root
+  password:
