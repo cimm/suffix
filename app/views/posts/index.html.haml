@@ -1,0 +1,9 @@
+%h2= title "Blog"
+
+- @posts.each do |post|
+  %h2= link_to post.title, post_path(post)
+  %p
+    %abbr{ :title => post.created_at.iso8601 }
+      = time_ago_in_words(post.created_at)
+      ago
+  = truncate post.content.html_safe, :length => 500
