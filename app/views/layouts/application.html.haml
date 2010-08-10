@@ -1,0 +1,12 @@
+!!!
+%html
+  %head
+    %title= yield :title
+    = stylesheet_link_tag :all
+    = javascript_include_tag "jquery.min"
+    = javascript_include_tag "rails"
+    = csrf_meta_tag
+  %body
+    - flash.each do |name, msg|
+      = content_tag :div, msg, :id => "flash_#{name}"
+    = yield
