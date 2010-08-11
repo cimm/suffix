@@ -1,0 +1,11 @@
+%h2= title "Pages"
+
+%ul
+  - @pages.each do |page|
+    %li
+      = page.title
+      %span
+        = link_to "Edit", edit_admin_page_path(page)
+        = link_to "Delete", admin_page_path(page), :method => :delete, :confirm => "Are you sure you want to delete this page?"
+%p
+  = link_to "Add", new_admin_page_path
