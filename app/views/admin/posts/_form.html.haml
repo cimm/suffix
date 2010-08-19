@@ -8,5 +8,8 @@
   = f.label :author
   = f.text_field :author
 %p
+  = f.label :location_id
+  = f.select :location_id, @location_names, { :include_blank => true }
+%p
   = f.label :content
   = f.text_area :content

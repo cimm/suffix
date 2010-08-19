@@ -1,5 +1,7 @@
 class Location < ActiveRecord::Base
 
+  has_many :posts
+
   attr_accessible :label, :latitude, :longitude, :current
 
   validates :label, :presence => true, :uniqueness => { :case_sensitive => false }, :length => { :maximum => 50 }

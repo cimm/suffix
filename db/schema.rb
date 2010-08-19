@@ -41,14 +41,16 @@ ActiveRecord::Schema.define(:version => 20100819204724) do
   end
 
   create_table "posts", :force => true do |t|
-    t.string   "title",      :null => false
-    t.string   "permalink",  :null => false
-    t.text     "content",    :null => false
+    t.string   "title",       :null => false
+    t.string   "permalink",   :null => false
+    t.text     "content",     :null => false
     t.string   "author"
+    t.integer  "location_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "posts", ["location_id"], :name => "index_posts_on_location_id"
   add_index "posts", ["permalink"], :name => "index_posts_on_permalink"
 
 end
