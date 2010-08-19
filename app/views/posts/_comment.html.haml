@@ -1,0 +1,7 @@
+%p
+  = time_ago_in_words(comment.created_at)
+  ago
+  = comment.author.present? ? comment.author : "someone"
+  said:
+
+%p= comment.content

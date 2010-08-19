@@ -2,6 +2,7 @@ Suffix::Application.routes.draw do
 
   resources :sessions, :only => [:new, :create, :destroy]
   resources :posts, :path => 'blog', :only => [:index, :show]
+  resources :comments, :only => [:create]
   resources :pages, :only => [:show] # TODO Change routes so that /page-title works
 
   namespace :admin do

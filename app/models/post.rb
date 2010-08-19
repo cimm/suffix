@@ -1,5 +1,7 @@
 class Post < ActiveRecord::Base
 
+  has_many :comments
+
   attr_accessible :title, :content, :author, :permalink
 
   validates :title, :presence => true, :length => { :maximum => 100 }

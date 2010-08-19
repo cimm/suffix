@@ -11,3 +11,8 @@
     ago
   \.
 = @post.content.html_safe
+
+%h3 Comments
+
+= render :partial => "posts/comment", :collection => @comments
+= render :partial => "posts/comment_form", :locals => { :comment => @comment }

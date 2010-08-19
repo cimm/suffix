@@ -1,0 +1,18 @@
+= form_for comment, :url => comments_path(comment) do |f|
+  - if comment.errors.any?
+    %div.errorExplanation
+      %ul
+        - comment.errors.full_messages.each do |msg|
+          %li= msg
+  %div
+    = f.label :author
+    = f.text_field :author
+  %div
+    = f.label :mail
+    = f.text_field :mail
+  %div
+    = f.label :content
+    = f.text_area :content
+  =f.hidden_field :post_id, :value => @post.id
+  %p= f.submit "Update"
+  =# FIXME Fields with errors can not be in a p, needs a block element (or change fieldsWithErrors)
