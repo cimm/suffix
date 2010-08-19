@@ -9,6 +9,7 @@ Suffix::Application.routes.draw do
     root :to => 'posts#index'
     resources :posts, :except => [:show]
     resources :pages, :except => [:show]
+    resources :locations, :except => [:show]
   end
 
   match 'login', :to => 'sessions#new'

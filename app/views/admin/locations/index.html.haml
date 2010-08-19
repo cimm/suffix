@@ -1,0 +1,21 @@
+%h2= title "Locations"
+
+%table
+  %thead
+    %tr
+      %th Label
+      %th Latitude
+      %th Longitude
+      %th Current
+  %tbody
+    - @locations.each do |location|
+      %tr
+        %td= location.label
+        %td= location.latitude
+        %td= location.longitude
+        %td= "yes" if location.current
+        %td
+          = link_to "Edit", edit_admin_location_path(location)
+          = link_to "Delete", admin_location_path(location), :method => :delete, :confirm => "Are you sure you want to delete this location?"
+
+%p= link_to "Add", new_admin_location_url

@@ -1,0 +1,10 @@
+%h2= title "New location"
+
+= form_for @location, :url => admin_locations_path do |f|
+  - if @location.errors.any?
+    %div.errorExplanation
+      %ul
+        - @location.errors.full_messages.each do |msg|
+          %li= msg
+  = render :partial => "form", :locals => { :f => f }
+  %p= f.submit "Create"
