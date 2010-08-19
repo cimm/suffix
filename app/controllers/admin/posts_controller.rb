@@ -11,8 +11,7 @@ class Admin::PostsController < Admin::BaseController
   def create
     @post = Post.new(params[:post])
     if @post.save
-      flash[:notice] = "Post successfully saved."
-      redirect_to admin_posts_url
+      redirect_to admin_posts_url, :notice => "Post successfully saved."
     else
       flash[:error] = "This post could not be saved."
       render :new
