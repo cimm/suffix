@@ -11,8 +11,7 @@ class Admin::PagesController < Admin::BaseController
   def create
     @page = Page.new(params[:page])
     if @page.save
-      flash[:notice] = "Page successfully saved."
-      redirect_to admin_pages_url
+      redirect_to admin_pages_url, :notice => "Page successfully saved."
     else
       flash[:error] = "This page could not be saved."
       render :new
