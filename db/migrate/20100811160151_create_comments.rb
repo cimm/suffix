@@ -8,6 +8,7 @@ class CreateComments < ActiveRecord::Migration
       t.string     :mail
       t.timestamps
     end
+    add_index :comments, :post_id
   end
 
   def self.down
