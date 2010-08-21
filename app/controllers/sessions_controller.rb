@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if params[:session][:password] == "secret" # TODO @config['main']['password']
+    if params[:session][:password] == APP_CONFIG['password']
       session[:admin] = true
       flash[:notice] = "Welcome back, dude!"
     else

@@ -1,4 +1,8 @@
 development:
   title: Suffix
+  username:
+  password:
   dopplr:
+    future_trips:
     token:
+    session:
