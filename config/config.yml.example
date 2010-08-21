@@ -1,2 +1,4 @@
 development:
   title: Suffix
+  dopplr:
+    token:
