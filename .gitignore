@@ -5,3 +5,4 @@ config/database.yml
 tmp/pids/*
 .DS_Store
 public/images/map.png
+config/config.yml
