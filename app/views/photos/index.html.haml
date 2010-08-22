@@ -1,0 +1,5 @@
+%h2= title "Photos"
+
+- @photos.each do |photo|
+  %h3= link_to photo[:title], photo[:link]
+  %img{:src => photo[:thumb]}

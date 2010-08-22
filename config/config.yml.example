@@ -6,3 +6,5 @@ development:
     future_trips:
     token:
     session:
+  flickr:
+    feed:
