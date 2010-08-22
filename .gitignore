@@ -3,6 +3,7 @@ db/*.sqlite3
 log/*.log
 config/database.yml
 tmp/pids/*
+tmp/cache/*
 .DS_Store
 public/images/map.png
 config/config.yml

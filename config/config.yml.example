@@ -1,5 +1,6 @@
 development:
   title: Suffix
+  host: localhost:3000
   username:
   password:
   dopplr:
