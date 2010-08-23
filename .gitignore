@@ -8,5 +8,4 @@ tmp/sass-cache/*
 .DS_Store
 public/images/map.png
 config/config.yml
-public/stylesheets/reset.css
-public/stylesheets/application.css
+public/stylesheets/*.css
