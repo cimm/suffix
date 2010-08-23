@@ -1,8 +1,11 @@
 development:
   title: Suffix
+  author:
+  language: en
   host: localhost:3000
   username:
   password:
+  policies_url: http://www.example.com/policies
   dopplr:
     future_trips:
     token:

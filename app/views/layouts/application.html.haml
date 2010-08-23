@@ -1,12 +1,26 @@
 !!!
 %html
   %head
-    %title= yield :title
-    = stylesheet_link_tag :all
-    = javascript_include_tag "jquery.min"
-    = javascript_include_tag "rails"
+    %meta{ :charset => 'utf-8' }
+    %title= yield(:title)
+    = stylesheet_link_tag 'reset'
+    = stylesheet_link_tag 'coderay'
+    = stylesheet_link_tag 'application'
+    = javascript_include_tag 'jquery.min'
+    = javascript_include_tag 'rails'
     = csrf_meta_tag
+    %link{ :rel => 'shortcut icon', :href => '/favicon.ico' }
+    %meta{ :name => 'DC.Title', :content => yield(:title) }
+    %meta{ :name => 'DC.Creator', :content => APP_CONFIG['author'] }
+    %meta{ :name => 'DC.Language', :content => APP_CONFIG['language'] }
+    %meta{ :name => 'DC.Format', :content => 'text/html' }
+    %meta{ :name => 'DC.Rights', :content => APP_CONFIG['policies_url'] }
   %body
-    - flash.each do |name, msg|
-      = content_tag :div, msg, :id => "flash_#{name}"
-    = yield
+    %header
+      = render :partial => 'layouts/header'
+    %article
+      - flash.each do |name, msg|
+        = content_tag :div, msg, :id => "flash_#{name}"
+      = yield
+    %footer
+      = @last_update
