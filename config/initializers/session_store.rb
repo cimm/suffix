@@ -1,1 +1,1 @@
-Suffix::Application.config.session_store :cookie_store, :key => '_suffix_session'
+Suffix::Application.config.session_store :active_record_store
