@@ -9,4 +9,10 @@ class Page < ActiveRecord::Base
     self.permalink
   end
 
+  def self.last_update
+    if last_page = order("updated_at desc").first
+      last_page.updated_at
+    end
+  end
+
 end

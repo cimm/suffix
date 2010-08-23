@@ -12,4 +12,10 @@ class Post < ActiveRecord::Base
     self.permalink
   end
 
+  def self.last_update
+    if last_post = order("updated_at desc").first
+      last_post.updated_at
+    end
+  end
+
 end
