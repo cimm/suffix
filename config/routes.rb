@@ -5,6 +5,7 @@ Suffix::Application.routes.draw do
   resources :comments, :only => [:create]
   resources :photos, :only => [:index]
   resources :pages, :only => [:show] # TODO Change routes so that /page-title works
+  resource  :search, :only => [:show]
 
   namespace :admin do
     root :to => 'posts#index'

@@ -15,4 +15,8 @@ class Page < ActiveRecord::Base
     end
   end
 
+  def self.search(query)
+    find(:all, :conditions => ["title LIKE ? or content LIKE ?", "%#{query}%", "%#{query}%"])
+  end
+
 end

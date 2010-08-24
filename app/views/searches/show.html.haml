@@ -1,0 +1,7 @@
+%h2= title "Results for #{@query}"
+
+- if @results.empty?
+  %p No results found.
+- else
+  - @results.each do |result|
+    %p= result.title
