@@ -10,6 +10,7 @@
     = javascript_include_tag 'rails'
     = csrf_meta_tag
     %link{ :rel => 'shortcut icon', :href => '/favicon.ico' }
+    %link{ :rel => 'search', :type => 'application/opensearchdescription+xml', :title => APP_CONFIG['title'], :href => 'opensearch.xml' }
     %meta{ :name => 'DC.Title', :content => yield(:title) }
     %meta{ :name => 'DC.Creator', :content => APP_CONFIG['author'] }
     %meta{ :name => 'DC.Language', :content => APP_CONFIG['language'] }
