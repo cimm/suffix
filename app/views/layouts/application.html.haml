@@ -8,6 +8,7 @@
     = stylesheet_link_tag 'application'
     = javascript_include_tag 'jquery.min'
     = javascript_include_tag 'rails'
+    = auto_discovery_link_tag(:atom, posts_url(:format => :atom), :title => "#{APP_CONFIG['title']}'s feed")
     = csrf_meta_tag
     %link{ :rel => 'shortcut icon', :href => '/favicon.ico' }
     %link{ :rel => 'search', :type => 'application/opensearchdescription+xml', :title => APP_CONFIG['title'], :href => 'opensearch.xml' }
