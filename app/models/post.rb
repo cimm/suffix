@@ -19,7 +19,7 @@ class Post < ActiveRecord::Base
   end
 
   def self.search(query)
-    find(:all, :conditions => ["title LIKE ? or content LIKE ?", "%#{query}%", "%#{query}%"])
+    where("title LIKE ? or content LIKE ?", "%#{query}%", "%#{query}%")
   end
 
 end
