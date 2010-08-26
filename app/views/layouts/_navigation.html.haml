@@ -1,0 +1,5 @@
+%ul
+  %li{ :id => select_active([root_path, posts_path]) }
+    = link_to_unless homepage?, "blog", posts_path
+  %li{ :id => select_active([photos_path]) }
+    = link_to_unless_current "photos", photos_path

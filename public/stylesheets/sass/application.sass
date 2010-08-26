@@ -1,11 +1,19 @@
 !light_gray = #efefef
 !dark_gray = #bbb
 !black = #262626
+!orange = #bf3a14
 
 html, body
   color= !black
   font-family: Georgia, serif
   line-height: 1.5em
+
+a
+  text-decoration: none
+  color= !black
+a:active
+  color= !orange
+// TODO Visited and hover colors
 
 header
   padding: 0 8% 0 8%
@@ -19,7 +27,21 @@ header
   span
     display: none
 
+nav
+  font-family: Skia, 'Trebuchet MS', sans-serif
+  margin-top: -28px
+  margin-left: 25%
+  li
+    display: inline
+    padding: 0 1.5% 0 1.5%
+  li#selected
+    background-image: url("/images/nav_arrow.gif")
+    background-color= !orange
+    background-repeat: no-repeat
+    background-position: center bottom
+    color: white
+    padding: 0.5em 0.35em 1.7em 0.35em
+
 article
   margin: 2em 8% 0 8%
   height: 100%
-

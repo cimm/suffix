@@ -22,6 +22,8 @@
   %body
     %header
       = render :partial => 'layouts/header'
+    %nav
+      = render :partial => 'layouts/navigation'
     %article
       - flash.each do |name, msg|
         = content_tag :div, msg, :id => "flash_#{name}"
