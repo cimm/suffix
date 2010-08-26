@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
 
   protect_from_forgery
-  before_filter :last_update
+  before_filter :last_update, :last_location
 
   def admin?
     session[:admin]
@@ -16,6 +16,10 @@ class ApplicationController < ActionController::Base
       @last_update << last_post
     end
     @last_update = @last_update.sort!.to_s
+  end
+
+  def last_location
+    @last_location = Location.current
   end
 
 end

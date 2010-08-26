@@ -8,4 +8,8 @@ class Location < ActiveRecord::Base
   validates :latitude, :presence => true, :numericality => true
   validates :longitude, :presence => true, :numericality => true
 
+  def self.current
+    where("current = ?", true).first
+  end
+
 end
