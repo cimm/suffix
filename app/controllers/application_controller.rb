@@ -12,8 +12,8 @@ class ApplicationController < ActionController::Base
     if last_post = Post.last_update
       @last_update << last_post
     end
-    if last_post = Page.last_update
-      @last_update << last_post
+    if last_page = Page.last_update
+      @last_update << last_page
     end
     @last_update = @last_update.sort!.to_s
   end
