@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 
-    respond_to :html, :atom
+  respond_to :html, :atom
 
   def index
     @posts = Post.order("created_at desc").limit(10)
