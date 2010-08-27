@@ -6,7 +6,7 @@ class Admin::PostsController < Admin::BaseController
 
   def new
     @post = Post.new
-    @location_names = Location.all.map{ |l| [l.label, l.id] }
+    @location_names = Location.all.map{ |loc| [loc.label, loc.id] }
   end
 
   def create
@@ -14,7 +14,7 @@ class Admin::PostsController < Admin::BaseController
     if @post.save
       redirect_to admin_posts_url, :notice => "Post successfully saved."
     else
-      @location_names = Location.all.map{ |l| [l.label, l.id] }
+      @location_names = Location.all.map{ |loc| [loc.label, loc.id] }
       flash[:error] = "This post could not be saved."
       render :new
     end
@@ -22,7 +22,7 @@ class Admin::PostsController < Admin::BaseController
 
   def edit
     @post = Post.find_by_permalink(params[:id])
-    @location_names = Location.all.map{ |l| [l.label, l.id] }
+    @location_names = Location.all.map{ |loc| [loc.label, loc.id] }
   end
 
   def update
