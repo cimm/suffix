@@ -1,14 +1,12 @@
 class SearchesController < ApplicationController
 
-  # TODO Empty search not handled
   def show
     @query = params[:q]
-    if @query
-      @query.strip!
+    if @query && @query.present?
+      @query = @query.strip
       @results = Post.search(@query) + Page.search(@query)
     else
-      flash[:error] = "No search query found."
-      redirect_to root_url
+      render :file => "public/418.html", :status => 418, :layout => nil
     end
   end
 
