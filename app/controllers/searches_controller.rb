@@ -1,5 +1,6 @@
 class SearchesController < ApplicationController
 
+  # TODO Empty search not handled
   def show
     if params[:q]
       @query = params[:q].strip
