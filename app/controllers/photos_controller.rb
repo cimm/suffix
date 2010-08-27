@@ -2,7 +2,6 @@ class PhotosController < ApplicationController
 
   def index
     unless read_fragment(:latest)
-      require 'open-uri'
       doc = Nokogiri::XML(open(APP_CONFIG['flickr']['feed']))
       @photos = doc.xpath("//rss/channel/item").each_with_object([]) { |item, photos|
         title = item.xpath("title").text

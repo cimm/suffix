@@ -10,3 +10,7 @@ gem 'dopplr'
 gem 'nokogiri'
 gem 'capistrano'
 gem 'whenever'
+
+group :development do
+  gem 'reek'
+end

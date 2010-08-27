@@ -89,9 +89,19 @@ GEM
       rake (>= 0.8.3)
       thor (~> 0.14.0)
     rake (0.8.7)
+    reek (1.2.8)
+      ruby2ruby (~> 1.2)
+      ruby_parser (~> 2.0)
+      sexp_processor (~> 3.0)
     rmagick (2.13.1)
+    ruby2ruby (1.2.4)
+      ruby_parser (~> 2.0)
+      sexp_processor (~> 3.0)
+    ruby_parser (2.0.4)
+      sexp_processor (~> 3.0)
     rubyforge (2.0.4)
       json_pure (>= 1.1.7)
+    sexp_processor (3.0.4)
     thor (0.14.0)
     treetop (1.4.8)
       polyglot (>= 0.3.1)
@@ -111,5 +121,6 @@ DEPENDENCIES
   nokogiri
   rack-codehighlighter
   rails (= 3.0.0.rc2)
+  reek
   rmagick
   whenever
