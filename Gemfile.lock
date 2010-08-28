@@ -44,6 +44,7 @@ GEM
       json (>= 1.1.5)
     erubis (2.6.6)
       abstract (>= 1.0.0)
+    faker (0.3.1)
     haml (3.0.17)
     highline (1.6.1)
     hoe (2.6.1)
@@ -116,6 +117,7 @@ DEPENDENCIES
   capistrano
   coderay
   dopplr
+  faker
   haml
   mysql2
   nokogiri

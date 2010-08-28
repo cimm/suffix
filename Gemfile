@@ -12,5 +12,6 @@ gem 'capistrano'
 gem 'whenever'
 
 group :development do
+  gem 'faker'
   gem 'reek'
 end
