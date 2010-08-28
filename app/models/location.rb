@@ -12,4 +12,6 @@ class Location < ActiveRecord::Base
     where("current = ?", true).first
   end
 
+  # TODO Current check should be here in the model, not in the controller
+
 end
