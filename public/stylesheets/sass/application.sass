@@ -7,10 +7,19 @@
 !horizontal_width = 3px
 !vertical_width = 2px
 
+=top_shading
+  background: transparent url(/images/border_top.gif) repeat-x top left
+
 html, body
   color= !black
   font-family: Georgia, serif
   line-height: 1.5em
+
+h2
+  padding-top: 15px
+  font-size: 1.2em
+  font-weight: lighter
+  +top_shading
 
 a
   text-decoration: none
@@ -19,13 +28,29 @@ a:hover
   color= !orange
 // TODO Active colors
 
-h2
-  font-size: 1.2em
-  font-weight: lighter
+form
+  margin-bottom: 1em
+
+input, textarea
+  border-width= !vertical_width
+  border-style: solid
+  border-color= !gray
+  padding: 0.3em
+  color= !blue
+  background: transparent url(/images/drop.png) no-repeat 0 0
+  font-family: Monaco, sans-serif
+
+button
+  border-width: 0
+  background-color: white
+  padding: 0
+  position: relative
+  top: 7px
+  left: 0.5em
 
 header
   padding: 0 8% 0 8%
-  background-image: url("/images/map.png")
+  background-image: url(/images/map.png)
   background-position: top left
   background-repeat: no-repeat
   background-color= !light_gray
@@ -48,7 +73,7 @@ nav
     display: inline
     padding: 0 1.5% 0 1.5%
   li#selected
-    background-image: url("/images/nav_arrow.gif")
+    background-image: url(/images/nav_arrow.gif)
     background-color= !orange
     background-repeat: no-repeat
     background-position: center bottom
@@ -58,11 +83,8 @@ nav
 article
   margin: 2em 8% 0 8%
   height: 100%
-  h2
-    background: transparent url("/images/border_top.gif") repeat-x top left
-    padding-top: 15px
-    a
-      color= !orange
+  h2 a
+    color= !orange
   #column0, #column1
     float: left
     width: 30%
@@ -78,6 +100,14 @@ article
   .meta
     color= !dark_gray
     font-size: smaller
+
+aside
+  width: 26.5%
+  float: right
+  margin-right: 8%
+  padding-left: 2%
+  h2
+    margin-bottom: 0.5em
   table#archive
     margin-top: 1em
     table-layout: fixed
