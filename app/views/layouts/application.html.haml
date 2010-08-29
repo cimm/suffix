@@ -29,5 +29,4 @@
       = content_tag :div, msg, :id => "flash_#{name}"
     = yield
     %footer
-      Last update
-      = @last_update
+      = render :partial => 'layouts/footer'
