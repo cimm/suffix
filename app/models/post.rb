@@ -1,6 +1,8 @@
 class Post < ActiveRecord::Base
 
   has_many   :comments
+  has_many   :taggings
+  has_many   :tags, :through => :taggings
   belongs_to :location
 
   attr_accessible :title, :content, :author, :permalink, :location_id

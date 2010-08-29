@@ -2,11 +2,18 @@ namespace :db do
 
   desc "Drop and bootstrap the database with some demo data"
   task :demo => %w[environment db:drop db:create db:migrate db:seed] do
-    # Locations
+    number_of_tags = 10
     number_of_locations = 10
     number_of_posts = 20
     max_number_of_comments = 10
     number_of_pages = 5
+    # Tags
+    number_of_tags.times{
+      Tag.create!(
+        :name => Faker::Lorem.words(1).to_s
+      )
+    }
+    # Locations
     number_of_locations.times{
       Location.create!(
         :label => Faker::Address.city,
@@ -33,6 +40,10 @@ namespace :db do
           :mail => Faker::Internet.email
         ).save!
       }
+      # Tags / post
+      post.taggings.build(
+        :tag_id => rand(number_of_tags) + 1
+      ).save!
     }
     # Pages
     number_of_pages.times{
