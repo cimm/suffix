@@ -1,6 +1,7 @@
-%h2= title "Photos"
-
-- cache :latest do
-  - @photos.each do |photo|
-    %h3= link_to photo[:title], photo[:link]
-    %img{:src => photo[:thumb]}
+- title "Photos"
+%article
+  - cache :latest do
+    %ul#photos
+      - @photos.each do |photo|
+        %li
+          = link_to image_tag(photo[:thumb]), photo[:link]

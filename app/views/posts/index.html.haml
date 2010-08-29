@@ -1,3 +1,4 @@
+- title "Blog"
 %article
   - @posts.in_groups_of(2, false).each_with_index do |group, index|
     %div{ :id => "column#{index}" }
