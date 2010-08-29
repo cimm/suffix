@@ -3,6 +3,7 @@
 !dark_gray = #777777
 !black = #262626
 !orange = #bf3a14
+!blue = #449FD8
 !horizontal_width = 3px
 !vertical_width = 2px
 
@@ -13,10 +14,10 @@ html, body
 
 a
   text-decoration: none
-  color= !black
-a:active
+  color= !blue
+a:hover
   color= !orange
-// TODO Visited and hover colors
+// TODO Active colors
 
 h2
   font-size: 1.2em
@@ -38,6 +39,11 @@ nav
   font-family: Skia, 'Trebuchet MS', sans-serif
   margin-top: -28px
   margin-left: 25%
+  a
+    color= !black
+  a:active
+    color= !orange
+  // TODO Visited and hover colors
   li
     display: inline
     padding: 0 1.5% 0 1.5%
@@ -72,6 +78,31 @@ article
   .meta
     color= !dark_gray
     font-size: smaller
+  table#archive
+    margin-top: 1em
+    table-layout: fixed
+    border-bottom-width: 1px
+    border-bottom-style: solid
+    border-bottom-color= !gray
+    width: 100%
+    td
+      border-top-width: 1px
+      border-top-style: solid
+      border-top-color= !gray
+    td.expand
+      overflow: hidden
+      empty-cells: show
+      width: 80%
+      font-size: 1em
+      white-space: nowrap
+    td.meta
+      font-size: smaller
+      padding-left: 0.5em
+      text-align: right
+      color= !dark_gray
+    td#archive_link
+      background-color= !light_gray
+      text-align: center
 
 footer
   clear: both

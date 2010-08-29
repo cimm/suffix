@@ -1,6 +1,5 @@
 %article
-
-  - @posts.in_groups_of(5, false).each_with_index do |group, index|
+  - @posts.in_groups_of(3, false).each_with_index do |group, index|
     %div{ :id => "column#{index}" }
       - group.each do |post|
         %h2= link_to post.title, post_path(post)
@@ -11,5 +10,17 @@
           @
           %abbr{ :title => "#{post.location.latitude};#{post.location.longitude}", :class => "geo" }
             = post.location.label
-        %p= truncate strip_tags(post.content), :length => 500
-
+          %p= truncate strip_tags(post.content), :length => 500
+      - if index == 1 # add archive to last column
+        %h2 Even older
+        %table{ :id => "archive", :summary => "Some older posts" }
+          %tbody
+            - @archive.each do |post|
+              %tr
+                %td.expand= link_to post.title, post_path(post)
+                %td.meta
+                  %abbr{ :title => post.created_at.iso8601 }
+                    = ordinalize(post.created_at)
+            %tr
+              - # TODO Archive link here
+              %td#archive_link{ :colspan => 2 }= link_to "archive &rarr;".html_safe, root_path
