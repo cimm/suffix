@@ -24,10 +24,10 @@
       = render :partial => 'layouts/header'
     %nav
       = render :partial => 'layouts/navigation'
-    %article
-      - flash.each do |name, msg|
-        = content_tag :div, msg, :id => "flash_#{name}"
-      = yield
+    / TODO Where does the flash go?
+    - flash.each do |name, msg|
+      = content_tag :div, msg, :id => "flash_#{name}"
+    = yield
     %footer
       Last update
       = @last_update

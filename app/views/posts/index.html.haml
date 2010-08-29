@@ -1,9 +1,15 @@
-%h2= title "Blog"
+%article
 
-- @posts.each do |post|
-  %h2= link_to post.title, post_path(post)
-  %p
-    %abbr{ :title => post.created_at.iso8601 }
-      = time_ago_in_words(post.created_at)
-      ago
-  = truncate post.content.html_safe, :length => 500
+  - @posts.in_groups_of(5, false).each_with_index do |group, index|
+    %div{ :id => "column#{index}" }
+      - group.each do |post|
+        %h2= link_to post.title, post_path(post)
+        %p.meta
+          Posted on
+          %abbr{ :title => post.created_at.iso8601 }
+            = ordinalize(post.created_at)
+          @
+          %abbr{ :title => "#{post.location.latitude};#{post.location.longitude}", :class => "geo" }
+            = post.location.label
+        %p= truncate strip_tags(post.content), :length => 500
+
