@@ -43,7 +43,7 @@ GEM
     erubis (2.6.6)
       abstract (>= 1.0.0)
     faker (0.3.1)
-    haml (3.0.17)
+    haml (3.0.18)
     highline (1.6.1)
     hoe (2.6.1)
       rake (>= 0.8.7)
