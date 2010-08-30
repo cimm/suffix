@@ -15,8 +15,6 @@ Suffix::Application.routes.draw do
     resources :locations, :except => [:show]
   end
 
-  match 'login', :to => 'sessions#new'
-  match 'logout', :to => 'sessions#destroy'
   root :to => 'posts#index'
 
 end
