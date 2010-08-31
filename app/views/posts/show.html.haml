@@ -1,18 +1,16 @@
-%h2= title @post.title
-
-%p
-  Created
-  %span{ :title => @post.created_at.iso8601 }
-    = time_ago_in_words(@post.created_at)
-    ago
-  , last updated
-  %span{ :title => @post.updated_at.iso8601 }>
-    = time_ago_in_words(@post.updated_at)
-    ago
-  \.
-= @post.content.html_safe
-
-%h3 Comments
-
-= render :partial => "posts/comment", :collection => @comments
-= render :partial => "posts/comment_form", :locals => { :comment => @comment }
+%article
+  %div#column2
+    %h2= title @post.title
+    = @post.content.html_safe
+%aside
+  %p.meta
+    Created
+    %span{ :title => @post.created_at.iso8601 }
+      = time_ago_in_words(@post.created_at)
+      ago, last updated
+    %span{ :title => @post.updated_at.iso8601 }>
+      = time_ago_in_words(@post.updated_at)
+      ago.
+  %h3 Comments
+  = render :partial => "posts/comment", :collection => @comments
+  = render :partial => "posts/comment_form", :locals => { :comment => @comment }
