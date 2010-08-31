@@ -48,6 +48,7 @@ GEM
     hoe (2.6.1)
       rake (>= 0.8.7)
       rubyforge (>= 2.0.4)
+    hpricot (0.8.2)
     i18n (0.4.1)
     json_pure (1.4.6)
     mail (2.2.5)
@@ -66,8 +67,9 @@ GEM
     nokogiri (1.4.3.1)
     polyglot (0.3.1)
     rack (1.2.1)
-    rack-codehighlighter (0.4.6)
-      nokogiri (>= 1.4.1)
+    rack-coderay (0.2.0)
+      coderay (>= 0.8.312)
+      hpricot (>= 0.8.1)
       rack (>= 1.0.0)
     rack-mount (0.6.12)
       rack (>= 1.0.0)
@@ -117,7 +119,7 @@ DEPENDENCIES
   haml
   mysql2
   nokogiri
-  rack-codehighlighter
+  rack-coderay
   rails (= 3.0.0)
   reek
   rmagick
