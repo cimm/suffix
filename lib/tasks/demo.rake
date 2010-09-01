@@ -37,7 +37,8 @@ namespace :db do
         post.comments.build(
           :content => Faker::Lorem.paragraphs.join(" "),
           :author => Faker::Name.name,
-          :mail => Faker::Internet.email
+          :mail => Faker::Internet.email,
+          :url => "#{Faker::Internet.domain_name}/#{Faker::Lorem.words.first}"
         ).save!
       }
       # Tags / post
