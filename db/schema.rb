@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(:version => 20100829181454) do
     t.text     "content",    :null => false
     t.string   "author"
     t.string   "mail"
+    t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

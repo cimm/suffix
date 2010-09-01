@@ -11,6 +11,9 @@
     = f.label :mail
     = f.text_field :mail
   %div
+    = f.label :url
+    = f.text_field :url
+  %div
     = f.label :content
     = f.text_area :content
   =f.hidden_field :post_id, :value => @post.id
