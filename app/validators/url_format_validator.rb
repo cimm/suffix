@@ -11,7 +11,7 @@ class UrlFormatValidator < ActiveModel::EachValidator
         record.send "#{attribute}=", value
       end
       unless value =~ WEBSITE_REGEXP
-        record.errors.add attribute, :wrong_url_format, options
+        record.errors.add attribute, "wrong format", options
       end
     elsif !allow_blank
       record.errors.add attribute, :blank, options
