@@ -100,7 +100,7 @@ article
   #column1
     padding-left: 2%
   #column2
-    width: 60%
+    width: 64%
     h2
       background: none
       padding-top: 0
@@ -128,6 +128,12 @@ aside
   padding-left: 2%
   h2
     +top_shading
+  ul
+    list-style: none
+    color= !dark_gray
+    margin-bottom: 1em
+    abbr, span
+      color= !black
   table#archive
     margin-top: 1em
     table-layout: fixed
@@ -153,6 +159,23 @@ aside
     td#archive_link
       background-color= !light_gray
       text-align: center
+  .comment
+    font-size: 0.9em
+    line-height: 1.3em
+    margin-bottom: 1em
+    overflow: hidden
+    .author
+      display: inline
+    .url
+      display: none
+    .reaction_time
+      clear: both
+      margin: 0
+      text-align: right
+      color= !gray
+  .comment:hover
+    .url
+      display: inline
 
 footer
   clear: both

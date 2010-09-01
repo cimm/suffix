@@ -14,7 +14,7 @@ class PostsController < ApplicationController
     @post = Post.find_by_permalink(params[:id])
     render :file => "public/404.html", :status => :not_found, :layout => nil and return unless @post
     @comment = Comment.new
-    @comments = @post.comments.order("created_at desc")
+    @comments = @post.comments.order("created_at asc")
   end
 
 end

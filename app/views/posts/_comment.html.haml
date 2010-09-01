@@ -1,7 +1,13 @@
-%p
-  = time_ago_in_words(comment.created_at)
-  ago
-  = comment.author.present? ? comment.author : "someone"
-  said:
-
-%p= comment.content
+%div.comment
+  %h3.author
+    = "##{comment_counter + 1}"
+    = comment.author if comment.author.present?
+  - if comment.url.present?
+    %a.url{ :href => comment.url, :rel => "nofollow" }
+      &rarr;
+      = comment.url
+  %p.comment
+    = comment.content
+  %p.reaction_time
+    = reaction_time(comment.created_at)
+    later

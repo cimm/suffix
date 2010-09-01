@@ -9,7 +9,7 @@
           %abbr{ :title => post.created_at.iso8601 }
             = ordinalize(post.created_at)
           @
-          %abbr{ :title => "#{post.location.latitude};#{post.location.longitude}", :class => "geo" }
+          %abbr.geo{ :title => "#{post.location.latitude};#{post.location.longitude}" }
             = post.location.label
           %p= truncate strip_tags(post.content), :length => 500
 %aside

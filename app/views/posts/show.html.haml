@@ -3,14 +3,27 @@
     %h2= title @post.title
     = @post.content.html_safe
 %aside
-  %p.meta
-    Created
-    %span{ :title => @post.created_at.iso8601 }
-      = time_ago_in_words(@post.created_at)
-      ago, last updated
-    %span{ :title => @post.updated_at.iso8601 }>
-      = time_ago_in_words(@post.updated_at)
-      ago.
-  %h3 Comments
-  = render :partial => "posts/comment", :collection => @comments
+  %h2 Meta
+  %ul
+    %li
+      freshness
+      %abbr{ :title => @post.created_at.iso8601 }
+        = time_ago_in_words(@post.created_at)
+        ago
+    %li
+      posted
+      %abbr{ :title => @post.updated_at.iso8601 }
+        = time_ago_in_words(@post.updated_at)
+        ago
+    %li
+      from
+      %abbr.geo{ :title => "#{@post.location.latitude};#{@post.location.longitude}" }
+        = @post.location.label
+    %li
+      tags
+      %span= @post.tags.join(", ")
+  - if @comments.any?
+    %h2= pluralize @comments.count, "comment"
+    = render :partial => "posts/comment", :collection => @comments
+  %h2 Something to say?
   = render :partial => "posts/comment_form", :locals => { :comment => @comment }
