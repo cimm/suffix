@@ -6,7 +6,6 @@ Suffix::Application.routes.draw do
   resources :photos, :only => [:index]
   resource  :search, :only => [:show]
   resource  :sitemap, :only => [:show]
-  match '/:id' => 'pages#show'
 
   namespace :admin do
     root :to => 'posts#index'
@@ -14,6 +13,9 @@ Suffix::Application.routes.draw do
     resources :pages, :except => [:show]
     resources :locations, :except => [:show]
   end
+
+  match '/feeds/blog.xml' => 'posts#index', :format => :atom # redirect old RSS feed
+  match '/:id' => 'pages#show'
 
   root :to => 'posts#index'
 
