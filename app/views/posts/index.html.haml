@@ -28,5 +28,4 @@
             %abbr{ :title => post.created_at.iso8601 }
               = ordinalize(post.created_at)
       %tr
-        - # TODO Archive link here
-        %td#archive_link{ :colspan => 2 }= link_to "archive &rarr;".html_safe, root_path
+        %td#archive_link{ :colspan => 2 }= link_to "archive &rarr;".html_safe, archive_path

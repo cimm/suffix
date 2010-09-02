@@ -3,6 +3,10 @@ class PostsController < ApplicationController
   respond_to :html, :atom
 
   def index
+    if params[:archive]
+      @posts = Post.all
+      render :archive and return
+    end
     posts = Post.order("created_at desc").limit(20)
     @posts = posts.slice(0..3)
     @archive = posts.slice(4..20)
