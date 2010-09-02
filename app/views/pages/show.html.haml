@@ -1,13 +1,17 @@
-%h2= title @page.title
-
-%p
-  Created
-  %span{ :title => @page.created_at.iso8601 }
-    = time_ago_in_words(@page.created_at)
-    ago
-  , last updated
-  %span{ :title => @page.updated_at.iso8601 }>
-    = time_ago_in_words(@page.updated_at)
-    ago
-  \.
-= @page.content.html_safe
+%article
+  %div#column2
+    %h2= title @page.title
+    = @page.content.html_safe
+%aside
+  %h2 Meta
+  %ul
+    %li
+      freshness
+      %abbr{ :title => @page.created_at.iso8601 }
+        = time_ago_in_words(@page.created_at)
+        ago
+    %li
+      posted
+      %abbr{ :title => @page.updated_at.iso8601 }
+        = time_ago_in_words(@page.updated_at)
+        ago
