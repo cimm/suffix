@@ -4,9 +4,9 @@ Suffix::Application.routes.draw do
   resources :posts, :path => 'blog', :only => [:index, :show]
   resources :comments, :only => [:create]
   resources :photos, :only => [:index]
-  resources :pages, :only => [:show] # TODO Change routes so that /page-title works
   resource  :search, :only => [:show]
   resource  :sitemap, :only => [:show]
+  match '/:id' => 'pages#show'
 
   namespace :admin do
     root :to => 'posts#index'
