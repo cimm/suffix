@@ -1,6 +1,6 @@
 class Page < ActiveRecord::Base
 
-  attr_accessible :title, :content, :permalink
+  attr_accessible :title, :content, :permalink, :in_navigation
 
   validates :title, :presence => true, :length => { :maximum => 100 }
   validates :permalink, :presence => true, :uniqueness => true, :format => /^[-+\w\d]+$/, :length => { :maximum => 100 }

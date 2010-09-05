@@ -36,9 +36,10 @@ ActiveRecord::Schema.define(:version => 20100829181454) do
   add_index "locations", ["current"], :name => "index_locations_on_current"
 
   create_table "pages", :force => true do |t|
-    t.string   "title",      :null => false
-    t.string   "permalink",  :null => false
-    t.text     "content",    :null => false
+    t.string   "title",                            :null => false
+    t.string   "permalink",                        :null => false
+    t.text     "content",                          :null => false
+    t.boolean  "in_navigation", :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

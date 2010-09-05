@@ -16,7 +16,8 @@ Suffix::Application.routes.draw do
 
   match '/feeds/blog.xml' => 'posts#index', :format => :atom # redirect old RSS feed
   match 'archive(/)' => 'posts#index', :as => :archive, :defaults => { :archive => 'true' } # TODO needs to be RESTful... or not?
-  match '/:id' => 'pages#show'
+
+  resources :pages, :path => "/", :only => [:show]
 
   root :to => 'posts#index'
 

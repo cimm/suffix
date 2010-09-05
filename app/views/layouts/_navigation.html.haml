@@ -3,3 +3,6 @@
     = link_to_unless homepage?, "blog", posts_path
   %li{ :id => select_active([photos_path]) }
     = link_to_unless_current "photos", photos_path
+  - @pages_in_navigation.each do |page|
+    %li{ :id => select_active([page_path(page.permalink)]) }
+      = link_to_unless_current page.title, page_path(page.permalink)
