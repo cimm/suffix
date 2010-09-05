@@ -1,6 +1,7 @@
-- if @results.any?
-  %h2= title "Results for #{@query}"
-  - @results.each do |result|
-    %p= result.title
-- else
-  %h2= title "No results for #{@query}"
+%article
+  - if @results.any?
+    %h2= title "Results for #{@query}"
+    - @results.each do |result|
+      %p= result.title
+  - else
+    %h2= title "No results for #{@query}"
