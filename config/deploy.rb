@@ -1,3 +1,5 @@
+require "bundler/capistrano"
+
 task :production do
   set :application, "suffix"
   set :repository, "git@github.com:cimm/suffix.git"
