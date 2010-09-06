@@ -2,6 +2,9 @@ require "bundler/capistrano"
 
 task :production do
   set :application, "suffix"
+  set :user, "suffix"
+  set :domain, "suffix.be"
+  set :rails_env, "production"
   set :repository, "git@github.com:cimm/suffix.git"
   set :branch, "master"
   set :scm, :git
