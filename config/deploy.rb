@@ -19,11 +19,20 @@ namespace :passenger do
   end
 end
 
-after "deploy:symlink", "crontab:update"
-
 namespace :crontab do
   desc "Update the crontab file."
   task :update do
     run "cd #{release_path} && whenever --update-crontab #{application}"
+  end
+end
+
+namespace :deploy do
+  %w(start restart).each { |name| task name do passenger.restart end }
+  after "deploy:update_code", "deploy:symlink"
+  after "deploy:symlink", "crontab:update"
+  desc "Symlink the config files."
+  task :symlink do
+    run "mkdir -p #{shared_path}/config; ln -s #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+    run "mkdir -p #{shared_path}/config/environments; ln -s #{shared_path}/config/environments/#{rails_env}.rb #{release_path}/config/environments/#{rails_env}.rb"
   end
 end
