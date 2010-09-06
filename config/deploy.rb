@@ -33,7 +33,9 @@ namespace :deploy do
   after "deploy:symlink", "crontab:update"
   desc "Symlink the config files."
   task :symlink do
-    run "mkdir -p #{shared_path}/config; ln -s #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+    run "mkdir -p #{shared_path}/config"
+    run "ln -s #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+    run "ln -s #{shared_path}/config/config.yml #{release_path}/config/config.yml"
     run "mkdir -p #{shared_path}/config/environments; ln -s #{shared_path}/config/environments/#{rails_env}.rb #{release_path}/config/environments/#{rails_env}.rb"
   end
 end
