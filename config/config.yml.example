@@ -8,7 +8,5 @@ environment:
   policies_url: http://www.example.com/policies
   dopplr:
     future_trips:
-    token:
-    session:
   flickr:
     feed:
