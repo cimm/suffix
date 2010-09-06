@@ -5,9 +5,10 @@ task :production do
   set :user, "suffix"
   set :domain, "suffix.be"
   set :rails_env, "production"
+  set :scm, :git
+  set :deploy_via, :remote_cache
   set :repository, "git@github.com:cimm/suffix.git"
   set :branch, "master"
-  set :scm, :git
   server domain, :app, :web
   role :db, domain, :primary => true
 end
