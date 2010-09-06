@@ -12,6 +12,13 @@ task :production do
   role :db, domain, :primary => true
 end
 
+namespace :passenger do
+  desc "Restart the Passenger instance."
+  task :restart do
+    run "touch #{current_path}/tmp/restart.txt"
+  end
+end
+
 after "deploy:symlink", "crontab:update"
 
 namespace :crontab do
