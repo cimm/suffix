@@ -13,7 +13,7 @@
     %link{ :rel => 'shortcut icon', :href => '/favicon.ico' }
     %link{ :rel => 'apple-touch-icon', :href => '/apple-touch-icon.png' }
     %link{ :rel => 'search', :type => 'application/opensearchdescription+xml', :title => APP_CONFIG['title'], :href => 'opensearch.xml' }
-    %meta{ :name => 'ICBM', :content => "#{@last_location.latitude}, #{@last_location.longitude}" }
+    %meta{ :name => 'ICBM', :content => ("#{@last_location.latitude}, #{@last_location.longitude}" if @last_location) }
     %meta{ :name => 'DC.Title', :content => yield(:title) }
     %meta{ :name => 'DC.Creator', :content => APP_CONFIG['author'] }
     %meta{ :name => 'DC.Language', :content => APP_CONFIG['language'] }
