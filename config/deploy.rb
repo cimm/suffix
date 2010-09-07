@@ -3,12 +3,15 @@ require "bundler/capistrano"
 task :production do
   set :application, "suffix"
   set :user, "suffix"
-  set :domain, "suffix.be"
+  set :deploy_to, "/home/#{application}/public_html"
+  set :domain, "fokkie.be"
   set :rails_env, "production"
   set :scm, :git
-  set :deploy_via, :remote_cache
-  set :repository, "git@github.com:cimm/suffix.git"
+  set :repository, "git@github.com:cimm/#{application}.git"
   set :branch, "master"
+  set :deploy_via, :remote_cache
+  set :use_sudo, false
+  set :ssh_options, { :forward_agent => true }
   server domain, :app, :web
   role :db, domain, :primary => true
 end
@@ -23,19 +26,19 @@ end
 namespace :crontab do
   desc "Update the crontab file."
   task :update do
-    run "cd #{release_path} && whenever --update-crontab #{application}"
+    run "cd #{release_path} && bundle exec whenever --update-crontab #{application}"
   end
 end
 
 namespace :deploy do
   %w(start restart).each { |name| task name do passenger.restart end }
-  after "deploy:update_code", "deploy:symlink"
+  after "deploy:update_code", "deploy:symlink_stuff"
   after "deploy:symlink", "crontab:update"
   desc "Symlink the config files."
-  task :symlink do
+  task :symlink_stuff do
     run "mkdir -p #{shared_path}/config"
+    run "mkdir -p #{shared_path}/log"
     run "ln -s #{shared_path}/config/database.yml #{release_path}/config/database.yml"
     run "ln -s #{shared_path}/config/config.yml #{release_path}/config/config.yml"
-    run "mkdir -p #{shared_path}/config/environments; ln -s #{shared_path}/config/environments/#{rails_env}.rb #{release_path}/config/environments/#{rails_env}.rb"
   end
 end
