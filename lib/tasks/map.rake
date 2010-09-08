@@ -33,7 +33,7 @@ namespace :map do
 
   def create_map(latitude, longitude, width = 500, height = 500, opacity = 1, zoom = 7)
     require 'open-uri'
-    require 'rmagick'
+    require 'RMagick'
     include Magick
     url = URI.parse("http://ojw.dev.openstreetmap.org/StaticMap/?lat=#{latitude}&lon=#{longitude}&z=#{zoom}&w=#{width}&h=#{height}&att=none&show=1")
     mask = Image.read("#{Rails.root}/public/images/map_mask.png")[0]
