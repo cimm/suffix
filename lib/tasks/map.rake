@@ -21,7 +21,7 @@ namespace :map do
       entry_times = entry.xpath("gd:when") # slightly better performance as 2 xpath queries
       start_date = entry_times.first.attributes["startTime"].to_s.to_date
       end_date = entry_times.first.attributes["endTime"].to_s.to_date
-      if start_date >= Date.today && end_date <= Date.today
+      if start_date <= Date.today && end_date >= Date.today
         latitude, longitude = entry.xpath("georss:where/gml:Point/gml:pos").text.split(' ')
         create_map(latitude, longitude, 1200, 100, 0.3, 8)
         break
