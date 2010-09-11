@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100829181454) do
+ActiveRecord::Schema.define(:version => 20100911110352) do
 
   create_table "comments", :force => true do |t|
     t.integer  "post_id",    :null => false
@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(:version => 20100829181454) do
     t.string   "mail"
     t.string   "url"
     t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   add_index "comments", ["post_id"], :name => "index_comments_on_post_id"
@@ -71,7 +70,6 @@ ActiveRecord::Schema.define(:version => 20100829181454) do
     t.integer  "tag_id",     :null => false
     t.integer  "post_id",    :null => false
     t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   add_index "taggings", ["post_id"], :name => "index_taggings_on_post_id"
