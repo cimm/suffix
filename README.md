@@ -23,6 +23,9 @@ Launch the Capistrano setup from you **local** machine:
 Create the config directory on the **remote** server and add the database.yml and config.yml files:
 
     $ mkdir -p shared/config
+
+Run the cold deploy task from your **local** machine. You should be good to go now.
+
     $ cap production deploy:cold
 
 ### Apache
