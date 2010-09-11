@@ -4,6 +4,8 @@ class Location < ActiveRecord::Base
 
   attr_accessible :label, :latitude, :longitude, :current
 
+  before_validation :set_current_location
+
   validates :label, :presence => true, :uniqueness => { :case_sensitive => false }, :length => { :maximum => 50 }
   validates :latitude, :presence => true, :numericality => true
   validates :longitude, :presence => true, :numericality => true
@@ -12,6 +14,10 @@ class Location < ActiveRecord::Base
     where("current = ?", true).first
   end
 
-  # TODO Current check should be here in the model, not in the controller
+  private
+
+  def set_current_location
+    Location.update_all("current = 0", "id != #{id}") if current
+  end
 
 end

@@ -11,7 +11,6 @@ class Admin::LocationsController < Admin::BaseController
   def create
     @location = Location.new(params[:location])
     if @location.save
-      Location.update_all("current = 0", "id != #{@location.id}") if @location.current
       redirect_to admin_locations_url, :notice => "Location successfully saved."
     else
       flash[:error] = "This location could not be saved."
@@ -26,7 +25,6 @@ class Admin::LocationsController < Admin::BaseController
   def update
     @location = Location.find(params[:id])
     if @location.update_attributes(params[:location])
-      Location.update_all("current = 0", "id != #{@location.id}") if @location.current
       redirect_to admin_locations_url, :notice => "Location successfully updated."
     else
       flash.now[:error] = "Oops, something went wrong, could update this location."
