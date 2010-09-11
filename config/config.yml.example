@@ -3,6 +3,7 @@ environment:
   author:
   language: en
   host: localhost:3000
+  secret_token:
   username:
   password:
   policies_url: http://www.example.com/policies
