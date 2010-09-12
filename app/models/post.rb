@@ -5,7 +5,7 @@ class Post < ActiveRecord::Base
   has_many   :tags, :through => :taggings
   belongs_to :location
 
-  attr_accessible :title, :content, :author, :permalink, :location_id
+  attr_accessible :title, :content, :author, :permalink, :location_id, :comments_open
 
   validates :title, :presence => true, :length => { :maximum => 100 }
   validates :permalink, :presence => true, :uniqueness => true, :format => /^[-+\w\d]+$/, :length => { :maximum => 100 }

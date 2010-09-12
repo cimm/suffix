@@ -26,4 +26,7 @@
     %h2= pluralize @comments.count, "comment"
     = render :partial => "posts/comment", :collection => @comments
   %h2 Something to say?
-  = render :partial => "posts/comment_form", :locals => { :comment => @comment }
+  - if @post.comments_open?
+    = render :partial => "posts/comment_form", :locals => { :comment => @comment }
+  - else
+    %p Comments for this post are closed, you darn spambots.

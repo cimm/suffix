@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100911110352) do
+ActiveRecord::Schema.define(:version => 20100912094243) do
 
   create_table "comments", :force => true do |t|
     t.integer  "post_id",    :null => false
@@ -44,13 +44,14 @@ ActiveRecord::Schema.define(:version => 20100911110352) do
   end
 
   create_table "posts", :force => true do |t|
-    t.string   "title",       :null => false
-    t.string   "permalink",   :null => false
-    t.text     "content",     :null => false
+    t.string   "title",                           :null => false
+    t.string   "permalink",                       :null => false
+    t.text     "content",                         :null => false
     t.string   "author"
     t.integer  "location_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "comments_open", :default => true
   end
 
   add_index "posts", ["location_id"], :name => "index_posts_on_location_id"
