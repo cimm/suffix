@@ -29,6 +29,14 @@ namespace :map do
     end
   end
 
+  desc "Updates the /images/map.png with a new OpenStreetMap for the current location in the database (locations table)"
+  task :current_location => :environment do
+    unless current_location = Location.current
+      raise "No current location found in the database!"
+    end
+    create_map(current_location.latitude, current_location.longitude, 1200, 100, 0.3, 8)
+  end
+
   private
 
   def create_map(latitude, longitude, width = 500, height = 500, opacity = 1, zoom = 7)
