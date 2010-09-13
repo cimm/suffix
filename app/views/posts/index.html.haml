@@ -16,7 +16,7 @@
   %h2 Search
   = form_tag search_path, :method => 'get' do
     = text_field_tag :q, nil, :size => 25, :maxlength => 100, :type => "text", :placeholder => "Search at #{APP_CONFIG['title']}"
-    %button{ :style => "width: 22px; height: 23px" }
+    %button#search
       = image_tag "loupe.png", :alt => "Search"
   %h2 Even older
   - if @archive

@@ -7,4 +7,4 @@
         - @post.errors.full_messages.each do |msg|
           %li= msg
   = render :partial => "form", :locals => { :f => f }
-  %p= f.submit "Update"
+  %button Update

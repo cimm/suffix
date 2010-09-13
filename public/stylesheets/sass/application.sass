@@ -31,6 +31,10 @@ a:hover
   color= !orange
 // TODO Active colors
 
+#flash_error
+  margin: 1em 8% 0 8%
+  color= !orange
+
 form
   margin-bottom: 1em
 
@@ -42,14 +46,6 @@ input, textarea
   color= !blue
   background: transparent url(/images/drop.png) no-repeat 0 0
   font-family: Monaco, sans-serif
-
-button
-  border-width: 0
-  background-color: white
-  padding: 0
-  position: relative
-  top: 7px
-  left: 0.5em
 
 header
   padding: 0 8% 0 8%
@@ -88,6 +84,9 @@ nav
 article
   margin: 2em 8% 0 8%
   height: 100%
+  code, pre, samp
+    margin-bottom: 1.3em
+    display: block
   h2 a
     color= !orange
   #column0, #column1
@@ -165,6 +164,8 @@ aside
     td#archive_link
       background-color= !light_gray
       text-align: center
+      a
+        color= !orange
   .comment
     font-size: 0.9em
     line-height: 1.3em
@@ -182,6 +183,15 @@ aside
   .comment:hover
     .url
       display: inline
+  button#search
+    width: 22px
+    height: 23px
+    border-width: 0
+    background-color: white
+    padding: 0
+    position: relative
+    top: 7px
+    left: 0.5em
 
 footer
   margin-top: 1em
@@ -192,3 +202,10 @@ footer
   font-size: smaller
   padding: 0.5em 8% 0.5em 8%
   color= !dark_gray
+  a
+    color= !black
+    padding-bottom: 2px
+  a:hover
+    color= !black
+    border-bottom: 1px solid black
+    border-bottom-color= !dark_gray
