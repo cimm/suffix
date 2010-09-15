@@ -1,5 +1,7 @@
 %article
-  %h2= title "Tags"
+  %h2
+    = title "Tags"
+    = link_to "+", new_admin_tag_path, :class => "action"
 
   %ul
     - @tags.each do |tag|
@@ -8,5 +10,3 @@
         %span
           = link_to "Edit", edit_admin_tag_path(tag)
           = link_to "Delete", admin_tag_path(tag), :method => :delete, :confirm => "Are you sure you want to delete this tag?"
-  %p
-    = link_to "Add", new_admin_tag_path
