@@ -12,6 +12,7 @@ Suffix::Application.routes.draw do
     resources :posts, :except => [:show]
     resources :pages, :except => [:show]
     resources :locations, :except => [:show]
+    resources :tags, :except => [:show]
   end
 
   match '/feeds/blog.xml' => 'posts#index', :format => :atom # redirect old RSS feed
