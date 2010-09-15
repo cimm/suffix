@@ -1,10 +1,11 @@
-%h2= title "New page"
+%article
+  %h2= title "New page"
 
-= form_for @page, :url => admin_pages_path do |f|
-  - if @page.errors.any?
-    %div.errorExplanation
-      %ul
-        - @page.errors.full_messages.each do |msg|
-          %li= msg
-  = render :partial => "form", :locals => { :f => f }
-  %button Create
+  = form_for @page, :url => admin_pages_path do |f|
+    - if @page.errors.any?
+      %div.errorExplanation
+        %ul
+          - @page.errors.full_messages.each do |msg|
+            %li= msg
+    = render :partial => "form", :locals => { :f => f }
+    %button Create

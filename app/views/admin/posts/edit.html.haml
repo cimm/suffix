@@ -1,10 +1,11 @@
-%h2= title "Edit post"
+%article
+  %h2= title "Edit post"
 
-= form_for @post, :url => admin_post_path(@post) do |f|
-  - if @post.errors.any?
-    %div.errorExplanation
-      %ul
-        - @post.errors.full_messages.each do |msg|
-          %li= msg
-  = render :partial => "form", :locals => { :f => f }
-  %button Update
+  = form_for @post, :url => admin_post_path(@post) do |f|
+    - if @post.errors.any?
+      %div.errorExplanation
+        %ul
+          - @post.errors.full_messages.each do |msg|
+            %li= msg
+    = render :partial => "form", :locals => { :f => f }
+    %button Update
