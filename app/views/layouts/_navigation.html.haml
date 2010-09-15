@@ -6,3 +6,12 @@
   - @pages_in_navigation.each do |page|
     %li{ :id => select_active([page_path(page.permalink)]) }
       = link_to_unless_current page.title, page_path(page.permalink)
+  - if admin?
+    %li{ :id => select_active([admin_root_path, admin_posts_path]) }
+      = link_to_unless_current "posts", admin_posts_path
+    %li{ :id => select_active([admin_pages_path]) }
+      = link_to_unless_current "pages", admin_pages_path
+    %li{ :id => select_active([admin_locations_path]) }
+      = link_to_unless_current "locations", admin_locations_path
+    %li{ :id => select_active([admin_tags_path]) }
+      = link_to_unless_current "tags", admin_tags_path

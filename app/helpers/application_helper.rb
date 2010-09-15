@@ -5,4 +5,8 @@ module ApplicationHelper
     page_title
   end
 
+  def admin?
+    session[:admin]
+  end
+
 end
