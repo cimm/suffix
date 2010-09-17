@@ -4,7 +4,7 @@ atom_feed('xmlns:georss' => 'http://www.georss.org/georss') do |feed|
   @posts.each do |post|
     feed.entry(post) do |entry|
       entry.title(post.title)
-      entry.content(post.content, :type => 'html')
+      entry.content(post.message, :type => 'html')
       entry.georss :point do
         xml.text!("#{post.location.latitude} #{post.location.longitude}")
       end

@@ -4,17 +4,19 @@
       %ul
         - comment.errors.full_messages.each do |msg|
           %li= msg
-  %div
-    = f.label :author
-    = f.text_field :author
-  %div
-    = f.label :mail
-    = f.text_field :mail
-  %div
-    = f.label :url
-    = f.text_field :url
+  %table
+    %tbody
+      %tr
+        %th= f.label :author
+        %td= f.text_field :author, :placeholder => "Optional"
+      %tr
+        %th= f.label :mail
+        %td= f.text_field :mail, :placeholder => "Optional"
+      %tr
+        %th= f.label :url
+        %td= f.text_field :url, :placeholder => "Optional"
   %div
     = f.label :content
-    = f.text_area :content
+    = f.text_area :content, :placeholder => "Required"
   =f.hidden_field :post_id, :value => @post.id
-  %button Update
+  %button Send

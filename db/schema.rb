@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100912094243) do
+ActiveRecord::Schema.define(:version => 20100916162142) do
 
   create_table "comments", :force => true do |t|
     t.integer  "post_id",    :null => false
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(:version => 20100912094243) do
   create_table "posts", :force => true do |t|
     t.string   "title",                           :null => false
     t.string   "permalink",                       :null => false
-    t.text     "content",                         :null => false
+    t.text     "message",                         :null => false
     t.string   "author"
     t.integer  "location_id"
     t.datetime "created_at"
