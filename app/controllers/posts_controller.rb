@@ -8,8 +8,8 @@ class PostsController < ApplicationController
       render :archive and return
     end
     posts = Post.order("created_at desc").limit(20)
-    @posts = posts.slice(0..3)
-    @archive = posts.slice(4..20)
+    @posts = posts[0..3]
+    @archive = posts[4..20]
     # TODO The atom feed only has the last 4 posts, is this enough?
     respond_with @posts
   end
