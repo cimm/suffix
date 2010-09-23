@@ -38,7 +38,9 @@ namespace :deploy do
   task :symlink_stuff do
     run "mkdir -p #{shared_path}/config"
     run "mkdir -p #{shared_path}/log"
+    run "mkdir -p #{shared_path}/public/assets"
     run "ln -s #{shared_path}/config/database.yml #{release_path}/config/database.yml"
     run "ln -s #{shared_path}/config/config.yml #{release_path}/config/config.yml"
+    run "ln -s #{shared_path}/public/assets #{release_path}/public/assets"
   end
 end
