@@ -11,3 +11,4 @@ config/config.yml
 public/stylesheets/*.css
 *#*#
 .#*
+*.swp
