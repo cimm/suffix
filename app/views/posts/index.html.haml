@@ -11,7 +11,7 @@
           @
           %abbr.geo{ :title => "#{post.location.latitude};#{post.location.longitude}" }
             = post.location.label
-        %p= truncate strip_tags(post.message), :length => 500
+        %p= (truncate strip_tags(post.message), :length => 500).html_safe
 %aside
   %h2 Search
   = form_tag search_path, :method => 'get' do
