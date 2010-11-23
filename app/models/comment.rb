@@ -2,11 +2,11 @@ class Comment < ActiveRecord::Base
 
   belongs_to :post
 
-  attr_accessible :message, :author, :mail, :url
+  attr_accessible :content, :author, :mail, :url
 
   validate :comments_are_open
 
-  validates :message, :presence => true
+  validates :content, :presence => true
   validates :url, :url_format => true
 
   private
