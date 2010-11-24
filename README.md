@@ -33,3 +33,10 @@ Run the cold deploy task from your **local** machine. You should be good to go n
 Fix the document root in the Suffix Apache config (add the *current* directory) and restart Apache.
 
     DocumentRoot /home/suffix/public_html/current/public
+
+## Tests
+
+To run the tests you'll need a couple of gems so make sure to run Bundler with the test environment included.
+
+    $ bundle install
+    $ rspec .

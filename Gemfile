@@ -1,4 +1,4 @@
-source 'http://rubygems.org'
+source :rubygems
 
 gem 'rails', '3.0.3'
 gem 'mysql2', '0.2.6'
@@ -13,4 +13,11 @@ gem 'whenever', '0.6.2'
 group :development do
   gem 'faker', '0.3.1'
   gem 'reek', '1.2.8'
+end
+
+group :test do
+  gem 'webrat', '0.7.1'
+  gem 'rspec-rails', '2.1.0'
+  gem 'factory_girl_rails', '1.0'
+  gem 'database_cleaner', '0.6.0'
 end
