@@ -18,6 +18,8 @@ end
 group :test do
   gem 'webrat', '0.7.1'
   gem 'rspec-rails', '2.1.0'
+  gem 'autotest', '4.4.5'
   gem 'factory_girl_rails', '1.0'
   gem 'database_cleaner', '0.6.0'
+  gem 'launchy', '0.3.7'
 end

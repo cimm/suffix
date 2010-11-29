@@ -21,6 +21,11 @@ Factory.define :tag do |tag|
 end
 
 Factory.define :tagging do |tagging|
-  tagging.association(:post) # { |posts| [posts.association(:post)] }
+  tagging.association(:post)
   tagging.association(:tag)
+end
+
+Factory.define :comment do |comment|
+  comment.content { |n| "Comment content nr°#{n}" }
+  comment.association :post
 end
