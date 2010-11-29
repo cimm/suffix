@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'page' do
 
   it 'saves with a title and a permalink' do
-    page = Page.new(:title => 'First page', :permalink => 'first-page')
+    page = Factory.build(:page)
     page.should be_valid
   end
 

@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'location' do
 
   it 'does save a location' do
-    location = Location.new(:label => 'First location', :latitude => '51.4967', :longitude => '-0.111807')
+    location = Factory.build(:location)
     location.valid?.should be_true
   end
 

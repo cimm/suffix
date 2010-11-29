@@ -20,12 +20,12 @@ describe 'tag' do
   end
 
   it 'returns the tag name when calling to string' do
-    tag = Factory(:tag)
+    tag = Factory.build(:tag)
     tag.name.should == tag.to_s
   end
 
   it 'has many posts through taggings' do
-    tag = Factory(:tag)
+    tag = Factory.build(:tag)
     tag.posts.first.class.should equal Post
   end
 
