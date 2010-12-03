@@ -5,11 +5,11 @@ class Admin::TagsController < Admin::BaseController
   end
 
   def new
-    @tags = Tag.new
+    @tag = Tag.new
   end
 
   def create
-    @tags = Tag.new(params[:tag])
+    @tag = Tag.new(params[:tag])
     if @tag.save
       redirect_to admin_tags_url, :notice => "Tag successfully saved."
     else
