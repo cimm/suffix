@@ -9,6 +9,7 @@ module LinksHelper
       return "selected" if current_page?(path) || (path != root_path && path != admin_root_path && request.fullpath.starts_with?(path))
       # TODO will highlight the blog link when a page permalink starts with /blog.*/
     end
+    return nil
   end
 
 end
