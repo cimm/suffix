@@ -6,27 +6,31 @@ describe 'page' do
 
     it 'is addressable via its permalink' do
       Factory(:page, :permalink => 'some-page')
-      get '/some-page'
-      response.should be_success
+      visit '/some-page'
+      page.status_code.should eql 200
     end
 
     it 'is visible in the navigation when flagged as such' do
-      page = Factory(:page, :in_navigation => true)
-      get page_url(page)
-      response.should have_selector('li', :content => page.title, :id => 'selected')
+      page_in_nav = Factory(:page, :in_navigation => true)
+      visit '/'
+      within 'nav' do
+        find_link(page_in_nav.title).visible?.should be_true
+      end
     end
 
     it 'links back to the homepage' do
-      page = Factory(:page)
-      get page_url(page)
+      some_page = Factory(:page)
+      visit page_path(some_page)
       click_link 'home'
-      response.should render_template('index')
+      current_path.should eql root_path
     end
 
-    it 'shows the page metadata' do
-      page = Factory(:page)
-      get page_url(page)
-      response.should have_selector('abbr', :content => 'less than a minute')
+    it 'shows the page metadata in the sidebar' do
+      some_page = Factory(:page)
+      visit page_path(some_page)
+      within 'aside' do
+        page.should have_content('less than a minute')
+      end
     end
 
   end

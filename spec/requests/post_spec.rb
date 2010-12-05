@@ -8,24 +8,25 @@ describe 'post' do
       posts = 21.times.inject([]) { |posts, index|
         posts << Factory(:post, :created_at => Time.now - index.days)
       }
-      get '/blog'
-      response.should have_selector('h2', :content => posts.first.title)
-      response.should_not contain(posts.last.title)
+      visit '/blog'
+      page.should have_content(posts.first.title)
+      page.should_not have_content(posts.last.title)
     end
 
-    it 'has a search box' do
-      get '/blog'
-      response.should have_selector('h2', :content => 'Search')
-      response.should have_selector('input')
+    it 'has a search box in the sidebar' do
+      visit '/blog'
+      within 'aside' do
+        page.should have_content('Search')
+      end
     end
 
     it 'has an archive page with all posts' do
       posts = 25.times.inject([]) { |posts, index|
         posts << Factory(:post, :created_at => Time.now - index.days) 
       }
-      get '/archive'
-      response.should have_selector('a', :content => posts.last.title)
-      response.should have_selector('a', :content => posts.first.title)
+      visit '/archive'
+      page.should have_content(posts.last.title)
+      page.should have_content(posts.first.title)
     end
 
   end
@@ -34,51 +35,59 @@ describe 'post' do
 
     it 'is addressable via its permalink' do
       Factory(:post, :title => 'First post', :permalink => 'first-post')
-      get '/blog/first-post'
-      response.should have_selector('h2', :content => 'First post')
+      visit '/blog/first-post'
+      page.should have_content('First post')
     end
 
     it 'links back to the homepage' do
       post = Factory(:post)
-      get post_url(post)
+      visit post_path(post)
       click_link 'home'
-      response.should render_template('index')
+      current_path.should eql root_path
     end
 
-    it 'shows the post metadata' do
+    it 'shows the post metadata in the sidebar' do
       post = Factory(:post)
-      get post_url(post)
-      response.should have_selector('abbr', :content => 'less than a minute')
-      response.should have_selector('abbr', :content => post.location.label)
+      visit post_path(post)
+      within 'aside' do
+        page.should have_content('less than a minute')
+        page.should have_content(post.location.label)
+      end
     end
 
-    it 'has a comment form when open for comments' do
+    it 'has a comment form when open for comments in the sidebar' do
       Factory(:post, :title => 'First post', :permalink => 'first-post')
-      get '/blog/first-post'
-      response.should have_selector('h2', :content => 'Something to say?')
-      response.should have_selector('label', :content => 'Content')
+      visit '/blog/first-post'
+      within 'aside' do
+        page.should have_content('Something to say?')
+        page.should have_content('Content')
+      end
     end
 
-    it 'has no comment form when comments are not allowed' do
+    it 'has no comment form in the sidebar when comments are not allowed' do
       Factory(:post, :title => 'First post', :permalink => 'first-post', :comments_open => false)
-      get '/blog/first-post'
-      response.should have_selector('h2', :content => 'Something to say?')
-      response.should have_selector('p', :content => 'Comments for this post are closed, you darn spambots.')
+      visit '/blog/first-post'
+      within 'aside' do
+        page.should have_content('Something to say?')
+        page.should have_content('Comments for this post are closed, you darn spambots.')
+      end
     end
 
     it 'can post a comment when open for comments' do
       Factory(:post, :title => 'First post', :permalink => 'first-post')
-      get '/blog/first-post'
+      visit '/blog/first-post'
       fill_in 'Content', :with => 'Some comment on the article.'
       click_button 'Send'
-      response.should have_selector('div', :content => 'Comment successfully saved.')
-      response.should have_selector('p', :content => 'Some comment on the article.')
+      page.should have_content('Comment successfully saved.')
+      page.should have_content('Some comment on the article.')
     end
 
-    it 'shows the total comment count' do
+    it 'shows the total comment count in the sidebar' do
       comment = Factory(:comment)
-      get post_url(comment.post)
-      response.should have_selector('h2', :content => '1 comment')
+      visit post_path(comment.post)
+      within 'aside' do
+        page.should have_content('1 comment')
+      end
     end
 
   end
