@@ -55,6 +55,13 @@ describe 'post' do
       end
     end
 
+    it 'shows a message when last modification is more than one year ago' do
+      last_year = Time.now - (1.year + 1.day)
+      post = Factory(:post, :updated_at => last_year)
+      visit post_path(post)
+      page.should have_content('This article was posted over one year ago, the information may no longer be acurate.')
+    end
+
     it 'has a comment form when open for comments in the sidebar' do
       Factory(:post, :title => 'First post', :permalink => 'first-post')
       visit '/blog/first-post'

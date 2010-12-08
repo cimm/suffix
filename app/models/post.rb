@@ -10,6 +10,10 @@ class Post < ActiveRecord::Base
   validates :title, :presence => true, :length => { :maximum => 100 }
   validates :permalink, :presence => true, :uniqueness => true, :format => /^[-+\w\d]+$/, :length => { :maximum => 100 }
 
+  def old?
+    true if updated_at < (Time.now - 1.year)
+  end
+
   def to_param
     self.permalink
   end

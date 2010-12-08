@@ -24,6 +24,12 @@ describe 'post' do
     post.errors[:permalink].include?('is invalid').should be_true
   end
 
+  it 'knows when it is older than one year' do
+    last_year = Time.now - (1.year + 1.day)
+    post = Factory(:post, :updated_at => last_year)
+    post.old?.should be_true
+  end
+
   it 'returns datetime for the last updated post' do
     some_date = DateTime.parse('2010/01/30')
     Factory(:post, :updated_at => some_date)

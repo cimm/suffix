@@ -1,5 +1,7 @@
 %article
   %div#column2
+    - if @post.old?
+      %p.old This article was posted over one year ago, the information may no longer be acurate.
     %h2= title @post.title
     = @post.message.html_safe
 %aside
