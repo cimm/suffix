@@ -26,7 +26,7 @@ describe 'tag' do
 
   it 'has many posts through taggings' do
     tag = Factory.build(:tag)
-    tag.posts.first.class.should equal Post
+    tag.should respond_to(:posts)
   end
 
 end

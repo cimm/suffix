@@ -41,7 +41,7 @@ describe 'post' do
     Factory(:post, :message => 'Message for search')
     Factory(:post, :title => 'Title without keyword')
     Factory(:post, :message => 'Message without keyword')
-    Post.all.count.should equal(4)
+    Post.count.should equal(4)
     Post.search('search').count.should == 2
     Post.search('message').count.should == 2
   end
