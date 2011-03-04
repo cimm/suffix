@@ -16,7 +16,7 @@ group :development do
 end
 
 group :test do
-  gem 'capybara', '0.4.0'
+  gem 'capybara', '0.4.1.2'
   gem 'rspec-rails', '2.4.1'
   gem 'autotest', '4.4.6'
   gem 'factory_girl_rails', '1.0.1'
