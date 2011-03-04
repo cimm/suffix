@@ -11,7 +11,7 @@ gem 'capistrano', '2.5.19'
 gem 'whenever', '0.6.2'
 
 group :development do
-  gem 'faker', '0.9.4'
+  gem 'faker', '0.9.5'
   gem 'reek', '1.2.8'
 end
 
