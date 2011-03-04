@@ -97,6 +97,17 @@ describe 'post' do
       end
     end
 
+    it 'shows the correct fresshness and posted labels' do
+      yesterday = Time.now - 1.day
+      last_week = Time.now - 1.week
+      post = Factory(:post, :created_at => last_week, :updated_at => yesterday)
+      visit post_path(post)
+      within 'aside' do
+        page.should have_content('freshness 1 day ago')
+        page.should have_content('posted 7 days ago')
+      end
+    end
+
   end
 
 end

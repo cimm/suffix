@@ -8,12 +8,12 @@
   %h2 Meta
   %ul
     %li
-      freshness
+      posted
       %abbr{ :title => @post.created_at.iso8601 }
         = time_ago_in_words(@post.created_at)
         ago
     %li
-      posted
+      freshness
       %abbr{ :title => @post.updated_at.iso8601 }
         = time_ago_in_words(@post.updated_at)
         ago
