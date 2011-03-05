@@ -2,6 +2,12 @@ namespace :map do
 
   # Leuven 50.851249142738, 4.454956054687
 
+  desc "Updates the /images/map.png with a new OpenStreetMap for the current Dopplr location with a fallback to the last post location"
+  task :dopplr_trip_or_last_post => :environment do
+    Rake::Task["map:last_post"].invoke
+    Rake::Task["map:current_dopplr_trip"].invoke # will overwrite previous if found
+  end
+
   desc "Updates the /images/map.png with a new OpenStreetMap for a given latitude and longitude"
   task :location => :environment do
     unless ENV.include?("lat") &&  ENV.include?("long")
@@ -35,6 +41,14 @@ namespace :map do
       raise "No current location found in the database!"
     end
     create_map(current_location.latitude, current_location.longitude, 1200, 100, 0.3, 8)
+  end
+
+  desc "Updates the /images/map.png with a new OpenStreetMap for the location of the most reccent blog post"
+  task :last_post => :environment do
+    unless last_post = Post.last
+      raise "No blog posts found in the database!"
+    end
+    create_map(last_post.location.latitude, last_post.location.longitude, 1200, 100, 0.3, 8)
   end
 
   private
