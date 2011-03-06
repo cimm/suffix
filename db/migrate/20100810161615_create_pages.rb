@@ -8,7 +8,7 @@ class CreatePages < ActiveRecord::Migration
       t.boolean :in_navigation, :default => 0
       t.timestamps
     end
-    add_index :posts, :permalink
+    add_index :pages, :permalink
   end
 
   def self.down

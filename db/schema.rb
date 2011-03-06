@@ -43,6 +43,8 @@ ActiveRecord::Schema.define(:version => 20100916162142) do
     t.datetime "updated_at"
   end
 
+  add_index "pages", ["permalink"], :name => "index_pages_on_permalink"
+
   create_table "posts", :force => true do |t|
     t.string   "title",                           :null => false
     t.string   "permalink",                       :null => false
