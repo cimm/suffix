@@ -12,6 +12,7 @@ describe 'photo' do
     end
 
     it 'should list a few photos' do # this test needs an internet connection
+      FakeWeb.register_uri(:get, APP_CONFIG['flickr']['feed'], :body => "Fake Flickr feed")
       visit '/photos'
       find(:id, 'selected').text.strip.should eql 'photos'
       find(:id, 'photos').tag_name.should eql 'ul'
