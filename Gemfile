@@ -9,7 +9,7 @@ gem 'coderay', '0.9.8'
 gem 'rack-coderay', '0.2.0'
 gem 'nokogiri', '1.5.0'
 gem 'capistrano', '2.8.0'
-gem 'whenever', '0.6.2'
+gem 'whenever', '0.6.8'
 
 group :development do
   gem 'faker', '0.9.5'
