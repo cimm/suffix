@@ -34,12 +34,12 @@ GEM
     autotest (4.4.6)
       ZenTest (>= 4.4.1)
     builder (2.1.2)
-    capistrano (2.5.19)
+    capistrano (2.8.0)
       highline
       net-scp (>= 1.0.0)
       net-sftp (>= 2.0.0)
       net-ssh (>= 2.0.14)
-      net-ssh-gateway (>= 1.0.0)
+      net-ssh-gateway (>= 1.1.0)
     capybara (0.4.1.2)
       celerity (>= 0.7.9)
       culerity (>= 0.2.4)
@@ -163,7 +163,7 @@ PLATFORMS
 
 DEPENDENCIES
   autotest (= 4.4.6)
-  capistrano (= 2.5.19)
+  capistrano (= 2.8.0)
   capybara (= 0.4.1.2)
   coderay (= 0.9.8)
   database_cleaner (= 0.6.4)
