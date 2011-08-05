@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'admin post' do
 
   before do
-    page.driver.basic_authorize('simon', 'secret')
+    page.driver.browser.basic_authorize('simon', 'secret')
   end
 
   describe 'GET index' do
