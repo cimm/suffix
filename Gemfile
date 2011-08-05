@@ -1,8 +1,9 @@
 source :rubygems
 
-gem 'rails', '3.0.5'
+gem 'rails', '3.0.9'
 gem 'mysql2', '0.2.6'
-gem 'haml', '3.0.25'
+gem 'haml', '3.1.2'
+gem 'sass', '3.1.7'
 gem 'rmagick', '2.13.1'
 gem 'coderay', '0.9.7'
 gem 'rack-coderay', '0.2.0'
