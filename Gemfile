@@ -22,6 +22,6 @@ group :test do
   gem 'autotest', '4.4.6'
   gem 'factory_girl_rails', '1.1.0'
   gem 'database_cleaner', '0.6.7'
-  gem 'launchy', '0.4.0'
+  gem 'launchy', '2.0.5'
   gem 'fakeweb', '1.3.0'
 end
