@@ -1,18 +1,18 @@
-!light_gray = #efefef
-!gray = #bbb
-!dark_gray = #777777
-!black = #262626
-!orange = #bf3a14
-!blue = #449FD8
-!yellow = #FDE1B5
-!horizontal_width = 3px
-!vertical_width = 2px
+$light_gray: #efefef
+$gray: #bbb
+$dark_gray: #777777
+$black: #262626
+$orange: #bf3a14
+$blue: #449FD8
+$yellow: #FDE1B5
+$horizontal_width: 3px
+$vertical_width: 2px
 
-=top_shading
+@mixin top_shading
   background: transparent url(/images/border_top.gif) repeat-x top left
 
 html, body
-  color= !black
+  color: $black
   font-family: Georgia, serif
   line-height: 1.5em
 
@@ -21,19 +21,19 @@ h2
   font-size: 1.2em
   font-weight: lighter
   margin-bottom: 0.5em
-  color= !orange
+  color: $orange
 
 h3, h4, h5
   margin-bottom: 1em
 
 a
   text-decoration: none
-  color= !blue
+  color: $blue
 a.ext
   background: url(/images/ext.gif) no-repeat right center
   padding-right: 11px
 a:hover
-  color= !orange
+  color: $orange
 // TODO Active colors
 ul
   margin-bottom: 1em
@@ -45,7 +45,7 @@ table
       text-align: left
       padding: 0.2em 1em 0.2em 0.3em
   tfoot
-    border-top: 1px solid !gray
+    border-top: 1px solid $gray
     background-color: #eee
     th
       text-align: left
@@ -53,17 +53,17 @@ table
 
 #flash_error
   margin: 1em 8% 0 8%
-  color= !orange
+  color: $orange
 
 form
   margin-bottom: 1em
 
 input, textarea
-  border-width= !vertical_width
+  border-width: $vertical_width
   border-style: solid
-  border-color= !gray
+  border-color: $gray
   padding: 0.3em
-  color= !blue
+  color: $blue
   background: transparent url(/images/drop.png) no-repeat 0 0
   font-family: Monaco, sans-serif
 
@@ -72,9 +72,9 @@ header
   background-image: url(/images/map.png)
   background-position: top left
   background-repeat: no-repeat
-  background-color= !light_gray
-  border-bottom-width= !horizontal_width
-  border-bottom-color= !gray
+  background-color: $light_gray
+  border-bottom-width: $horizontal_width
+  border-bottom-color: $gray
   border-bottom-style: solid
   span
     display: none
@@ -84,16 +84,16 @@ nav
   margin-top: -28px
   margin-left: 25%
   a
-    color= !black
+    color: $black
   a:active
-    color= !orange
+    color: $orange
   // TODO Visited and hover colors
   li
     display: inline
     padding: 0 1.5% 0 1.5%
   li#selected
     background-image: url(/images/nav_arrow.gif)
-    background-color= !orange
+    background-color: $orange
     background-repeat: no-repeat
     background-position: center bottom
     color: white
@@ -108,18 +108,18 @@ article
     margin-bottom: 1.3em
     display: block
   h2 a
-    color= !orange
+    color: $orange
   h2 a.action
-    color= !blue
+    color: $blue
   #column0, #column1
     h2
-      +top_shading
+      include top_shading
   #column0, #column1, #column2
     float: left
     width: 29.5%
     padding-right: 2%
-    border-right-color= !gray
-    border-right-width= !vertical_width
+    border-right-color: $gray
+    border-right-width: $vertical_width
     border-right-style: solid
     margin-bottom: 2%
     p
@@ -132,13 +132,13 @@ article
       background: none
       padding-top: 0
   .meta
-    color= !dark_gray
+    color: $dark_gray
     font-size: smaller
   p.old
     padding: 0.5em 0.5em 0.5em 3em
     font-size: smaller
     background: transparent url(/images/warning.png) no-repeat 10px 47%
-    background-color= !yellow
+    background-color: $yellow
   ul#photos
     li
       float: left
@@ -160,7 +160,7 @@ aside
   padding-left: 2%
   h2
     +top_shading
-    color= !black
+    color: $black
   table
     width: 100%
     th
@@ -172,21 +172,21 @@ aside
       text-align: left
   ul
     list-style: none
-    color= !dark_gray
+    color: $dark_gray
     margin-bottom: 1em
     abbr, span
-      color= !black
+      color: $black
   table#archive
     margin-top: 1em
     table-layout: fixed
     border-bottom-width: 1px
     border-bottom-style: solid
-    border-bottom-color= !gray
+    border-bottom-color: $gray
     width: 100%
     td
       border-top-width: 1px
       border-top-style: solid
-      border-top-color= !gray
+      border-top-color: $gray
     td.expand
       overflow: hidden
       empty-cells: show
@@ -197,12 +197,12 @@ aside
       font-size: smaller
       padding-left: 0.5em
       text-align: right
-      color= !dark_gray
+      color: $dark_gray
     td#archive_link
-      background-color= !light_gray
+      background-color: $light_gray
       text-align: center
       a
-        color= !orange
+        color: $orange
   .comment
     font-size: 0.9em
     line-height: 1.3em
@@ -216,7 +216,7 @@ aside
       clear: both
       margin: 0
       text-align: right
-      color= !gray
+      color: $gray
   .comment:hover
     .url
       display: inline
@@ -233,16 +233,16 @@ aside
 footer
   margin-top: 1em
   clear: both
-  border-top-color= !gray
-  border-top-width= !horizontal_width
+  border-top-color: $gray
+  border-top-width: $horizontal_width
   border-top-style: solid
   font-size: smaller
   padding: 0.5em 8% 0.5em 8%
-  color= !dark_gray
+  color: $dark_gray
   a
-    color= !black
+    color: $black
     padding-bottom: 2px
   a:hover
-    color= !black
+    color: $black
     border-bottom: 1px solid black
-    border-bottom-color= !dark_gray
+    border-bottom-color: $dark_gray

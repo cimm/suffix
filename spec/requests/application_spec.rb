@@ -32,4 +32,19 @@ describe 'application' do
     end
   end
 
+  it 'does render the reset stylesheet' do
+    visit '/stylesheets/reset.css'
+    page.should_not have_content('Invalid CSS')
+  end
+
+  it 'does render the application stylesheet' do
+    visit '/stylesheets/application.css'
+    page.should_not have_content('Invalid CSS')
+  end
+
+  it 'does render the coderay stylesheet' do
+    visit '/stylesheets/coderay.css'
+    page.should_not have_content('Invalid CSS')
+  end
+
 end
