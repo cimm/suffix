@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 Factory.define :location do |location|
   location.sequence(:label) { |n| "Label nr°#{n}" }
   location.latitude         { 51.4967 }

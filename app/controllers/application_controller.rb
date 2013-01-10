@@ -11,8 +11,8 @@ class ApplicationController < ActionController::Base
     if last_page = Page.last_update
       @last_update << last_page
     end
-    @last_update = @last_update.sort!.to_s
-    @last_update = Time.at(0) if @last_update.empty? # clean slate
+    @last_update = @last_update.sort!.last
+    @last_update = Time.at(0) if @last_update.nil? # clean slate
   end
 
   def last_location
