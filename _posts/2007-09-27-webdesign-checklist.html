@@ -1,0 +1,113 @@
+---
+layout: post
+title:  Webdesign checklist
+date:   2007-09-27 02:11:18
+---
+
+<p>If you try to make the best out of a website you it's easy to loose track of the stuff you checked and the ones you missed. This list should help me not to forget the small optimizations next time. This list is by no means exhaustive and not every point is needed in every situation but it's a start. It is customized for my own web development projects but it could be a start point for your own checkpoint list as well. Note, this is a checklist, not a tutorial on how to write websites and it assumes you have some basic understanding about accessible webdesign (make sure your site still works with JavaScript turned off, split your HTML structure from the layout, etc).</p>
+
+<ul>
+  <li>Write correct semantic HTML
+    <ul>
+      <li>Use a strict doctype</li>
+      <li>Define your document language</li>
+      <li>Define your content type for the XML and once more in the head</li>
+      <li>Use microformats where possible: hCard, hReview, XFN, etc.</li>
+      <li>Validate your finished page (or have reason why it does not)</li>
+      <li>Correct HTML elements for the right content, did you know the &lt;samp&gt; element?</li>
+    </ul>
+  </li>
+</ul>
+
+<samp>
+&lt;?xml version="1.0" encoding="utf-8"?&gt;<br />
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;<br />
+&lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"&gt;<br />
+&lt;head&gt;<br />
+&lt;meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" /&gt;<br />
+&lt;title&gt;&lt;/title&gt;<br />
+&lt;/head&gt;<br />
+&lt;body&gt;<br />
+&lt;/body&gt;<br />
+&lt;/html&gt;<br />
+</samp>
+
+<ul>
+  <li>Decent CSS
+    <ul>
+      <li>No browser dependent hacks (if possible)</li>
+      <li>Never use JavaScript to load styles</li>
+      <li>Use only external stylesheets so it can be cached (no more then 8kB)</li>
+      <li>Write general CSS, be aware for &lsquo;<a href="http://joshuaink2006.johnoxton.co.uk/blog/330/avoiding-classitis" title="Avoiding classitis by John Oxton" class="ext">classitis</a>&rsquo;</li>
+      <li>Different colors for visited links (a:visited)</li>
+    </ul>
+  </li>
+  <li>Check your sites browser compatibility
+    <ul>
+      <li>Internet Explorer</li>
+      <li>Firefox</li>
+      <li>Opera</li>
+      <li>Safari</li>
+      <li>Lynx</li>
+      <li>Mobile devices</li>
+    </ul>
+  </li>
+  <li>Accessibility
+    <ul>
+      <li>Still readable for people with color blindness?</li>
+      <li>Enough contrast between text and background?</li>
+      <li>Test with larger font sizes</li>
+      <li>Add a 'last updated' date</li>
+    </ul>
+  </li>
+  <li>SEO or Search Engine Optimization
+    <ul>
+      <li>Google Sitemap</li>
+      <li>robots.txt</li>
+      <li>Google Analytics</li>
+      <li>Use rel="nofolow" for links in the comments</li>
+      <li>Technorati</li>
+      <li>Add the description and keywords meta tags</li>
+      <li>Add <abbr title="Dublin Core">DC</abbr> meta tags (optional)</li>
+    </ul>
+  </li>
+  <li>Performance
+    <ul>
+      <li>As HTTP requests</li>
+      <li>Check image file sizes</li>
+      <li>Optimize include files (get rid of white spaces in CSS or JavaScript files)</li>
+      <li>GZIP all your output</li>
+      <li>Use the expire cache in Apache</li>
+      <li>Move JavaScripts to the bottom of the page where possible</li>
+    </ul>
+  </li>
+  <li>Content</li>
+  <li>License, check the CC licenses</li>
+  <li>Nice extra's
+    <ul>
+      <li>XML</li>
+      <li>JSON</li>
+      <li>OpenSearch</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Missing something? Write a short comment so I can add it to the list.</p>
+
+<h3>Tools</h3>
+
+<ul>
+  <li><a href="http://www.paciellogroup.com/resources/contrast-analyser.html" title="Contrast Analyser" class="ext">Software tool for checking foreground &amp; background colour combinations</a></li>
+  <li><a href="http://www.vischeck.com/vischeck/" title="Vischeck" class="ext">How does your website look like to someone who is color blind?</a></li>
+  <li><a href="http://michelf.com/projects/sim-daltonism/" title="Sim Daltonism" class="ext">Sim Daltonism, a color blindness simulator for Mac OS X</a></li>
+  <li><a href="http://www.graybit.com/" title="GrayBit" class="ext">Convert a full-color web page into a grayscale rendition</a></li>
+  <li><a href="http://developer.yahoo.com/yslow/" title="Really useful extension for Firebug to check a site&#39;s performance" class="ext">Yahoo! YSlow extension to check a site's performance</a></li>
+  <li><a href="http://www.websiteoptimization.com/services/analyze/" title="Web Page Analyzer" class="ext">Website Performance Tool and Web Page Speed Analysis</a></li>
+</ul>
+
+<h3>Read more</h3>
+
+<ul>
+  <li><a href="http://www.456bereastreet.com/archive/200709/10_colour_contrast_checking_tools_to_improve_the_accessibility_of_your_design/" title="Color contrast checking tools to improvet the accessibility of your design" class="ext">Color contrast checking tools to improve the accessibility of your design</a></li>
+  <li><a href="http://www.456bereastreet.com/archive/200603/evaluating_website_accessibility_part_3_digging_deeper/" title="Evaluating website accessibility part 3, Digging Deeper" class="ext">Evaluating website accessibility</a></li>
+</ul>
