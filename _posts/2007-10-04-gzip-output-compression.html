@@ -1,0 +1,61 @@
+---
+layout: post
+title:  GZIP output compression in RoR
+date:   2007-10-04 01:59:37
+---
+
+<p>&lsquo;Output Compression&rsquo; by <span class="vcard"><a class="url fn ext" href="http://blog.craz8.com/">Tom Fakes</a></span> is a Ruby on Rails plugin that allows <abbr title="GNU zip">GZIP</abbr> output compression for clients that support it.</p>
+  
+<p>GZIP compression is a common way to compress the content of web pages by the server before the request is passed on to the browser. The browser decompresses the content and renders it. This method needs less data passing over the network, up to 55% in my case, but has a small performance hit as both the server and the browser need to (de)compress the package.</p>
+
+<p>The Ruby on Rails plugin is great but at the time of writing (in Ruby 1.8.2) it's broken and needs some manual fixing... lets fix it.</p>
+
+<ol>
+  <li>First install the plugin (sudo not required):
+    <samp>./script/plugin install http://craz8.com/svn/trunk/plugins/output_compression</samp>
+  </li>
+  <li><p>Open the output_compression.rb file in the vendor/plugins/output_compression/lib/ folder and move the &ldquo;alias :original_request_for_component :request_for_component&rdquo; line below the request_for_component one. At first it should look like this:</p>
+
+<samp>
+module ActionController<br />
+  module Components<br />
+    protected<br />
+      <strong>alias :original_request_for_component :request_for_component</strong><br />
+      def request_for_component(options)<br />
+        request_for_component = original_request_for_component(options)<br />
+        request_for_component.is_component_request = true<br />
+        return request_for_component<br />
+      end<br />
+  end<br />
+end<br />
+</samp>
+
+<p>The end result should look like this:</p>
+
+<samp>
+module ActionController<br />
+  module Components<br />
+    protected<br />
+      def request_for_component(options)<br />
+        request_for_component = original_request_for_component(options)<br />
+        request_for_component.is_component_request = true<br />
+        return request_for_component<br />
+      end<br />
+      <strong>alias :original_request_for_component :request_for_component</strong><br />
+  end<br />
+end<br />
+</samp>
+
+</li>
+
+<li><p>Lastly you need to add the following line in the controller you would like to enable GZIP for. I chose to put this in my application controller (application.rb) to enable compression for all my pages:</p>
+<samp>after_filter OutputCompressionFilter</samp>
+</li>
+
+</ol>
+
+<h3>Tools</h3>
+
+<ul>
+  <li><a href="http://whatsmyip.org/mod_gzip_test/" class="ext" title="Check a URL for GZIP compression">Check if you website sends GZIP compressed content</a></li>
+</ul>
