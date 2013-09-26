@@ -14,14 +14,14 @@ date:   2007-09-28 00:19:11
   <li>Now we only need to check if the request succeeded by looking at the result parameter and we are done.</li>
 </ol>
 
-<samp>
-require 'xmlrpc/client'<br />
-server = XMLRPC::Client.new("rpc.technorati.com", "/rpc/ping")<br />
-result = server.call("weblogUpdates.ping", "YOUR BLOG NAME", "YOUR BLOG URL")<br />
-if result['flerror']<br />
-   flash[:error] = result['message']<br />
+{% highlight ruby %}
+require 'xmlrpc/client'
+server = XMLRPC::Client.new('rpc.technorati.com', '/rpc/ping')
+result = server.call('weblogUpdates.ping', 'YOUR BLOG NAME', 'YOUR BLOG URL')
+if result['flerror']
+   flash[:error] = result['message']
 end
-</samp>
+{% endhighlight %}
 
 <h3>Resources</h3>
 

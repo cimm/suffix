@@ -12,44 +12,48 @@ date:   2007-10-04 01:59:37
 
 <ol>
   <li>First install the plugin (sudo not required):
-    <samp>./script/plugin install http://craz8.com/svn/trunk/plugins/output_compression</samp>
+{% highlight bash %}
+./script/plugin install http://craz8.com/svn/trunk/plugins/output_compression
+{% endhighlight %}
   </li>
   <li><p>Open the output_compression.rb file in the vendor/plugins/output_compression/lib/ folder and move the &ldquo;alias :original_request_for_component :request_for_component&rdquo; line below the request_for_component one. At first it should look like this:</p>
 
-<samp>
-module ActionController<br />
-  module Components<br />
-    protected<br />
-      <strong>alias :original_request_for_component :request_for_component</strong><br />
-      def request_for_component(options)<br />
-        request_for_component = original_request_for_component(options)<br />
-        request_for_component.is_component_request = true<br />
-        return request_for_component<br />
-      end<br />
-  end<br />
-end<br />
-</samp>
+{% highlight ruby %}
+module ActionController
+  module Components
+    protected
+      alias :original_request_for_component :request_for_component
+      def request_for_component(options)
+        request_for_component = original_request_for_component(options)
+        request_for_component.is_component_request = true
+        return request_for_component
+      end
+  end
+end
+{% endhighlight %}
 
 <p>The end result should look like this:</p>
 
-<samp>
-module ActionController<br />
-  module Components<br />
-    protected<br />
-      def request_for_component(options)<br />
-        request_for_component = original_request_for_component(options)<br />
-        request_for_component.is_component_request = true<br />
-        return request_for_component<br />
-      end<br />
-      <strong>alias :original_request_for_component :request_for_component</strong><br />
-  end<br />
-end<br />
-</samp>
+{% highlight ruby %}
+module ActionController
+  module Components
+    protected
+      def request_for_component(options)
+        request_for_component = original_request_for_component(options)
+        request_for_component.is_component_request = true
+        return request_for_component
+      end
+      alias :original_request_for_component :request_for_component
+  end
+end
+{% endhighlight %}
 
 </li>
 
 <li><p>Lastly you need to add the following line in the controller you would like to enable GZIP for. I chose to put this in my application controller (application.rb) to enable compression for all my pages:</p>
-<samp>after_filter OutputCompressionFilter</samp>
+{% highlight ruby %}
+after_filter OutputCompressionFilter
+{% endhighlight %}
 </li>
 
 </ol>
