@@ -1,0 +1,86 @@
+---
+layout: post
+title:  My Flickr photos with RoR
+date:   2008-05-20 14:05:59
+---
+
+<p>As I had some troubles finding out how to show some of my own Flickr photos on this site using the Flickr API and Ruby on Rails I thought it would be useful to write it down in a small tutorial.</p>
+<h3>STEP 1: Finding a library: rFlickr</h3>
+
+<p>Flickr lists 3 possible Ruby frameworks for their API. After trying <a href="http://redgreenblu.com/flickr/" title="My first shot at a Flickr API kit" class="ext">flickr.rb</a> and not being able to login I decided to switch to <a href="http://rubyforge.org/projects/rflickr/" title="The Flickr API kit I choose" class="ext">rFlickr</a> as it seems the most popular one. I didn't look at the last one: <a href="http://premshree.seacrow.com/code/ruby/flickr-ruby" title="Another Flickr API kit for Ruby" class="ext">flickr-ruby</a>.</p>
+
+<p>Start with installing the rFlickr library. You may need to uninstall a previous library if you installed another one earlier.</p>
+
+{% highlight bash %}
+gem install rflickr
+{% endhighlight %}
+
+<h3>STEP 2: Get a Flickr API key</h3>
+
+<p>Flickr doesn't use the username/password combination as most other API's do. An application can ask for permissions which the user has to grant. A token is returned when this is done allowing the application to connect the next time so we'll only have to do this once. <a href="http://flickr.com/services/api/keys/apply/" title="Request an API key" class="ext">Apply for a key</a> at the Flickr website and remember the key and the shared secret. I use a &ldquo;Web Application&rdquo; key as I want to use it for my blog.</p>
+
+<h3>STEP 3: Get a Flickr token</h3>
+
+<p>Start your development environment:</p>
+
+{% highlight bash %}
+./script/console
+{% endhighlight %}
+
+<p>Next load the newly installed rFlickr module and ask for a Flickr frob using the API key and shared secret you got earlier.</p>
+
+{% highlight ruby %}
+>> require 'flickr'
+=> []
+>> flickr = Flickr.new('/tmp/flickr.cache', YOUR_KEY, YOUR_SECRET)
+=> #<Flickr:0x...
+>> flickr.auth.login_link
+=> 'http://flickr.com/services/auth/?api_sig=a07a7...'
+{% endhighlight %}
+
+<p>This will return a URL you need to copy &amp; paste in your browser to allow the application to read, write and delete your photos. If you don't need all this permissions your can add the &lsquo;perms&rsquo; parameter for a less greedy permissions. Use the following if you only need read access to the photos:</p>
+
+{% highlight ruby %}
+>> flickr.auth.login_link(perms='read')
+{% endhighlight %}
+
+<p>Allow the application to access your photos when you open the URL. You can request the forb we need and make sure to to keep it for now.</p>
+
+{% highlight ruby %}
+>> flickr.auth.getFrob
+=> '7215760...'
+{% endhighlight %}
+
+<p>Now we&apos;ll need a token. The token is more permanent as the frob but we need the forb to get one. Finally cache the token:</p>
+
+{% highlight ruby %}
+>> flickr.auth.getToken('YOUR_FROB')
+=> #<Flickr::Token:0x...
+>> flickr.auth.cache_token
+=> 154
+{% endhighlight %}
+
+<h3>STEP 4: Give me my photos!</h3>
+
+<p>Now it&apos;s time to do something more useful with the token. What about showing the thumbnails of the 6 last added photos? We'll need your NSID which is the strange number in your Flickr URL that looks like 26227936@N00.</p>
+
+{% highlight ruby %}
+def flickr
+  require 'flickr'
+  photos = Array.new
+  flickr = Flickr.new('/tmp/flickr.cache', 'YOUR_KEY', 'YOUR_SECRET')
+  photo_list = flickr.people.getPublicPhotos('YOUR_NSID','',6)
+  photo_list.each do |photo|
+    photos.push( {'id' => photo.id, 'source' => photo.sizes[:Square].source} )
+  end
+  return photos
+end
+{% endhighlight %}
+
+<p>Look, you now have an array with the last 6 posted public photos and their ID. Good luck!</p>
+
+<h3>Resources</h3>
+
+<ul>
+  <li><a href="http://www.gemjack.com/gems/rflickr-2006.02.01/index.html" title="RDoc for the rFlickr library" class="ext">RDoc for the rFlickr library</a></li>
+</ul>
