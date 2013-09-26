@@ -1,7 +1,0 @@
-%p
-  %a{ :href => page_path("policies"), :title => "What I copied and what you can copy" } Some rights reserved
-  \. Last updated on
-  %abbr{ :title => @last_update.to_time.iso8601 }
-    = @last_update.to_date.to_s(:long_ordinal)
-  by
-  = "#{APP_CONFIG['author']}."

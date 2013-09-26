@@ -1,8 +1,0 @@
-%article
-  - if @results.any?
-    %h2= title "Results for #{@query}"
-    - @results.each do |result|
-      %p
-        = link_to result.title, polymorphic_path(result)
-  - else
-    %h2= title "No results for #{@query}"

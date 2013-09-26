@@ -1,7 +1,0 @@
-- title "Archive"
-%article
-  %ul
-    - @posts.each do |post|
-      %li
-        %abbr{ :title => post.created_at.iso8601 }= ordinalize(post.created_at)
-        = link_to post.title, post_path(post)

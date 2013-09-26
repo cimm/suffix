@@ -1,9 +1,0 @@
-development:
-  adapter: mysql2
-  database: suffix_d
-  username: root
-
-test:
-  adapter: mysql2
-  database: suffix_t
-  username: root
