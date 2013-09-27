@@ -1,0 +1,67 @@
+---
+layout: post
+title:  Lightroom to iPhoto export
+date:   2007-12-19 15:32:49
+---
+
+<h3>Download</h3>
+
+<p><img src="/assets/lightroom.gif" alt="" /> <a href="https://github.com/downloads/cimm/iphotoexportservice/iPhotoExportService.pkg" class="ext" title="Download the iPhotoExport plugin from the Github repository">Download iPhotoExport v1.2.1</a> (recommended)</p>
+
+<p><img src="/assets/lightroom.gif" alt="" /> <a href="http://github.com/downloads/cimm/iphotoexportservice/iPhotoExportService.dmg" class="ext" title="Download the iPhotoExport plugin from the Github repository">Download iPhotoExport v0.1</a> (Lightroom 1.x and 2.x)</p>
+
+<h3>What?</h3>
+
+<p>The Lightroom to iPhoto plugin exports the selected photos from Adobe Lightroom to iPhoto and creates an album with the exported photos if needed.</p>
+
+<p>Why would one like to duplicate photos from Lightroom in iPhoto? Well, Lightroom is my main photo repository but I miss the tight integration with Mac OS X like iPhoto has. iPhoto makes it easy to browse your photo library from different applications (like Finder and Mail) or export the photos to external devices (like the iPhone or iPod), Ligthroom doesn't.</p>
+
+<p>The plugin was tested with Adobe Photoshop Lightroom 1.3.1 and iPhoto '08 7.1.1, other versions may work but I didn't check.</p>
+
+<h3>Installation</h3>
+
+<p>Installing is pretty easy: </p>
+
+<ul>
+  <li><a href="http://github.com/downloads/cimm/iphotoexportservice/iPhotoExportService.dmg" class="ext" title="Download the iPhotoExport plugin from the Github repository">Download</a> the plugin,</li>
+  <li>open the downloaded disk image and</li>
+  <li>double click on it. Lightroom will install the plugin for you.</li>
+</ul>
+
+<p>To install manually, move the plugin folder to /Library/Application Support/Adobe/Lightroom/Modules/ to install for all users or move it to ~/Library/Application Support/Adobe/Lightroom/Modules/ if you only want to install the plugin for yourself. In either case you'll have to create the Modules folder within the Lightroom folder if it's not already there.</p>
+
+<p>Restart Adobe Lightroom if it was running.</p>
+
+<h3>Export a few photos</h3>
+
+<p>Just export your photos like you would normally do but select iPhoto from the top area of the export dialog. Set the options (resolution, export format, create an iPhoto album or not, etc.) and export your photos.</p>
+
+<img src="/assets/export_plugin.gif" alt="Export window screenshot" />
+
+<h3>Uninstalling</h3>
+
+<p>To uninstall the plugin you just need to delete it from the &lsquo;Modules&rsquo; folder or move it to where Lightroom won't find it.</p>
+
+<h3>For developers</h3>
+
+<p>All Adobe Lightroom plugins are written in <a href="http://www.lua.org/" class="ext" title="A light-weight, embeddable scripting language">Lua</a>. It's not possible to address the iPhoto API directly from Lua as the API is only available for AppleScript. The plugin exports the photos to a temporary location with Lua and triggers an AppleScript that imports the photos in iPhoto. The workaround is ugly for various reasons (an intermediate file is used for the Lua - AppleScript communication, the user sees the AppleScript popping up when exporting, etc.) so if anyone knows a decent Lua to AppleScript bridge it would be nice to know.</p>
+
+<p>It's also the very first time I used Lua so feel free to optimize the code where needed. I'm planning to add the following when I can:</p>
+
+<ul>
+  <li>Get rid of the Lua to AppleScript overhead.</li>
+  <li>Error handling when something goes wrong.</li>
+</ul>
+
+<p>Features I would like to add but the iPhoto API doesn't support (yet). Let's hope one of the following iPhoto releases updates the API.</p>
+
+<ul>
+  <li>Creation of iPhoto folders form within the export dialog.</li>
+  <li>Name the new iPhoto event.</li>
+</ul>
+
+<p>You can fork the source code from the <a href="http://github.com/cimm/iphotoexportservice" title="Github repository for iPhotoExportService plugin" class="ext">Github repository</a>.</p>
+
+<p><strong>Update 1:</strong> I haven't tested it myself but it should work in Lightroom 2 as Ingemar points out, will test it myself as soon as possible.</p>
+
+<p><strong>Update 2:</strong> The download link has been updated with the new version which is Lightroom 3.x and iPhoto &lsquo;11 (9.x) compatible.</p>
