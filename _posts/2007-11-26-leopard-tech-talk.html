@@ -1,0 +1,48 @@
+---
+layout: post
+title:  Leopard Tech Talk conference notes
+date:   2007-11-26 22:51:30
+---
+
+<p>On the train back home from the Leopard Tech Talk conference at the Hilton in Amsterdam. Saw some good presentations by <span class="vcard"><span class="fn">Paul Burford</span></span> and <span class="vcard"><span class="fn">Ricardo Ar&aacute;oz</span></span> going from Core Animation to Xcode 3. Time to write down the most interesting topics of the day.</p>
+
+<h3>A Leopard introduction</h3>
+
+<p>Not a lot to learn from Paul's general Leopard introduction as we tried out most features a few weeks ago but still some news here. Apparently Apple decided not to enable Time Machine backups over a wireless connection due to some technical issues but it's still on the feature list and should be included in one of the next updates. Why else would they have a USB connection on the Airport Extreme? It will be possible to buy a large USB hard drive, connect it to your Airport and use it as the Time Machine backup disk for all the Macs on your home network. The Time Machine backups are stored in a sensible data structure to make it possible to retrieve files even if you need to access it from Tiger for example.</p>
+
+<p>Remember the fuss around the whole Leopard resolution independence thing? As far as I followed the <a href="http://www.tuaw.com/2007/11/01/the-case-of-the-missing-resolution-independence/" class="ext" title="TUAW article on resolution independence">discussion</a> nobody mentioned it once Leopard came out. I may have missed the blogs but hey, Leopard has resolution independence built-in! Install the Leopard development tools, check the Quartz Debug application in /Developer/Applications/Graphics Tools and enable the &ldquo;Show User Interface Resolution&rdquo; slider in the Tools menu. Play around with the slider and see it in action. As Paul noted not all Apple's applications are fully compliant yet (check Finder and you see it isn't) but it's definitely a good indication of what it will be.</p>
+
+<h3>Quick View &amp; Spotlight</h3>
+
+<p>Apple encourages developers to write Spotlight plugins if your application has some kind of proprietary document format so that Spotlight can index your data as well. It's important your Spotlight plugin is as small and performant as possible. Don't load the full document in memory but only extract those elements that may be useful for users to search on. This is important as your plugin is loaded each time one of your documents is created or modified... make sure it scales!</p>
+
+<p>Someone in the audience was wondering if it would make sense to include an application's database as well. It's possible (a database is a file after all) but it's probably not such a good idea as you are indexing one database into another (Spotlight doesn't look directly on your file system, it's using an internal database). In the future it will be possible to call your database directly from Spotlight so maybe it's better to leave this for now.</p>
+
+<p>What if you want to overwrite a specific Quick View or Spotlight plugin? Both applications look for their plugins with the following priority: the associated application, the user library, /Library and /System/Library/Plugins. This means you can overwrite an Apple plugin by placing yours in one of the &lsquo;higher&rsquo; folders. Note that the associated application always wins so it's not possible to write your own <abbr title="Portable Document Format">PDF</abbr> renderer for Quick View if you want to use Adobe Reader as your main PDF application.</p>
+
+<h3>Core Animation</h3>
+
+<p>On the conference agenda this seemed one of the least interesting topics (what do I know from animations?!) but it turned out to be a typical &ldquo;Yes, I need to try this at home!&rdquo; conference thing.</p>
+
+<p>So what is it? It's a library to animate a user interface in Leopard. Ever seen the animation when one of your buddies comes online in iChat? Or maybe the ripple effect if you open Skype's call history? In Tiger someone wrote an algorithm to do this, in Leopard it's built in with the Core Animation library. This is a nice way to show a status change in a subtle way and seems really easy to implement. Done correctly it could be a big plus but it can also instantly ruin your interface when overdone. Apple recognizes this and there will be some guidelines in the pipeline on how, when and where to use these animations but the iPhone guidelines got priority.</p>
+
+<p>Every element in Core Animation has it's own layer and you animate elements by modifying the layer properties. The elements on these layers are not aware of the animation so this means a button or checkbox will still work, even when it's &lsquo;animated&rsquo;. The value change in the code is instantly, the moment you define the new values it takes effect in your code, even when the animation takes a few seconds to complete. There is no need add wait loops in the code. This also means an animation doesn't block the user interface and can be interrupted at all times. Core Animation is implicit, it knows when to kick in once you call an animation method (but you can call it explicitly for more complex animations).</p>
+
+<p>Animations are started in serial mode so if you call a move and shrink animation on the same object it will first move and then shrink. Add an animation group if you want your animations to start simultaneous (at the group closing statement).</p>
+
+<p>Don't forget to enable the &lsquo;wants layer&rsquo; option in Interface Builder to enable Core Animation or it won't work. One last remark here: Core Animation was called LayerKit before so replace all <strong>LK</strong>MethodeName references in Apple's examples by <strong>CA</strong>MethodeName.</p>
+
+<h3>XCode 3.0</h3>
+
+<p>Is Xcode the preferred Java editor for Mac OS X? No, it isn't. Everyone I spoke today points to Eclipse for Java developments. That said it still is a good choice for Cocoa and Carbon coding. Carbon misses most of the 64-bit fun so maybe Apple is finally dropping Carbon in favor of Cocoa? Two new features (amongst others) in Xcode 3 worth mentioning:</p>
+
+<ul>
+  <li>Refactoring: finally Xcode has code refactoring but only for Objective-C and C at the moment.</li>
+  <li>Snapshots: Xcode now has built in Subversion support but Apple also added snapshots, a local versioning feature.</li>
+</ul>
+
+<h3>ImageIO</h3>
+
+<p>Apple extracted some common image functions in a separate library as they found out a lot of the development teams were writing the same kind of code: iPhoto, Aperture, Photo Boot and others all need a media browser, image previews, etc. So far the ImageIO library supports the most common image formats but we may expect more supported file type sets in the future.</p>
+
+<p>ImageKit includes: a viewer, an editor, a browser, a picture taker, a slideshow and other elements. The library is aimed at Apple's pro applications so it should be perfect for browsing large media archives with lots of heavy high quality images (or even movies): it's gradually loading your images as you scroll along. CoverFlow is not included as it's no Core Animation, it's written in OpenGL.</p>
