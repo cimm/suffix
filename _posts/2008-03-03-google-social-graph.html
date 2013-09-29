@@ -1,0 +1,75 @@
+---
+layout: post
+title:  Google Social Graph in RoR
+date:   2008-03-03 00:07:00
+---
+
+<p>Have a look at my social graph in the sidebar on the <a href="/about" title="About Suffix">about</a> page. It shows a bunch of links to websites elsewhere on the web that are loosely related to me (e.g. my LinkedIn profile or Flickr photos) or my &ldquo;friends&rdquo;. These links are automatically collected based on <a href="http://gmpg.org/xfn/" title="XHTML Friends Network" class="ext">XFN</a> and <a href="http://www.foaf-project.org/" title="Friend of a Friend (FOAF) project" class="ext">FOAF</a> data with the Google Social Graph <abbr title="Application Programming Interface">API</abbr>.</p>
+
+<h3>What?</h3>
+
+<p>A <a href="http://en.wikipedia.org/wiki/Social_graph" title="Social graph on Wikipedia" class="ext">social graph</a> consists of who an individual is connected to based on the type of connections. In the internet world people use XFN and FOAF to describe their connections with other peoples websites. These websites can be other websites of myself (such as my Flickr photo page) or a website of a friend of mine.</p>
+
+{% highlight html %}
+<a href="http://fousa.be" rel="friend met">Jelle</a>
+<a href="http://flickr.com/photos/schoeters" rel="me">My photos</a>
+{% endhighlight %}
+
+<p>The previous 2 XFN examples describe my connections with <span class="vcard"><a class="url fn n" href="http://www.fousa.be"><span class="given-name">Jelle</span><span class="family-name hidden"> Vandebeeck</span>
+</a></span>'s website, a friend of mine, and my Flickr photo page. Now, I'm not the only one using this, thousands of links (blogs, LinkedIn profiles, Twitter profiles, etc.) have been marked up in this way. Wouldn't it be nice when we could visualize all these online connections?</p>
+
+<p>Google recently released their <a href="http://code.google.com/apis/socialgraph/" title="Google Social Graph API" class="ext">Social Graph API</a> which crawls the Google index for all XFN and FOAF enabled links based on a list of URL's. This returns a <abbr title="JavaScript Object Notation">JSON</abbr> response with all these links and the connection types associated with it. As the API is using the Google index you have access to a huge amount of data in a very fast way. On the  downside the correctness of the data depends on the freshness of the Google index. Today my Twitter profile link still shows up in the results even though I removed my account a few months ago and the links in my previous blog post aren't found yet.</p>
+
+<h3>Ruby on Rails implementation</h3>
+
+<p>Let's have a look at the Ruby on Rails code to build our own social graph. First you'll need the JSON gem to parse the response from Google (the may be different in Rails 2.x, I didn't check).</p>
+
+{% highlight html %}
+gem install json
+{% endhighlight %}
+
+<p>Great, now lets ask Google for our social graph. I built an array with all the pages on this blog but for the sake of the example I will use a static array with some sample links.</p>
+
+{% highlight ruby %}
+require 'open-uri'
+require 'json'
+
+links = ['http://www.example.com/','http://www.example.com/example']
+url = "http://socialgraph.apis.google.com/lookup?q=" + links.join(',') + "&amp;fme=0&amp;edi=1&amp;edo=0"
+resp = Net::HTTP.get_response(URI.parse(url))
+result = JSON.parse(resp.body)
+
+graph = Array.new
+for node in result['nodes']
+  for sub_node in node[1]['nodes_referenced_by']
+    graph << [ sub_node[0], sub_node[1]['types'] ]
+  end
+end
+graph.uniq!
+{% endhighlight %}
+
+<p>At the end we remove the duplicate URL's and there you have it, an array with all you XFN and FOAF friends linking to the given URL's. You can play around with the 3 parameters at the end of the Google URL:</p>
+
+<table summary="List of possible URL parameters and their values">
+  <tr>
+    <th>fme</th>
+    <td>true, false, 1 or 0</td>
+    <td>Follow the &lsquo;me&rsquo; links found on the given URL's.<td>
+  </tr>
+  <tr>
+    <th>edi</th>
+    <td>true, false, 1 or 0</td>
+    <td>Return a list with pages linking <strong>to</strong> the given URL's.<td>
+  <tr>
+    <th>edo</th>
+    <td>true, false, 1 or 0</td>
+    <td>Return a list with pages linked <strong>from</strong> the given URL's.<td>
+  </tr>
+</table>
+
+<h3>Resources</h3>
+
+<ul>
+  <li>Google's Social Graph <a href="http://code.google.com/apis/socialgraph/docs/api.html" title="Social Graph API Documentation" class="ext">API documentation</a>.</li>
+  <li>The very simple <a href="http://braincast.nl/samples/jsoneditor/" title="JavaScript JSON Editor" class="ext">JavaScript JSON editor</a> is an easy way to visualize the JSON tree.</li>
+</ul>
