@@ -1,0 +1,43 @@
+---
+layout: post
+title:  Drupal multi-site without subdomains
+date:   2008-10-14 09:30:14
+---
+
+<p><a href="http://drupal.org/" title="Official Drupal website" class="ext">Drupal</a> supports multi-sites, this means you can install Drupal once and use it for multiple websites (also known as single codebase). This kind of setup will make it easier to maintain your Drupal installation or when you want to upgrade to a newer version as you only need to maintain one codebase.  The most common setup seems the subdomain aproach: each website uses its own subdomain. Suppose you want websites for different projects. The layouts and requirements may be different but they will all run on Drupal. The URL's will look like this:</p>
+
+<samp>http://project1.example.com<br />
+http://project2.example.com</samp>
+
+<p>There are tons of <a href="http://drupal.org/node/43816" title="Drupal multi-site installation and set-up" class="ext">tutorials</a> on the Drupal site to create this setup but that's not what we are looking for. We want a setup with multiple websites in subdirectories, not subdomains:</p>
+
+<samp>http://www.example.com/project1<br />
+http://www.example.com/project2</samp>
+
+<p>It's a little harder (really only a little) to find how to get this done, let's have a look.</p>
+
+<h3>Install Drupal</h3>
+
+<ol>
+<li>Start with installing Drupal as you would normally do. Download the latest version and extract it in your server's document root (probably &lsquo;/var/www/html&rsquo;).</li>
+<li>Create a database and database user for this installation but call it something like &lsquo;<samp>project1</samp>&rsquo; as this will be the database for the first project.</li>
+<li>Configure your installation via the web interface.</li>
+</ol>
+
+<p>That's it, you have your first installation up and running, nothing new here.</p>
+
+<h3>Add another instance</h3>
+
+<ol>
+<li>Create a second database and call it &lsquo;<samp>project2</samp>&rsquo;. You can use the same user as for the first database but it's obvious that this would be a very bad choice for security reasons.</li>
+<li>Make a copy of the database for the second project (add the -u and -p parameters twice if needed).<br />
+<samp>mysqldump --opt project1 | mysql -h localhost project2</samp></li>
+<li>Now create the folder structure in your <samp>&lt;docroot&gt;/sites</samp> directory as explained <a href="http://drupal.org/node/53705" title="Setup of /sites directory for multi-site" class="ext">here</a>. Be careful not to call the directories &lsquo;example1.com&rsquo; and &lsquo;example2.com&rsquo; as explained in the document but:<br />
+<samp>example.com.project1<br />
+example.com.project2</samp></li>
+<li>And now the magic... add symlinks for each project in your document root:<br />
+<samp>ln -s &lt;docroot&gt; project1<br />
+ln -s &lt;docroot&gt; project2</samp></li>
+</ol>
+
+<p>Now point your browser to http://www.example.com/project1 and you should see the first site, http://www.example.com/project2 will get you to the second one. At this point both sites will be identical (you copied the database remember?) but you can start changing the contents independently of each other now.</p>
