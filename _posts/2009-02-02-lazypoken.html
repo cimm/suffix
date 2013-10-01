@@ -1,0 +1,15 @@
+---
+layout: post
+title:  LazyPoken, a Poken autostarter
+date:   2009-02-02 16:02:19
+---
+
+<p>Last month I got a Poken and wrote a <a href="http://www.suffix.be/blog/do-you-poken" title="Do you Poken?" rel="me">review</a> with my first impressions which I sent to the Poken team. Following on this they told me they are working on a new interface and OAuth support, that's great guys!</p>
+
+<p>When you connect the Poken on Mac OS X you still have to double click the <abbr title="HyperText Markup Language">HTML</abbr> file on the Poken that brings you to a webpage where you can approve or reject the contacts you collected on your Poken. This bothered me from the start and I can understand it's low on the team's priority list. So why not fix it ourselves?</p>
+
+<p>Jelle and I (<abbr title="Also Known As">aka</abbr> <a href="http://www.milkcarton.be/" title="Tiny free open source Mac OS X apps" class="ext">milkcarton</a>) had a coding day planned so this was the perfect little app to build in a few hours. Exactly one week later we released <a href="http://www.milkcarton.be/apps/lazypoken" title="LazyPoken, the autostarter for your Poken" class="ext" rel="me">LazyPoken</a>. Yes, it took a little longer than expected but we learned some extra CoreFoundation stuff in the process.</p>
+
+<p>It's a stupid little app really. You start it and that's it. LazyPoken sits and waits quietly in the background. When you connect you Poken it wakes up and opens the contained webpage for you. That's all, don't expect anything fabulous but if you use your Poken extensively this may save you some time.</p>
+
+<p>The <a href="http://github.com/milkcarton/lazypoken" title="LazyPoken Github repository" class="ext">source code</a> is available in our Git repository. Feel free to have a look at the code if you are struggling with Mac OS X daemons or agents, bundles and wrapper scripts. We wasted too much time to find out how it all works so I'll try to collect some useful hints in the upcoming posts.</p>
