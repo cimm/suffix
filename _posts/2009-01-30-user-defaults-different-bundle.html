@@ -1,0 +1,55 @@
+---
+layout: post
+title:  Bind user defaults to different identifier
+date:   2009-01-30 18:09:06
+---
+
+<p>I'm building a preference pane in Cocoa and would like to save the user defaults for this bundle (eg. save the status of a checkbox to &ldquo;start automatically&rdquo;). This works just like you would expect but... it writes your settings to the com.apple.systempreferences instead of the com.example.MyBundle defaults. This is not only ugly it's also dangerous when multiple bundles would overwrite each others preferences because they use the same variables. It's much cleaner to write the user defaults for your bundle to the com.example.MyBundle defaults, don't you think?</p>
+
+<h3>Some Cocoa code</h3>
+
+<p>It took me a while to find out how to do this. First you have to let go the idea to bind the user defaults for your preference pane in Interface Builder, that won't work. Remove all binding with the Shared User Defaults you created in Interface Builder.</p>
+
+<p>Add a <strong>getter</strong> and <strong>setter</strong> method to one of your classes for each value you want to save. Below is an example for a boolean value. It looks a bit odd as you'll need CoreFoundation to read and write the values (please add a comment if you know a cleaner solution in Cocoa).</p>
+
+{% highlight objective-c %}
+- (BOOL)getMyValue
+{
+  BOOL value = YES; // default value if not found
+  CFStringRef key = CFSTR("MyValue");
+  CFStringRef bundleID = CFSTR("com.example.MyBundle");
+  CFPropertyListRef ref = CFPreferencesCopyAppValue(key, bundleID);
+
+  if(ref &amp;&amp; CFGetTypeID(ref) == CFBooleanGetTypeID())
+    value = CFBooleanGetValue(ref);
+
+  if(ref)
+    CFRelease(ref);
+
+  return value;
+}
+
+- (IBAction)setMyValue:(id)sender
+{
+  CFStringRef key = CFSTR("MyValue");
+  BOOL value = (BOOL)[sender state];
+  CFStringRef bundleID = CFSTR("com.example.MyBundle");
+  CFPreferencesSetAppValue(key, value ? kCFBooleanTrue : kCFBooleanFalse, bundleID);
+    CFPreferencesAppSynchronize(bundleID);
+}
+{% endhighlight %}
+
+<h3>Interface Builder</h3>
+
+<p>Now that you have to code to read and write the boolean value you can fix your interface. Drag a connection from the checkbox to your class and select the &lsquo;setMyValue&rsquo; method. If you run this bundle and click the checkbox it will write the status to the bundle with the bundle identifier you specified.</p>
+
+<h3>Check with defaults</h3>
+
+<p>Build your bundle and add it to the System Preferences (double click the build file). Select or deselect the checkbox and close the System Preferences. Now, open Terminal and run the following commands:</p>
+
+{% highlight objective-c %}
+defaults read com.apple.systempreferences | grep MyValue
+defaults read com.example.MyBundle
+{% endhighlight %}
+
+<p>The first command should not return your value, the second one should.</p>
