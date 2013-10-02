@@ -1,0 +1,29 @@
+---
+layout: post
+title:  Lightroom to iPhoto export update 1.2
+date:   2011-01-31 09:56:59
+---
+
+<p><img src="/assets/lightroom.gif" alt="" /> <a href="https://github.com/downloads/cimm/iphotoexportservice/iPhotoExportService.pkg" class="ext" title="Download the iPhotoExport plugin from the Github repository">Download iPhotoExport v1.2.1</a></p>
+
+<p>When Adobe Lightroom first came out I <a href="http://suffix.be/blog/lightroom-iphoto-export">wrote</a> a quick Lightroom to iPhoto photo exporter. The plug-in copies the selected photos from your Lightroom library to iPhoto. This weekend the plug-in got a well needed update for Lightroom 3 and Snow Leopard.</p>
+
+<p>The new version is tested on Adobe Lightroom 3.x and iPhoto 9.x (the one bundled in iLife &lsquo;11).</p>
+
+<h3>Changelog</h3>
+
+<p>What has been changed?</p>
+
+<ul>
+  <li>The most important change is the complete rewrite of the AppleScript part, responsible for adding the photos to iPhoto. The old one was still depending on the Mac OS X Classic environment for which Apple has dropped support in Leopard.</li>
+  <li>Besides that it got some small modifications to work well with Lightroom 3, like support for video exporting.</li>
+  <li>Lastly, the plug-in has been translated to English, French, and Dutch.</li>
+</ul>
+
+<h3>Event names</h3>
+
+<p>Ever since iPhoto added Events I would like to support these in the plug-in as well. Today the iPhoto API does not offer a way to organize Events. It's high on the wishlist but depends on when and if Apple will expose Events in their iPhoto AppleScript API.</p>
+
+<h3>Source code</h3>
+
+<p>As always the <a href="https://github.com/cimm/iphotoexportservice" class="ext">code</a> for the plug-in is open source and freely available. Feel free to improve it when you know some Lua or AppleScript.</p>
