@@ -1,0 +1,31 @@
+---
+layout: post
+title:  Sync data with Dropbox
+date:   2009-11-18 19:37:37
+---
+
+<p>So far so good but what to do with application data like your contacts in Address Book, your <a href="http://culturedcode.com/things/" class="ext" title="Task management application for Mac">Things</a> to do list, your <a href="http://www.wonderwarp.com/shovebox/" class="ext" title="A clutter-catcher: store information sc'raps in the menu bar">ShoveBox</a> notes or anything else with a database for that matter? Symlinking is the answer!</p>
+
+<p>You can't sync a folder outside of the Dropbox folder and all these application databases live, well, outside of the Dropbox folder. Most applications store their data in the Library folder (in /Library/Application&nbsp;Support/ or ~/Library/Application&nbsp;Support/). The trick is to move the databases to your Dropbox folder while the application still thinks it's somewhere in your Mac's Library folder.</p>
+
+<p>We'll need some command line stuff to get this done so <strong>backup your data</strong>. I'll say this once more and still you won't listen but, please <strong>BACKUP</strong> your data before doing this.</p>
+
+<h3>Moving data</h3>
+
+<p>I'll use the Address Book library as an example. Close Address Book first! Drag the folder with the application data (~/Library/Application Support/AddressBook) to some Dropbox folder (e.g. ~/Dropbox/ApplicationSupport/AddressBook). You can choose the name of the destination directory the way you want.</p> 
+
+<p>At this moment Dropbox will be syncing your Address Book data to all your computers with Dropbox installed. Great, but we still need to trick Address Book as we moved its database. Let's create a symbolic link from the old location to the new Dropbox folder. In Terminal:</p>
+
+<samp>cd ~/Library/Application\ Support/<br />
+ln -s ~/Dropbox/ApplicationSupport/AddressBook/ AddressBook
+</samp>
+
+<p>You created a link from the old location to the new one. You should see the little Dropbox status icon on the folder in your ~/Library/Application&nbsp;Support folder. That's good. Open Address Book and check to see if all your contacts are still there. Yes? Good, now create a similar link on your other computer (don't forget to close Address Book). I simply removed the Address Book library on my other computer... the whole purpose is to have the same data on both computers off course but please make sure there is nothing important there.</p>
+
+<h3>What's not cool</h3>
+
+<p>I wouldn't run both applications at the same time, you'll probably screw up your data! Address Book doesn't know it's using a &lsquo;shared&rsquo; library so if both applications want to write changes at the same time things will go foobar.</p>
+
+<h3>Other applications</h3>
+
+<p>I see no reason why this wouldn't work for other applications. I'm happily using this method for Address Book, Things, ShoveBox and Little Snapper.</p>
