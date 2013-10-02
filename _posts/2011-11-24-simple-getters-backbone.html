@@ -1,0 +1,79 @@
+---
+layout: post
+title:  Simple getters in Backbone.js
+date:   2011-11-24 22:53:10
+---
+
+<p>There is an easy way to get your <a href="http://documentcloud.github.com/backbone/" title="Give your JS App some Backbone with Models, Views, Collections, and Events" class="ext">Backbone.js</a> model attributes:</p>
+
+{% highlight javascript %}
+person = new Person({firstName: "John", lastName: "Doe"});
+person.get('firstName');
+{% endhighlight %}
+
+<h3>Overriding getters</h3>
+
+<p>This is all great if all you need is a simple getter but you quickly want to get something more powerfull. What if you want to show the persons full name, his first and last name combined? You could simply concatenate both attributes in your template but that gets annoying quickly. What we want is a convienience function on the model to get the full name.</p>
+
+<p>No problem, simply add an extra function:</p>
+
+{% highlight javascript %}
+Person =  Backbone.Model.extend({
+  name: function() {
+    return this.firstName + " " + this.lastName;
+  }
+});
+{% endhighlight %}
+
+<p>The function on itself isn't enough to have a nice getter as we have for the &lsquo;normal&rsquo; attributes above, let's fix that:</p>
+
+{% highlight javascript %}
+Person =  Backbone.Model.extend({
+  get: function (attr) {
+    if (typeof this[attr] == 'function') {
+      return this[attr]();
+    }
+    return Backbone.Model.prototype.get.call(this, attr);
+  },
+
+  name: function() {
+    return this.firstName + " " + this.lastName;
+  }
+});
+{% endhighlight %}
+
+<p>By overriding the Backbone.js getter function and adding the functions as well we can now call the full person name in a similar fashion as the other attributes and don't worry how to format it.</p>
+
+<h3>toJSON</h3>
+
+<p>The main disadvantage here is the <em>toJSON</em> function Backbone.js provides to serialize your models and collections. It's commonly used before sending your data to the templates. Our <em>name</em> function won't be included as it's not a real attribute of the model. We can fix this by also overriding the <em>toJSON</em> function and tell it about our <em>name</em> function.</p>
+
+{% highlight javascript %}
+Person =  Backbone.Model.extend({
+  get: function (attr) {
+    if (typeof this[attr] == 'function') {
+      return this[attr]();
+    }
+    return Backbone.Model.prototype.get.call(this, attr);
+  },
+
+  name: function() {
+    return this.firstName + " " + this.lastName;
+  },
+
+  toJSON: function() {
+    var attr = Backbone.Model.prototype.toJSON.call(this);
+    attr.name = this.name();
+    return attr;
+  }
+});
+{% endhighlight %}
+
+<p>That's it, you have now access to <em>person.get("name")</em> wherever you need.</p>
+
+<h3>Read more</h3>
+
+<ul>
+  <li>The <a href="http://documentcloud.github.com/backbone/" title="Give your JS App some Backbone with Models, Views, Collections, and Events" class="ext">Backbone.js</a> documenation.</li>
+  <li>Big thanks to <span class="vcard"><a class="url fn ext" href="http://pieinsky.ca/">Eric Howe</a></span> for helping me out with this one on <a href="http://stackoverflow.com/questions/8249781/render-view-with-overwritten-getters-in-backbone" title="Render view with overwritten getters in Backbone" class="ext">StackOverflow</a>.</li>
+</ul>
