@@ -1,0 +1,46 @@
+---
+layout: post
+title:  Rails 3.1 asset pipeline in production
+date:   2011-08-05 16:29:34
+---
+
+<p>The asset pipeline is probably one of the biggest additions in the upcoming 3.1 release of Ruby on Rails. It's a framework to minify and compress JavaScript and <abbre title="Cascading Style Sheets">CSS</abbr> code. The asset pipeline pre-minifies and pre-compresses all your JavaScript code in a signle file, the same goes for your stylesheets. This results in smaller files and less HTTP requests, meaining faster applications!</p>
+
+<p>The asset pipeline is enabled by default but will look a little strange if you are migrating from an older version of Ruby on Rails. Let's have a quick look.</p>
+
+<h3>Development</h3>
+
+<p>You should have seen the /app/assets directory in your new Rails 3.1 app, this is where all the magick happens. All JavaScript, CSS, and image files which would previously go to /public now go to /app/assets/javascripts, /app/assets/stylesheets, and the /app/assets/images folders. Point your browser to localhost:3000, inspect the source and you'll see Rails concats all the JavaScript and <abbr title="Cascading Style Sheets">CSS</abbr> in two single files. Off course you can turn this off for debugging if you want.</p>
+
+<h3>Production</h3>
+
+<p>There are a few more steps involved to make this work in production. Wouldn't it be nice to <strong>pre-compress</strong> the assets for production to save some precious processor time? Let's compress the assets right after our Capistrano deployment:</p>
+
+{% highlight ruby %}
+after "deploy:update_code", "deploy:precompile_assets"
+desc "Compile all the assets named in config.assets.precompile."
+task :precompile_assets do
+  raise "Rails environment not set" unless rails_env
+  task = "assets:precompile"
+  run "cd #{release_path} && bundle exec rake #{task} RAILS_ENV=#{rails_env}"
+end
+{% endhighlight %}
+
+<p>After deploying your code to production you should see a new /public/assets folder with your compressed files (a <abbr title="Message Digest Algorithm 5">MD5</abbr> hash has been added to the filenames). The hash makes it possible for browsers to cach the files indefinitly. As long as the filename is the same there is no need to fetch the file again after it has been downloaded. Change your code and deploy again and you'll see the hashes have changed.</p>
+
+<p>So far so good but you may have noticed all <strong>images</strong> referenced in the stylesheets are gone. Well, the image filenames now include the <abbr title="Message Digest Algorithm 5">MD5</abbr> hash so the browser is looking for logo.png and doesn't find anything. Instead it should look for somthing like logo-d41d8cd98f00b204e9800998ecf8427e.png. Lets make our <abbr title="Cascading Style Sheet">CSS</abbr> a bit more dynamic.</p>
+
+<p>First rename all your /assets/stylesheets <abbr title"Cascading Style Sheet">CSS</abbr> files to something <abbr title="Embedded Ruby">ERB</abbr> will understand: e.g. default.css.erb. This allows us to use <abbr title="Embedded Ruby">ERB</abbr> in the stylesheets. Now change all the image references to:</p>
+
+{% highlight ruby %}
+<%= asset_path 'logo.png' %>
+{% endhighlight %}
+
+<p>Deploy your application again and you should be good to go. All image references in you stylesheets have been replaced by their &lsquo;hashed&rsquo; version.</p>
+
+<h3>Read more</h3>
+
+<ul>
+  <li><a href="http://ryanbigg.com/guides/asset_pipeline.html" class="ext">RailsGuides: Asset Pipeline</a></li>
+  <li><a href="https://moocode.com/posts/1-deploying-a-rails-3-1-application-to-production" class="ext">Deploying a Rails 3.1 application to production</a></li>
+</ul>
