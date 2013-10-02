@@ -1,0 +1,30 @@
+---
+layout: post
+title:  Shuffle an array in Ruby
+date:   2010-04-08 09:49:48
+---
+
+<p>I needed to randomly sort the elements in an array in the Ruby on Rails project I'm working on.</p>
+
+<p>Turns out these things are just way too easy in Ruby:</p>
+
+{% highlight ruby %}
+[1, 2, 3].shuffle
+>> [3, 1, 2]
+{% endhighlight %}
+
+<p>Credits to <span class="vcard"><a class="url fn ext" href="http://tomklaasen.net">Tom Klaasen</a></span> for improving the more complex snippet I found before.</p>
+
+<p>Or you can use the rand method when you only need one single element and don't need to shuffle the whole array in Ruby 1.8:</p>
+
+{% highlight ruby %}
+[1, 2, 3].rand
+>> 3
+{% endhighlight %}
+
+<p>And for Ruby 1.9:</p>
+
+{% highlight ruby %}
+[1, 2, 3].sample
+>> 3
+{% endhighlight %}
