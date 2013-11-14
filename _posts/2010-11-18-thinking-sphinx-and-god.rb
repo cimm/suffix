@@ -8,13 +8,13 @@ date:   2010-11-18 22:14:33
 
 <p>The idea is to temporarly unmonitor the Sphinx process while it's rebuilding the indexes.</p>
 
-<h2>Sphinx configuration</h2>
+<h3>Sphinx configuration</h3>
 
 <p>Sphinx doesn't do live index updates like some other search solutions (eg. <a href="http://outoftime.github.com/sunspot/" title="Solr-powered search for Ruby objects" class="ext">Sunspot</a>), so you'll have to do it yourself. One way is to run a crontab which will rebuild the indexes each x hours. Make sure to use the <em>thinking_sphinx:reindex</em> rake task and not the rebuild one as the last one will stop the Sphinx search deamon which will wake up God which, in its turn, will try to start the deamon again... messy.</p>
 
 <p>There is another way to update your Sphinx indexes, <a href="http://freelancing-god.github.com/ts/en/deltas.html" class="ext">delayed delta's</a>, but in the scope of this post it doesn't really change a thing.</p>
 
-<h2>God configuration</h2>
+<h3>God configuration</h3>
 
 <p>As soon as the Sphinx search process stops, God will try to restart it. This is what we want but sometimes Sphinx needs to rebuild its indexes bringing down the process. We choose to rebuild the indexes during deploy to make sure we load the new configuration if it has been changed. Thinking Sphinx comes with some Capistrano tasks out-of-the-box so let's use them. Add the following to your config/deploy.rb:
 
@@ -38,6 +38,6 @@ end
 
 <p>The <em>sphinx</em> param in the God commands is the same as the one you choose to define the God watch.</p>
 
-<h2>Caveat</h2>
+<h3>Caveat</h3>
 
 <p>Unmonitoring the Sphinx process is not without risk. What if something goes wrong during the reindexing? We think it's not that big of a risk as we will probably notice this during deployment but it's important to know.</p>
