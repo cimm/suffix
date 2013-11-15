@@ -1,8 +1,13 @@
 ---
 layout: default
 ---
+<p class="meta">
+  Published
+  <time class="meta">{{ page.date | date: "%-d %B %Y" }}</time>
+  by {{ site.author }}
+</p>
+
 <h2>{{ page.title }}</h2>
-<p class="meta">{{ page.date | date_to_string }}</p>
 
 <div class="post">
 {{ content }}

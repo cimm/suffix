@@ -1,160 +1,134 @@
-/*****************************************************************************/
-/*
-/* Common
-/*
-/*****************************************************************************/
-
-/* Global Reset */
 * {
   margin: 0;
   padding: 0;
 }
 
-html, body { height: 100%; }
+html, body {
+  height: 100%;
+  font-size: 110%;
+}
 
 body {
-  background-color: #FFF;
-  font: 13.34px Helvetica, Arial, sans-serif;
-  font-size: small;
-  text-align: center;
+  color: #141414;
+  background-color: white;
+  font-family: 'PT Serif', serif;
+  line-height: 1.8em;
+  -webkit-font-smoothing: antialiased;
+}
+
+header, footer, article {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+header, footer {
+  font-family: 'Source Sans Pro', serif;
+  color: #3cabda;
+}
+
+footer {
+  padding: 1em 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-size: 100%; }
+  font-size: 100%;
+  font-weight: normal;
+}
 
-h1 { margin-bottom: 1em; }
+h1 {
+  line-height: 1.5em;
+  font-size: 4em;
+  max-width: 600px;
+  margin: 0 auto;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-family: 'Source Sans Pro', serif;
+  font-size: 2.5em;
+  line-height: 2em;
+}
+
+h3 {
+  margin: 1em 0;
+  font-size: 1.5em;
+}
+
 p { margin: 1em 0; }
 
-a         { color: #00a; }
-a:hover   { color: #000; }
-a:visited { color: #a0a; }
-
-/*****************************************************************************/
-/*
-/* Home
-/*
-/*****************************************************************************/
-ul.posts {
-  list-style-type: none;
-  margin-bottom: 2em;
-}
-
-ul.posts li {
-  line-height: 1.75em;
-}
-
-ul.posts span {
-  color: #aaa;
-  font-family: Monaco, "Courier New", monospace;
-  font-size: 80%;
-}
-
-/*****************************************************************************/
-/*
-/* Site
-/*
-/*****************************************************************************/
-
-.site {
-  font-size: 115%;
-  text-align: justify;
-  width: 42em;
-  margin: 3em auto 2em;
-  line-height: 1.5em;
-}
-
-.site .header a {
-  font-weight: bold;
+a {
+  color: #3cabda;
   text-decoration: none;
 }
+a:hover   { color: #111; }
+a:visited { color: #2182ab; }
 
-.site .header h1.title {
-  display: inline-block;
-  margin-bottom: 2em;
+dt {
+  font-weight: bold;
 }
 
-.site .header h1.title a {
-  color: #a00;
-}
-
-.site .header h1.title a:hover {
-  color: #000;
-}
-
-.site .header a.extra {
-  color: #aaa;
+dd {
   margin-left: 1em;
 }
 
-.site .header a.extra:hover {
-  color: #000;
+.meta {
+  font-family: 'Source Sans Pro', serif;
+  color: #999;
+  font-weight: 400;
+  font-size: 0.9em;
+  line-height: 1em;
+  margin-top: 2.5em;
 }
 
-.site .meta {
-  color: #aaa;
+.meta time {
+  font-size: 1em;
 }
 
-.site .footer {
-  font-size: 80%;
-  color: #666;
-  border-top: 4px solid #eee;
-  margin-top: 2em;
-  overflow: hidden;
+.posts {
+  list-style: none;
+  display: table;
 }
 
-.site .footer .contact {
-  float: left;
-  margin-right: 3em;
+.posts time {
+  display: table-cell;
+  color: #999;
+  font-size: smaller;
+  width: 7em;
 }
 
-.site .footer .contact a {
-  color: #8085C1;
+.posts a {
+  display: table-cell;
 }
 
-.site .footer .rss {
-  margin-top: 1.1em;
-  margin-right: -.2em;
-  float: right;
+.warning {
+  display: table;
+  padding: 0.3em 0.5em 0.3em 0.7em;
+  color: #b84;
+  background-color: #fcf8e3;
+  width: 100%;
 }
 
-.site .footer .rss img {
-  border: 0;
+.warning .icon {
+  display: table-cell;
+  padding-right: 0.6em;
+  padding-top: 0.1em;
+  vertical-align: middle;
 }
 
-/*****************************************************************************/
-/*
-/* Posts
-/*
-/*****************************************************************************/
-
-/* standard */
-.post pre {
-  border: 1px solid #ddd;
-  background-color: #eef;
-  padding: 0 .4em;
+.warning .text {
+  display: table-cell;
 }
 
-.post ul, .post ol {
-  margin-left: 1.35em;
+.hidden {
+  display: none;
 }
 
-.post code {
-  border: 1px solid #ddd;
-  background-color: #eef;
-  padding: 0 .2em;
+.broken {
+  text-decoration: line-through;
 }
 
-.post pre code {
-  border: none;
-}
-
-/* terminal */
-.post pre.terminal {
-  border: 1px solid #000;
-  background-color: #333;
-  color: #FFF;
-}
-
-.post pre.terminal code {
-  background-color: #333;
+footer a {
+  color: #999;
+  font-weight: 400;
+  font-size: 0.9em;
 }
