@@ -7,7 +7,7 @@ date:   2007-10-05 00:42:51
 <p>As I had some troubles finding out how to show some of my own Flickr photos on this site using the Flickr API and Ruby on Rails I thought it would be useful to write it down in a small tutorial.</p>
 <h3>STEP 1: Finding a library: rFlickr</h3>
 
-<p>Flickr lists 3 possible Ruby frameworks for their API. After trying <a href="http://redgreenblu.com/flickr/" title="My first shot at a Flickr API kit" class="ext">flickr.rb</a> and not being able to login I decided to switch to <a href="http://rubyforge.org/projects/rflickr/" title="The Flickr API kit I choose" class="ext">rFlickr</a> as it seems the most popular one. I didn't look at the last one: <a href="http://premshree.seacrow.com/code/ruby/flickr-ruby" title="Another Flickr API kit for Ruby" class="ext">flickr-ruby</a>.</p>
+<p>Flickr lists 3 possible Ruby frameworks for their API. After trying flickr.rb (no longer available) and not being able to login I decided to switch to <a href="http://rubyforge.org/projects/rflickr/" title="The Flickr API kit I choose" class="ext">rFlickr</a> as it seems the most popular one. I didn't look at the last one: <a href="http://rubyforge.org/projects/flickr/" title="Another Flickr API kit for Ruby" class="ext">flickr-ruby</a>.</p>
 
 <p>Start with installing the rFlickr library. You may need to uninstall a previous library if you installed another one earlier.</p>
 
@@ -78,9 +78,3 @@ end
 {% endhighlight %}
 
 <p>Look, you now have an array with the last 6 posted public photos and their ID. Good luck!</p>
-
-<h3>Resources</h3>
-
-<ul>
-  <li><a href="http://www.gemjack.com/gems/rflickr-2006.02.01/index.html" title="RDoc for the rFlickr library" class="ext">RDoc for the rFlickr library</a></li>
-</ul>
