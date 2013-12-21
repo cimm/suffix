@@ -1,0 +1,5 @@
+# Redirects for old Suffix Rails blog posts on fokkie.be
+redirect permanent /blog/click_image_in_link_capybara http://www.suffix.be/blog/click-image-in-link-capybara
+redirect permanent /blog/default-image-paperclp       http://www.suffix.be/blog/default-image-paperclip
+redirect permanent /blog/rake_multiple_arguments      http://www.suffix.be/blog/rake-multiple-arguments
+redirect permanent /blog/sinatra_datamapper_rspec2    http://www.suffix.be/blog/sinatra-datamapper-rspec2
