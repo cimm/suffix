@@ -2,4 +2,6 @@ name: Suffix
 author: Simon Schoeters
 description: My personal hangout
 url: http://suffix.be
+hostname: suffix.be
 pygments: true
+permalink: blog/:title.html

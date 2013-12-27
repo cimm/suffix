@@ -33,3 +33,5 @@ Redirect permanent /blog/click_image_in_link_capybara /blog/click-image-in-link-
 Redirect permanent /blog/default-image-paperclp       /blog/default-image-paperclip
 Redirect permanent /blog/rake_multiple_arguments      /blog/rake-multiple-arguments
 Redirect permanent /blog/sinatra_datamapper_rspec2    /blog/sinatra-datamapper-rspec2
+Redirect permanent /feeds/blog.xml                    /feeds/blog.atom
+Redirect permanent /blog.atom                         /feeds/blog.atom

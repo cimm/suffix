@@ -1,7 +1,8 @@
 ---
-layout: post
-title:  Bind user defaults to different identifier
-date:   2009-01-30 18:09:06
+layout:  post
+title:   Bind user defaults to different identifier
+date:    2009-01-30 18:09:06
+updated: 2009-01-30 18:09:06
 ---
 
 <p>I'm building a preference pane in Cocoa and would like to save the user defaults for this bundle (eg. save the status of a checkbox to &ldquo;start automatically&rdquo;). This works just like you would expect but... it writes your settings to the com.apple.systempreferences instead of the com.example.MyBundle defaults. This is not only ugly it's also dangerous when multiple bundles would overwrite each others preferences because they use the same variables. It's much cleaner to write the user defaults for your bundle to the com.example.MyBundle defaults, don't you think?</p>

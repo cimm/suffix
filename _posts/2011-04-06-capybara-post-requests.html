@@ -1,7 +1,8 @@
 ---
-layout: post
-title:  Capybara POST requests
-date:   2011-04-06 09:44:28
+layout:  post
+title:   Capybara POST requests
+date:    2011-04-06 09:44:28
+updated: 2011-04-06 09:44:28
 ---
 
 <p><a href="https://github.com/jnicklas/capybara" class="ext" title="Capybara repository @ Github">Capybara</a> doesn't support POST requests, the built in visit method always uses GET. This is by design and with good reason: Capybara is built for acceptance testing and a user would never ask to &ldquo;post&rdquo; parameter X and Y to the application. There will always be some kind of interface, a form for example. So it makes more sence to simulate what the user would really do:</p>
