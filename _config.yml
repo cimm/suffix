@@ -5,3 +5,4 @@ url: http://suffix.be
 hostname: suffix.be
 pygments: true
 permalink: blog/:title.html
+minfy_html: true
