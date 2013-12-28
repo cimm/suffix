@@ -2,7 +2,7 @@
 layout:  post
 title:   Thinking Sphinx and God
 date:    2010-11-18 22:14:33
-updated: 2010-11-18 22:14:33
+updated: 2010-12-12 00:09:07
 ---
 
 <p>We recently configured <a href="http://god.rubyforge.org/" class="ext" title="A monitoring framework written in Ruby">God</a> to monitor our Sphinx search deamon. The application heavily depends on it and it's the main reason the app is down from time to time. The problem is that God tries to restart Sphinx when it's rebuilding the indexes (and thus not running). Let's look how Sphinx and God can play nice together.</p>
