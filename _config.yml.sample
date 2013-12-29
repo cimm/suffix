@@ -7,3 +7,7 @@ pygments: true
 permalink: blog/:title.html
 assets:
   css_compressor: yui
+deploy:
+  user:
+  host:
+  path:
