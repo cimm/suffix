@@ -9,7 +9,7 @@ updated: 2008-01-23 22:29:51
 
 <blockquote>The image size was changed to 10 MB because that is the minimum image size.</blockquote>
 
-<p>I have no idea why it says that because you <strong>can</strong> make smaller disk images, just not via the Disk Utility program. Fire up &lsquo;Terminal&rsquo; and see for yourself. The following command creates a disk image in HFS+ format with a size of only 600 <abbre title="kilobyte">KB</abbr>:</p>
+<p>I have no idea why it says that because you <strong>can</strong> make smaller disk images, just not via the Disk Utility program. Fire up &lsquo;Terminal&rsquo; and see for yourself. The following command creates a disk image in HFS+ format with a size of only 600 <abbr title="kilobyte">KB</abbr>:</p>
 
 {% highlight bash %}
 hdiutil create -size 600k myImage.dmg -srcfolder myFolder/ -fs HFS+

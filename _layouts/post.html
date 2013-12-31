@@ -3,7 +3,7 @@ layout: default
 ---
 <p class="meta">
   Published
-  <time class="meta">{{ page.date | date: "%-d %B %Y" }}</time>
+  <time class="meta" datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%-d %B %Y" }}</time>
   by {{ site.author }}
 </p>
 
