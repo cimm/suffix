@@ -31,7 +31,7 @@ end
 
 <p>So far so good but you may have noticed all <strong>images</strong> referenced in the stylesheets are gone. Well, the image filenames now include the <abbr title="Message Digest Algorithm 5">MD5</abbr> hash so the browser is looking for logo.png and doesn't find anything. Instead it should look for somthing like logo-d41d8cd98f00b204e9800998ecf8427e.png. Lets make our <abbr title="Cascading Style Sheet">CSS</abbr> a bit more dynamic.</p>
 
-<p>First rename all your /assets/stylesheets <abbr title"Cascading Style Sheet">CSS</abbr> files to something <abbr title="Embedded Ruby">ERB</abbr> will understand: e.g. default.css.erb. This allows us to use <abbr title="Embedded Ruby">ERB</abbr> in the stylesheets. Now change all the image references to:</p>
+<p>First rename all your /assets/stylesheets <abbr title="Cascading Style Sheet">CSS</abbr> files to something <abbr title="Embedded Ruby">ERB</abbr> will understand: e.g. default.css.erb. This allows us to use <abbr title="Embedded Ruby">ERB</abbr> in the stylesheets. Now change all the image references to:</p>
 
 {% highlight ruby %}
 <%= asset_path 'logo.png' %>
