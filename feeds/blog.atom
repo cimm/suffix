@@ -3,7 +3,7 @@ layout: none
 ---
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns:georss="http://www.georss.org/georss" xmlns="http://www.w3.org/2005/Atom" xml:lang="en-US">
-  <id>tag:{{ site.hostname }}:/feeds/blog</id>
+  <id>tag:{{ site.hostname }},2007:/feeds/blog</id>
   <title>{{ site.name }}</title>
   <link href="{{ site.url }}" type="text/html" rel="alternate" />
   <link href="{{ site.url }}/feeds/blog.atom" type="application/atom+xml" rel="self" />
@@ -14,7 +14,7 @@ layout: none
   {% for post in site.posts %}
     {% unless post.link %}
       <entry>
-        <id>tag:{{ site.hostname }}:Post{{ post.id }}</id>
+        <id>tag:{{ site.hostname }},2007:{{ post.id }}</id>
         <title>{{ post.title }}</title>
         <link href="{{ site.url }}{{ post.id }}" />
         <link rel="alternate" type="text/html" href="{{ site.url }}{{ post.id }}" />
