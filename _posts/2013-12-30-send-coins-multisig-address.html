@@ -2,8 +2,9 @@
 layout:      post
 title:       Send coins to a multisig address
 date:        2013-12-31 11:40:00
-updated:     2013-12-31 11:40:00
+updated:     2014-01-13 13:09:00
 coordinates: 51.296964 4.429939
+proofread:   yes
 ---
 
 <p>The Bitcoin protocol has built-in support for multisig addresses. A multisig address needs <em>n</em> out of <em>i</em> signatures before the coins can be withdrawn. A good example is an escrow-like service that allows safer payments by holding the buyer's coins in escrow until the terms of the sale are met.</p>
@@ -79,7 +80,7 @@ rpc.listunspent
 ] 
 {% endhighlight %}
 
-<p>I simply took the first one in the list, but you probably want to mix and match transactions from this list to get to the Bitcoin amount you need.</p>
+<p>I took the first one in the list, but you probably want to mix and match transactions from this list to get to the Bitcoin amount you need.</p>
 
 <p>Create a new raw transaction for the multisig address. The <code>vout</code> is the index of the input or output as a transaction can have multiple inputs and outputs:</p>
 
@@ -103,7 +104,7 @@ rpc.createrawtransaction(
 
 <h2>Announce to the network</h2>
 
-<p>You can optionally announce the transaction to your local Bitcoin node (the Bitcoin-Qt client) and the network. Simply send the raw transaction from the previous step:</p>
+<p>You can optionally announce the transaction to your local Bitcoin node (the Bitcoin-Qt client) and the network. Send the raw transaction from the previous step:</p>
 
 {% highlight ruby %}
 rpc.sendrawtransaction("01000000011f...722ff8700000000")
@@ -114,5 +115,9 @@ rpc.sendrawtransaction("01000000011f...722ff8700000000")
 <h2>Resources</h2>
 
 <ul>
-  <li><a href="https://gist.github.com/gavinandresen/3966071" title="TwoOfThree.sh @ GitHubGist">TwoOfThree.sh</a>: the shell script where this post is based upon.</li>
+  <li>
+    <a href="https://gist.github.com/gavinandresen/3966071" title="TwoOfThree.sh @ GitHubGist">TwoOfThree.sh</a>: the shell script where this post is based upon.
+  </li>
+  <li>
+    <a href="https://bitrated.com" title="Bitrated">Bitrated</a>: implementation of an escrow service with multisig addresses.</li>
 </ul>
