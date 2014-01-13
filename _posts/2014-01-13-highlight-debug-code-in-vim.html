@@ -1,0 +1,44 @@
+---
+layout:      post
+title:       Highlight debug code in Vim
+date:        2014-01-13 13:45:00
+updated:     2014-01-13 13:45:00
+coordinates: 51.296964 4.429939
+proofread:   no
+---
+
+<p>I have been looking for a way to prevent myself from commiting debug code to project repositories. I add <code>console.log</code> statements to debug problems all the time. No big deal if I would only remember to remove those lines before commiting the patch.</p>
+
+<p>My first aproach was adding a Git <a href="http://githooks.com/" alt="What are Git hooks?">pre-commit hook</a> to warn me I was ready to commit something stupid. While this works it&apos;s a bit too intrusive to my liking. It also happens at the wrong moment: the pre-commit hook would only warn me when I was committing something, not right there when I was looking at the file.</p>
+
+<p>Last week <span class="vcard"><span class="fn">Wynn Netherland</span> posted a way to highlight <a class="url" href="http://wynnnetherland.com/linked/2014010902/words-to-avoid-in-tech-writing" title="Words to avoid in tech writing post by Wynn Netherland">words to avoid in tech writing</a></span>, isn&apos;t that convenient?</span></p>
+
+<p>I shamelessly took his snippet an modified it to highligt words that I don&apos;t want to commit:</p>
+
+{% highlight vim %}
+highlight DebugCode ctermfg=red guifg=red
+match DebugCode /\cconsole/
+autocmd BufWinEnter * match DebugCode /\cconsole/
+autocmd InsertEnter * match DebugCode /\cconsole/
+autocmd InsertLeave * match DebugCode /\cconsole/
+autocmd BufWinLeave * call clearmatches()
+{% endhighlight %}
+
+<p>Here is how how it looks with the light <a href="http://ethanschoonover.com/solarized" alt="Solarized color theme">Solarized</a> theme:</p>
+
+<img src="/assets/vim-highlight.png" alt="Screenshot of highligted words in Vim" style="border: 5px solid #efefef" />
+
+<p>You might want to make sure you enabled syntax highlighting. I was missing the <code>syntax enable</code> line and it wouldn't work.</p>
+
+{% highlight vim %}
+syntax on
+syntax enable
+{% endhighlight %}
+
+<p>There you go, big red boxes for lines I might want to remove before pushing this the repository.</p>
+
+<p>A small extra tip from my <a href="https://github.com/cimm/dotvim/blob/master/vimrc" title="My .vimrc file"><code>.vimrc</code></a> file using Vim abbreviations to quickly type longer commands:</p>
+
+{% highlight vim %}
+abbr clog console.log
+{% endhighlight %}
