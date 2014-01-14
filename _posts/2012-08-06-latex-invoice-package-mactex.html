@@ -1,25 +1,26 @@
 ---
-layout:  post
-title:   LaTeX invoice package and MacTex
-date:    2012-08-06 22:57:44
-updated: 2012-08-06 23:04:40
+layout:    post
+title:     LaTeX invoice package and MacTex
+date:      2012-08-06 22:57:44
+updated:   2014-01-14 22:53:00
+proofread: yes
 ---
 
-<p>My invoices are generated from a LaTeX template using the <a href="http://archive.cs.uu.nl/mirror/CTAN/help/Catalogue/entries/invoice.html" class="ext" title="LaTeX invoice package at The TeX Catalogue Online">invoice package</a> by <span class="vcard"><span class="fn">Oliver Corff</span></span>. <span class="vcard"><span class="fn">Paul Asmuth</span> <a class="url ext" href="http://paulasmuth.com/blog/latex_invoice/" title="HowTo: Write invoices in LaTeX">wrote</a> a little example on how to use the invoice package if you would like to try it out.</p>
+<p>My invoices are generated from a LaTeX template using the <a href="http://archive.cs.uu.nl/mirror/CTAN/help/Catalogue/entries/invoice.html" class="ext" title="LaTeX invoice package at The TeX Catalogue Online">invoice package</a> by <span class="vcard"><span class="fn">Oliver Corff</span></span>. <span class="vcard"><span class="fn">Paul Asmuth</span> <a class="url ext" href="http://paulasmuth.com/blog/latex_invoice/" title="HowTo: Write invoices in LaTeX">wrote</a> a little example on how to use the invoice package, if you would like to try it out.</p>
 
-<p>After installing OS X Mountain Lion and the most recent distribution of <a href="http://www.tug.org/mactex/" class="ext" title="Download the MacTex distrubtion">MacTex</a> (<abbr title="2012-06-01">01 July 2012</abbr>) my invoices wouldn't generate anymore. Checked the invoice package in the TeX Live Utility and sure enough, it was installed by default and updated to the latest version the TeX Live Utility could find.</p>
+<p>After installing OS X Mountain Lion and the most recent distribution of <a href="http://www.tug.org/mactex/" class="ext" title="Download the MacTex distrubtion">MacTex</a> (<abbr title="2012-06-01">01 July 2012</abbr>), my invoices wouldn't generate anymore. I checked the invoice package in the TeX Live Utility and sure enough, it was installed by default and updated to the latest version the TeX Live Utility could find.</p>
 
-<p>Still, generating an invoice with <em>pdflatex</em> kept throwing the following error:</p>
+<p>Still, generating an invoice with <em>pdflatex</em> kept producing the following error:</p>
 
 <code>! LaTeX Error: Missing \begin{document}.</code>
 
-<p>Turned out there is a bug with an invoice dependency trying to load the <em>fp.tex</em> definitions causing the invoice package to throw this strange error:</p>
+<p>Turns out, there is a bug with an invoice dependency trying to load the <em>fp.tex</em> definitions causing the invoice package to produce this strange error:</p>
 
 <code>l.31 \NeedsTeXFormat{LaTeX2e}[1995/12/01]</code>
 
 <h3>RequirePackage</h3>
 
-<p>Luckily it's easy to patch the problem. Have a look at the <em>/usr/local/texlive/2012/texmf-dist/tex/latex/invoice/invoice.sty</em> file and look for the line that requires the <em>fp</em> package in the &lsquo; initialise code&rsquo; block near the beginning of the file:</p>
+<p>Luckily it's easy to patch the problem. Have a look at the <em>/usr/local/texlive/2012/texmf-dist/tex/latex/invoice/invoice.sty</em> file and look for the line that requires the <em>fp</em> package in the &lsquo;initialize code&rsquo; block, near the beginning of the file:</p>
 
 <code>\input{fp}</code>
 
