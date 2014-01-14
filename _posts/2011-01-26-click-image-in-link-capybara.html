@@ -1,8 +1,9 @@
 ---
-layout:  post
-title:   Click on an image in a link with Capybara
-date:    2011-01-26 21:59:27
-updated: 2011-02-09 23:09:06
+layout:    post
+title:     Click on an image in a link with Capybara
+date:      2011-01-26 21:59:27
+updated:   2014-01-14 23:22:00
+proofread: yes
 ---
 
 <p>There is the built-in <a href="http://rdoc.info/github/jnicklas/capybara/ccced2/Capybara/Session#click_link-instance_method" title="Capybara RDoc" class="ext">click_link</a> method when you want to follow a link in your Capybara tests:</p>
@@ -19,11 +20,11 @@ click_link('edit')
 </a>
 {% endhighlight %}
 
-<p> Luckily there are some simple workarounds, here are two.</p>
+<p>Luckily there are some simple workarounds Here are two.</p>
 
 <h3>The id attribute</h3>
 
-<p>You can simply add an id attribute to the link you want to follow. The click_link method will see this link and, voilà, problem solved. The test stays clean but you'll need to add some view logic to make sure you are using a unique id for each link.</p>
+<p>You can add an id attribute to the link you want to follow. The click_link method will see this link and voilà, problem solved. The test stays clean but you'll need to add some view logic to make sure you are using a unique id for each link.</p>
 
 
 {% highlight ruby %}
@@ -38,4 +39,4 @@ click_link('post-3-edit')
 find(:xpath, "//a/img[@alt='Edit']/..").click
 {% endhighlight %}
 
-<p>There is one caveat here. The /.. at the end selects the parent element from the XPath result (the link and not the image in our case). If you leave this out Capybara will click on the image and for some reason that doesn't seem to work.</p>
+<p>There is one caveat here. The /.., at the end, selects the parent element from the XPath result (the link and not the image in our case). If you leave this out, Capybara will click on the image and for some reason that doesn't seem to work.</p>
