@@ -7,15 +7,15 @@ coordinates: 51.296964 4.429939
 proofread:   yes
 ---
 
-<p>The bitcoin protocol has built-in support for multisig addresses. A multisig address needs <em>n</em> out of <em>i</em> signatures before the coins can be withdrawn. A good example is an escrow-like service that allows safer payments by holding the buyer's coins in escrow until the terms of the sale are met.</p>
+<p>The Bitcoin protocol has built-in support for multisig addresses. A multisig address needs <em>n</em> out of <em>i</em> signatures before the coins can be withdrawn. A good example is an escrow-like service that allows safer payments by holding the buyer's coins in escrow until the terms of the sale are met.</p>
 
-<p>Currently none of the bitcoin clients support these kind of addresses via the <abbr title="Graphical User Interface">GUI</abbr>, but it's fully supported via the <a href="http://bitcoin.org/en/download" title="Download the Bitcoin-Qt client">Bitcoin-Qt</a> client's <abbr title="Application Programming Interface">API</abbr>.</p>
+<p>Currently none of the Bitcoin clients support these kind of addresses via the <abbr title="Graphical User Interface">GUI</abbr>, but it's fully supported via the <a href="http://bitcoin.org/en/download" title="Download the Bitcoin Core client">Bitcoin Core</a> (previously named <a href="https://bitcoin.org/bin/0.9.0/README.txt" title="Bitcoin Core 0.9.0 release notes">Bitcoin-Qt</a>) client's <abbr title="Application Programming Interface">API</abbr>.</p>
 
-<p>You might want to run the Bitcoin-Qt client in <a href="/blog/getting-started-bitcoin-testnet">testnet mode</a> to play with fake coins.</p>
+<p>You might want to run the Bitcoin Core client in <a href="/blog/getting-started-bitcoin-testnet">testnet mode</a> to play with fake coins.</p>
 
 <p>The example code assumes you have the <a href="https://en.bitcoin.it/wiki/API_reference_%28JSON-RPC%29" title="JSON-RPC API reference">Ruby <abbr title=" JavaScript Object Notation">JSON</abbr>-<abbr title="Remote Procedure Call">RPC</abbr> wrapper</a> to make things a little easier.</p>
 
-<p>We create a bitcoin<abbr title="Remote Procedure Call">RPC</abbr> instance which we'll reuse in our examples.</p>
+<p>We create a Bitcoin<abbr title="Remote Procedure Call">RPC</abbr> instance which we'll reuse in our examples.</p>
 
 {% highlight ruby %}
 rpc = BitcoinRPC.new('http://user:pass@127.0.0.1:8332')
@@ -52,11 +52,11 @@ rpc.createmultisig(2, [
 }
 {% endhighlight %}
 
-<p>This address will <strong>NOT</strong> be visible on the bitcoin network (you can use <a href="http://btclook.com" title="Verify transactions in the public bitcoin blockchain">btclook.com</a> or <a href="http://testnet.btclook.com" title="Verify transactions in the testnet bitcoin blockchain">testnet.btclook.com</a> to check) as we haven't announced it to the network yet.</p>
+<p>This address will <strong>NOT</strong> be visible on the Bitcoin network (you can use <a href="http://btclook.com" title="Verify transactions in the public Bitcoin blockchain">btclook.com</a> or <a href="http://testnet.btclook.com" title="Verify transactions in the testnet Bitcoin blockchain">testnet.btclook.com</a> to check) as we haven't announced it to the network yet.</p>
 
 <h2>Send funds</h2>
 
-<p>We now need to fiddle with some transactions. Addresses are an abstraction in the bitcoin protocol, the basic units are transactions. Take a few minutes to <a href="https://bitcoin.stackexchange.com/a/12472" title="&ldquo;In getrawtransaction what is the vout integer in the vin list?&rdquo; @ Bitcoin StackExchange">learn why</a> transactions are so important if you are not up to speed yet and want the following to make sense.</p>
+<p>We now need to fiddle with some transactions. Addresses are an abstraction in the Bitcoin protocol, the basic units are transactions. Take a few minutes to <a href="https://bitcoin.stackexchange.com/a/12472" title="&ldquo;In getrawtransaction what is the vout integer in the vin list?&rdquo; @ Bitcoin StackExchange">learn why</a> transactions are so important if you are not up to speed yet and want the following to make sense.</p>
 
 <p>First, find an unspent transaction:</p>
 
@@ -64,7 +64,7 @@ rpc.createmultisig(2, [
 rpc.listunspent
 {% endhighlight %}
 
-<p>It lists all the unspent transactions in your Bitcoin-Qt client:</p>
+<p>It lists all the unspent transactions in your Bitcoin Core client:</p>
 
 {% highlight ruby %}
 [
@@ -104,13 +104,13 @@ rpc.createrawtransaction(
 
 <h2>Announce to the network</h2>
 
-<p>You can optionally announce the transaction to your local bitcoin node (the Bitcoin-Qt client) and the network. Send the raw transaction from the previous step:</p>
+<p>You can optionally announce the transaction to your local Bitcoin node (the Bitcoin Core client) and the network. Send the raw transaction from the previous step:</p>
 
 {% highlight ruby %}
 rpc.sendrawtransaction("01000000011f...722ff8700000000")
 {% endhighlight %}
 
-<p>Have a look at the Bitcoin-Qt transactions tab. There should be a new pending transaction waiting for confirmation.</p>
+<p>Have a look at the Bitcoin Core transactions tab. There should be a new pending transaction waiting for confirmation.</p>
 
 <h2>Resources</h2>
 

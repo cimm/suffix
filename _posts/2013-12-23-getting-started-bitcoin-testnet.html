@@ -9,16 +9,16 @@ proofread:   yes
 
 <p>Are you a developer working on a <a href="http://www.bitcoin.org" title="Bitcoin, open source P2P money">Bitcoin</a> project or are you a power user discovering the more <a href="https://www.youtube.com/watch?v=mD4L7xDNCmA" title="The future of Bitcoin: new applications and rebuilding the banking system talk by Mike Hearn">advanced Bitcoin features</a>? This post explains how to get started with the Bitcoin <a href="https://en.bitcoin.it/wiki/Testnet" title="What is this Bitcoin testnet you speak of?">testnet</a> so you can play without using your real, hard-earned coins.</p>
 
-<p>None of the Bitcoin client applications implement all of those features, (yet) so you'll have to use the Bitcoin RPC interface from the command line.</p>
+<p>None of the Bitcoin client applications implement all of those features, (yet) so you'll have to use the Bitcoin <abbr "Remote Procedure Call">RPC</abbr> interface from the command line.</p>
 
 <h2>Install</h2>
 
-<p><a href="http://bitcoin.org/en/download" title="Download Bitcoin-Qt">Download</a> and install the Bitcoin-Qt client. You can, but don't have to, start the application. It will start downloading the huge, real blockchain, which you don't need for testing.</p>
+<p><a href="http://bitcoin.org/en/download" title="Download Bitcoin Core">Download</a> and install the Bitcoin Core client (previously named <a href="https://bitcoin.org/bin/0.9.0/README.txt" title="Bitcoin Core 0.9.0 release notes">Bitcoin-Qt</a>). You can, but don't have to, start the application. It will start downloading the huge, real blockchain, which you don't need for testing.</p>
 
 <h2>Configure</h2>
 
 <ol>
-  <li>Find the Bitcoin-Qt <a href="https://en.bitcoin.it/wiki/Data_directory" title="Bitcoin-Qt data directories for each OS">data directory</a> for your system.</li>
+  <li>Find the Bitcoin Core <a href="https://en.bitcoin.it/wiki/Data_directory" title="Bitcoin Core data directories for each OS">data directory</a> for your system.</li>
   <li>
     <p>Create this directory if it doesn't exist yet (should be there from when you ran the client before). On Mac OS X for example:</p>
     <p><code>mkdir ~/Library/Application\ Support/Bitcoin/</code></p>
@@ -39,15 +39,15 @@ rpcport=8332
 
 <h2>Run</h2>
 
-<p>Start the Bitcoin-Qt client. The application icon should be green instead of orange. The green icon indicates it's running in testnet mode. The client will start downloading the testnet blockchain and this will take a while.</p>
+<p>Start the Bitcoin Core client. The application icon should be green instead of orange. The green icon indicates it's running in testnet mode. The client will start downloading the testnet blockchain and this will take a while.</p>
 
-<p>While you wait for the testnet blockchain to download, you can grab some testnet coins. Find a Bitcoin <a href="http://faucet.xeno-genesis.com/" title="Mojocoin testnet faucet, one of many">testnet faucet</a> and send yourself some coins (you can find an address in the Bitcoin-Qt client).</p>
+<p>While you wait for the testnet blockchain to download, you can grab some testnet coins. Find a Bitcoin <a href="http://faucet.xeno-genesis.com/" title="Mojocoin testnet faucet, one of many">testnet faucet</a> and send yourself some coins (you can find an address in the Bitcoin Core client).</p>
 
-<p>The coins will only show up in the Bitcoin-Qt client application when the blockchain download has caught up, so wait for it to finish.</p>
+<p>The coins will only show up in the Bitcoin Core client application when the blockchain download has caught up, so wait for it to finish.</p>
 
 <h2>Play</h2>
 
-<p>Time to try it out. Here is a simple cURL command to ask the Bitcoin daemon for some general info using a JSON RPC:</p>
+<p>Time to try it out. Here is a simple cURL command to ask the Bitcoin daemon for some general info using a JSON <abbr title="Remote Procedure Call">RPC</abbr>:</p>
 
 {% highlight bash %}
 curl --user Ulysseys --data-binary '{"jsonrpc": "1.0", "id":"curltest", "method": "getinfo", "params": [] }' -H 'content-type: text/plain;' http://127.0.0.1:8332/
