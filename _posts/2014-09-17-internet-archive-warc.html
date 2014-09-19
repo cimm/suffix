@@ -1,0 +1,32 @@
+---
+layout:      post
+title:       Archiving our digital heritage
+date:        2014-09-19 12:00:00
+updated:     2014-09-19 23:43:00
+coordinates: 50.86505 4.70068
+proofread:   yes
+---
+
+<p>Earlier this week I learned about the <a href="http://www.archiveteam.org" title="Main page @ Archiveteam">Archive Team</a>, a group of enthusiasts who feel it’s a shame we lose so much of our digital heritage in today's interconnected world. Online services come and go, taking all our data with them, lost forever. The Archive Team feels it doesn't have to be this way and has decided to take action. They <a href="http://www.archiveteam.org/index.php?title=Deathwatch" title="Deathwatch @ Archiveteam">track websites and data</a> in danger of getting lost and try to save them as much as possible by archiving everything they can grab before the service shuts down.</p>
+
+<h2>twitpic</h2>
+
+<p>Take <a href="https://twitpic.com/" title="Photo hosting service">twitpic</a> for example. The twitpic service consists of an image hosting website where Twitter users upload(ed) photos to link from their tweets before Twitter added support for images. On <time datetime="2014-09-04">September 4, 2014</time>, <span class="vcard"><span class="fn">Noah Everett</span></span> - twitpic owner - <a href="http://blog.twitpic.com/2014/09/twitpic-is-shutting-down/" title="Twitpic is shutting down">announced</a> they would shut down the service after a trademark dispute with Twitter. If the notice to shut down is effected, all uploaded photos and comments will be lost forever.</p>
+
+<p>You could argue that losing the photos of Bob's late night dinner and Alicia's selfie aren't that important in the first place. Still, it's a window on our time, how we live and what people think is worth sharing. Not all twitpic photos are personal memories. Some captured major events, like twitpic user <span class="vcard"><span class="fn">Jānis Krūms</span></span> who took one of the <a href="http://twitpic.com/135xa" title="There's a plane in the Hudson. I'm on the ferry going to pick up the people. Crazy.">first photos</a> of <a href="https://en.wikipedia.org/wiki/US_Airways_Flight_1549" title="US Airways Flight 1549 @ Wikipedia">US Airways Flight 1549</a> after its emergency landing in the <abbr class="geo" title="40.769498,-74.004636">Hudson River</abbr> in <time datetime="2009">2009</time>.</p>
+
+<h2>Grab all the things</h2>
+
+<p>The Archive Team built a set of <a href="http://www.archiveteam.org/index.php?title=Dev/Infrastructure" title="Infrastructure overview @ Archiveteam">tools</a> to crawl websites, grab its contents and upload it to online archives for long time storage. You can help too by <a href="http://www.archiveteam.org/index.php?title=Warrior" title="ArchiveTeam Warrior @ Archiveteam">running a warrior</a>, a piece of software you run on your computer that grabs and packages data in danger of getting lost and uploads it to the <a href="https://archive.org" title="Internet Archive">Internet Archive</a>. The more people running a warrior, the faster the website will be archived. Speed is important here, the endangered service won’t hang around forever.</p>
+
+<h2>WebArchives</h2>
+
+<p>The Internet Archive helped in developing the WebArchive (or <abbr title="Web ARChive">WARC</abbr>) file format, a file format to use to combine multiple digital resources into an aggregate archive together with related information. There are various open-source tools available to browse or manipulate <abbr title="Web ARChive">WARC</abbr> files. The Archive Team warrior tool uses this format to package the content it grabs and hands it over to the Internet Archive.</p>
+
+<p><a href="https://www.gnu.org/software/wget" title="GNU Wget">Wget</a>, a command line utility used to download websites, can build <abbr title="Web ARChive">WARC</abbr> files out-of-the-box. Creating a WebArchive off of this blog for example is as simple as running:</p>
+
+{% highlight bash %}
+wget "http://suffix.be/blog" --mirror --warc-file="suffix"
+{% endhighlight %}
+
+<p>I learned something new today and have my warrior <a href="http://tracker.archiveteam.org/twitpic" title="TwitPic Phase 2 Content Grab @ Archiveteam">running</a> and archiving twitpic while we still can. Now it's your turn, <a href="http://www.archiveteam.org/index.php?title=Warrior" title="ArchiveTeam Warror @ Archiveteam">start running a warrior</a> today and keep our digital memories alive!</p>
