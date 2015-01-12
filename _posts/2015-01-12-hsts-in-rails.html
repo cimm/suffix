@@ -1,0 +1,33 @@
+---
+layout:      post
+title:       HSTS in Rails
+date:        2015-01-12 11:00:00
+updated:     2015-01-12 11:00:00
+coordinates: 50.725696 4.576064
+proofread:   no
+---
+
+<blockquote cite="http://scottwb.com/blog/2013/02/06/hsts-on-rails/"><abbr title="HyperText Transfer Protocol">HTTP</abbr> Strict Transport Security (<abbr title="HTTP Strict Transport Security">HSTS</abbr>) is a recent specification aimed at stopping a certain type of man-in-the-middle attack known as <abbr title="Secure Socket Layer">SSL</abbr> Stripping. By default, when a user types &ldquo;<code>example.com</code>&rdquo; into their browser, the browser prefixes that with &ldquo;<code>http://</code>&rdquo;. A man-in-the-middle attack can hijack the connection before the server redirect to <abbr title="HyperText Transport Protocol over SSL">HTTPS</abbr> gets back to the browser, spoofing the site and potentially luring the user into providing sensitive data to the attacker.</blockquote>
+
+<p>Rails has a simple configuration setting to enable <abbr title="HyperText Transfer Protocol">HSTS</abbr> when your application already supports <abbr title="Secure Socket Layer">SSL</abbr>. You can activate it by uncommenting the <code>config.force_ssl</code> setting in your `production.rb` environment file. Once deployed this will add the Strict-Transport-Security headers to each request telling the browser all future requests should go over <abbr title="HyperText Transport Protocol over SSL">HTTPS</abbr>. Rails adds an expiry date 1 year in the futre and does not add the <code>includeSubDomains</code> part as it doesn't know if all subdomains are served over <abbr title="Secure Socket Layer">SSL</abbr>.</p>
+
+<h3>Adding our own header</h3>
+
+<p>A year is a bit long for the project I am working on. At the worst some visitors would have problems accessing our site up to one year when we decide to stop servering over <abbr title="Secure Socket Layer">SSL</abbr>. We could add a <code>max-age=0</code> for a while and hope most earlier vistors visit the site again which would remove the <abbr title="HyperText Transfer Protocol">HSTS</abbr> cache or every visitor could manually empty their cache but this will cause a lot of work for our helpdesk. Rails also doesn't add <abbr title="HyperText Transfer Protocol">HSTS</abbr> to subdomains out-of-the-box so we rolled our own.</p>
+
+<p>Add the following to your ApplicationController:</p>
+
+{% highlight ruby %}
+before_action :force_ssl, if: -> { Rails.env.production? }
+
+def force_ssl
+  response.headers['Strict-Transport-Security'] = 'max-age=2678400; includeSubDomains' # 31 days
+end
+{% endhighlight %}
+
+<h3>Sources</h3>
+
+<ul>
+  <li class="vcard">Great <a title="HSTS on Rails" href="http://scottwb.com/blog/2013/02/06/hsts-on-rails/" class="url"><abbr title="HyperText Transfer Protocol">HSTS</abbr> on Rails</a> article by <span class="fn n"><span class="given-name">Scott</span> <span class="additional-name">W.</span> <span class="family-name">Bradley</span></span>.</li>
+  <li>The <a title="Session Hijacking @ RailsGuides" href="http://guides.rubyonrails.org/security.html#session-hijacking">Session Hijacking</a> chapter in the RailsGuides.</li>
+</ul>
