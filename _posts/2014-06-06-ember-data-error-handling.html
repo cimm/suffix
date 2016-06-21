@@ -57,7 +57,7 @@ post.save().then(function() {
 
 <p>Finally your DS.Error object should contain all the error messages as attributes so you can access them individually.</p>
 
-{% highlight js %}
+{% highlight ember %}
 {% raw %}
 {{#each error in errors.email}}
   {{error.message}}
