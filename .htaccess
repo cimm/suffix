@@ -1,4 +1,5 @@
 RewriteEngine On
+Options +FollowSymLinks
 
 ErrorDocument 404 /404.html
 
