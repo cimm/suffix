@@ -68,7 +68,7 @@ nav a {
 body {
   color: #141414;
   background-color: white;
-  font-family: 'PT Serif', serif;
+  font-family: serif;
   line-height: 1.8em;
   -webkit-font-smoothing: antialiased;
   padding: 0 5%;
@@ -108,7 +108,7 @@ h1 {
 }
 
 h2 {
-  font-family: 'Source Sans Pro', serif;
+  font-family: serif;
   font-size: 2.5em;
   line-height: 2em;
 }
@@ -126,7 +126,7 @@ h3 {
 }
 
 .header-container, .footer-container {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: sans-serif;
   color: #3cabda;
 }
 
