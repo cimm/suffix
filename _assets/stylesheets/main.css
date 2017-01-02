@@ -40,6 +40,11 @@ textarea {
   resize: vertical;
 }
 
+figcaption {
+  font-style: italic;
+  font-size: smaller;
+}
+
 .ie7 .title {
   padding-top: 20px;
 }
