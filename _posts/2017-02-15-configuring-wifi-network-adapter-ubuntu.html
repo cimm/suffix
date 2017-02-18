@@ -1,0 +1,108 @@
+---
+layout:      post
+title:       Configuring a wireless network adapter on Ubuntu
+date:        2017-02-15 09:00:00
+updated:     2017-02-15 09:00:00
+coordinates: 50.86505 4.70068
+proofread:   no
+---
+
+<p>I installed <a href="https://www.ubuntu.com/server" title="Ubuntu Server product page">Ubuntu Server</a> on an older machine at the office recently. We only have WiFi access, no ethernet, and the machine does not have a wireless chip. I got a D-Link WiFi <abbr title="Universal Serial Bus">USB</abbr> adapter and plugged it in. Fine, but now, how do I tell Ubuntu to use the newly installed wireless adapter when you only have a <abbr title="Command Line Interface">CLI</abbr> and no <abbr title="Graphical User Interface">GUI</abbr>?</p>
+
+<p>Easy… well, not exactly, but it works.</p>
+
+<h3>Detecting the <abbr title="Universal Serial Bus">USB</abbr> adapter</h3>
+
+<p>Let's first check if the machine detected the <abbr title="Universal Serial Bus">USB</abbr> adapter. Run lsusb to list the <abbr title="Universal Serial Bus">USB</abbr> devices the machine knows about:</p>
+
+{% highlight bash %}
+$ lsusb
+Bus 002 Device 003: Fitipower Integrated Technology Inc
+Bus 002 Device 002: Intel Corp. Integrated Rate Hub
+Bus 002 Device 001: Linux Foundation 2.0 root hub
+Bus 001 Device 004: D-Link Corp.
+{% endhighlight %}
+
+<p>There it is, our D-Link Corp. wireless <abbr title="Universal Serial Bus">USB</abbr> adapter. Nice.</p>
+
+<h3>Naming the adapter</h3>
+
+<p>Now we need to find the <abbr title="Universal Serial Bus">USB</abbr> device's logical name, the name we can use to refer to it. Meet lshw.</p>
+
+{% highlight bash %}
+$ lshw -C network
+*-network DISABLED
+   description: Wireless interface
+   physical id: 2
+   bus info: usb@1:1.6
+   logical name: wlan0
+   capabilities: ethernet physical wireless
+   configuration: broadcast=yes driver=rt2800usb driverversion=4.4.0-62-generic firmware=0.29 ip=x.x.x.x link=yes multicast=yes wireless=IEEE 802.11abgn
+{% endhighlight %}
+
+<p>Look for a device with a logical name starting with a 'w' (for wireless) and take note of it's name.</p>
+
+<h3>Manual connection</h3>
+
+<p>We now we have a <abbr title="Universal Serial Bus">USB</abbr> device and we know how to address it. Let's try to manually connect to a wireless network, make sure it's running first:</p>
+
+{% highlight bash %}
+$ ifconfig wlan0 up
+{% endhighlight %}
+
+<p>We'll use <code>wlan0</code> as a generic device name here but you'll need to replace it with the logical name you found in the previous step.</p>
+
+<p>Now connect to your wireless network:</p>
+
+{% highlight bash %}
+$ wpa_passphrase <ssid> > wlan.config
+{% endhighlight %}
+
+<p>It looks like the program hangs but it's simply waiting for you to give it the password to access the wireless network. Enter the password and press enter, it will create a <code>wlan.conf</code> file in the same directory containing the password and network name.</p>
+
+<p>Connect to the network:</p>
+
+{% highlight bash %}
+$ wpa_supplicant -Dwext -i wlan0 -c wlan.conf -B
+{% endhighlight %}
+
+<p>There won't be a lot to do without <abbr title="Internet Prototcol">IP</abbr> address so let's ask our router to give us one:</p>
+
+{% highlight bash %}
+$ dhclient -r
+$ dhclient wlan0
+{% endhighlight %}
+
+<p>You should now be connected with the router. Check if you can see the internet:</p>
+
+{% highlight bash %}
+$ ping 8.8.8.8
+PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=42 time=16.4 ms
+{% endhighlight %}
+
+<h3>Persist the config</h3>
+
+<p>This is all fine… until you reboot and need to do the whole thing over again. Not optimal. It would be wise to store this somewhere so Ubuntu can reconnect to this network after a reboot. Let's use what we learned above and save that in a file. Open the <code>/etc/network/interfaces</code> file and add the following:</p>
+
+
+{% highlight bash %}
+auto lo
+iface lo inet loopback
+
+auto wlan0
+iface wlan0 inet dhcp
+wpa-ssid <ssid>
+wpa-psk <password>
+gateway 192.168.0.1
+dns-nameservers 8.8.8.8 192.168.0.1
+{% endhighlight %}
+
+<p>You'll need to replase the <code>wlan0</code> with the logical name you found ealier and 192.168.0.1 with the address of your router of course. Once done take down the interface and bring it back up:</p>
+
+{% highlight bash %}
+$ ifconfig wlan0 down
+$ ifconfig wlan0 up
+{% endhighlight %}
+
+<p>Still connected? Great, the internet awaits you.</p>
