@@ -18,7 +18,7 @@ apt update
 apt upgrade
 {% endhighlight %}
 
-<p>See the new apt syntax? Since <a href="https://mvogt.wordpress.com/2014/04/04/apt-1-0/" title="apt 1.0 by Michael Vogt">version 1.0</a> `apt-get` and `apt-cache` have been merged in a single interface (you even get some nice colors and a progress bar).</p>
+<p>See the new apt syntax? Since <a href="https://mvogt.wordpress.com/2014/04/04/apt-1-0/" title="apt 1.0 by Michael Vogt">version 1.0</a> `apt-get` and `apt-cache` have been merged in a single interface (you even get some nice colours and a progress bar).</p>
 
 <h3>Firewall</h3>
 
@@ -47,7 +47,7 @@ service sshd restart
 
 <h3>Automatic updates</h3>
 
-<p>Set up automatic updates. This will tell Ubuntu to look for and install security patches every so often, not a luxury as you probably won't log in to the <abbr title="Continuous Integration">CI</abbr> server every day.</p>
+<p>Set up automatic updates. This will tell Ubuntu to look for and install security patches every so often, not a luxury as you probably won't log in to the <abbr title="Continuous Integration">CI</abbr> server daily.</p>
 
 {% highlight bash %}
 dpkg-reconfigure --priority=low unattended-upgrades
@@ -77,7 +77,7 @@ docker run hello-world
 
 <h3>Drone</h3>
 
-<p>Drone needs some kind of database to store its things. I went with SQLite as it's super easy to install but PosgreSQL or MySQL are probably better suited for production systems. Drone doesn't mind and can run with MySQL, PostgreSQL or SQLite.</p>
+<p>Drone needs a database to store its things. I went with SQLite as it's super easy to install but PosgreSQL or MySQL are probably better suited for production systems. Drone doesn't mind and can run with MySQL, PostgreSQL or SQLite.</p>
 
 {% highlight bash %}
 apt install sqlite3 libsqlite3-dev
@@ -119,7 +119,7 @@ docker run \
 drone/drone:0.4
 {% endhighlight %}
 
-<p>There you go, open your browser an point it to the server's <abbr title="Internet Protocol">IP</abbr> address. Drone will do its oAuth dance with Github when you log in and list your repositories.</p>
+<p>There you go, open your browser a point it to the server's <abbr title="Internet Protocol">IP</abbr> address. Drone will do its oAuth dance with Github when you log in and list your repositories.</p>
 
 <h3>Build</h3>
 
@@ -152,7 +152,7 @@ notify:
 
 <p>The 'commands' section is where you configure your build and get it running, pretty standard Rails stuff here.</p>
 
-<p>The 'enviroment' section can be used to set&hellip; well&hellip; environment variables. Really useful for <a href="http://12factor.net/" title="Twelve-factor app">twelve-factor apps</a>.</p>
+<p>The 'environment' section can be used to set&hellip; well&hellip; environment variables. Useful for <a href="http://12factor.net/" title="Twelve-factor app">twelve-factor apps</a>.</p>
 
 <p>The 'compose' section behaves like Docker's <a href="https://docs.docker.com/compose/" title="Docker compose documentation">compose</a> feature and lets you pull other Docker images needed for your build. Isn't that awesome?</p>
 
@@ -160,7 +160,7 @@ notify:
 
 <h3>Secrets</h3>
 
-<p>Noticed the $$SLACK_WEBHOOK variable in the example? It's possible to <a href="http://readme.drone.io/usage/secrets/" title="Secrets documentation">pull in variables</a> from a `.drone.sec` file from your project's root folder. This is usefull for <abbr title="Application Programming Interface">API</abbr> tokens &amp; passwords you rather don't expose.</p>
+<p>Noticed the $$SLACK_WEBHOOK variable in the example? It's possible to <a href="http://readme.drone.io/usage/secrets/" title="Secrets documentation">pull in variables</a> from a `.drone.sec` file from your project's root folder. This is useful for <abbr title="Application Programming Interface">API</abbr> tokens &amp; passwords you rather don't expose.</p>
 
 <p>Drone knows how to read and decrypt this file but you'll need to encrypt it yourself. Go to your project's "Secrets" tab in the Drone web interface and add your variables.</p>
 
