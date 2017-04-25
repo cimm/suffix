@@ -7,7 +7,7 @@ coordinates: 50.86505 4.70068
 proofread:   no
 ---
 
-<p>I installed <a href="https://www.ubuntu.com/server" title="Ubuntu Server product page">Ubuntu Server</a> on an older machine at the office recently. We only have WiFi access, no ethernet, and the machine does not have a wireless chip. I got a D-Link WiFi <abbr title="Universal Serial Bus">USB</abbr> adapter and plugged it in. Fine, but now, how do I tell Ubuntu to use the newly installed wireless adapter when you only have a <abbr title="Command Line Interface">CLI</abbr> and no <abbr title="Graphical User Interface">GUI</abbr>?</p>
+<p>I installed <a href="https://www.ubuntu.com/server" title="Ubuntu Server product page">Ubuntu Server</a> on an older machine at the office recently. We only have WiFi access, no Ethernet, and the machine does not have a wireless chip. I got a D-Link WiFi <abbr title="Universal Serial Bus">USB</abbr> adapter and plugged it in. Fine, but now, how do I tell Ubuntu to use the newly installed wireless adapter when you only have a <abbr title="Command Line Interface">CLI</abbr> and no <abbr title="Graphical User Interface">GUI</abbr>?</p>
 
 <p>Easy… well, not exactly, but it works.</p>
 
@@ -98,7 +98,7 @@ gateway 192.168.0.1
 dns-nameservers 8.8.8.8 192.168.0.1
 {% endhighlight %}
 
-<p>You'll need to replase the <code>wlan0</code> with the logical name you found ealier and 192.168.0.1 with the address of your router of course. Once done take down the interface and bring it back up:</p>
+<p>You'll need to replace the <code>wlan0</code> with the logical name you found earlier and 192.168.0.1 with the address of your router of course. Once done take down the interface and bring it back up:</p>
 
 {% highlight bash %}
 $ ifconfig wlan0 down
