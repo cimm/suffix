@@ -222,6 +222,13 @@ h3 {
   display: table-cell;
 }
 
+.notice {
+  padding: 0.5em;
+  border-radius: 0.5em;
+  background-color: #eeeeee;
+  font-style: italic;
+}
+
 /* =============== Media Queries =============== */
 
 @media only screen and (min-width: 480px) {
