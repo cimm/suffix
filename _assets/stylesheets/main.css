@@ -229,6 +229,13 @@ h3 {
   font-style: italic;
 }
 
+.legos {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 1em;
+  align-items: end;
+}
+
 /* =============== Media Queries =============== */
 
 @media only screen and (min-width: 480px) {
@@ -273,6 +280,10 @@ h3 {
 
   .posts time, .posts a {
     display: table-cell;
+  }
+
+  .legos {
+    grid-template-columns: 1fr 1fr;
   }
 }
 
