@@ -1,85 +1,45 @@
 ---
 layout: default
-title: Lego
+title: LEGO
 ---
 
-<h2>Ella en Milo&apos;s Lego collection</h2>
+<h2>Ella en Milo&apos;s LEGO collection</h2>
 
-<section class="legos">
-  <div>
-    <img src="/assets/lego/10730.png"/>
-    <p>Juniors 10730 Lightning McQueen Speed Luancher</p>
-  </div>
-  <div>
-    <img src="/assets/lego/10750.jpg"/>
-    <p>Juniors 10750 Road Repair Truck</p>
-  </div>
-  <div>
-    <img src="/assets/lego/31056.jpg"/>
-    <p>Creator 31056 Green Cruiser</p>
-  </div>
-  <div>
-    <img src="/assets/lego/31066.jpg"/>
-    <p>Creator 31066 Space Shuttle</p>
-  </div>
-  <div>
-    <img src="/assets/lego/41172.png"/>
-    <p>Elves 41172 The Water Dragon Adventure</p>
-  </div>
-  <div>
-    <img src="/assets/lego/41300.jpg"/>
-    <p>Friends 41300 Puppy Championship</p>
-  </div>
-  <div>
-    <img src="/assets/lego/41310.jpg"/>
-    <p>Friends 41310 Heartlake Parcel Service</p>
-  </div>
-  <div>
-    <img src="/assets/lego/41313.jpg"/>
-    <p>Friends 41313 Heartlake Swimmingpool</p>
-  </div>
-  <div>
-    <img src="/assets/lego/41317.jpg"/>
-    <p>Friends 41317 Sunshine Catamaran</p>
-  </div>
-  <div>
-    <img src="/assets/lego/41321.jpg"/>
-    <p>Friends 41321 Snow Resort Off-Roader</p>
-  </div>
-  <div>
-    <img src="/assets/lego/41333.jpg"/>
-    <p>Friends 41333 Olivia&apos;s Mission Vehicle</p>
-  </div>
-  <div>
-    <img src="/assets/lego/41335.jpg"/>
-    <p>Friends 41333 Mia&apos;s Tree House</p>
-  </div>
-  <div>
-    <img src="/assets/lego/60102.jpg"/>
-    <p>City 60102 Airport VIP Service</p>
-  </div>
-  <div>
-    <img src="/assets/lego/60139.jpg"/>
-    <p>City 60139 Mobile Command Center</p>
-  </div>
-  <div>
-    <img src="/assets/lego/60168.jpg"/>
-    <p>City 60168 Saiboat Rescue</p>
-  </div>
-  <div>
-    <img src="/assets/lego/7239.jpg"/>
-    <p>City 7239 Fire Truck</p>
-  </div>
-  <div>
-    <img src="/assets/lego/41314.jpg"/>
-    <p>Friends 41314 Stephanie&apos;s Home</p>
-  </div>
-  <div>
-    <img src="/assets/lego/41315.jpg"/>
-    <p>Friends 41314 Heartlake Surf Shop</p>
-  </div>
-  <div>
-    <img src="/assets/lego/60141.jpg"/>
-    <p>City 60141 Police Station</p>
-  </div>
+<section class="legos" id="legos">
 </section>
+
+<script type="text/javascript">
+  let sets = [10730, 10750, 31056, 31066, 41172, 41300, 41310, 41313, 41314, 41315, 41317, 41321, 41333, 41335, 60102, 60139, 60141, 60168, 60182, 60183, 7239]
+  for (let num of sets) {
+    fetch(`https://rebrickable.com/api/v3/lego/sets/${num}-1/`, {
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': 'key 33c8d528831dda32399c53fcc9d6b3d2'
+      }
+    })
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(json) {
+      let holder = document.getElementById('legos');
+      let cell = document.createElement('div');
+
+      let image = document.createElement('img');
+      image.setAttribute('src', json['set_img_url']);
+      image.setAttribute('width', '220px');
+
+      let link = document.createElement('a');
+      link.setAttribute('href', json['set_url']);
+
+      let text = document.createElement('p');
+      text.appendChild(document.createTextNode(`${num} - ${json['name']}`));
+
+      cell.appendChild(image);
+      link.appendChild(text);
+      cell.appendChild(link);
+      holder.appendChild(cell);
+    });
+  }
+</script>
+
+<p>Set names and images are loaded from <a href="https://rebrickable.com" title="Combine your old LEGO to build new creations">Rebrickable</a>.</p>
