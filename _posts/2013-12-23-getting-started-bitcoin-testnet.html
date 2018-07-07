@@ -22,6 +22,8 @@ proofread:   yes
   <li>
     <p>Create this directory if it doesn't exist yet (should be there from when you ran the client before). On Mac OS X for example:</p>
     <p><code>mkdir ~/Library/Application\ Support/Bitcoin/</code></p>
+    <p>On Ubuntu:</p>
+    <p><code>mkdir ~/.bitcoin</code></p>
   </li>
   <li>
     Create a <code><a href="https://en.bitcoin.it/wiki/Running_Bitcoin#Bitcoin.conf_Configuration_File" title="Configuration file options">bitcoin.conf</a></code> configuration file in that directory. A minimal example might look like:
@@ -52,3 +54,19 @@ rpcport=8332
 {% highlight bash %}
 curl --user Ulysseys --data-binary '{"jsonrpc": "1.0", "id":"curltest", "method": "getinfo", "params": [] }' -H 'content-type: text/plain;' http://127.0.0.1:8332/
 {% endhighlight %}
+
+<h3>Deprecation warning for version 0.15.1</h3>
+<p><i>WARNING: getinfo is deprecated and will be fully removed in 0.16. Projects should transition to using getblockchaininfo, getnetworkinfo, and getwalletinfo before upgrading to 0.16</i></p>
+<p>Use these commands instead:</p>
+{% highlight bash %}
+curl --user Ulysseys --data-binary '{"jsonrpc": "1.0", "id":"curltest", "method": "getblockchaininfo", "params": [] }' -H 'content-type: text/plain;' http://127.0.0.1:8332/
+{% endhighlight %}
+
+{% highlight bash %}
+curl --user Ulysseys --data-binary '{"jsonrpc": "1.0", "id":"curltest", "method": "getnetworkinfo", "params": [] }' -H 'content-type: text/plain;' http://127.0.0.1:8332/
+{% endhighlight %}
+
+{% highlight bash %}
+curl --user Ulysseys --data-binary '{"jsonrpc": "1.0", "id":"curltest", "method": "getwalletinfo", "params": [] }' -H 'content-type: text/plain;' http://127.0.0.1:8332/
+{% endhighlight %}
+
