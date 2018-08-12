@@ -5,92 +5,108 @@ date:    2011-02-27 18:30:14
 updated: 2011-03-01 21:50:41
 ---
 
-<p>The <a href="http://www.youtube.com/watch?v=sfEbMV295Kk" title="Video: The Internet of Things explained" class="ext">Internet of Things</a> is the idea of an internet of devises: your <a href="http://www.ambientdevices.com/products/umbrella.html" title="Ambient Umbrella by Ambient Devices" class="ext">umbrella</a> could glow when it will rain or you could get a <a href="http://www.ambientdevices.com/cat/orb/orborder.html" title="Ambient Orb by Ambient Devices" class="ext">lamp</a> that uses color to show weather forecasts. Cool, but it costs $150 and is sold out. Any chance we can make one ourselves?</p>
+<div class="narrow-col">
+  <p>The <a href="http://www.youtube.com/watch?v=sfEbMV295Kk" title="Video: The Internet of Things explained">Internet of Things</a> is the idea of an internet of devises: your <a href="http://www.ambientdevices.com/products/umbrella.html" title="Ambient Umbrella by Ambient Devices">umbrella</a> could glow when it will rain or you could get a <a href="http://www.ambientdevices.com/cat/orb/orborder.html" title="Ambient Orb by Ambient Devices">lamp</a> that uses color to show weather forecasts. Cool, but it costs $150 and is sold out. Any chance we can make one ourselves?</p>
 
-<p>What follows is my very first Arduino project, feel free to comment and improve wherever you see fit.</p>
+  <p>What follows is my very first Arduino project, feel free to comment and improve wherever you see fit.</p>
+</div>
 
-<h3>Project outline</h3>
+<figure class="extended-col-left">
+  <img src="https://c1.staticflickr.com/6/5052/5480018182_610e32cd95_z.jpg" alt="Internet connected lamp"/>
+</figure>
 
-<a href="http://www.flickr.com/photos/schoeters/tags/orb/" rel="me" style="float:right;margin:0 0.5em 0 1em"><img src="/assets/orb.png" alt="Green orb" /></a>
+<figure class="extended-col-right">
+  <img src="https://c1.staticflickr.com/6/5060/5479417753_7579ac170f.jpg" alt="Internet connected lamp"/>
+</figure>
 
-<p>Let&apos;s keep it simple for now. We&apos;ll put a red and green <abbr title="Light Emitting Diode">LED</abbr> in the lamp that we can control separately via <abbr title="Unviversal Serial Bus">USB</abbr>. This will allow us to show whatever information we can translate in a simple red or green. Some possible use cases:</p>
+<div class="narrow-col">
+  <h2>Project outline</h2>
 
-<ul>
-  <li>Will it rain tomorrow? Yes or no?</li>
-  <li>Is my train delayed? Yes or no?</li>
-  <li>Do I have new e-mail? Yes or no?</li>
-</ul>
+  <p>Let&apos;s keep it simple for now. We&apos;ll put a red and green <abbr title="Light Emitting Diode">LED</abbr> in the lamp that we can control separately via <abbr title="Unviversal Serial Bus">USB</abbr>. This will allow us to show whatever information we can translate in a simple red or green. Some possible use cases:</p>
 
-<p>This list is endless of course and that&apos;s exactly why we build it ourselves. Maybe you want to be notified when there is a traffic jam on your way to work? No problem.</p>
+  <ul>
+    <li>Will it rain tomorrow? Yes or no?</li>
+    <li>Is my train delayed? Yes or no?</li>
+    <li>Do I have new e-mail? Yes or no?</li>
+  </ul>
 
-<h3>What we need</h3>
+  <p>This list is endless of course and that&apos;s exactly why we build it ourselves. Maybe you want to be notified when there is a traffic jam on your way to work? No problem.</p>
 
-<table>
-  <tbody>
-    <tr>
-      <th>Arduino</th>
-      <td>&euro;24</td>
-    </tr>
-    <tr>
-      <th>Lamp</th>
-      <td>&euro;5</td>
-    </tr>
-    <tr>
-      <th><abbr title="Light Emitting Diode">LED</abbr>s</th>
-      <td>2 &times; &euro;0.50</td>
-    </tr>
-    <tr>
-      <th>220&Omega; resistor</th>
-      <td>&euro;0.15</td>
-    </tr>
-    <tr>
-      <th>Wires</th>
-      <td>&euro;1</td>
-    </tr>
-    <tr>
-      <th><abbr title="Universal Serial Bus">USB</abbr> cable</th>
-      <td>&euro;2.50</td>
-    </tr>
-  </tbody>
-  <tfoot>
-    <tr>
-      <th>Total</th>
-      <td>&euro;33.65</td>
-    </tr>
-  </tfoot>
-</table>
+  <h2>What we need</h2>
 
-<h3>The wiring</h3>
+  <table>
+    <tbody>
+      <tr>
+        <th>Arduino</th>
+        <td>&euro;24</td>
+      </tr>
+      <tr>
+        <th>Lamp</th>
+        <td>&euro;5</td>
+      </tr>
+      <tr>
+        <th><abbr title="Light Emitting Diode">LED</abbr>s</th>
+        <td>2 &times; &euro;0.50</td>
+      </tr>
+      <tr>
+        <th>220&Omega; resistor</th>
+        <td>&euro;0.15</td>
+      </tr>
+      <tr>
+        <th>Wires</th>
+        <td>&euro;1</td>
+      </tr>
+      <tr>
+        <th><abbr title="Universal Serial Bus">USB</abbr> cable</th>
+        <td>&euro;2.50</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th>Total</th>
+        <td>&euro;33.65</td>
+      </tr>
+    </tfoot>
+  </table>
 
-<p>The Arduino will serve as a serial port between the computer and the lamp. It will translate the &ldquo;turn green&rdquo; command to a high voltage on one of the Arduino pins. The &ldquo;turn red&rdquo; command is exactly the same but uses another pin. The resistor will make sure we don&apos;t burn the <abbr title="Light Emitting Diode">LED</abbr>s.</p>
+  <h2>The wiring</h2>
 
-<p>Connect the 5 wires as shown :</p>
+  <p>The Arduino will serve as a serial port between the computer and the lamp. It will translate the &ldquo;turn green&rdquo; command to a high voltage on one of the Arduino pins. The &ldquo;turn red&rdquo; command is exactly the same but uses another pin. The resistor will make sure we don&apos;t burn the <abbr title="Light Emitting Diode">LED</abbr>s.</p>
 
-<img src="https://github.com/cimm/orb/raw/master/schema.png" alt="Arduino wiring schema" />
+  <p>Connect the 5 wires as shown:</p>
+</div>
 
-<p>Hide the <abbr title="Light Emitting Diode">LED</abbr>s and wires in the lamp (together with the Arduino if you can) and connect the <abbr title="Unviversal Serial Bus">USB</abbr> cable to the computer.</p>
+<figure class="extended-col">
+  <img src="https://github.com/cimm/orb/raw/master/schema.png" alt="Arduino wiring schema" />
+</figure>
 
-<h3>The Arduino software</h3>
+<div class="narrow-col">
+  <p>Hide the <abbr title="Light Emitting Diode">LED</abbr>s and wires in the lamp (together with the Arduino if you can) and connect the <abbr title="Unviversal Serial Bus">USB</abbr> cable to the computer.</p>
 
-<p>We need some software on the Arduino which will listen to serial commands on the connected <abbr title="Universal Serial Bus">USB</abbr> cable and send a high voltage to the green or red pin when the computer tells it so. Download the <a href="https://github.com/cimm/orb" title="Orb source code at Github" rel="me" class="ext">Orb Arduino sketch</a> and upload it to the Arduino.</p>
+  <h2>The Arduino software</h2>
 
-<p>The Arduino will now listen for the command &ldquo;G&rdquo;. The capital G will turn the green <abbr title="Light Emitting Diode">LED</abbr> on, and the red off. Everything else will turn the red one on and the green one off. Turning on the green <abbr title="Light Emitting Diode">LED</abbr> means it will set pin 10 (green) to HIGH and ping 13 (red) to LOW.</p>
+  <p>We need some software on the Arduino which will listen to serial commands on the connected <abbr title="Universal Serial Bus">USB</abbr> cable and send a high voltage to the green or red pin when the computer tells it so. Download the <a href="https://github.com/cimm/orb" title="Orb source code at Github" rel="me">Orb Arduino sketch</a> and upload it to the Arduino.</p>
 
-<h3>The computer software</h3>
+  <p>The Arduino will now listen for the command &ldquo;G&rdquo;. The capital G will turn the green <abbr title="Light Emitting Diode">LED</abbr> on, and the red off. Everything else will turn the red one on and the green one off. Turning on the green <abbr title="Light Emitting Diode">LED</abbr> means it will set pin 10 (green) to HIGH and ping 13 (red) to LOW.</p>
 
-<p>Now we need something to tell the Arduino which <abbr title="Light Emitting Diode">LED</abbr> it should turn on. Download the Ruby <a href="https://github.com/cimm/orb" title="Orb source code at Github" rel="me" class="ext">orbifier script</a>.</p>
+  <h2>The computer software</h2>
 
-<p>At the time of writing there are 3 parsers: a Yahoo! Weather forecast parser, a Belgian train delay parser, and a Gmail new mail parser. Feel free to write your own if you want. The parser will check online and send &ldquo;G&rdquo; to the Arduino of it wants to turn on the green light, it will send &ldquo;R&rdquo; if it wants the red light turned on.</p>
+  <p>Now we need something to tell the Arduino which <abbr title="Light Emitting Diode">LED</abbr> it should turn on. Download the Ruby <a href="https://github.com/cimm/orb" title="Orb source code at Github" rel="me">orbifier script</a>.</p>
 
-<p>You should be good to go. Run one of the orbifier parsers to turn on the light. Check for new e-mail for example:</p>
+  <p>At the time of writing there are 3 parsers: a Yahoo! Weather forecast parser, a Belgian train delay parser, and a Gmail new mail parser. Feel free to write your own if you want. The parser will check online and send &ldquo;G&rdquo; to the Arduino of it wants to turn on the green light, it will send &ldquo;R&rdquo; if it wants the red light turned on.</p>
 
-<code>./orbifier gmail -p /usb/tty.usbmodem441 -a example@gmail.com -s 12345</code>
+  <p>You should be good to go. Run one of the orbifier parsers to turn on the light. Check for new e-mail for example:</p>
 
-<h3>What&apos; next?</h3>
+  <code>./orbifier gmail -p /usb/tty.usbmodem441 -a example@gmail.com -s 12345</code>
 
-<p>The next step would be to to add a wireless shield to the Arduino so that the computer isn&apos;t needed anymore (for now you are limited by the length of the cable between the Arduino and the computer).</p>
+  <h2>What&apos; next?</h2>
 
-<ul>
-  <li>The <a href="https://github.com/cimm/orb" title="Orb source code at Github" rel="me" class="ext">project page</a> at Github contains the source code for both the Arduino and computer part and some more detailed information.</li>
-  <li>Here are some more <a href="http://www.flickr.com/photos/schoeters/tags/orb/" class="ext" rel="me">photos</a> form the finished project.</li>
-</ul>
+  <p>The next step would be to to add a wireless shield to the Arduino so that the computer isn&apos;t needed anymore (for now you are limited by the length of the cable between the Arduino and the computer).</p>
+
+  <h2>Links</h2>
+
+  <ul>
+    <li>The <a href="https://github.com/cimm/orb" title="Orb source code at Github" rel="me">project page</a> at Github contains the source code for both the Arduino and computer part and some more detailed information.</li>
+    <li>Here are some more <a href="http://www.flickr.com/photos/schoeters/tags/orb/" rel="me">photos</a> form the finished project.</li>
+  </ul>
+</div>

@@ -1,22 +1,28 @@
 ---
 layout: default
-title: LEGO
+title: Lego
 set_numbers: [6535, 6624, 10730, 10750, 31056, 31066, 41006, 41172, 41300, 41310, 41313, 41314, 41315, 41317, 41321, 41333, 41335, 60102, 60139, 60141, 60150, 60168, 60174, 60181, 60182, 60183, 7239]
 ---
 
-<h2>Ella en Milo&apos;s LEGO collection</h2>
-
-<section class="legos">
-  {% for set_num in page.set_numbers %}
-    <div>
-      <img src="{% rebrickable set_num set_img_url %}" alt="Lego set {{set_num}}" />
-      <p>
-        <a href="{% rebrickable set_num set_url %}" title="See details @ Rebrickable">
-          {{set_num}} - {% rebrickable set_num name %}
-        </a>
-      </p>
-    </div>
-  {% endfor %}
-</section>
-
-<p>Set names and images are loaded from <a href="https://rebrickable.com" title="Combine your old LEGO to build new creations">Rebrickable</a>.</p>
+<div class="extended-col">
+  <section class="cards">
+    {% for set_num in page.set_numbers %}
+      <div class="card">
+        <div class="badge">{{ set_num }}</div>
+        <figure>
+          <div class="frame">
+            <img src="{% rebrickable set_num set_img_url %}" alt="Lego set {{set_num}}" />
+          </div>
+          <figcaption>
+            <a href="{% rebrickable set_num set_url %}" title="See details @ Rebrickable">
+              {% rebrickable set_num name %}
+            </a>
+          </figcaption>
+        </figure>
+      </div>
+    {% endfor %}
+  </section>
+</div>
+<p class="narrow-col">
+Ella en Milo&apos;s Lego collection. Check <a href="https://www.brickwatch.net" title="Lego pricewatch">Brickwatch</a> to find the best online price for new Lego sets. Set names and images are loaded from <a href="https://rebrickable.com" title="Combine your old LEGO to build new creations">Rebrickable</a>.
+</p>

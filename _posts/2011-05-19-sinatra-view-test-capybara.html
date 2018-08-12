@@ -5,45 +5,47 @@ date:    2011-05-09 04:09:32
 updated: 2011-06-02 10:06:17
 ---
 
-<p>Ever seen something like this in a <a href="https://github.com/jnicklas/capybara" title="Capybara on GitHub" class="ext">Capybara</a> view spec?</p>
+<div class="narrow-col">
+  <p>Ever seen something like this in a <a href="https://github.com/jnicklas/capybara" title="Capybara on GitHub" class="ext">Capybara</a> view spec?</p>
 
-{% highlight ruby %}
-visit('/')
-page.has_css?('tr.foo')
-{% endhighlight %}
+  {% highlight ruby %}
+  visit('/')
+  page.has_css?('tr.foo')
+  {% endhighlight %}
 
-<p>Capybara simulates user behavior, it will act like if a user is visiting the page and interact with it. For acceptance testing this is just fine. It will call the controller and render the page, full stack, and it's probably what you want.</p>
+  <p>Capybara simulates user behavior, it will act like if a user is visiting the page and interact with it. For acceptance testing this is just fine. It will call the controller and render the page, full stack, and it's probably what you want.</p>
 
-<h3>Isolation testing</h3>
+  <h2>Isolation testing</h2>
 
-<p>Sometimes, however, you do not want to test the full stack. Sometimes you want to test in isolation, only testing your view without running the controller code.</p>
+  <p>Sometimes, however, you do not want to test the full stack. Sometimes you want to test in isolation, only testing your view without running the controller code.</p>
 
-<p>It has to be said this is not the goal of Capybara. Capybara is a tool made for acceptance testing, not for unit testing. So, why do it? Using Webrat is a simple workaround but I don't like to mix both frameworks in the same project so here is a hack on how you can use Capybara to test views in isolation:</p>
+  <p>It has to be said this is not the goal of Capybara. Capybara is a tool made for acceptance testing, not for unit testing. So, why do it? Using Webrat is a simple workaround but I don't like to mix both frameworks in the same project so here is a hack on how you can use Capybara to test views in isolation:</p>
 
-{% highlight ruby %}
-it 'has an awesome title' do
-  engine = Haml::Engine.new(IO.read('index.haml'))
-  rendered = engine.render(Object.new, :@title => 'Awesome title')
-  rendered.should have_css('tr.foo')
-end
-{% endhighlight %}
-
-<p>It reads the HAML file and renders its <abbr title="HyperText Markup Language">HTML</abbr>. Don't forget to specify your view variables as they won't exists since we are not using the controller.</p>
-
-<h3>Adding has_xpath? and has_css?</h3>
-
-<p>Since we don't use the Capybara 'page' element we don't have access to all the nice <em>has_xpath?</em> and <em>has_css?</em> selectors so we'll need to add these ourselves. You can easily do this by extending the String class, just add the following in a spec/support/string.rb file:</p>
-
-{% highlight ruby %}
-class String
-  def has_xpath?(path)
-    !Nokogiri::HTML(self).xpath(path).empty?
+  {% highlight ruby %}
+  it 'has an awesome title' do
+    engine = Haml::Engine.new(IO.read('index.haml'))
+    rendered = engine.render(Object.new, :@title => 'Awesome title')
+    rendered.should have_css('tr.foo')
   end
+  {% endhighlight %}
 
-  def has_css?(path)
-    has_xpath?(Nokogiri::CSS.xpath_for(path).join(' | '))
+  <p>It reads the HAML file and renders its <abbr title="HyperText Markup Language">HTML</abbr>. Don't forget to specify your view variables as they won't exists since we are not using the controller.</p>
+
+  <h2>Adding has_xpath? and has_css?</h2>
+
+  <p>Since we don't use the Capybara 'page' element we don't have access to all the nice <em>has_xpath?</em> and <em>has_css?</em> selectors so we'll need to add these ourselves. You can easily do this by extending the String class, just add the following in a spec/support/string.rb file:</p>
+
+  {% highlight ruby %}
+  class String
+    def has_xpath?(path)
+      !Nokogiri::HTML(self).xpath(path).empty?
+    end
+
+    def has_css?(path)
+      has_xpath?(Nokogiri::CSS.xpath_for(path).join(' | '))
+    end
   end
-end
-{% endhighlight %}
+  {% endhighlight %}
 
-<p>Make sure you have the <a href="http://rubygems.org/gems/nokogiri" title="Nokogiri on RubyGems" class="ext">Nokogiri</a> gem installed and voila, that should be it.</p>
+  <p>Make sure you have the <a href="http://rubygems.org/gems/nokogiri" title="Nokogiri on RubyGems" class="ext">Nokogiri</a> gem installed and voila, that should be it.</p>
+</div>

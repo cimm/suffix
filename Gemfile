@@ -2,7 +2,5 @@ source 'https://rubygems.org'
 
 ruby '2.5.1'
 
-gem 'jekyll',         '~> 3.1.6'
-gem 'jekyll-assets',  '~> 2.2.7'
-gem 'yui-compressor', '~> 0.12.0'
-gem 'rake',           '~> 11.2.2'
+gem 'jekyll', '~> 3.8.3'
+gem 'rake',   '~> 12.3.1'

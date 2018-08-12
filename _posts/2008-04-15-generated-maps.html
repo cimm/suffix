@@ -5,68 +5,74 @@ date:    2008-04-15 18:14:57
 updated: 2010-09-23 21:48:21
 ---
 
-<p>It's all about the map in this sites header today. The header background shows a dynamically generated map of the coordinates shown in the right top corner, or my last recorded place. I can select my current location (latitude and longitude) and the header background map is updated accordingly. So how exactly does this work?!</p>
+<div class="narrow-col">
+  <p>It's all about the map in this sites header today. The header background shows a dynamically generated map of the coordinates shown in the right top corner, or my last recorded place. I can select my current location (latitude and longitude) and the header background map is updated accordingly. So how exactly does this work?!</p>
 
-<h3>No Google or Yahoo! maps?</h3>
+  <h2>No Google or Yahoo! maps?</h2>
 
-<p>I integrated Yahoo! Maps first. The Yahoo! Maps look nice, the API is easy to use and well documented but the problem is that you are only allowed to play with these maps within limits placed on you by the API's terms and conditions. Below are some extracts from the <a href="http://info.yahoo.com/legal/us/yahoo/maps/mapsapi/mapsapi-2141.html" title="Yahoo! Terms Center" class="ext">Yahoo! Maps API Terms of Use</a>:</p>
+  <p>I integrated Yahoo! Maps first. The Yahoo! Maps look nice, the API is easy to use and well documented but the problem is that you are only allowed to play with these maps within limits placed on you by the API's terms and conditions. Below are some extracts from the <a href="http://info.yahoo.com/legal/us/yahoo/maps/mapsapi/mapsapi-2141.html" title="Yahoo! Terms Center" class="ext">Yahoo! Maps API Terms of Use</a>:</p>
 
-<ul>
-  <li>You understand and agree that you must retain the attribution text and links contained within all Yahoo! Maps and Yahoo! Map images without alteration.</li>
-  <li>Your will not store or allow end users to store map imagery, map data or geocoded location information from the Yahoo! Maps APIs for any future use.</li>
-</ul>
+  <ul>
+    <li>You understand and agree that you must retain the attribution text and links contained within all Yahoo! Maps and Yahoo! Map images without alteration.</li>
+    <li>Your will not store or allow end users to store map imagery, map data or geocoded location information from the Yahoo! Maps APIs for any future use.</li>
+  </ul>
 
-<p>I would break these terms as I convert the original image to a grayscale version and store the map on the server for performance reasons so the Yahoo! Maps are out of the question. Google or Yahoo! Maps are great for out of the box functionalities but if you want more freedom you will probably have to look elsewhere (or pay for licenses if possible).</p>
+  <p>I would break these terms as I convert the original image to a grayscale version and store the map on the server for performance reasons so the Yahoo! Maps are out of the question. Google or Yahoo! Maps are great for out of the box functionalities but if you want more freedom you will probably have to look elsewhere (or pay for licenses if possible).</p>
 
-<h3>OpenStreetMap</h3>
+  <h2>OpenStreetMap</h2>
 
-<p>Luckily for us there are other solutions out there. Let's take a look at <a href="http://www.openstreetmap.org/" class="ext">OpenStreetMap</a> for example. OpenStreetMap is a &lsquo;wiki style&rsquo; editable map, made by people like you and me. The content is available under the Creative Commons Attribution-ShareAlike 2.0 license which means anyone can use (and remix) the data as long as you share it with a similar license.</p>
+  <p>Luckily for us there are other solutions out there. Let's take a look at <a href="http://www.openstreetmap.org/" class="ext">OpenStreetMap</a> for example. OpenStreetMap is a &lsquo;wiki style&rsquo; editable map, made by people like you and me. The content is available under the Creative Commons Attribution-ShareAlike 2.0 license which means anyone can use (and remix) the data as long as you share it with a similar license.</p>
 
-<p>This &lsquo;Wikipedia-like&rsquo; approach has some drawbacks as well: the map is incomplete and the data is not 100% reliable. On the other side you can correct or complete the map where needed. This may or may not be important for your project but I only needed a nice background image for this website so a general overview of the area is more than sufficient.</p>
+  <p>This &lsquo;Wikipedia-like&rsquo; approach has some drawbacks as well: the map is incomplete and the data is not 100% reliable. On the other side you can correct or complete the map where needed. This may or may not be important for your project but I only needed a nice background image for this website so a general overview of the area is more than sufficient.</p>
 
-<p>OpenStreetMap has a RESTfull way to build a map image with a given latitude, longitude, zoom level and image size. Here is how (or see an example for <a href="http://tah.openstreetmap.org/MapOf?lat=50.8668&long=4.69714&z=12&w=200&h=200" title="OpenStreetMap map of my home town" class="ext">my city</a>):</p>
+  <p>OpenStreetMap has a RESTfull way to build a map image with a given latitude, longitude, zoom level and image size. Here is how (or see an example for <a href="http://tah.openstreetmap.org/MapOf?lat=50.8668&long=4.69714&z=12&w=200&h=200" title="OpenStreetMap map of my home town" class="ext">my city</a>):</p>
 
-<samp>http://tah.openstreetmap.org/MapOf?lat=&lt;lat&gt;&amp;long=&lt;long&gt;&amp;z=&lt;zoom&gt;&amp;w=&lt;width&gt;&amp;h=&lt;height&gt;&amp;skip_attr=1</samp>
+  <samp>http://tah.openstreetmap.org/MapOf?lat=&lt;lat&gt;&amp;long=&lt;long&gt;&amp;z=&lt;zoom&gt;&amp;w=&lt;width&gt;&amp;h=&lt;height&gt;&amp;skip_attr=1</samp>
 
-<p>The <code>skip_attr</code> defines if you want to include an <abbr title="OpenStreetMap">OSM</abbr> attirbution image in your map or not.</p>
+  <p>The <code>skip_attr</code> defines if you want to include an <abbr title="OpenStreetMap">OSM</abbr> attirbution image in your map or not.</p>
 
-<h3>Start coding</h3>
+  <h2>Start coding</h2>
 
-<p>The process flow:</p>
+  <p>The process flow:</p>
 
-<ol>
-  <li>The current location is updated on the website,</li>
-  <li>a map of this new location is downloaded from a map server,</li>
-  <li>the downloaded map image is converted to grayscale and</li>
-  <li>the generated image is saved to disk.</li>
-</ol>
+  <ol>
+    <li>The current location is updated on the website,</li>
+    <li>a map of this new location is downloaded from a map server,</li>
+    <li>the downloaded map image is converted to grayscale and</li>
+    <li>the generated image is saved to disk.</li>
+  </ol>
+</div>
 
-<p class="center"><img src="/assets/map_flow.gif" alt="Map flow" /></p>
+<figure class="extended-col">
+  <img src="/assets/map_flow.gif" alt="Map flow" />
+</figure>
 
-<p>We'll use <a href="http://rmagick.rubyforge.org/" title="Graphics Processing for Ruby and Ruby on Rails" class="ext">RMagick</a> and Ruby on Rails to convert the downloaded image to something else so make sure you have this installed first.</p>
+<div class="narrow-col">
+  <p>We'll use <a href="http://rmagick.rubyforge.org/" title="Graphics Processing for Ruby and Ruby on Rails" class="ext">RMagick</a> and Ruby on Rails to convert the downloaded image to something else so make sure you have this installed first.</p>
 
-{% highlight ruby %}
-# Writes an image with a map of the location, the zoom ranges from 4 to 17
-require 'RMagick'
-require 'open-uri'
-def map(latitude, longitude, width = 500, height = 500, zoom = 7)
-  map_request_url = "http://tah.openstreetmap.org/MapOf?lat=#{latitude}&amp;long=#{longitude}&amp;z=#{zoom}&amp;w=#{width}&amp;h=#{height}"
-  uri = URI.parse(map_request_url)
-  map = Magick::ImageList.new
-  map.from_blob(uri.read)
-  map = map.quantize(256, Magick::GRAYColorspace)
-  map.write(RAILS_ROOT + '/public/images/map.png')
-end
-{% endhighlight %}
+  {% highlight ruby %}
+  # Writes an image with a map of the location, the zoom ranges from 4 to 17
+  require 'RMagick'
+  require 'open-uri'
+  def map(latitude, longitude, width = 500, height = 500, zoom = 7)
+    map_request_url = "http://tah.openstreetmap.org/MapOf?lat=#{latitude}&amp;long=#{longitude}&amp;z=#{zoom}&amp;w=#{width}&amp;h=#{height}"
+    uri = URI.parse(map_request_url)
+    map = Magick::ImageList.new
+    map.from_blob(uri.read)
+    map = map.quantize(256, Magick::GRAYColorspace)
+    map.write(RAILS_ROOT + '/public/images/map.png')
+  end
+  {% endhighlight %}
 
-<p>That's it, this method downloads and converts the image and saves it in your images folder so from now on you can use this image in your website:</p>
+  <p>That's it, this method downloads and converts the image and saves it in your images folder so from now on you can use this image in your website:</p>
 
-{% highlight html %}
-<img src="/images/map.png" alt="Map" />
-{% endhighlight %}
+  {% highlight html %}
+  <img src="/images/map.png" alt="Map" />
+  {% endhighlight %}
 
-<h3>More resources</h3>
+  <h2>More resources</h2>
 
-<ul>
-  <li><a href="http://www.alistapart.com/articles/takecontrolofyourmaps" title="Take Control of Your Maps" class="ext">Take Control of Your Maps</a> explains how to build you own map stack.</li>
-</ul>
+  <ul>
+    <li><a href="http://www.alistapart.com/articles/takecontrolofyourmaps" title="Take Control of Your Maps" class="ext">Take Control of Your Maps</a> explains how to build you own map stack.</li>
+  </ul>
+</div>

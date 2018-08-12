@@ -5,44 +5,46 @@ date:    2009-11-12 23:57:14
 updated: 2009-11-13 10:21:07
 ---
 
-<p>Back from a few days in <abbr class="geo" title="52.407284,16.921833">Pozna&#x144;</abbr>, Poland with the Belighted team for the <a href="http://rupy.eu/" class="ext" title="Official RuPy website">RuPy</a> 2009 conference. RuPy is a two day conference about Ruby and Python. It's the Ruby stuff we wanted to see.</p>
+<div class="narrow-col">
+  <p>Back from a few days in <abbr class="geo" title="52.407284,16.921833">Pozna&#x144;</abbr>, Poland with the Belighted team for the <a href="https://rupy.eu/" title="Official RuPy website">RuPy</a> 2009 conference. RuPy is a two day conference about Ruby and Python. It's the Ruby stuff we wanted to see.</p>
 
-<h3>Cells and Apotomo</h3>
+  <h2>Cells and Apotomo</h2>
 
-<p>One note wothy talks was the one by <span class="vcard"><span class="fn">Micha&#x142; &#x141;omnicki</span></span> and <span class="vcard"><span class="fn">Nick Sutterer</span></span> about <a href="http://cells.rubyforge.org/" class="ext" title="Cells is the building block for building blocks in Rails">Cells</a> and <a href="http://apotomo.de/" class="ext" title="A stateful widget component framework for Rails">Apotomo</a>, Rails plugins for creating reusable web components. It's one of those things you don't immediately use but may be useful in a certain project. Still not sure if I'll ever use it but it looks a fairly simple solution to build interactive components.</p>
+  <p>One note wothy talks was the one by <span class="vcard"><span class="fn">Micha&#x142; &#x141;omnicki</span></span> and <span class="vcard"><span class="fn">Nick Sutterer</span></span> about <a href="http://trailblazer.to/gems/cells/" title="Cells is the building block for building blocks in Rails">Cells</a> and Apotomo, Rails plugins for creating reusable web components. It's one of those things you don't immediately use but may be useful in a certain project. Still not sure if I'll ever use it but it looks a fairly simple solution to build interactive components.</p>
 
-<h3>RabbitMQ</h3>
+  <h2>RabbitMQ</h2>
 
-<p>The second day started with <span class="vcard"><span class="fn">Paolo Negri</span></span> with <a href="http://www.rabbitmq.com/" class="ext" title="Enterprise messaging system">RabbitMQ</a>, a messaging system based on the <abbr title="Advanced Message Queuing Protocol">AMQP</abbr> standard. It's platform neutral with lots of different packages and bundles to bind it with your favorite language (like Ruby). It's a way to exchange massages with a queuing system and looks really interesting. Sounds like a nice solution to replace own made batch queuing systems and is definitely more scalable. Worth to keep an eye on.</p>
+  <p>The second day started with <span class="vcard"><span class="fn">Paolo Negri</span></span> with <a href="https://www.rabbitmq.com/" title="Enterprise messaging system">RabbitMQ</a>, a messaging system based on the <abbr title="Advanced Message Queuing Protocol">AMQP</abbr> standard. It's platform neutral with lots of different packages and bundles to bind it with your favorite language (like Ruby). It's a way to exchange massages with a queuing system and looks really interesting. Sounds like a nice solution to replace own made batch queuing systems and is definitely more scalable. Worth to keep an eye on.</p>
 
-<h3>Mastering Git</h3>
+  <h2>Mastering Git</h2>
 
-<p>The next one was <span class="vcard"><span class="fn">Scott Chacon</span> from <span class="org">GitHub</span></span>. It's one of the more &lsquo;traditional&rsquo; subjects compared with the previous two but the one we were all looking forward to and Scott did not disappoint: I finally understand why Git is better as <abbr title="Subversion">SVN</abbr> (insert lousy comments here). He started of with some <abbr title="Subversion">SVN</abbr> bashing to make his point and went on with a Git ninja training and what makes GitHub a great repository for sharing open source projects. Scott is a good speaker and knows how to get and keep the attention, this was definitely the best talk of the conference. Some things I'll try to remember:</p>
+  <p>The next one was <span class="vcard"><span class="fn">Scott Chacon</span> from <span class="org">GitHub</span></span>. It's one of the more &lsquo;traditional&rsquo; subjects compared with the previous two but the one we were all looking forward to and Scott did not disappoint: I finally understand why Git is better as <abbr title="Subversion">SVN</abbr> (insert lousy comments here). He started of with some <abbr title="Subversion">SVN</abbr> bashing to make his point and went on with a Git ninja training and what makes GitHub a great repository for sharing open source projects. Scott is a good speaker and knows how to get and keep the attention, this was definitely the best talk of the conference. Some things I'll try to remember:</p>
 
-<ul>
-  <li>Subversion keeps diffs, Git stores snapshots.</li>
-  <li>Git is faster and more efficient in disk space usages as <abbr title="Subversion">SVN</abbr>.</li>
-  <li>Branch often and use it as &lsquo;environments&rsquo;, switch contexts when needed.</li>
-  <li>Git (almost) never removes data.</li>
-  <li>You can start a clone and work on it without access rights from the owner, this helps collaboration.</li>
-  <li>It's frictionless (non linear): branch fast, merge it when done and remove the branch.</li>
-  <li>Read his free book: <a href="http://progit.org/" title="Professional version control explained" class="ext">Pro Git</a>.</li>
-</ul>
+  <ul>
+    <li>Subversion keeps diffs, Git stores snapshots.</li>
+    <li>Git is faster and more efficient in disk space usages as <abbr title="Subversion">SVN</abbr>.</li>
+    <li>Branch often and use it as &lsquo;environments&rsquo;, switch contexts when needed.</li>
+    <li>Git (almost) never removes data.</li>
+    <li>You can start a clone and work on it without access rights from the owner, this helps collaboration.</li>
+    <li>It's frictionless (non linear): branch fast, merge it when done and remove the branch.</li>
+    <li>Read his free book: <a href="https://git-scm.com/book/en/v2" title="Professional version control explained">Pro Git</a>.</li>
+  </ul>
 
-<p>Here is a quick example on how to create branch easily in Git:</p>
+  <p>Here is a quick example on how to create branch easily in Git:</p>
 
-{% highlight bash %}
-git init # create a local repository
-git branch # shows the current branch
-git branch blue # creates a new branch called blue
-git checkout blue # switches to the blue branch
-# write some code
-git merge blue # merge this branch with the master
-git branch -d blue # removes the blue branch
-{% endhighlight %}
+  {% highlight bash %}
+  git init # create a local repository
+  git branch # shows the current branch
+  git branch blue # creates a new branch called blue
+  git checkout blue # switches to the blue branch
+  # write some code
+  git merge blue # merge this branch with the master
+  git branch -d blue # removes the blue branch
+  {% endhighlight %}
 
-<p>Make sure to take a look at the <a href="http://www.kernel.org/pub/software/scm/git/docs/git-commit.html" class="ext" title="git-commit Manual Page">git commit --amend</a>, <a href="http://www.kernel.org/pub/software/scm/git/docs/git-blame.html" class="ext" title="git-blame Manual Page">git blame &lt;filename&gt;</a>, <a href="http://www.kernel.org/pub/software/scm/git/docs/git-blame.html" class="ext" title="git-blame Manual Page">git blame -C &lt;filename&gt;</a> and <a href="http://www.kernel.org/pub/software/scm/git/docs/git-bisect.html" class="ext" title="git-bisect Manual Page">git bisect</a> commands.</p>
-  
-<p>Also a big thanks to the <a href="http://www.cssninjas.com/" title="Trained XHTML/CSS mercenaries" class="ext">CSS Ninja</a>'s for hanging out with us, it was nice meeting you guys.</p>
+  <p>Make sure to take a look at the <a href="http://www.kernel.org/pub/software/scm/git/docs/git-commit.html" title="git-commit Manual Page">git commit --amend</a>, <a href="http://www.kernel.org/pub/software/scm/git/docs/git-blame.html" title="git-blame Manual Page">git blame &lt;filename&gt;</a>, <a href="http://www.kernel.org/pub/software/scm/git/docs/git-blame.html" title="git-blame Manual Page">git blame -C &lt;filename&gt;</a> and <a href="http://www.kernel.org/pub/software/scm/git/docs/git-bisect.html" title="git-bisect Manual Page">git bisect</a> commands.</p>
+    
+  <p>Also a big thanks to the <a href="http://www.cssninjas.com/" title="Trained XHTML/CSS mercenaries">CSS Ninja</a>'s for hanging out with us, it was nice meeting you guys.</p>
 
-<p lang="pl">Do zobaczenia!</p>
+  <p lang="pl">Do zobaczenia!</p>
+</div>

@@ -1,0 +1,149 @@
+body {
+  color: $black;
+  display: grid;
+  font-family: $body-font;
+  grid-gap: 2em;
+  grid-template-columns: [extend-left] minmax(1em, 1fr) [middle-left] minmax(0, 18em) [middle-right] minmax(0, 18em) [extend-right] minmax(1em, 1fr);
+  grid-template-rows: auto;
+  line-height: 2em;
+  margin: 0 auto;
+  max-width: 800px;
+
+  header {
+    grid-column: middle-left / middle-right;
+    padding: 2em 0;
+
+    nav li {
+      display: inline;
+      margin-right: 1em;
+    }
+
+    nav li:last-child {
+      margin-right: 0;
+    }
+  }
+
+  footer {
+    grid-column: middle-left / span 2;
+    padding-bottom: 2em;
+    text-align: right;
+
+    a {
+      font-weight: bolder;
+    }
+  }
+
+  abbr {
+    text-decoration: none;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: $title-font;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    font-size: 2em;
+    margin: 2em;
+  }
+
+  h2 {
+    font-size: 1.5em;
+    margin: 1.5em;
+  }
+
+  a {
+    border-bottom: thin solid;
+    padding-bottom: .2em;
+    text-decoration: none;
+  }
+
+  p,
+  ul {
+    margin: .5em 0;
+  }
+
+  dl,
+  dt,
+  dd {
+    margin: 1em 0;
+  }
+
+  dt {
+    font-weight: bolder;
+  }
+
+  dd {
+    border-left: 3px solid lighten($muted, 40%);
+    padding-left: 1em;
+  }
+
+  figure:not(.highlight) {
+    text-align: center;
+
+    img {
+      max-width: 100%;
+    }
+
+    figcaption {
+      color: $muted;
+      font-style: italic;
+    }
+  }
+
+  blockquote {
+    color: $muted;
+    cite {
+      font-style: italic;
+    }
+  }
+
+  .extended-col {
+    grid-column: extend-left / span 4;
+  }
+
+  .extended-col-left {
+    grid-column: extend-left / span 2;
+  }
+
+  .extended-col-right {
+    grid-column: middle-right / span 2;
+  }
+
+  .narrow-col {
+    grid-column: middle-left / span 2;
+  }
+
+  .download {
+    margin: 2em 0;
+    text-align: center;
+
+    img {
+      vertical-align: bottom;
+    }
+  }
+
+  .hidden {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  body {
+    grid-gap: 1em;
+
+    .extended-col,
+    .extended-col-left,
+    .extended-col-right {
+      grid-column: extend-left / span 4;
+
+      figcaption {
+        margin: auto 1em;
+      }
+    }
+  }
+}

@@ -1,16 +1,14 @@
 ---
 layout: default
 ---
-<p class="meta">
-  Published
-  <time class="meta" datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%-d %B %Y" }}</time>
-  by {{ site.author }}
-</p>
 
-<h2>{{ page.title }}</h2>
+<header class="narrow-col post">
+  <h1>{{ page.title }}</h1>
+  <time title="{{ page.date }}">{{ page.date | date: "%-d %B %Y" }}</time>
+</header>
 
-<div class="post">
 {{ content }}
-</div>
 
-<p class="notice">This blog post is open source. Did you spot a mistake? Have any ideas for improvements? Contribute to this post via <a href="https://github.com/cimm/suffix/blob/master/{{page.path}}" title="Propose a fix by opening a pull request on Github">Github</a>. Thank you!</p>
+<div class="notice">
+  <p>This post is open source. Did you spot a mistake? Ideas for improvements? Contribute to this post via <a href="https://github.com/cimm/suffix/blob/master/{{page.path}}" title="Propose a fix by opening a pull request on Github">Github</a>. Thank you!</p>
+</div>

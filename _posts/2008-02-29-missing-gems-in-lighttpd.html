@@ -5,41 +5,43 @@ date:    2008-02-29 10:07:22
 updated: 2008-03-03 00:11:49
 ---
 
-<p>After upgrading Ruby to 1.8.6 and Rails to 2.0.2 I ran intro problems with my installed gems. My application couldn't find any of the installed gems anymore! The <samp>gem list</samp> command returned the installed gems like you would expect and even the <samp>./script/console</samp> environment in my Rails application found the gems I needed but requiring a gem in one of my controllers like:</p>
+<div class="narrow-col">
+  <p>After upgrading Ruby to 1.8.6 and Rails to 2.0.2 I ran intro problems with my installed gems. My application couldn't find any of the installed gems anymore! The <samp>gem list</samp> command returned the installed gems like you would expect and even the <samp>./script/console</samp> environment in my Rails application found the gems I needed but requiring a gem in one of my controllers like:</p>
 
-{% highlight ruby %}
-require 'somegem'
-{% endhighlight %}
+  {% highlight ruby %}
+  require 'somegem'
+  {% endhighlight %}
 
-<p>returned the following error:</p>
+  <p>returned the following error:</p>
 
-{% highlight bash %}
-MissingSourceFile (no such file to load -- somegem)
-{% endhighlight %}
+  {% highlight bash %}
+  MissingSourceFile (no such file to load -- somegem)
+  {% endhighlight %}
 
-<p>It took ages to find out what the problem was. My <a href="http://www.rubygems.org/read/chapter/3#page83" title="Installing RubyGems in a User Directory" class="ext">GEM_PATH</a> variable - this is where RubyGems looks for the installed gems - was set. I could find the gem from everywhere, except from within the controllers in my application. However, it did work fine when I ran the WEBrick server but when using my LightTPD production server everything went fubar.</p>
+  <p>It took ages to find out what the problem was. My GEM_PATH variable - this is where RubyGems looks for the installed gems - was set. I could find the gem from everywhere, except from within the controllers in my application. However, it did work fine when I ran the WEBrick server but when using my LightTPD production server everything went fubar.</p>
 
-<p>Turned out I forgot to tell LightTPD to use the new GEM_PATH, other than the default one. You can do this in the LightTPD configuration file. Maybe I changed the gem installation directory as I build RubyGems from source without knowing? Add the following to your LightTPD configuration file (change the paths where needed) and reload the server.</p>
+  <p>Turned out I forgot to tell LightTPD to use the new GEM_PATH, other than the default one. You can do this in the LightTPD configuration file. Maybe I changed the gem installation directory as I build RubyGems from source without knowing? Add the following to your LightTPD configuration file (change the paths where needed) and reload the server.</p>
 
-{% highlight ruby %}
-fastcgi.server =
-(
- ".fcgi" =>
- (
-  "localhost" =>
+  {% highlight ruby %}
+  fastcgi.server =
   (
-   "min-procs"       => 1,
-   "max-procs"       => 1,
-   "socket"          => "<app>/tmp/sockets/fcgi.socket",
-   "bin-path"        => "<app>/public/dispatch.fcgi",
-   "bin-environment" =>
+   ".fcgi" =>
    (
-    "RAILS_ENV" => "production",
-    "GEM_PATH"  => "/usr/local/lib/ruby/gems/1.8/"
+    "localhost" =>
+    (
+     "min-procs"       => 1,
+     "max-procs"       => 1,
+     "socket"          => "<app>/tmp/sockets/fcgi.socket",
+     "bin-path"        => "<app>/public/dispatch.fcgi",
+     "bin-environment" =>
+     (
+      "RAILS_ENV" => "production",
+      "GEM_PATH"  => "/usr/local/lib/ruby/gems/1.8/"
+     )
+    )
    )
   )
- )
-)
-{% endhighlight %}
+  {% endhighlight %}
 
-<p>That's it, Suffix is now happily running the latest Ruby on Rails version.</p>
+  <p>That's it, Suffix is now happily running the latest Ruby on Rails version.</p>
+</div>

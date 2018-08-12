@@ -5,40 +5,42 @@ date:    2010-11-18 22:14:33
 updated: 2010-12-12 00:09:07
 ---
 
-<p>We recently configured <a href="http://god.rubyforge.org/" class="ext" title="A monitoring framework written in Ruby">God</a> to monitor our Sphinx search deamon. The application heavily depends on it and it's the main reason the app is down from time to time. The problem is that God tries to restart Sphinx when it's rebuilding the indexes (and thus not running). Let's look how Sphinx and God can play nice together.</p>
+<div class="narrow-col">
+  <p>We recently configured <a href="http://godrb.com/">God</a> to monitor our Sphinx search deamon. The application heavily depends on it and it's the main reason the app is down from time to time. The problem is that God tries to restart Sphinx when it's rebuilding the indexes (and thus not running). Let's look how Sphinx and God can play nice together.</p>
 
-<p>The idea is to temporarly unmonitor the Sphinx process while it's rebuilding the indexes.</p>
+  <p>The idea is to temporarly unmonitor the Sphinx process while it's rebuilding the indexes.</p>
 
-<h3>Sphinx configuration</h3>
+  <h2>Sphinx configuration</h2>
 
-<p>Sphinx doesn't do live index updates like some other search solutions (eg. <a href="http://outoftime.github.com/sunspot/" title="Solr-powered search for Ruby objects" class="ext">Sunspot</a>), so you'll have to do it yourself. One way is to run a crontab which will rebuild the indexes each x hours. Make sure to use the <em>thinking_sphinx:reindex</em> rake task and not the rebuild one as the last one will stop the Sphinx search deamon which will wake up God which, in its turn, will try to start the deamon again... messy.</p>
+  <p>Sphinx doesn't do live index updates like some other search solutions (eg. <a href="https://sunspot.github.io/" title="Solr-powered search for Ruby objects">Sunspot</a>), so you'll have to do it yourself. One way is to run a crontab which will rebuild the indexes each x hours. Make sure to use the <em>thinking_sphinx:reindex</em> rake task and not the rebuild one as the last one will stop the Sphinx search deamon which will wake up God which, in its turn, will try to start the deamon again... messy.</p>
 
-<p>There is another way to update your Sphinx indexes, <a href="http://freelancing-god.github.com/ts/en/deltas.html" class="ext">delayed delta's</a>, but in the scope of this post it doesn't really change a thing.</p>
+  <p>There is another way to update your Sphinx indexes, <a href="https://freelancing-gods.com/thinking-sphinx/v4/deltas.html">delayed delta's</a>, but in the scope of this post it doesn't really change a thing.</p>
 
-<h3>God configuration</h3>
+  <h2>God configuration</h2>
 
-<p>As soon as the Sphinx search process stops, God will try to restart it. This is what we want but sometimes Sphinx needs to rebuild its indexes bringing down the process. We choose to rebuild the indexes during deploy to make sure we load the new configuration if it has been changed. Thinking Sphinx comes with some Capistrano tasks out-of-the-box so let's use them. Add the following to your config/deploy.rb:
+  <p>As soon as the Sphinx search process stops, God will try to restart it. This is what we want but sometimes Sphinx needs to rebuild its indexes bringing down the process. We choose to rebuild the indexes during deploy to make sure we load the new configuration if it has been changed. Thinking Sphinx comes with some Capistrano tasks out-of-the-box so let's use them. Add the following to your config/deploy.rb:
 
-{% highlight ruby %}
-require 'thinking_sphinx/deploy/capistrano'
+  {% highlight ruby %}
+  require 'thinking_sphinx/deploy/capistrano'
 
-desc "Unmonitor and stop Sphinx"
-task :before_update_code do
-  run "god unmonitor sphinx"
-  thinking_sphinx.stop
-end
+  desc "Unmonitor and stop Sphinx"
+  task :before_update_code do
+    run "god unmonitor sphinx"
+    thinking_sphinx.stop
+  end
 
-desc "Rebuild the Sphinx indexes and monitor"
-task :after_update_code do
-  thinking_sphinx.configure
-  thinking_sphinx.index
-  thinking_sphinx.start
-  run "god monitor sphinx"
-end
-{% endhighlight %}
+  desc "Rebuild the Sphinx indexes and monitor"
+  task :after_update_code do
+    thinking_sphinx.configure
+    thinking_sphinx.index
+    thinking_sphinx.start
+    run "god monitor sphinx"
+  end
+  {% endhighlight %}
 
-<p>The <em>sphinx</em> param in the God commands is the same as the one you choose to define the God watch.</p>
+  <p>The <em>sphinx</em> param in the God commands is the same as the one you choose to define the God watch.</p>
 
-<h3>Caveat</h3>
+  <h2>Caveat</h2>
 
-<p>Unmonitoring the Sphinx process is not without risk. What if something goes wrong during the reindexing? We think it's not that big of a risk as we will probably notice this during deployment but it's important to know.</p>
+  <p>Unmonitoring the Sphinx process is not without risk. What if something goes wrong during the reindexing? We think it's not that big of a risk as we will probably notice this during deployment but it's important to know.</p>
+</div>

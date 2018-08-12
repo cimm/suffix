@@ -5,35 +5,37 @@ date:    2010-06-27 01:22:05
 updated: 2010-09-23 21:57:08
 ---
 
-<p>I'm new to testing and documentation for the built-in Rails testing seems scarce so I'll write down what I learn in the process... there may be - and probably are - better ways to do this.</p>
+<div class="narrow-col">
+  <p>I'm new to testing and documentation for the built-in Rails testing seems scarce so I'll write down what I learn in the process&hellip; there may be &mdash; and probably are &mdash; better ways to do this.</p>
 
-<h3>Submitting a form in a test</h3>
+  <h2>Submitting a form in a test</h2>
 
-<p>In a functional test you test the controller. A controller is responsible for the incoming requests and the response with a rendered view. If you want to test the creation of an object you'll need a way to fill the form and send the data to the controller.</p>
+  <p>In a functional test you test the controller. A controller is responsible for the incoming requests and the response with a rendered view. If you want to test the creation of an object you'll need a way to fill the form and send the data to the controller.</p>
 
-<p>Imagine the following functional test to create new articles for our blog (example in Rails 3):</p>
+  <p>Imagine the following functional test to create new articles for our blog (example in Rails 3):</p>
 
 
-{% highlight ruby %}
-require 'test_helper'
-class ArticlesControllerTest < ActionController::TestCase
-  test "create a new blog article" do
-    post :create, :article => {:title => "Lorem", :content => "Ipsum dolor sit."}
-    article = assigns(:article)
-    assert_not_nil article
-    assert article.errors.count == 0
-    assert_equal "Article successfully created.", flash[:notice]
+  {% highlight ruby %}
+  require 'test_helper'
+  class ArticlesControllerTest < ActionController::TestCase
+    test "create a new blog article" do
+      post :create, :article => {:title => "Lorem", :content => "Ipsum dolor sit."}
+      article = assigns(:article)
+      assert_not_nil article
+      assert article.errors.count == 0
+      assert_equal "Article successfully created.", flash[:notice]
+    end
   end
-end
-{% endhighlight %}
+  {% endhighlight %}
 
-<p>As this test is in the articles_controller_test.rb file Rails knows to call the article create action with a POST request. The controller will handle the request and will (normally) render or redirect to a new page with a flash message, this we can test.</p>
+  <p>As this test is in the articles_controller_test.rb file Rails knows to call the article create action with a POST request. The controller will handle the request and will (normally) render or redirect to a new page with a flash message, this we can test.</p>
 
-<p>The first line is key here. It sends the parameters in the form (well, the ones you choose) to the controller. The second line assigns the article instance variable. The next lines are some assertions I added to test if the request succeeded, add at will.</p>
+  <p>The first line is key here. It sends the parameters in the form (well, the ones you choose) to the controller. The second line assigns the article instance variable. The next lines are some assertions I added to test if the request succeeded, add at will.</p>
 
-<h3>More resources</h3>
+  <h2>More resources</h2>
 
-<ul>
-  <li>The <a href="http://guides.rubyonrails.org/testing.html#functional-tests-for-your-controllers" class="ext" title="A Guide to Testing Rails Applications">Functional tests for your controller</a> section from the Rails Guides and</li>
-  <li>the <a href="http://rails.francik.name/week6.html#19" class="ext" title="Ruby on Rails Tutorial, Chapter 6: Testing">Functional test of User POST</a> section from the Ruby on Rails Tutorial.</li>
-</ul>
+  <ul>
+    <li>The <a href="http://guides.rubyonrails.org/testing.html#functional-tests-for-your-controllers" class="ext" title="A Guide to Testing Rails Applications">Functional tests for your controller</a> section from the Rails Guides and</li>
+    <li>the <a href="http://rails.francik.name/week6.html#19" class="ext" title="Ruby on Rails Tutorial, Chapter 6: Testing">Functional test of User POST</a> section from the Ruby on Rails Tutorial.</li>
+  </ul>
+</div>

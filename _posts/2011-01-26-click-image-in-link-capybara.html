@@ -6,37 +6,39 @@ updated:   2014-01-14 23:22:00
 proofread: yes
 ---
 
-<p>There is the built-in <a href="http://rdoc.info/github/jnicklas/capybara/ccced2/Capybara/Session#click_link-instance_method" title="Capybara RDoc" class="ext">click_link</a> method when you want to follow a link in your Capybara tests:</p>
+<div class="narrow-col">
+  <p>There is the built-in <a href="http://rdoc.info/github/jnicklas/capybara/ccced2/Capybara/Session#click_link-instance_method" title="Capybara RDoc" class="ext">click_link</a> method when you want to follow a link in your Capybara tests:</p>
 
-{% highlight ruby %}
-click_link('edit')
-{% endhighlight %}
+  {% highlight ruby %}
+  click_link('edit')
+  {% endhighlight %}
 
-<p>This works fine when you are testing a text link; however, this doesn't work when there is no text. Like a link with an image for example:</p>
+  <p>This works fine when you are testing a text link; however, this doesn't work when there is no text. Like a link with an image for example:</p>
 
-{% highlight ruby %}
-<a href="/post/3/edit">
-  <img alt="Edit" src="/images/edit.png" />
-</a>
-{% endhighlight %}
+  {% highlight ruby %}
+  <a href="/post/3/edit">
+    <img alt="Edit" src="/images/edit.png" />
+  </a>
+  {% endhighlight %}
 
-<p>Luckily there are some simple workarounds Here are two.</p>
+  <p>Luckily there are some simple workarounds Here are two.</p>
 
-<h3>The id attribute</h3>
+  <h2>The id attribute</h2>
 
-<p>You can add an id attribute to the link you want to follow. The click_link method will see this link and voilà, problem solved. The test stays clean but you'll need to add some view logic to make sure you are using a unique id for each link.</p>
+  <p>You can add an id attribute to the link you want to follow. The click_link method will see this link and voilà, problem solved. The test stays clean but you'll need to add some view logic to make sure you are using a unique id for each link.</p>
 
 
-{% highlight ruby %}
-click_link('post-3-edit')
-{% endhighlight %}
+  {% highlight ruby %}
+  click_link('post-3-edit')
+  {% endhighlight %}
 
-<h3>The Capybara XPath finder</h3>
+  <h2>The Capybara XPath finder</h2>
 
-<p>We could turn this upside down by changing the test instead of the view. This means we'll need to find a way to get the right element from the <abbr title="Document Object Model">DOM</abbr> with Capybara:</p>
+  <p>We could turn this upside down by changing the test instead of the view. This means we'll need to find a way to get the right element from the <abbr title="Document Object Model">DOM</abbr> with Capybara:</p>
 
-{% highlight ruby %}
-find(:xpath, "//a/img[@alt='Edit']/..").click
-{% endhighlight %}
+  {% highlight ruby %}
+  find(:xpath, "//a/img[@alt='Edit']/..").click
+  {% endhighlight %}
 
-<p>There is one caveat here. The /.., at the end, selects the parent element from the XPath result (the link and not the image in our case). If you leave this out, Capybara will click on the image and for some reason that doesn't seem to work.</p>
+  <p>There is one caveat here. The /.., at the end, selects the parent element from the XPath result (the link and not the image in our case). If you leave this out, Capybara will click on the image and for some reason that doesn't seem to work.</p>
+</div>

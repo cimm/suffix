@@ -5,18 +5,20 @@ date:    2007-09-05 15:10:08
 updated: 2010-09-12 10:10:16
 ---
 
-<p>It took me a while to figure out the differences between the AddHandler and AddType directives in an Apache configuration. Both directives seem to define how the contents of a file with a given extension should be threatened but when do you need the first one and when the second?</p>
+<div class="narrow-col">
+  <p>It took me a while to figure out the differences between the AddHandler and AddType directives in an Apache configuration. Both directives seem to define how the contents of a file with a given extension should be threatened but when do you need the first one and when the second?</p>
 
-<p>Turned out it isn't too hard... the AddType handler specifies how the <strong>client</strong> (think about a browser) has to deal with a particular data stream (e.g. download a binary or show an image or HTML page). The AddHandler on the other hand maps a handler to the file extension telling the <strong>server</strong> what to do with it. So if you are defining a Ruby on Rails or PHP content type you will need the AddHandler, telling the server it should parse the file. If you define a JavaScript or HTML file you will need the AddType one to tell the browser what content type to expect.</p>
+  <p>Turned out it isn't too hard... the AddType handler specifies how the <strong>client</strong> (think about a browser) has to deal with a particular data stream (e.g. download a binary or show an image or HTML page). The AddHandler on the other hand maps a handler to the file extension telling the <strong>server</strong> what to do with it. So if you are defining a Ruby on Rails or PHP content type you will need the AddHandler, telling the server it should parse the file. If you define a JavaScript or HTML file you will need the AddType one to tell the browser what content type to expect.</p>
 
-<h3>Strict versus quirks mode</h3>
+  <h2>Strict versus quirks mode</h2>
 
-<p>Something slightly related is how browsers actually deal with the content type you set in your AddType directive. Gecko based browsers (like Firefox) follow the standard closely so they will handle a file according to the content type in your Apache configuration. This means your image will show up as text if you wrongly assigned the text/plain content type. Internet Explorer is more flexible and tries to guess the mime type for misconfigured web servers showing a wrongly defined images as, well, an image.</p>
+  <p>Something slightly related is how browsers actually deal with the content type you set in your AddType directive. Gecko based browsers (like Firefox) follow the standard closely so they will handle a file according to the content type in your Apache configuration. This means your image will show up as text if you wrongly assigned the text/plain content type. Internet Explorer is more flexible and tries to guess the mime type for misconfigured web servers showing a wrongly defined images as, well, an image.</p>
 
-<h3>More resources</h3>
+  <h2>More resources</h2>
 
-<ul>
-  <li><a href="http://httpd.apache.org/docs/2.0/mod/mod_mime.html" title="Apache Module mod_mime documentation" class="ext">Apache's Module mod_mime documentation</a></li>
-  <li><a href="http://developer.mozilla.org/en/docs/Properly_Configuring_Server_MIME_Types" title="Properly Configuring Server MIME Types at the Mozilla Developer Center" class="ext">Properly Configuring Server MIME Types</a></li>
-  <li><a href="http://developer.mozilla.org/en/docs/Properly_Configuring_Server_MIME_Types" title="A sample .htaccess file at the Mozilla Developer Center" class="ext">A sample .htaccess file with common MIME types</a></li>
-</ul>
+  <ul>
+    <li><a href="http://httpd.apache.org/docs/2.0/mod/mod_mime.html" title="Apache Module mod_mime documentation" class="ext">Apache's Module mod_mime documentation</a></li>
+    <li><a href="http://developer.mozilla.org/en/docs/Properly_Configuring_Server_MIME_Types" title="Properly Configuring Server MIME Types at the Mozilla Developer Center" class="ext">Properly Configuring Server MIME Types</a></li>
+    <li><a href="http://developer.mozilla.org/en/docs/Properly_Configuring_Server_MIME_Types" title="A sample .htaccess file at the Mozilla Developer Center" class="ext">A sample .htaccess file with common MIME types</a></li>
+  </ul>
+</div>

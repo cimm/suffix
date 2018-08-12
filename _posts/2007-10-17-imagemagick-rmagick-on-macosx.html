@@ -5,62 +5,64 @@ date:    2007-10-17 00:05:30
 updated: 2010-09-12 10:48:23
 ---
 
-<p><strong>Update:</strong> Check out this great <a href="http://onrails.org/articles/2009/09/04/rmagick-from-source-on-snow-leopard" title="RMagick (from source) on Snow Leopard" class="ext">installation script</a> by Solomon White if you are running Snow Leopard. It worked perfect here.</p>
+<div class="narrow-col">
+  <p><strong>Update:</strong> Check out this great <a href="http://onrails.org/articles/2009/09/04/rmagick-from-source-on-snow-leopard" title="RMagick (from source) on Snow Leopard" class="ext">installation script</a> by Solomon White if you are running Snow Leopard. It worked perfect here.</p>
 
-<p><a href="http://www.imagemagick.org/" title="ImageMagic: Convert, edit and compose images" class="ext">ImageMagick</a> is a command line utility to convert, edit and compose images that is typically used in combination with a programming language. The Ruby interface is called <a href="http://rmagick.rubyforge.org/" title="Graphics Processing for Ruby and Ruby on Rails" class="ext">RMagick</a>. The RMagick interface makes image editing in Ruby painless, if you get it installed that is. <a href="http://www.graphicsmagick.org/" title="GraphicsMagick image processing system" class="ext">GraphicsMagick</a> is another image editor that can be used in combination with RMagick but I didn't look into that.</p>
+  <p><a href="http://www.imagemagick.org/" title="ImageMagic: Convert, edit and compose images" class="ext">ImageMagick</a> is a command line utility to convert, edit and compose images that is typically used in combination with a programming language. The Ruby interface is called <a href="http://rmagick.rubyforge.org/" title="Graphics Processing for Ruby and Ruby on Rails" class="ext">RMagick</a>. The RMagick interface makes image editing in Ruby painless, if you get it installed that is. <a href="http://www.graphicsmagick.org/" title="GraphicsMagick image processing system" class="ext">GraphicsMagick</a> is another image editor that can be used in combination with RMagick but I didn't look into that.</p>
 
-<p>There are numerous ways to get ImageMagick and RMagic installed on Mac OS X and I don't even remember all the different ways I tried but the following method seems to work. MacPorts may install versions of the software that are out-of-date, so check this first if that's an important issue for you.</p>
+  <p>There are numerous ways to get ImageMagick and RMagic installed on Mac OS X and I don't even remember all the different ways I tried but the following method seems to work. MacPorts may install versions of the software that are out-of-date, so check this first if that's an important issue for you.</p>
 
-<h3>MacPorts</h3>
+  <h2>MacPorts</h2>
 
-<p>Let's start with installing <a href="http://trac.macosforge.org/projects/macports/wiki" title="MacPorts wiki" class="ext">MacPorts</a>, formerly called DarwinPorts. This port automatically installs ImageMagick and all the dependent libraries. You need <a href="http://developer.apple.com/tools/xcode/">Xcode</a> installed for MacPorts to work. Installing MacPorts is very straightforward and shouldn't be a problem, <a href="http://svn.macosforge.org/repository/macports/downloads/" title="MacPort downloads" class="ext">download</a> the newest MacPorts-x.x.x.dmg and install the package.</p>
+  <p>Let's start with installing <a href="http://trac.macosforge.org/projects/macports/wiki" title="MacPorts wiki" class="ext">MacPorts</a>, formerly called DarwinPorts. This port automatically installs ImageMagick and all the dependent libraries. You need <a href="http://developer.apple.com/tools/xcode/">Xcode</a> installed for MacPorts to work. Installing MacPorts is very straightforward and shouldn't be a problem, <a href="http://svn.macosforge.org/repository/macports/downloads/" title="MacPort downloads" class="ext">download</a> the newest MacPorts-x.x.x.dmg and install the package.</p>
 
-<p>Once MacPorts is installed you can install ImageMagick via Terminal. The path to the port binary may be different but I suppose it's the default installation directory, isn't it?</p>
+  <p>Once MacPorts is installed you can install ImageMagick via Terminal. The path to the port binary may be different but I suppose it's the default installation directory, isn't it?</p>
 
-{% highlight bash %}
-sudo /opt/local/bin/port install ImageMagick
-{% endhighlight %}
+  {% highlight bash %}
+  sudo /opt/local/bin/port install ImageMagick
+  {% endhighlight %}
 
-<p>This may take a while and you'll see MacPorts downloading and installing ImageMagick, done? Let's get on with RMagick the same way we got ImageMagick:</p>
+  <p>This may take a while and you'll see MacPorts downloading and installing ImageMagick, done? Let's get on with RMagick the same way we got ImageMagick:</p>
 
-{% highlight bash %}
-sudo /opt/local/bin/port install rb-rmagick
-{% endhighlight %}
+  {% highlight bash %}
+  sudo /opt/local/bin/port install rb-rmagick
+  {% endhighlight %}
 
-<p>Again, waiting, I think it took about 15 minutes to finish.</p>
+  <p>Again, waiting, I think it took about 15 minutes to finish.</p>
 
-<h3>Gem</h3>
+  <h2>Gem</h2>
 
-<p>Next we'll need the RMagick gem as well. <strong>Note:</strong> Installing the RMagick gem worked find on my old <abbr title="PowerPC">PPC</abbr> Mac but didn't work on the newer i386 (Intel) as the RMagick gem is built with the PPC headers. To install the gem set your ARCHFLAGS to i386 first. Here is how:</p>
+  <p>Next we'll need the RMagick gem as well. <strong>Note:</strong> Installing the RMagick gem worked find on my old <abbr title="PowerPC">PPC</abbr> Mac but didn't work on the newer i386 (Intel) as the RMagick gem is built with the PPC headers. To install the gem set your ARCHFLAGS to i386 first. Here is how:</p>
 
-{% highlight bash %}
-export ARCHFLAGS='-arch i386'
-gem install rmagick
-{% endhighlight %}
+  {% highlight bash %}
+  export ARCHFLAGS='-arch i386'
+  gem install rmagick
+  {% endhighlight %}
 
-<p>As <span class="vcard"><span class="fn n"><span class="given-name">Jelle</span></span></span> points out you may want to add the local bin folder to your PATH. This will make it easier to run RMagick stuff that's installed in that directory without the need to specify the whole path each time. Add the following line to your .bash_login file and restart Terminal.</p>
+  <p>As <span class="vcard"><span class="fn n"><span class="given-name">Jelle</span></span></span> points out you may want to add the local bin folder to your PATH. This will make it easier to run RMagick stuff that's installed in that directory without the need to specify the whole path each time. Add the following line to your .bash_login file and restart Terminal.</p>
 
-{% highlight bash %}
-vi ~/.bash_login
-export PATH="/opt/local/bin/:$PATH"
-{% endhighlight %}
+  {% highlight bash %}
+  vi ~/.bash_login
+  export PATH="/opt/local/bin/:$PATH"
+  {% endhighlight %}
 
-<h3>Sample conversion</h3>
+  <h2>Sample conversion</h2>
 
-<p>Once this is done we can run a quick Ruby script to check if the installation went smoothly. Create the following create_thumb.rb script:</p>
+  <p>Once this is done we can run a quick Ruby script to check if the installation went smoothly. Create the following create_thumb.rb script:</p>
 
-{% highlight ruby %}
-#!/usr/bin/env ruby
-require 'RMagick'
-img = Magick::Image.read('myimage.jpg').first
-thumbnail = img.crop_resized(50, 50)
-thumbnail.write 'myimage_thumb.jpg'
-{% endhighlight %}
+  {% highlight ruby %}
+  #!/usr/bin/env ruby
+  require 'RMagick'
+  img = Magick::Image.read('myimage.jpg').first
+  thumbnail = img.crop_resized(50, 50)
+  thumbnail.write 'myimage_thumb.jpg'
+  {% endhighlight %}
 
-<p>This creates a thumbnail image of 50px &times; 50px from the myimage.jpg file and saves it as myimage_thumb.jpg. Make sure you have a JPEG image in the same directory and run the script.</p>
+  <p>This creates a thumbnail image of 50px &times; 50px from the myimage.jpg file and saves it as myimage_thumb.jpg. Make sure you have a JPEG image in the same directory and run the script.</p>
 
-{% highlight bash %}
-ruby create_thumb.rb
-{% endhighlight %}
+  {% highlight bash %}
+  ruby create_thumb.rb
+  {% endhighlight %}
 
-<p>That's it, you should see a new file appearing in the current directory proving that it works!</p>
+  <p>That's it, you should see a new file appearing in the current directory proving that it works!</p>
+</div>

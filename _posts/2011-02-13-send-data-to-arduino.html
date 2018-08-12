@@ -5,45 +5,47 @@ date:    2011-02-13 22:48:29
 updated: 2011-03-01 21:32:15
 ---
 
-<p>I'm a programmer, not an electrical engineer. I bought an Arduino to learn how to connect the physical world with the computing one where I know my way around. I hope to post a few howto's when I learn something new.</p>
+<div class="narrow-col">
+  <p>I'm a programmer, not an electrical engineer. I bought an Arduino to learn how to connect the physical world with the computing one where I know my way around. I hope to post a few howto's when I learn something new.</p>
 
-<h3>Serial Communication</h3>
+  <h2>Serial Communication</h2>
 
-<p>Most tutorials will explain how to send data from an Arduino (or a connected sensor) to a computer. I want the opposite: send data from my computer to an Arduino Uno bord. Talking with an Arduino over a <abbr title="Universal Serial Bus">USB</abbr> cable is called &lsquo;serial communicaton&rsquo; which means you can send one instruction at a time. This may sound slow &mdash; and it is &mdash; but it's the easiest way to learn how it works.</p>
+  <p>Most tutorials will explain how to send data from an Arduino (or a connected sensor) to a computer. I want the opposite: send data from my computer to an Arduino Uno bord. Talking with an Arduino over a <abbr title="Universal Serial Bus">USB</abbr> cable is called &lsquo;serial communicaton&rsquo; which means you can send one instruction at a time. This may sound slow &mdash; and it is &mdash; but it's the easiest way to learn how it works.</p>
 
-<h3>Sketch</h3>
+  <h2>Sketch</h2>
 
-<p>Connect the Arduino with your computer using a <abbr title="Universal Serial Bus">USB</abbr> cable and open the editor (read the <a href="http://arduino.cc/en/Tutorial/BareMinimum" title="Bare minimum Arduino code needed to get started" class="ext">Bare Minimum</a> tutorial if you don't know how). Now load the sketch below and open the Serial Monitor (last button in the Arduino editor toolbar).</p>
+  <p>Connect the Arduino with your computer using a <abbr title="Universal Serial Bus">USB</abbr> cable and open the editor (read the <a href="http://arduino.cc/en/Tutorial/BareMinimum" title="Bare minimum Arduino code needed to get started" class="ext">Bare Minimum</a> tutorial if you don't know how). Now load the sketch below and open the Serial Monitor (last button in the Arduino editor toolbar).</p>
 
-{% highlight c++ %}
-int ledPin = 13;
+  {% highlight c++ %}
+  int ledPin = 13;
 
-void setup() {
-  Serial.begin(9600);
-  pinMode(ledPin, OUTPUT);
-}
-
-void loop() {
-  if (Serial.available() > 0) {
-    char value = Serial.read();
-    if (value == '1') {
-      digitalWrite(ledPin, HIGH);
-    } else {
-      digitalWrite(ledPin, LOW);
-    }
-    Serial.println(value);
+  void setup() {
+    Serial.begin(9600);
+    pinMode(ledPin, OUTPUT);
   }
-  delay(1000);
-}
-{% endhighlight %}
 
-<p>Using the input field in the Serial Monitor you can send a 1 to the Arduino board to turn the built-in <abbr title="Light-Emitting Diode">LED</abbr> on, anything else will turn it off. The Serial Monitor displays the value the Arduino sent back (the one it got as the input).</p>
+  void loop() {
+    if (Serial.available() > 0) {
+      char value = Serial.read();
+      if (value == '1') {
+        digitalWrite(ledPin, HIGH);
+      } else {
+        digitalWrite(ledPin, LOW);
+      }
+      Serial.println(value);
+    }
+    delay(1000);
+  }
+  {% endhighlight %}
 
-<h3>How?</h3>
+  <p>Using the input field in the Serial Monitor you can send a 1 to the Arduino board to turn the built-in <abbr title="Light-Emitting Diode">LED</abbr> on, anything else will turn it off. The Serial Monitor displays the value the Arduino sent back (the one it got as the input).</p>
 
-<ol>
-  <li>The first line specifies the <abbr title="Light-Emitting Diode">LED</abbr> we want to use, pin 13 is the built-in <abbr title="Light-Emitting Diode">LED</abbr> on an Arduino Uno, change this if you use another board.</li>
-  <li>The Serial.begin line tells the Arduino what <a href="http://www.ladyada.net/learn/arduino/lesson4.html" title="What does baud rate mean?" class="ext">baud rate</a> to use.</li>
-  <li>The loop function will look if there is some input waiting and if so read it in the <em>value</em> variable (only one char at the time). If the value is 1 it will turn the <abbr title="Light-Emitting Diode">LED</abbr> on, if not it will turn it of.</li>
-  <li>The Serial.print sends the input back to the computer (optional but nice to see what the Arduino received) and wait for 1 second before checking for new input.</li>
-</ol>
+  <h2>How?</h2>
+
+  <ol>
+    <li>The first line specifies the <abbr title="Light-Emitting Diode">LED</abbr> we want to use, pin 13 is the built-in <abbr title="Light-Emitting Diode">LED</abbr> on an Arduino Uno, change this if you use another board.</li>
+    <li>The Serial.begin line tells the Arduino what <a href="http://www.ladyada.net/learn/arduino/lesson4.html" title="What does baud rate mean?" class="ext">baud rate</a> to use.</li>
+    <li>The loop function will look if there is some input waiting and if so read it in the <em>value</em> variable (only one char at the time). If the value is 1 it will turn the <abbr title="Light-Emitting Diode">LED</abbr> on, if not it will turn it of.</li>
+    <li>The Serial.print sends the input back to the computer (optional but nice to see what the Arduino received) and wait for 1 second before checking for new input.</li>
+  </ol>
+</div>

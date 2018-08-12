@@ -7,166 +7,168 @@ coordinates: 50.86505 4.70068
 proofread:   no
 ---
 
-<p>Drone is a continuous integration server with a <a href="https://drone.io/" title="Drone.io continuous integration">fully hosted version</a> which you can <a href="https://github.com/drone/drone" title="Drone's Github repository">self-host</a> as well. We gave it a spin for our Rails application: RSpec integration tests with some <a href="http://phantomjs.org/" title="PhantomJS, a scripted, headless browser">PhantomJS</a> stuff.</p>
+<div class="narrow-col">
+  <p>Drone is a continuous integration server with a <a href="https://drone.io/" title="Drone.io continuous integration">fully hosted version</a> which you can <a href="https://github.com/drone/drone" title="Drone's Github repository">self-host</a> as well. We gave it a spin for our Rails application: RSpec integration tests with some <a href="http://phantomjs.org/" title="PhantomJS, a scripted, headless browser">PhantomJS</a> stuff.</p>
 
-<h3>Base</h3>
+  <h2>Base</h2>
 
-<p>We started off with an Ubuntu 14.04 <abbr title="Long Term Support">LTS</abbr> base image on a 1.6Ghz <abbr title="Central Processing Unit">CPU</abbr> system with 1GB of RAM and a 10GB drive running on <a href="https://cloud.google.com/" title="Google Cloud Platform">Google Cloud</a>. As always, upgrade the system:</p>
+  <p>We started off with an Ubuntu 14.04 <abbr title="Long Term Support">LTS</abbr> base image on a 1.6Ghz <abbr title="Central Processing Unit">CPU</abbr> system with 1GB of RAM and a 10GB drive running on <a href="https://cloud.google.com/" title="Google Cloud Platform">Google Cloud</a>. As always, upgrade the system:</p>
 
-{% highlight bash %}
-apt update
-apt upgrade
-{% endhighlight %}
+  {% highlight bash %}
+  apt update
+  apt upgrade
+  {% endhighlight %}
 
-<p>See the new apt syntax? Since <a href="https://mvogt.wordpress.com/2014/04/04/apt-1-0/" title="apt 1.0 by Michael Vogt">version 1.0</a> `apt-get` and `apt-cache` have been merged in a single interface (you even get some nice colours and a progress bar).</p>
+  <p>See the new apt syntax? Since <a href="https://mvogt.wordpress.com/2014/04/04/apt-1-0/" title="apt 1.0 by Michael Vogt">version 1.0</a> `apt-get` and `apt-cache` have been merged in a single interface (you even get some nice colours and a progress bar).</p>
 
-<h3>Firewall</h3>
+  <h2>Firewall</h2>
 
-<p>Let's lock the system down a bit by enabling the firewall via <abbr title="Uncomplicated Firewall">UFW</abbr>.</p>
+  <p>Let's lock the system down a bit by enabling the firewall via <abbr title="Uncomplicated Firewall">UFW</abbr>.</p>
 
-{% highlight bash %}
-ufw allow ssh
-ufw enable
-{% endhighlight %}
+  {% highlight bash %}
+  ufw allow ssh
+  ufw enable
+  {% endhighlight %}
 
-<p>You can lock yourself out if you are not allowing <abbr title="Secure Shell">SSH</abbr> connections, check to see if you can still log in.</p>
+  <p>You can lock yourself out if you are not allowing <abbr title="Secure Shell">SSH</abbr> connections, check to see if you can still log in.</p>
 
-<h3>Disable root access</h3>
+  <h2>Disable root access</h2>
 
-<p>Edit `/etc/ssh/sshd_config` and disable the root login.</p>
+  <p>Edit `/etc/ssh/sshd_config` and disable the root login.</p>
 
-{% highlight bash %}
-PermitRootLogin no
-{% endhighlight %}
+  {% highlight bash %}
+  PermitRootLogin no
+  {% endhighlight %}
 
-<p>Restart the <abbr title="Secure Shell">SSH</abbr> daemon.</p>
+  <p>Restart the <abbr title="Secure Shell">SSH</abbr> daemon.</p>
 
-{% highlight bash %}
-service sshd restart
-{% endhighlight %}
+  {% highlight bash %}
+  service sshd restart
+  {% endhighlight %}
 
-<h3>Automatic updates</h3>
+  <h2>Automatic updates</h2>
 
-<p>Set up automatic updates. This will tell Ubuntu to look for and install security patches every so often, not a luxury as you probably won't log in to the <abbr title="Continuous Integration">CI</abbr> server daily.</p>
+  <p>Set up automatic updates. This will tell Ubuntu to look for and install security patches every so often, not a luxury as you probably won't log in to the <abbr title="Continuous Integration">CI</abbr> server daily.</p>
 
-{% highlight bash %}
-dpkg-reconfigure --priority=low unattended-upgrades
-{% endhighlight %}
+  {% highlight bash %}
+  dpkg-reconfigure --priority=low unattended-upgrades
+  {% endhighlight %}
 
-Or in a more recent version of Ubuntu:
+  Or in a more recent version of Ubuntu:
 
-{% highlight bash %}
-apt-config-auto-update
-{% endhighlight %}
+  {% highlight bash %}
+  apt-config-auto-update
+  {% endhighlight %}
 
-<p>Make sure the `update-notifier-common` package is installed (it was for me) and edit `/etc/apt/apt.conf.d/50unattended-upgrades` to make the server reboots when it needs to.</p>
+  <p>Make sure the `update-notifier-common` package is installed (it was for me) and edit `/etc/apt/apt.conf.d/50unattended-upgrades` to make the server reboots when it needs to.</p>
 
-<h3>Docker</h3>
+  <h2>Docker</h2>
 
-<p>Let's install Docker. Bonus hipster points.</p>
+  <p>Let's install Docker. Bonus hipster points.</p>
 
-{% highlight bash %}
-curl -fsSL https://get.docker.com/ | sh
-{% endhighlight %}
+  {% highlight bash %}
+  curl -fsSL https://get.docker.com/ | sh
+  {% endhighlight %}
 
-<p>A quick hello-world will show if Docker was installed correctly.</p>
+  <p>A quick hello-world will show if Docker was installed correctly.</p>
 
-{% highlight bash %}
-docker run hello-world
-{% endhighlight %}
+  {% highlight bash %}
+  docker run hello-world
+  {% endhighlight %}
 
-<h3>Drone</h3>
+  <h2>Drone</h2>
 
-<p>Drone needs a database to store its things. I went with SQLite as it's super easy to install but PosgreSQL or MySQL are probably better suited for production systems. Drone doesn't mind and can run with MySQL, PostgreSQL or SQLite.</p>
+  <p>Drone needs a database to store its things. I went with SQLite as it's super easy to install but PosgreSQL or MySQL are probably better suited for production systems. Drone doesn't mind and can run with MySQL, PostgreSQL or SQLite.</p>
 
-{% highlight bash %}
-apt install sqlite3 libsqlite3-dev
-{% endhighlight %}
+  {% highlight bash %}
+  apt install sqlite3 libsqlite3-dev
+  {% endhighlight %}
 
-<p>Now you can tell Docker to fetch the latest Drone image (0.4 at the time of writing):</p>
+  <p>Now you can tell Docker to fetch the latest Drone image (0.4 at the time of writing):</p>
 
-{% highlight bash %}
-docker pull drone/drone:0.4
-{% endhighlight %}
+  {% highlight bash %}
+  docker pull drone/drone:0.4
+  {% endhighlight %}
 
-<p>Let's configure Drone:</p>
+  <p>Let's configure Drone:</p>
 
-{% highlight bash %}
-mkdir /etc/drone
-vi /etc/drone/dronerc
-{% endhighlight %}
+  {% highlight bash %}
+  mkdir /etc/drone
+  vi /etc/drone/dronerc
+  {% endhighlight %}
 
-<p>Add Github as a <a href="http://readme.drone.io/setup/remotes/github/" title="Github remote driver documentation">remote driver</a>: get the client id and secret from a developer oAuth application created on Github and point it to the database.</p>
+  <p>Add Github as a <a href="http://readme.drone.io/setup/remotes/github/" title="Github remote driver documentation">remote driver</a>: get the client id and secret from a developer oAuth application created on Github and point it to the database.</p>
 
-{% highlight bash %}
-REMOTE_DRIVER=github
-REMOTE_CONFIG=https://github.com?client_id=CLIENT&client_secret=SECRET
-DATABASE_DRIVER=sqlite3
-DATABASE_CONFIG=/var/lib/drone/drone.sqlite
-{% endhighlight %}
+  {% highlight bash %}
+  REMOTE_DRIVER=github
+  REMOTE_CONFIG=https://github.com?client_id=CLIENT&client_secret=SECRET
+  DATABASE_DRIVER=sqlite3
+  DATABASE_CONFIG=/var/lib/drone/drone.sqlite
+  {% endhighlight %}
 
-<p>Once done you can run Drone:</p>
+  <p>Once done you can run Drone:</p>
 
-{% highlight bash %}
-docker run \
---volume /var/lib/drone:/var/lib/drone \
---volume /var/run/docker.sock:/var/run/docker.sock \
---env-file /etc/drone/dronerc \
---restart=always \
---publish=80:8000 \
---detach=true \
---name=drone \
-drone/drone:0.4
-{% endhighlight %}
+  {% highlight bash %}
+  docker run \
+  --volume /var/lib/drone:/var/lib/drone \
+  --volume /var/run/docker.sock:/var/run/docker.sock \
+  --env-file /etc/drone/dronerc \
+  --restart=always \
+  --publish=80:8000 \
+  --detach=true \
+  --name=drone \
+  drone/drone:0.4
+  {% endhighlight %}
 
-<p>There you go, open your browser a point it to the server's <abbr title="Internet Protocol">IP</abbr> address. Drone will do its oAuth dance with Github when you log in and list your repositories.</p>
+  <p>There you go, open your browser a point it to the server's <abbr title="Internet Protocol">IP</abbr> address. Drone will do its oAuth dance with Github when you log in and list your repositories.</p>
 
-<h3>Build</h3>
+  <h2>Build</h2>
 
-<p>Drone looks for a `.drone.yml` configuration file in your project's root directory. You start from a Docker image of your choosing, run some commands and wait for Drone to tell you if everything works.</p>
+  <p>Drone looks for a `.drone.yml` configuration file in your project's root directory. You start from a Docker image of your choosing, run some commands and wait for Drone to tell you if everything works.</p>
 
-{% highlight yml %}
-build:
-  image: cimm/ruby-phantomjs
+  {% highlight yml %}
+  build:
+    image: cimm/ruby-phantomjs
+    environment:
+      - RAILS_ENV=test
+    commands:
+      - bundle install --without production --without staging
+      - cp config/database.drone.yml config/database.yml
+      - bundle exec rake db:create
+      - bundle exec rake db:test:prepare
+      - bundle exec rspec spec
+
+  compose:
+    database:
+      image: postgres
+
+  notify:
+    slack:
+      webhook_url: $$SLACK_WEBHOOK
+      channel: general
+      username: drone
+  {% endhighlight %}
+
+  <p>The first 'build' part is the most important one. You can use whatever Docker image you want as a base to start from. We built our own as we need a more recent version of PhantomJS for to run our tests.</p>
+
+  <p>The 'commands' section is where you configure your build and get it running, pretty standard Rails stuff here.</p>
+
+  <p>The 'environment' section can be used to set&hellip; well&hellip; environment variables. Useful for <a href="https://12factor.net/" title="Twelve-factor app">twelve-factor apps</a>.</p>
+
+  <p>The 'compose' section behaves like Docker's <a href="https://docs.docker.com/compose/" title="Docker compose documentation">compose</a> feature and lets you pull other Docker images needed for your build. Isn't that awesome?</p>
+
+  <p>And finally, the 'notify' section to let everyone know how good of a tester you are.</p>
+
+  <h2>Secrets</h2>
+
+  <p>Noticed the $$SLACK_WEBHOOK variable in the example? It's possible to <a href="http://readme.drone.io/usage/secrets/" title="Secrets documentation">pull in variables</a> from a `.drone.sec` file from your project's root folder. This is useful for <abbr title="Application Programming Interface">API</abbr> tokens &amp; passwords you rather don't expose.</p>
+
+  <p>Drone knows how to read and decrypt this file but you'll need to encrypt it yourself. Go to your project's "Secrets" tab in the Drone web interface and add your variables.</p>
+
+  {% highlight yml %}
   environment:
-    - RAILS_ENV=test
-  commands:
-    - bundle install --without production --without staging
-    - cp config/database.drone.yml config/database.yml
-    - bundle exec rake db:create
-    - bundle exec rake db:test:prepare
-    - bundle exec rspec spec
+    SLACK_WEBHOOK: https://hooks...
+  {% endhighlight %}
 
-compose:
-  database:
-    image: postgres
-
-notify:
-  slack:
-    webhook_url: $$SLACK_WEBHOOK
-    channel: general
-    username: drone
-{% endhighlight %}
-
-<p>The first 'build' part is the most important one. You can use whatever Docker image you want as a base to start from. We built our own as we need a more recent version of PhantomJS for to run our tests.</p>
-
-<p>The 'commands' section is where you configure your build and get it running, pretty standard Rails stuff here.</p>
-
-<p>The 'environment' section can be used to set&hellip; well&hellip; environment variables. Useful for <a href="http://12factor.net/" title="Twelve-factor app">twelve-factor apps</a>.</p>
-
-<p>The 'compose' section behaves like Docker's <a href="https://docs.docker.com/compose/" title="Docker compose documentation">compose</a> feature and lets you pull other Docker images needed for your build. Isn't that awesome?</p>
-
-<p>And finally, the 'notify' section to let everyone know how good of a tester you are.</p>
-
-<h3>Secrets</h3>
-
-<p>Noticed the $$SLACK_WEBHOOK variable in the example? It's possible to <a href="http://readme.drone.io/usage/secrets/" title="Secrets documentation">pull in variables</a> from a `.drone.sec` file from your project's root folder. This is useful for <abbr title="Application Programming Interface">API</abbr> tokens &amp; passwords you rather don't expose.</p>
-
-<p>Drone knows how to read and decrypt this file but you'll need to encrypt it yourself. Go to your project's "Secrets" tab in the Drone web interface and add your variables.</p>
-
-{% highlight yml %}
-environment:
-  SLACK_WEBHOOK: https://hooks...
-{% endhighlight %}
-
-<p>Generate and save the encrypted version in the `.drone.sec` file. Save, commit, push and watch Drone do its magic.</p>
+  <p>Generate and save the encrypted version in the `.drone.sec` file. Save, commit, push and watch Drone do its magic.</p>
+</div>

@@ -1,0 +1,59 @@
+$shadow: rgba(0, 0, 0, .15);
+
+.cards {
+  display: grid;
+  grid-gap: 2em;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+
+.card {
+  background-color: $white;
+  border-width: 0;
+  box-shadow: 0 0 20px $shadow;
+  color: $black;
+  margin: 0 auto;
+  position: relative;
+  text-decoration: none;
+  width: 220px;
+
+  .badge {
+    background-color: $black;
+    color: $white;
+    font-family: $body-font;
+    padding: .2em .4em;
+    position: absolute;
+    right: 0;
+    z-index: 1;
+  }
+
+  figure {
+    padding: 8%;
+
+    .frame {
+      height: 180px;
+      position: relative;
+      text-align: center;
+    }
+
+    img {
+      bottom: 0;
+      height: auto;
+      left: 0;
+      margin: auto;
+      max-height: 180px;
+      max-width: 100%;
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: auto;
+    }
+
+    figcaption {
+      text-align: left;
+
+      a {
+        color: $black;
+      }
+    }
+  }
+}

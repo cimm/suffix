@@ -1,0 +1,18 @@
+$title-font: 'Oswald', sans-serif;
+$body-font: 'Gentium Book Basic', serif;
+
+@font-face {
+  font-family: 'Gentium Book Basic';
+  src: url('/assets/gentium-webfont.woff2') format('woff2'),
+       url('/assets/gentium-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Oswald';
+  src: url('/assets/oswald-webfont.woff2') format('woff2'),
+       url('/assets/oswald-webfont.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
