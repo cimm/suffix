@@ -19,8 +19,8 @@ $shadow: rgba(0, 0, 0, .15);
   .badge {
     background-color: $black;
     color: $white;
-    font-family: $body-font;
-    padding: .2em .4em;
+    font-family: $title-font;
+    padding: .05em .5em;
     position: absolute;
     right: 0;
     z-index: 1;
