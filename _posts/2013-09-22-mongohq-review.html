@@ -7,7 +7,7 @@ proofread: yes
 ---
 
 <div class="narrow-col">
-  <p>We hosted our main production database with <a href="https://mongohq.com" class="ext">MongoHQ</a> for about one year, and, though we recently moved to host production data ourselves, we still use MongoHQ for smaller projects and various staging databases. Here's a brief review of their service.</p>
+  <p>We hosted our main production database with <a href="https://mongohq.com">MongoHQ</a> for about one year, and, though we recently moved to host production data ourselves, we still use MongoHQ for smaller projects and various staging databases. Here's a brief review of their service.</p>
 
   <h2>Background</h2>
 
@@ -16,11 +16,11 @@ proofread: yes
 
   <h2>Pros</h2>
 
-  <p>MongoHQ's database hosting is super <strong>easy to start with</strong>. We had our database up and running in no time, completely for free. Their <strong>UI is top notch</strong> and keeps improving. They added the <a href="https://blog.mongohq.com/mongodb-slow-queries-tracker-profiler" class="ext">slow queries tracker</a> for example, which greatly helped us in identifying some missing indexes. The <strong>3rd party integrations</strong> are nice extra - we happily use their <a href="https://newrelic.com" class="ext">NewRelic</a> and <a href="https://pagerduty.com" class="ext">PagerDuty</a> adapters.</p>
+  <p>MongoHQ's database hosting is super <strong>easy to start with</strong>. We had our database up and running in no time, completely for free. Their <strong>UI is top notch</strong> and keeps improving. They added the <a href="https://blog.mongohq.com/mongodb-slow-queries-tracker-profiler">slow queries tracker</a> for example, which greatly helped us in identifying some missing indexes. The <strong>3rd party integrations</strong> are nice extra - we happily use their <a href="https://newrelic.com">NewRelic</a> and <a href="https://pagerduty.com">PagerDuty</a> adapters.</p>
 
   <h2>Cons</h2>
 
-  <p>MongoHQ has a way to <strong>backup</strong> databases to <a href="https://aws.amazon.com/s3" class="ext">Amazon S3</a>. They advise only using this for databases under 15GB, as larger datasets will have a significant impact on the load of the server. Once we passed the 15GB limit, we chose to keep using the S3 backups. The larger MongoHQ plans do include snapshots, but there is no way to access them, and we knew we would want access to our database dumps at some point in the future. Our database kept growing, and in the last week, the load on the server was so significant it would take down the site while taking a backup. To be fair, this was entirely our own choice, we could have relied on the snapshots MongoHQ schedules but chose not to. MongoHQ is working on an improved backup system which might solve this issue.</p>
+  <p>MongoHQ has a way to <strong>backup</strong> databases to <a href="https://aws.amazon.com/s3">Amazon S3</a>. They advise only using this for databases under 15GB, as larger datasets will have a significant impact on the load of the server. Once we passed the 15GB limit, we chose to keep using the S3 backups. The larger MongoHQ plans do include snapshots, but there is no way to access them, and we knew we would want access to our database dumps at some point in the future. Our database kept growing, and in the last week, the load on the server was so significant it would take down the site while taking a backup. To be fair, this was entirely our own choice, we could have relied on the snapshots MongoHQ schedules but chose not to. MongoHQ is working on an improved backup system which might solve this issue.</p>
   <p>Over the last year we had to contact their support desk a few times. Their staff is professional and offers good advice - they clearly know MongoDB. The response time can use a little nudge though. Once, we failed creating a new instance through the interface when we wanted to upgrade our database. It took support 24 hours to respond to our <em>"Things are broken, please help ASAP."</em> ticket. Another time, when discussing an <em>"EMERGENCY: This is a critical issue. I need a hero!"</em> ticket it took several hours between responses. This is stressful when your database is slowly grinding to a halt.</p>
 
   <h2>Recommended?</h2>
