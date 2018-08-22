@@ -41,13 +41,23 @@ layout: null
     <priority>0.4</priority>
   </url>
   <url>
+    <loc>{{ site.url}}/lego/</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
     <loc>{{ site.url}}/about/</loc>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>{{ site.url}}/404/</loc>
+    <loc>{{ site.url}}/wishlist/</loc>
     <changefreq>yearly</changefreq>
     <priority>0.1</priority>
+  </url>
+  <url>
+    <loc>{{ site.url}}/404/</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.0</priority>
   </url>
 </urlset>
