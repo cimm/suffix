@@ -1,130 +1,26 @@
 ---
 layout: default
 title: Wishlist
+items:
+  - ["Lamy Z28 Converter", "https://lamy-2.ecpcdn.net/media/catalog/product/cache/2/image/980x450/9df78eab33525d08d6e5fb8d27136e95/z/_/z_24_konverter_1_2_3.png", "https://www.penworld.be/lamy-converter-z28.html", "€5"]
+  - ["Exta fine or stub 1.5 nib for my Safari pen", "https://adn.vulpennen.nl/mwa/image/meerinfo/Lamy_Z50_penpunt.jpg", "http://www.vulpennen.nl/nl/lamy/inkt--and--vullingen/p-1a/L-1215051--lamy-z50-penpunt.html", "€5"]
+  - ["TWSBI ECO", "https://adn.vulpennen.nl/mwa/image/meerinfo/TWSBI_ECO_vulpen_wit.jpg", "http://www.vulpennen.nl/nl/merken/M7444330--twsbi-eco-fountain-pen-white.html" , "€35"]
+  - ["Lego Apollo Saturn V", "https://m.rebrickable.com/media/cache/c3/d8/c3d86e85f891960706f346e73ee5a9fe.jpg?1533822882.6833239", "https://www.brickwatch.net/nl-BE/set/21309/LEGO-NASA-Apollo-Saturn-V.html", "€130"]
+  - ["Comic book", "http://yokotsuno.50webs.com/img_albums/yofr28.jpg", "", "€7"]
 ---
 
-<h2>Wishlist</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>Item</th>
-      <th>Description</th>
-      <th><abbr title="Manufacturer's Suggested Retail Price">MSRP</abbr></th>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        <a href='http://nockco.com/cases/'>Pen case</a>
-      </td>
-      <td>Whatever brand, 1 pen or a few, not too big</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>
-        <a href='https://www.penworld.be/lamy-converter-z28.html'>Lamy Z24 converter</a>
-      </td>
-      <td>Converter for my Lamy Safari pen</td>
-      <td>&euro;5</td>
-    </tr>
-    <tr>
-      <td>
-        <a href='https://www.dragonbox.de/en/71-retrode-2-retrode-4260416650091.html'>Retrode</a>
-      </td>
-      <td>USB hub to play Nintendo cardriges on a PC</td>
-      <td>&euro;65</td>
-    </tr>
-    <tr>
-      <td>
-        <a href='https://www.penworld.be/inkt-bestellen/lamy/lamy-ink-bottle-blue.html'>Lamy ink bottle blue</a>
-      </td>
-      <td>Plain blue ink</td>
-      <td>&euro;10</td>
-    </tr>
-    <tr>
-      <td>
-        <a href='https://www.amazon.de/Palmer-Method-Business-Writing-Self-teaching/dp/1445508311/'>Palmer's Penmanship Budget</a>
-      </td>
-      <td>Plamer's method to learn cursive handwriting</td>
-      <td>&euro;10</td>
-    </tr>
-    <tr>
-      <td>
-        <a href='https://www.penworld.be/buro-accesoires/globes/nova-rico-globes/nova-rico-tattile-collection-wereldbol.html'>Globe</a>
-      </td>
-      <td>Classic globe, no plastic, no lights</td>
-      <td>&euro;65</td>
-    </tr>
-    <tr>
-      <td>
-        <a href='https://store.moleskine.com/bel/en-gb/notebooks/'>Moleskin</a>
-      </td>
-      <td>Ruled medum notebook</td>
-      <td>&euro;15</td>
-    </tr>
-    <tr>
-      <td>
-        <a href='http://www.vulpennen.nl/nl/lamy/inkt--and--vullingen/p-1a/L-1215051--lamy-z50-penpunt.html'>Lamy pen nib</a>
-      </td>
-      <td>Extra fine or stub 1.5 nib for my Sarafi pen</td>
-      <td>&euro;5</td>
-    </tr>
-    <tr>
-      <td>
-        Stationary tablet
-      </td>
-      <td>A5 blank paper with a ruled piece of template paper</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>
-        Parker 51
-      </td>
-      <td>Vintage fountain pen</td>
-      <td>&euro;90</td>
-    </tr>
-    <tr>
-      <td>
-        <a href='http://www.vulpennen.nl/nl/merken/M7444330--twsbi-eco-fountain-pen-white.html'>TWSBI ECO White</a>
-      </td>
-      <td>Yet another fountain pen</td>
-      <td>&euro;35</td>
-    </tr>
-    <tr>
-      <td>
-        <a href='https://www.lego.com/en-us/ideasproducts/products/nasa-apollo-11-21309'>Lego Apollo Saturn V</a>
-      </td>
-      <td>Large Lego space set (set number 21309)</td>
-      <td>&euro;170</td>
-    </tr>
-    <tr>
-      <td>Comic books</td>
-      <td>
-        Various (second hand) comic books, preferebly Yoko Tsuno, Blake & Mortimer or Kuifje.
-        <ul>
-          <li>Trio in het onbekende</li>
-          <li>Avonturen met elektronika</li>
-          <li>Seinen voor de eeuwigheid</li>
-          <li>De 3 zonnen van Vinea</li>
-          <li>De dochter van de wind</li>
-          <li>De poort van de zielen</li>
-        </ul>
-      </td>
-      <td></td>
-    </tr>
-  </tbody>
-</table>
-
-<h2>Received</h2>
-
-<table>
-  <tbody>
-    <tr>
-      <td>
-        <a href='https://store.carandache.com/int-en/456-la-machine-%C3%A0-tailler-les-crayons.html'><del>Rotary pencil sharpener</del></a>
-      </td>
-      <td></td>
-      <td><del>&euro;150</del></td>
-    </tr>
-  </tbody>
-</table>
+<div class="extended-col">
+  <section class="cards">
+    {% for item in page.items %}
+      <a href="{{ item[2] }}" class="card">
+        <div class="badge">{{ item[3] }}</div>
+        <figure>
+          <div class="frame">
+            <img src="{{ item[1] }}" alt=""/>
+          </div>
+          <figcaption>{{ item[0] }}</figcaption>
+        </figure>
+      </a>
+    {% endfor %}
+  </section>
+</div>
