@@ -82,21 +82,14 @@ body {
     padding-left: 1em;
   }
 
-  figure:not(.highlight) {
-    text-align: center;
-
-    img {
-      max-width: 100%;
-    }
-
-    figcaption {
-      color: $muted;
-      font-style: italic;
-    }
+  figcaption {
+    color: $black;
+    font-style: italic;
   }
 
   blockquote {
     color: $muted;
+
     cite {
       font-style: italic;
     }

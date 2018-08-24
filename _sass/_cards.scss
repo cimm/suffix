@@ -10,21 +10,10 @@ $shadow: rgba(0, 0, 0, .15);
   background-color: $white;
   border-width: 0;
   box-shadow: 0 0 20px $shadow;
-  color: $black;
   margin: 0 auto;
   position: relative;
   text-decoration: none;
   width: 220px;
-
-  .badge {
-    background-color: $black;
-    color: $white;
-    font-family: $title-font;
-    padding: .05em .5em;
-    position: absolute;
-    right: 0;
-    z-index: 1;
-  }
 
   figure {
     padding: 8%;
@@ -49,11 +38,20 @@ $shadow: rgba(0, 0, 0, .15);
     }
 
     figcaption {
-      text-align: left;
-
-      a {
-        color: $black;
-      }
+      border-bottom: thin solid;
+      display: inline;
+      margin: 0;
+      padding-bottom: .2em;
     }
+  }
+
+  .badge {
+    background-color: $black;
+    color: $white;
+    font-family: $title-font;
+    padding: .05em .5em;
+    position: absolute;
+    right: 0;
+    z-index: 1;
   }
 }
