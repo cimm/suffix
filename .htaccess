@@ -2,6 +2,7 @@ RewriteEngine On
 Options +FollowSymLinks
 
 Header always set Referrer-Policy "no-referrer"
+Header always set X-Frame-Options "deny"
 
 ErrorDocument 404 /404.html
 
