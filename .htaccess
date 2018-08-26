@@ -1,6 +1,8 @@
 RewriteEngine On
 Options +FollowSymLinks
 
+Header always set Referrer-Policy "no-referrer"
+
 ErrorDocument 404 /404.html
 
 # Don't show directory listings
