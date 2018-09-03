@@ -15,24 +15,24 @@ proofread:   no
 
   <p>When my colleagues kept asking to verify the transactions included in the <abbr title="Coded Statement of Account">CODA</abbr> files they are sending to the bank I knew what to build: a CODA viewer! It only needs to parse an <abbr title="eXtensible Markup Language">XML</abbr> file and show the transactions in a tabular format. A CODA or &ldquo;XML message for Credit Transfer Initiation&rdquo; (<abbr title="International Organization for Standardization">ISO</abbr> 20022 XML) file encodes European credit transfers (<abbr title="Single Euro Payments Area">SEPA</abbr>) in a standard way. It defines the movement of funds from the debtor account to a creditor.</p>
 
-  <p>A little web app would probably have been more useful (cross platform, no installation) and easier to build given my background as a web developer, but where is the fun in that?</p>
+  <p>A little web app would probably have been more useful (cross-platform, no installation) and easier to build given my background as a web developer, but where is the fun in that?</p>
 
   <p>The application would be known as <a href="https://github.com/cimm/codav" title="CODAv source code @ Github">CODAv</a>, for CODA viewer. It can be <a href="https://snapcraft.io/codav">downloaded</a> from the snap store or you can build it from <a href="https://github.com/cimm/codav" title="CODAv source code @ Github">source</a>.</p>
 </div>
 
 <figure class="extended-col">
   <img src="/assets/codav.png" alt="CODAv screenshot on Ubuntu"/>
-  <figcaption><a href="https://github.com/cimm/codav">CODAv</a>, a native Linux and macOS application to read CODA files</figcaption>
+  <figcaption><a href="https://github.com/cimm/codav">CODAv</a>, a native Linux, and macOS application to read CODA files</figcaption>
 </figure>
 
 <div class="narrow-col">
   <h2>The Toolset</h2>
 
-  <p>In my Windows days I used Visual Basic with Visual Studio, on macOS it was Xcode with Objective-C, on Linux it is&hellip;? Linux being Linux there isn't a go to "this is how you build a Linux application" solution, there are many.</p>
+  <p>In my Windows days, I used Visual Basic with Visual Studio, on macOS it was Xcode with Objective-C, on Linux it is&hellip;? Linux being Linux there isn't a go-to "this is how you build a Linux application" solution, there are many.</p>
 
-  <p>The most common choices seem to be a C or C++ application with GTK+ or Qt for the graphical part. Then there are the higher level languages like Python or Go using GTK+ or Qt bindings and finally you have Electron.</p>
+  <p>The most common choices seem to be a C or C++ application with GTK+ or Qt for the graphical part. Then there are the higher level languages like Python or Go using GTK+ or Qt bindings and finally, you have Electron.</p>
   
-  <p>Electron is the new kid on the block and great for cross platform applications but it feels too similar to web development and I wanted to get out of my comfort zone. Ruby with GTK+ or Qt would have been the most logical choice but most Linuxy people seem to prefer Python over Ruby so that didn't feel like the &ldquo;right&rdquo; combination. Back to C or C++ then?</p>
+  <p>Electron is the new kid on the block and great for cross-platform applications but it feels too similar to web development and I wanted to get out of my comfort zone. Ruby with GTK+ or Qt would have been the most logical choice but most Linuxy people seem to prefer Python over Ruby so that didn't feel like the &ldquo;right&rdquo; combination. Back to C or C++ then?</p>
   
   <p>It's remarkably hard to find good getting started with Linux development tutorials, except for elementary OS' splendid &ldquo;<a href="https://elementary.io/docs/code/getting-started#getting-started" title="Developers > Getting Started @ elementary OS">Getting Started</a>&rdquo; tutorial, a refreshing find! They use Vala, which generates C code, and is tightly coupled with GTK+. That concluded my quest: <a href="https://wiki.gnome.org/Projects/Vala" title="Vala @ GNOME Wiki">Vala</a> with GTK+ it is.</p>
 
