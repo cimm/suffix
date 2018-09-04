@@ -3,6 +3,7 @@ $body-font: 'Gentium Book Basic', serif;
 
 @font-face {
   font-family: 'Gentium Book Basic';
+  font-display: optional;
   src: url('/assets/gentium-webfont.woff2') format('woff2'),
        url('/assets/gentium-webfont.woff') format('woff');
   font-weight: normal;
@@ -11,6 +12,7 @@ $body-font: 'Gentium Book Basic', serif;
 
 @font-face {
   font-family: 'Oswald';
+  font-display: optional;
   src: url('/assets/oswald-webfont.woff2') format('woff2'),
        url('/assets/oswald-webfont.woff') format('woff');
   font-weight: bold;
