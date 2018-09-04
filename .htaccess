@@ -43,3 +43,15 @@ Redirect permanent /blog/rake_multiple_arguments      /blog/rake-multiple-argume
 Redirect permanent /blog/sinatra_datamapper_rspec2    /blog/sinatra-datamapper-rspec2
 Redirect permanent /feeds/blog.xml                    /feeds/blog.atom
 Redirect permanent /blog.atom                         /feeds/blog.atom
+
+<IfModule mod_headers.c>
+    # 30 days cache
+    <FilesMatch "\.(jpg|jpeg|png|gif|woff2)$">
+        Header set Cache-Control "max-age=2592000"
+    </FilesMatch>
+
+    # 7 days cache
+    <FilesMatch "\.(js|css)$">
+        Header set Cache-Control "max-age=604800"
+    </FilesMatch>
+</IfModule>
