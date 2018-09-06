@@ -1,6 +1,6 @@
 ---
 layout:      post
-title:       Continuous intergration with Drone
+title:       Continuous integration with Drone
 date:        2016-03-10 23:00:00
 updated:     2016-03-13 23:00:00
 coordinates: 50.86505 4.70068
@@ -78,7 +78,7 @@ proofread:   no
 
   <h2>Drone</h2>
 
-  <p>Drone needs a database to store its things. I went with SQLite as it's super easy to install but PosgreSQL or MySQL are probably better suited for production systems. Drone doesn't mind and can run with MySQL, PostgreSQL or SQLite.</p>
+  <p>Drone needs a database to store its things. I went with SQLite as it's super easy to install but PostgreSQL or MySQL are probably better suited for production systems. Drone doesn't mind and can run with MySQL, PostgreSQL or SQLite.</p>
 
   {% highlight bash %}
   apt install sqlite3 libsqlite3-dev
@@ -149,7 +149,7 @@ proofread:   no
       username: drone
   {% endhighlight %}
 
-  <p>The first 'build' part is the most important one. You can use whatever Docker image you want as a base to start from. We built our own as we need a more recent version of PhantomJS for to run our tests.</p>
+  <p>The first 'build' part is the most important one. You can use whatever Docker image you want as a base to start from. We built our own as we need a more recent version of PhantomJS to run our tests.</p>
 
   <p>The 'commands' section is where you configure your build and get it running, pretty standard Rails stuff here.</p>
 

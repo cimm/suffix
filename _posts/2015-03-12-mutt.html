@@ -22,23 +22,23 @@ proofread:   yes
 </blockquote>
 
 <div class="narrow-col">
-  <p><a href="http://mutt.org/">Mutt</a> is a text-based e-mail client for UN*X systems. It doesn't do nicely formatted <abbr title="HyperText Markup Language">HTML</abbr> e-mails or images, but it's extremely customizable and completely keyboard-driven.</p>
+  <p><a href="http://mutt.org/">Mutt</a> is a text-based e-mail client for UN*X systems. It doesn't do nicely formatted <abbr title="HyperText Markup Language">HTML</abbr> emails or images, but it's extremely customizable and completely keyboard-driven.</p>
 
   <p>I have been using Mozilla's <a href="https://www.mozilla.org/thunderbird/" title="Thunderbird open source e-mail client">Thunderbird</a> for a while now and I'm not completely satisfied with the way it handles mailboxes. It's time to try something 'new': Mutt. The plan is to use Mutt for all things e-mail for a full month.</p>
 
   <p>A word of warning: Mutt is known for its complicated setup (there are literally hundreds of configuration commands), and I had to stitch together quite a few blog posts before I got a working setup. If you don't like braking and rebuilding stuff or hunting down a missing comma for half an hour, Mutt is probably not for you.</p>
 
-  <h2>Fetching mails with isync</h2>
+  <h2>Fetching emails with isync</h2>
 
-  <p>I use <a href="http://isync.sourceforge.net/" title="IMAP and MailDir mailbox synchronizer">isync</a> to synchronize my e-mail locally and Mutt to read and send e-mails. <abbr title="Internet Message Access Protocol">IMAP</abbr> only. Mutt can do more, much more, but you will have to look elsewhere for that.</p>
+  <p>I use <a href="http://isync.sourceforge.net/" title="IMAP and MailDir mailbox synchronizer">isync</a> to synchronize my e-mail locally and Mutt to read and send emails. <abbr title="Internet Message Access Protocol">IMAP</abbr> only. Mutt can do more, much more, but you will have to look elsewhere for that.</p>
 
-  <p>Mutt comes with <abbr title="Internet Message Access Protocol">IMAP</abbr> support built-in. This works superbly, but is a bit slower when dealing with larger mailboxes. Mutt's built-in <abbr title="Internet Message Access Protocol">IMAP</abbr> support fetches your e-mail as soon as you start the program. There is a cache that is quite fast but requires a bit of patience every time you open the program. It also means you can't read your e-mail offline. I want a little more and use isync to download or better, synchronise, my e-mail locally via a crontab.</p>
+  <p>Mutt comes with <abbr title="Internet Message Access Protocol">IMAP</abbr> support built-in. This works superbly but is a bit slower when dealing with larger mailboxes. Mutt's built-in <abbr title="Internet Message Access Protocol">IMAP</abbr> support fetches your e-mail as soon as you start the program. There is a cache that is quite fast but requires a bit of patience every time you open the program. It also means you can't read your e-mail offline. I want a little more and use isync to download or better, synchronise, my e-mail locally via a crontab.</p>
 
   <p>isync syncs your different e-mail accounts to a local folder structure. As much as it can be used outside of Mutt, they work together nicely and it makes Mutt faster and available on the go.</p>
 
-  <p>Be careful because isync doesn't download but <strong>synchronizes</strong> your mailbox! If you mess up the configuration, you could easily delete all your mail from the mailserver. Play with a test account first and/or make sure you have a <strong>backup</strong> before you try this. You do have a backup, right?</p>
+  <p>Be careful because isync doesn't download but <strong>synchronizes</strong> your mailbox! If you mess up the configuration, you could easily delete all your mail from the mail server. Play with a test account first and/or make sure you have a <strong>backup</strong> before you try this. You do have a backup, right?</p>
 
-  <p>The executable isync is called 'mbsync' and can be configured with a '.mbsyncrc' configuration file in your homedir. Let's configure our different <abbr title="Internet Message Access Protocol">IMAP</abbr> accounts and add a crontab to fetch our new e-mail.</p>
+  <p>The executable isync is called 'mbsync' and can be configured with a '.mbsyncrc' configuration file in your home dir. Let's configure our different <abbr title="Internet Message Access Protocol">IMAP</abbr> accounts and add a crontab to fetch our new e-mail.</p>
 
   <p>Create a '~/.mbsyncrc' file with the following:</p>
 
@@ -85,7 +85,7 @@ proofread:   yes
 
   <p>The 'mbsync -a' command fetches all configured e-mail accounts. You can define different schedules with 'mbsync john', for example, which only synchronizes the john@example.com account in our configuration example.</p>
 
-  <p>Once done, you will see a folder for each channel in the ~/.mail/john directory with all your e-mails. You now have have an offline copy, which is great.</p>
+  <p>Once done, you will see a folder for each channel in the ~/.mail/john directory with all your emails. You now have an offline copy, which is great.</p>
 
   <h2>Installing Mutt</h2>
 
@@ -120,7 +120,7 @@ proofread:   yes
 
   <h2>Configuring Mutt</h2>
 
-  <p>Muttt's config lives in the '.muttrc' file in your homedir, right next to the isync config file. However, I prefer a '.mutt' folder with a 'muttrc' (no dot here) file to have all the Mutt dependencies in a single place.</p>
+  <p>Muttt's config lives in the '.muttrc' file in your home dir, right next to the isync config file. However, I prefer a '.mutt' folder with a 'muttrc' (no dot here) file to have all the Mutt dependencies in a single place.</p>
 
   <p>Let's start by telling Mutt where to look. Add the following to the '~/.mutt/muttrc' file:</p>
 
@@ -147,7 +147,7 @@ proofread:   yes
   unset confirmappend        # don't ask, just do
   set   quit                 # don't ask, just do
   unset mark_old             # read/new is good enough
-  set   beep_new             # bell on new mails
+  set   beep_new             # bell on new emails
   set   pipe_decode          # strip headers and eval
   set   thorough_search      # also when searching
   color status cyan default  # while instead of black
@@ -155,7 +155,7 @@ proofread:   yes
   bind index G  last-entry   # cursor to last a la vim
   {% endhighlight %}
 
-  <p>Moving on to the sidebar. The following configures the up and down arrows to select a mailbox in the sidebar and the right arrow to open the selected mailbox. It also highlights the mailboxes with new mails.</p>
+  <p>Moving on to the sidebar. The following configures the up and down arrows to select a mailbox in the sidebar and the right arrow to open the selected mailbox. It also highlights the mailboxes with new emails.</p>
 
   {% highlight bash %}
   set sidebar_delim   = "  │"
@@ -213,7 +213,7 @@ proofread:   yes
 
   <h2>Quick Look</h2>
 
-  <p>By default, Mutt saves attachments you open within Mutt to disk. This works, but is cumbersome if you simply want to look at a photo someone sent you or quickly scan an attached <abbr title="Microsoft">MS</abbr> Word document. OS X has this awesome <a href="https://en.wikipedia.org/wiki/Quick_Look" title="OS X Quick Look @ Wikipedia">Quick Look</a> feature that quickly opens most files without having to install separate applications. Why not use Quick Look for e-mail attachments in Mutt?</p>
+  <p>By default, Mutt saves attachments you open within Mutt to disk. This works but is cumbersome if you simply want to look at a photo someone sent you or quickly scan an attached <abbr title="Microsoft">MS</abbr> Word document. OS X has this awesome <a href="https://en.wikipedia.org/wiki/Quick_Look" title="OS X Quick Look @ Wikipedia">Quick Look</a> feature that quickly opens most files without having to install separate applications. Why not use Quick Look for e-mail attachments in Mutt?</p>
 
   <p>Did you know you can run Quick Look from the command line with 'qlmanage -p file'? We''ll use this trick to tell Mutt to run Quick Look when opening attachments. Add a 'mailcap' file in the '~/.mutt' folder you created earlier with the following:</p>
 
