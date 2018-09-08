@@ -4,6 +4,9 @@ description: My personal hangout
 url: https://www.suffix.be
 hostname: suffix.be
 permalink: blog/:title
+exclude:
+  - Gemfile*
+  - Rakefile
 deploy:
   user: deploy
   host: suffix.be
