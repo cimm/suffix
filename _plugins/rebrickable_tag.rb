@@ -23,10 +23,10 @@
 require 'uri'
 require 'json'
 require 'open-uri'
+require 'tmpdir'
 
 module Jekyll
   class RebrickableTag < Liquid::Tag
-    CACHE_DIRNAME = '/tmp'.freeze
     CACHE_EXTENSION = '.json'.freeze
     CACHE_FILENAME_PREFIX = self.name.split('::').last.freeze
     REBRICKABLE_KEY = Jekyll.configuration({})['rebrickable_key'].freeze
@@ -62,7 +62,7 @@ module Jekyll
 
     def cache_path
       basename = [CACHE_FILENAME_PREFIX, @set_num, CACHE_EXTENSION].join
-      File.join(CACHE_DIRNAME, basename)
+      File.join(Dir.tmpdir, basename)
     end
 
     def fetch_and_cache
