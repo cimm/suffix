@@ -1,0 +1,35 @@
+---
+layout:      post
+title:       Retrospective
+date:        2018-09-06 09:00:00
+updated:     2018-09-06 09:00:00
+coordinates: 50.86505 4.70068
+proofread:   no
+---
+
+<div class="narrow-col">
+  <p>Eleven years. <time datetime="2011-09-05">Eleven years ago</time> I needed a little side project to play with that new <a href="https://rubyonrails.org/" title="Ruby on  Rails">web framework</a> everyone was talking about. You could build a blog in as little as <a href="https://www.youtube.com/watch?v=Gzj723LkRJY" title="Original build a blog in 5′ Ruby on Rails tutorial">5 minutes</a>! I thought it would be fun to try to smash something together in time for the <a href="http://2011.dconstruct.org/" title="dConstruct 2011 conference in Brighton">dConstruct 2011</a> conference and a blog was born. It probably took me the better part of the weekend to get my first Rails app up and running, right in time for the conference. That was <time title="2011-09-05">11 years ago</time>.</p>
+
+  <p>It even landed me my first paid Rails job. They asked for some Rails sample code on the interview and this <a href="/blog" title="The Suffix Blog">blog</a> was the only I had to show for.</p>
+
+  <h2>Blog</h2>
+
+  <p>It's a trip down memory lane browsing through my past ramblings on this blog. It's kind of a diary in its own way and shows what I have been busy with over the last 11 years: most of it is Ruby on Rails, there was a <a href="/blog/barcamp-gent-2" title="BarCamp Gent 2008">busy</a> <a href="/blog/barcamp-antwerp" title="BarCamp Antwerp 2009">BarCamp</a> period, a looong silence (that's me being a dad now), a <a href="/blog/public-private-keys-bitcoin-address" title="Public & private keys for a Bitcoin address">Bitcoin</a> period and more recently it's all <a href="/blog/restore-color-old-lego-bricks" title="Restore color of old LEGO bricks">Lego</a> stuff.</p>
+
+  <p>The <a href="/lego" title="My kid's LEGO collection">Lego</a> page was added to keep track of my kid's collection so the family knows what to buy. It was a prime candidate to learn <abbr title="Cascading Style Sheets">CSS</abbr> grid techniques and that is what this blog always has been about: a place to try and play with web stuff.</p>
+
+  <p>The blog has seen different iterations, with looong periods of silence but it's still around! A nice achievement if you know the average lifetime of a webpage is around <a href="https://blogs.loc.gov/thesignal/2011/11/the-average-lifespan-of-a-webpage/" title="The average lifespan of a webpage">100 days</a> (data from <time datetime="2003">2003</time>).</p>
+
+  <h2>Iterations</h2>
+
+  <p>In <time datetime="2013-09-26">September 2013</time> I moved the Rails app to a simpler static Jekyll website so I no longer had to maintain a full Rails application. The migration to Jekyll went smoothly but I never really took time to come up with a new design. For years it simply had some half-finished CSS mix that was kind off responsive. Fast forward to <a href="https://twitter.com/otagi" title="Tiago's Twitter account"/>Tiago</a>'s CSS grid presentation: time to learn something new and finally finish the designing part of this website. I redid the design over the summer holidays and here it is a fully responsive version built using proper CSS grids.</p>
+
+  <h2>Future</h2>
+
+  <p>The website will never be finished, of course, it will be neglected again, start to annoy me, until if force myself to bring it back to life again. There are a few rough edges to finish before taking on a new project:</p>
+
+  <ul>
+    <li>Remove the last few external <abbr title="Hypertext Transfer Protocol">HTTP</abbr> requests from the photos, Lego and wishlist pages. The photos are loaded from <a href="https://www.flickr.com/" title="Photo hosting @ Flickr">Flickr</a>, the Lego set images from <a href="https://rebrickable.com/" title="Combine your old LEGO to build new creations">Rebrickable</a>. These are the only "leaks" left on the site, nothing else talks to the outside world. It's not that it is "tracking visitors" but loading assets from another domain does leak the visitor's <abbr title="Internet Protocol">IP</abbr> address and, well, it's probably not kind to freewheel on their bandwidth either. I would like to improve the Rebrickable plugin to import the images locally and no longer fetch them each time the page is loaded.</li>
+    <li>Reduce the link rot. Many, many, links in my older blog posts are dead now. The pages they point to no longer exist, or worse, have been domain squatted by some shady marketing sites. These need to be cleaned up.</li>
+  </ul>
+</div>
