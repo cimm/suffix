@@ -1,5 +1,7 @@
 # RebrickableTag
 # Liquid tag to fetch Lego sets metadata based on the set number.
+# It will also download the Lego set images to the ASSET_DIR so
+# the generated site does not hot load them from Rebrickable.
 #
 # Add a `rebrickable_key` entry to the _config.yaml with your
 # Rebrickable API key, next use the the tag in the views:
@@ -17,8 +19,11 @@
 #                         set_url,
 #                         last_modified_dt
 #
-# The following will return the image URL:
-# {% rebrickable 6624 set_url %}
+# The following will return the number of parts:
+# {% rebrickable 6624 num_parts %}
+#
+# while this returns a path to the locally downloaded image:
+# {% rebrickable 6624 set_img_url %}
 
 require 'uri'
 require 'json'
@@ -31,17 +36,36 @@ module Jekyll
     CACHE_FILENAME_PREFIX = self.name.split('::').last.freeze
     REBRICKABLE_KEY = Jekyll.configuration({})['rebrickable_key'].freeze
     SETS_ENDPOINT_PREFIX = 'https://rebrickable.com/api/v3/lego/sets/'.freeze
+    ASSET_DIR = 'assets/lego'.freeze
 
     def render(context)
       @set_num = context[attrs.first]
       data = cached? ? read_cache : fetch_and_cache
-      data[attrs.last]
+      rendered = data[attrs.last]
+      rendered = download_image(data['set_img_url']) if set_img_url?
+      rendered
     end
 
     private
 
+    # Download set image from Rebrickable to local asset directory
+    def download_image(url)
+      FileUtils.mkdir_p(ASSET_DIR) unless File.directory?(ASSET_DIR)
+      filename = URI(url).path.split('/').last
+      path = File.join(ASSET_DIR, filename)
+      return path if File.exists?(path)
+      io = open(url)
+      FileUtils.mv(io.path, path)
+      FileUtils.chmod(0644, path)
+      path
+    end
+
     def attrs
       @markup.strip.split
+    end
+
+    def set_img_url?
+      attrs.last.downcase == 'set_img_url'
     end
 
     def write_cache(data)
