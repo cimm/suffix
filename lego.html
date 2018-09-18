@@ -44,11 +44,11 @@ set_numbers:
 <div class="extended-col">
   <section class="cards">
     {% for set_num in page.set_numbers %}
-      <a href="{% rebrickable set_num set_url %}" title="See details @ Rebrickable" class="card">
+      <a href="{% rebrickable set_num set_url %}" title="See set details @ Rebrickable" class="card">
         <div class="badge">{{ set_num }}</div>
         <figure>
           <div class="frame">
-            <img src="{% rebrickable set_num set_img_url %}" alt="Lego set {{set_num}}" />
+            <img src="{% rebrickable set_num set_img_url %}" alt="Lego set Nº{{set_num}}" />
           </div>
           <figcaption>{% rebrickable set_num name %}</figcaption>
         </figure>
