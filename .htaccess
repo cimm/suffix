@@ -34,7 +34,7 @@ RewriteCond %{REQUEST_URI} !/$
 RewriteRule (.*) $1\.html [L]
 
 # Don't use root for now
-RedirectMatch 302 ^/$ /blog
+RedirectMatch 302 ^/$ /blog/
 
 # Redirects for old Suffix Rails blog posts on fokkie.be
 Redirect permanent /blog/click_image_in_link_capybara /blog/click-image-in-link-capybara
