@@ -24,7 +24,7 @@ updated: 2010-12-29 15:44:29
 
   <h2>Installing missing locales</h2>
 
-  <p>Now, assume the Ruby 1.9 application needs the UTF-8 locale. First check if the needed locale is installed on the system with the <em>locale -a</em> command (shows a list with all available locales). If no UTF-8 locale is installed you can generate one with:</p>
+  <p>Now, assume the Ruby 1.9 application needs the UTF-8 locale. First, check if the needed locale is installed on the system with the <em>locale -a</em> command (shows a list with all available locales). If no UTF-8 locale is installed you can generate one with:</p>
 
   <samp>$ locale-gen en_US.UTF-8</samp>
 
@@ -32,7 +32,7 @@ updated: 2010-12-29 15:44:29
 
   <samp>LANG="en_US.UTF-8"</samp>
 
-  <p>Reboot the system and there you go... Ruby 1.9 should now be smart enough to use UTF-8 strings by default.</p>
+  <p>Reboot the system and there you go&hellip; Ruby 1.9 should now be smart enough to use UTF-8 strings by default.</p>
 
   <p>Thanks <span class="vcard"><a class="url fn nickname" href="http://twitter.com/jbpros"><span class="given-name">@jbpros</span></a></span> for pointing me in the right direction!</p>
 </div>

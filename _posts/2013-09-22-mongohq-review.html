@@ -11,7 +11,7 @@ proofread: yes
 
   <h2>Background</h2>
 
-  <p>The MongoHQ database is the main database of a social web application where members can upload photos, browse, add other members as favorite, and chat with each other. We currently handle around 1000 registrations per day. This boils down to around 3000 requests, or 24000 database queries per minute. All of this is handled by a single database (no replica sets but we use a Redis cache to offload some of it).</p>
+  <p>The MongoHQ database is the main database of a social web application where members can upload photos, browse, add other members as favorite, and chat with each other. We currently handle around 1000 registrations per day. This boils down to around 3000 requests or 24000 database queries per minute. All of this is handled by a single database (no replica sets but we use a Redis cache to offload some of it).</p>
   <p>We started off with the free plan and slowly grew with the MongoHQ plans until we were using their largest single server offering, at which point we decided to host it ourselves.</p>
 
   <h2>Pros</h2>
@@ -21,7 +21,7 @@ proofread: yes
   <h2>Cons</h2>
 
   <p>MongoHQ has a way to <strong>backup</strong> databases to <a href="https://aws.amazon.com/s3">Amazon S3</a>. They advise only using this for databases under 15GB, as larger datasets will have a significant impact on the load of the server. Once we passed the 15GB limit, we chose to keep using the S3 backups. The larger MongoHQ plans do include snapshots, but there is no way to access them, and we knew we would want access to our database dumps at some point in the future. Our database kept growing, and in the last week, the load on the server was so significant it would take down the site while taking a backup. To be fair, this was entirely our own choice, we could have relied on the snapshots MongoHQ schedules but chose not to. MongoHQ is working on an improved backup system which might solve this issue.</p>
-  <p>Over the last year we had to contact their support desk a few times. Their staff is professional and offers good advice - they clearly know MongoDB. The response time can use a little nudge though. Once, we failed creating a new instance through the interface when we wanted to upgrade our database. It took support 24 hours to respond to our <em>"Things are broken, please help ASAP."</em> ticket. Another time, when discussing an <em>"EMERGENCY: This is a critical issue. I need a hero!"</em> ticket it took several hours between responses. This is stressful when your database is slowly grinding to a halt.</p>
+  <p>Over the last year, we had to contact their support desk a few times. Their staff is professional and offers good advice - they clearly know MongoDB. The response time can use a little nudge though. Once, we failed to create a new instance through the interface when we wanted to upgrade our database. It took support 24 hours to respond to our <em>"Things are broken, please help ASAP."</em> ticket. Another time, when discussing an <em>"EMERGENCY: This is a critical issue. I need a hero!"</em> ticket it took several hours between responses. This is stressful when your database is slowly grinding to a halt.</p>
 
   <h2>Recommended?</h2>
 

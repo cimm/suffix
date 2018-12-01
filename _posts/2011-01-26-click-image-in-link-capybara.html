@@ -40,5 +40,5 @@ proofread: yes
   find(:xpath, "//a/img[@alt='Edit']/..").click
   {% endhighlight %}
 
-  <p>There is one caveat here. The /.., at the end, selects the parent element from the XPath result (the link and not the image in our case). If you leave this out, Capybara will click on the image and for some reason that doesn't seem to work.</p>
+  <p>There is one caveat here. The /.., in the end, selects the parent element from the XPath result (the link and not the image in our case). If you leave this out, Capybara will click on the image and for some reason that doesn't seem to work.</p>
 </div>

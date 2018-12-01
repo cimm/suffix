@@ -6,7 +6,7 @@ updated: 2010-12-12 00:09:00
 ---
 
 <div class="narrow-col">
-  <p>Earlier today I was trying to get up to speed with Sinatra, DataMapper and RSpec. There is a great <a href="http://iamneato.com/2009/08/01/rspec-and-sinatra-quick-start" title="RSpec and Sinatra Quick Start" class="ext">step by step tutorial</a> for Sinatra and RSpec 1 if your need that, but I want to play with the shiny new stuff, so here we go.</p>
+  <p>Earlier today I was trying to get up to speed with Sinatra, DataMapper and RSpec. There is a great <a href="http://iamneato.com/2009/08/01/rspec-and-sinatra-quick-start" title="RSpec and Sinatra Quick Start" class="ext">step by step tutorial</a> for Sinatra and RSpec 1 if you need that, but I want to play with the shiny new stuff, so here we go.</p>
 
   <h2>Bundler</h2>
 
@@ -46,7 +46,7 @@ updated: 2010-12-12 00:09:00
   end
   {% endhighlight %}
 
-  <p>The first line requires your Sinatra application (again, rename it with your application). The following lines require the stuff we need to run the tests and after that we set the environment. The last 3 lines reset the database before each test to make sure our tests don't influence one another.</p>
+  <p>The first line requires your Sinatra application (again, rename it with your application). The following lines require the stuff we need to run the tests and after that, we set the environment. The last 3 lines reset the database before each test to make sure our tests don't influence one another.</p>
 
   <p>Let's move on to the <em>myapp_spec.rb</em>:</p>
 
@@ -67,7 +67,7 @@ updated: 2010-12-12 00:09:00
   end
   {% endhighlight %}
 
-  <p>This is where your tests go, how this works is not the scope of this tutorial. You can now run the test with <em>RACK_ENV=test rspec .</em> (that's a dot at the end).</p>
+  <p>This is where your tests go, how these work is out of scope for this tutorial. You can now run the test with <em>RACK_ENV=test rspec .</em> (that's a dot at the end).</p>
 
   <h2>Databases</h2>
 

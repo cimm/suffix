@@ -10,7 +10,7 @@ updated: 2011-03-01 21:32:15
 
   <h2>Serial Communication</h2>
 
-  <p>Most tutorials will explain how to send data from an Arduino (or a connected sensor) to a computer. I want the opposite: send data from my computer to an Arduino Uno bord. Talking with an Arduino over a <abbr title="Universal Serial Bus">USB</abbr> cable is called &lsquo;serial communicaton&rsquo; which means you can send one instruction at a time. This may sound slow &mdash; and it is &mdash; but it's the easiest way to learn how it works.</p>
+  <p>Most tutorials will explain how to send data from an Arduino (or a connected sensor) to a computer. I want the opposite: send data from my computer to an Arduino Uno board. Talking with an Arduino over a <abbr title="Universal Serial Bus">USB</abbr> cable is called &lsquo;serial communication&rsquo; which means you can send one instruction at a time. This may sound slow &mdash; and it is &mdash; but it's the easiest way to learn how it works.</p>
 
   <h2>Sketch</h2>
 
@@ -45,7 +45,7 @@ updated: 2011-03-01 21:32:15
   <ol>
     <li>The first line specifies the <abbr title="Light-Emitting Diode">LED</abbr> we want to use, pin 13 is the built-in <abbr title="Light-Emitting Diode">LED</abbr> on an Arduino Uno, change this if you use another board.</li>
     <li>The Serial.begin line tells the Arduino what <a href="http://www.ladyada.net/learn/arduino/lesson4.html" title="What does baud rate mean?" class="ext">baud rate</a> to use.</li>
-    <li>The loop function will look if there is some input waiting and if so read it in the <em>value</em> variable (only one char at the time). If the value is 1 it will turn the <abbr title="Light-Emitting Diode">LED</abbr> on, if not it will turn it of.</li>
+    <li>The loop function will look if there is some input waiting and if so read it in the <em>value</em> variable (only one char at the time). If the value is 1 it will turn the <abbr title="Light-Emitting Diode">LED</abbr> on, if not it will turn it off.</li>
     <li>The Serial.print sends the input back to the computer (optional but nice to see what the Arduino received) and wait for 1 second before checking for new input.</li>
   </ol>
 </div>

@@ -13,7 +13,7 @@ updated: 2011-06-02 10:06:17
   page.has_css?('tr.foo')
   {% endhighlight %}
 
-  <p>Capybara simulates user behavior, it will act like if a user is visiting the page and interact with it. For acceptance testing this is just fine. It will call the controller and render the page, full stack, and it's probably what you want.</p>
+  <p>Capybara simulates user behavior, it will act like if a user is visiting the page and interact with it. For acceptance testing, this is just fine. It will call the controller and render the page, full stack, and it's probably what you want.</p>
 
   <h2>Isolation testing</h2>
 
@@ -29,7 +29,7 @@ updated: 2011-06-02 10:06:17
   end
   {% endhighlight %}
 
-  <p>It reads the HAML file and renders its <abbr title="HyperText Markup Language">HTML</abbr>. Don't forget to specify your view variables as they won't exists since we are not using the controller.</p>
+  <p>It reads the HAML file and renders its <abbr title="HyperText Markup Language">HTML</abbr>. Don't forget to specify your view variables as they won't exist since we are not using the controller.</p>
 
   <h2>Adding has_xpath? and has_css?</h2>
 

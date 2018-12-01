@@ -1,22 +1,22 @@
 ---
 layout:  post
-title:   An internet connected lamp
+title:   An internet-connected lamp
 date:    2011-02-27 18:30:14
 updated: 2011-03-01 21:50:41
 ---
 
 <div class="narrow-col">
-  <p>The <a href="http://www.youtube.com/watch?v=sfEbMV295Kk" title="Video: The Internet of Things explained">Internet of Things</a> is the idea of an internet of devises: your <a href="http://www.ambientdevices.com/products/umbrella.html" title="Ambient Umbrella by Ambient Devices">umbrella</a> could glow when it will rain or you could get a <a href="http://www.ambientdevices.com/cat/orb/orborder.html" title="Ambient Orb by Ambient Devices">lamp</a> that uses color to show weather forecasts. Cool, but it costs $150 and is sold out. Any chance we can make one ourselves?</p>
+  <p>The <a href="http://www.youtube.com/watch?v=sfEbMV295Kk" title="Video: The Internet of Things explained">Internet of Things</a> is the idea of an internet of devices: your <a href="http://www.ambientdevices.com/products/umbrella.html" title="Ambient Umbrella by Ambient Devices">umbrella</a> could glow when it will rain or you could get a <a href="http://www.ambientdevices.com/cat/orb/orborder.html" title="Ambient Orb by Ambient Devices">lamp</a> that uses color to show weather forecasts. Cool, but it costs $150 and is sold out. Any chance we can make one ourselves?</p>
 
   <p>What follows is my very first Arduino project, feel free to comment and improve wherever you see fit.</p>
 </div>
 
 <figure class="extended-col-left">
-  <img src="https://c1.staticflickr.com/6/5052/5480018182_610e32cd95_z.jpg" alt="Internet connected lamp"/>
+  <img src="https://c1.staticflickr.com/6/5052/5480018182_610e32cd95_z.jpg" alt="Internet-connected lamp"/>
 </figure>
 
 <figure class="extended-col-right">
-  <img src="https://c1.staticflickr.com/6/5060/5479417753_7579ac170f.jpg" alt="Internet connected lamp"/>
+  <img src="https://c1.staticflickr.com/6/5060/5479417753_7579ac170f.jpg" alt="Internet-connected lamp"/>
 </figure>
 
 <div class="narrow-col">
@@ -93,7 +93,7 @@ updated: 2011-03-01 21:50:41
 
   <p>Now we need something to tell the Arduino which <abbr title="Light Emitting Diode">LED</abbr> it should turn on. Download the Ruby <a href="https://github.com/cimm/orb" title="Orb source code at Github" rel="me">orbifier script</a>.</p>
 
-  <p>At the time of writing there are 3 parsers: a Yahoo! Weather forecast parser, a Belgian train delay parser, and a Gmail new mail parser. Feel free to write your own if you want. The parser will check online and send &ldquo;G&rdquo; to the Arduino of it wants to turn on the green light, it will send &ldquo;R&rdquo; if it wants the red light turned on.</p>
+  <p>At the time of writing, there are 3 parsers: a Yahoo! Weather forecast parser, a Belgian train delay parser, and a Gmail new mail parser. Feel free to write your own if you want. The parser will check online and send &ldquo;G&rdquo; to the Arduino of it wants to turn on the green light, it will send &ldquo;R&rdquo; if it wants the red light turned on.</p>
 
   <p>You should be good to go. Run one of the orbifier parsers to turn on the light. Check for new e-mail for example:</p>
 
@@ -101,12 +101,12 @@ updated: 2011-03-01 21:50:41
 
   <h2>What&apos; next?</h2>
 
-  <p>The next step would be to to add a wireless shield to the Arduino so that the computer isn&apos;t needed anymore (for now you are limited by the length of the cable between the Arduino and the computer).</p>
+  <p>The next step would be to add a wireless shield to the Arduino so that the computer isn&apos;t needed anymore (for now you are limited by the length of the cable between the Arduino and the computer).</p>
 
   <h2>Links</h2>
 
   <ul>
     <li>The <a href="https://github.com/cimm/orb" title="Orb source code at Github" rel="me">project page</a> at Github contains the source code for both the Arduino and computer part and some more detailed information.</li>
-    <li>Here are some more <a href="http://www.flickr.com/photos/schoeters/tags/orb/" rel="me">photos</a> form the finished project.</li>
+    <li>Here are some more <a href="http://www.flickr.com/photos/schoeters/tags/orb/" rel="me">photos</a> from the finished project.</li>
   </ul>
 </div>

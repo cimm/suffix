@@ -6,7 +6,7 @@ updated: 2011-05-19 04:07:56
 ---
 
 <div class="narrow-col">
-  <p><a href="https://github.com/jnicklas/capybara" title="Capybara repository @ Github">Capybara</a> doesn't support POST requests, the built in visit method always uses GET. This is by design and with good reason: Capybara is built for acceptance testing and a user would never ask to &ldquo;post&rdquo; parameter X and Y to the application. There will always be some kind of interface, a form for example. So it makes more sence to simulate what the user would really do:</p>
+  <p><a href="https://github.com/jnicklas/capybara" title="Capybara repository @ Github">Capybara</a> doesn't support POST requests, the built-in visit method always uses GET. This is by design and with good reason: Capybara is built for acceptance testing and a user would never ask to &ldquo;post&rdquo; parameter X and Y to the application. There will always be some kind of interface, a form for example. So it makes more sense to simulate what the user would really do:</p>
 
   {% highlight ruby %}
   fill_in 'Login', :with => 'user@example.com'
@@ -16,7 +16,7 @@ updated: 2011-05-19 04:07:56
 
   <h2>Not convinced yet?</h2>
 
-  <p>So far for the obligatory warning. I get the point, I even agree with the argument, but I still want to send a POST request. Why? Well, maybe you are testing an <abbr title="Application Programming Interface">API</abbr> without a user interface or you are writing some route tests? Is it really impossibe to simulate a POST request with Capybara? Nah, off course not.</p>
+  <p>So far for the obligatory warning. I get the point, I even agree with the argument, but I still want to send a POST request. Why? Well, maybe you are testing an <abbr title="Application Programming Interface">API</abbr> without a user interface or you are writing some route tests? Is it really impossible to simulate a POST request with Capybara? Nah, of course not.</p>
 
   {% highlight ruby %}
   it "registers a new temperature reading via the API" do
@@ -25,5 +25,5 @@ updated: 2011-05-19 04:07:56
   end
   {% endhighlight %}
 
-  <p>Note that the second line is <a href="http://groups.google.com/group/ruby-capybara/browse_thread/thread/29d32f8637239bc1" title="How do I check the HTTP response code? @ Google Groups">questionable</a> as well. It asks the response status code from the driver but not every driver supports this. The previous snippet works with certain drivers but is not recommanded so use this snippet only when you understand why you can't use the first example.</p>
+  <p>Note that the second line is <a href="http://groups.google.com/group/ruby-capybara/browse_thread/thread/29d32f8637239bc1" title="How do I check the HTTP response code? @ Google Groups">questionable</a> as well. It asks the response status code from the driver but not every driver supports this. The previous snippet works with certain drivers but is not recommended so use this snippet only when you understand why you can't use the first example.</p>
 </div>

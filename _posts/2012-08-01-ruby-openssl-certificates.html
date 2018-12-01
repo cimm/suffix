@@ -11,11 +11,11 @@ proofread: no
 
   <code>SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B: certificate verify failed</code>
 
-  <p>The Open<abbr title="Secure Secure Layer">SSL</abbr> library can't verify the Certificate Authority (CA) the certificate from the responding server is signed against and breaks. Certificates are verified using a <a href="https://en.wikipedia.org/wiki/Root_certificate" class="ext">chain of trust</a>. The certficate should be verified by his parent, which, in his turn should be verified by his parent untill you reach a root certificate.</p>
+  <p>The Open<abbr title="Secure Secure Layer">SSL</abbr> library can't verify the Certificate Authority (CA) the certificate from the responding server is signed against and breaks. Certificates are verified using a <a href="https://en.wikipedia.org/wiki/Root_certificate" class="ext">chain of trust</a>. The certificate should be verified by his parent, which, in his turn should be verified by his parent until you reach a root certificate.</p>
 
   <h2><abbr title="Secure Socekts Layer">SSL</abbr>::VERIFY_NONE</h2>
 
-  A lot of resources on the web seem to take the easy route: not verifying certificates with Open<abbr title="Secure Sockets Layer">SSL</abbr>::<abbr title="Secure Sockets Layer">SSL</abbr>::VERIFY_NONE. While this works, it's insecure. Why use <abbr title="Secure Sockets Layer">SSL</abbr> if you don't intend to use its advantages? Not verifying a certificate means you simply trust the remote server is who he claims to be, not who he really is. That might be acceptable for your personal website but not for a payment gateway. <span class="vcard"><span class="fn">James Golick</span> worte a nice <a href="https://jamesgolick.com/2011/2/15/verify-none..html" title="James Golick vs. VERIFY_NONE" class="ext url">article</a></span> explaining his fight against <abbr title="Secure Sockets Layer">SSL</abbr>::VERIFY_NONE.</p>
+  A lot of resources on the web seem to take the easy route: not verifying certificates with Open<abbr title="Secure Sockets Layer">SSL</abbr>::<abbr title="Secure Sockets Layer">SSL</abbr>::VERIFY_NONE. While this works, it's insecure. Why use <abbr title="Secure Sockets Layer">SSL</abbr> if you don't intend to use its advantages? Not verifying a certificate means you simply trust the remote server is whom he claims to be, not who he really is. That might be acceptable for your personal website but not for a payment gateway. <span class="vcard"><span class="fn">James Golick</span> wrote a nice <a href="https://jamesgolick.com/2011/2/15/verify-none..html" title="James Golick vs. VERIFY_NONE" class="ext url">article</a></span> explaining his fight against <abbr title="Secure Sockets Layer">SSL</abbr>::VERIFY_NONE.</p>
 
   <h2>The Certificate Authority (CA) bundle</h2>
 
@@ -31,7 +31,7 @@ proofread: no
   https.request_get("/")
   {% endhighlight %}
 
-  <p>Or, my prefered way, you can use an environment variable and not have hard coded paths:</p>
+  <p>Or, my prefered way, you can use an environment variable and not have hardcoded paths:</p>
 
   <code>export SSL_CERT_FILE="path_to_certificate"</code>
 
