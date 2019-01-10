@@ -101,7 +101,7 @@ module Jekyll
       response = uri.open('Accept' => 'application/json', 'Authorization' => "key #{REBRICKABLE_KEY}").read
       JSON.parse(response)
     rescue OpenURI::HTTPError => error
-      raise "Rebrickable auth error, check your API key" if error.io.status.first == "401"
+      raise 'Rebrickable auth error, check your API key' if error.io.status.first == '401'
     end
   end
 end
