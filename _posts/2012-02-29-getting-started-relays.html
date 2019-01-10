@@ -6,17 +6,17 @@ updated: 2012-04-04 13:03:52
 ---
 
 <figure class="extended-col">
-  <img src="/assets/relay_omron.png" alt="Omron G2E PCB relay" />
+  <img src="../assets/relay_omron.png" alt="Omron G2E PCB relay" />
 </figure>
 
 <div class="narrow-col">
   <p>We have a boom gate at the parking lot in our coworking space. The gate can be opened with a button press from inside the office. Opening the gate is as simple as closing a circuit in the intercom, interesting. We wanted to simulate a button press on the intercom with an Arduino.</p>
 
-  <p>A quick look with the multimeter showed 12 volts on the gate circuit, nice, nothing we can't handle. We can't just wire the Arduino with the other circuit, a relay keeps them apart. Not having used relays before I started digging around and found <a href="http://www.arduino.cc/playground/uploads/Main/relays.pdf" title="Relays wiring diagram for Arduino" class="ext">this wiring diagram</a> on the Arduino site.</p>
+  <p>A quick look with the multimeter showed 12 volts on the gate circuit, nice, nothing we can't handle. We can't just wire the Arduino with the other circuit, a relay keeps them apart. Not having used relays before I started digging around and found <a href="http://www.arduino.cc/playground/uploads/Main/relays.pdf" title="Relays wiring diagram for Arduino">this wiring diagram</a> on the Arduino site.</p>
 
   <h2>An extra pin</h2>
 
-  <p>I got myself the cheapest and simplest relay I could get from my local electronics hobby shop, an Omron G2E PCB relay (<a href="http://www.datasheetarchive.com/G2E-184P-M-US-datasheet.html" title="Omron G2E PCB relay datasheets" class="ext">datasheet</a>).</p>
+  <p>I got myself the cheapest and simplest relay I could get from my local electronics hobby shop, an Omron G2E PCB relay (<a href="http://www.datasheetarchive.com/G2E-184P-M-US-datasheet.html" title="Omron G2E PCB relay datasheets">datasheet</a>).</p>
 
   <p>The wiring diagram from the Arduino shows 5 connections on the relay, mine has 6. The datasheet shows the internal wiring but didn't make me any wiser, so how do you connect a relay?</p>
 
@@ -38,5 +38,5 @@ updated: 2012-04-04 13:03:52
 
   <h2>Open Sesame</h2>
 
-  <p>Wanna know how the gate project, called Sesame, tuned out? There is a lot more info over on the <a href="https://github.com/DevSpace/sesame" title="Sesame project @ GitHub" class="ext">DevSpace GitHub project page</a>.</p>
+  <p>Wanna know how the gate project, called Sesame, tuned out? There is a lot more info over on the <a href="https://github.com/DevSpace/sesame" title="Sesame project @ GitHub">DevSpace GitHub project page</a>.</p>
 </div>
