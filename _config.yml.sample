@@ -3,7 +3,7 @@ author: Simon Schoeters
 description: My personal hangout
 url: https://www.suffix.be
 hostname: suffix.be
-permalink: blog/:title
+permalink: blog/:title/index.html
 exclude:
   - Gemfile*
   - Rakefile
