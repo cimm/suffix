@@ -47,18 +47,18 @@ updated: 2007-12-12 12:42:31
   }
   {% endhighlight %}
 
-  <p>This <a href="http://en.wikipedia.org/wiki/Code_snippets" title="Code snippets definition on Wikipedia" class="ext">snippet</a> assumes your page object has a permalink and an updated_at parameter, change these if yours looks different.</p>
+  <p>This <a href="http://en.wikipedia.org/wiki/Code_snippets" title="Code snippets definition on Wikipedia">snippet</a> assumes your page object has a permalink and an updated_at parameter, change these if yours looks different.</p>
 
   <p>There are a few things you need to know about Sitemaps: &lsquo;loc&rsquo; is the only required element so you can drop the &lsquo;lastmod&rsquo;, &lsquo;changefreq&rsquo; and &lsquo;priority&rsquo; elements if you don't have any useful data for these parameters. More in detail:</p>
 
   <ul>
     <li><strong>loc</strong> - required: the full URL to the page, include your domain as well.</li>
-    <li><strong>lastmod</strong> - optional: last modification date for that page in the <a href="http://www.w3.org/TR/NOTE-datetime" title="W3C Datetime format specification" class="ext">W3C Datetime</a> format, probably something like YYYY-MM-DD.</li>
+    <li><strong>lastmod</strong> - optional: last modification date for that page in the <a href="http://www.w3.org/TR/NOTE-datetime" title="W3C Datetime format specification">W3C Datetime</a> format, probably something like YYYY-MM-DD.</li>
     <li><strong>changefreq</strong> - optional: how frequently the page is likely to change. Valid values are: always, hourly, daily, weekly, monthly, yearly or never.</li>
     <li><strong>priority</strong> - optional: the priority of this URL relative to other URLs in your site. Valid values range from 0.0 to 1.0.</li>
   </ul>
 
-  <p>See the official <a href="http://www.sitemaps.org/protocol.php" title="sitemaps.org protocol description" class="ext">Sitemap protocol definition</a> site for a full description.</p>
+  <p>See the official <a href="http://www.sitemaps.org/protocol.php" title="sitemaps.org protocol description">Sitemap protocol definition</a> site for a full description.</p>
 
   <h2>The route</h2>
 
@@ -72,7 +72,7 @@ updated: 2007-12-12 12:42:31
 
   <h2>The robots.txt</h2>
 
-  <p>Almost done. The Sitemap should be working by now but how does a crawler (like the <a href="http://en.wikipedia.org/wiki/Googlebot" class="ext" title="Googlebot's page on Wikipedia">Googlebot</a>) where to look for you Sitemap? That's where the robots.txt file is for. Every crawler should request the robots.txt file first to see what it may or may not index so this is the ideal place to advertise our Sitemap. Add the following line to the robots.txt file in you public directory and make sure to use the full URL to your Sitemap (including the domain):</p>
+  <p>Almost done. The Sitemap should be working by now but how does a crawler (like the <a href="http://en.wikipedia.org/wiki/Googlebot" title="Googlebot's page on Wikipedia">Googlebot</a>) where to look for you Sitemap? That's where the robots.txt file is for. Every crawler should request the robots.txt file first to see what it may or may not index so this is the ideal place to advertise our Sitemap. Add the following line to the robots.txt file in you public directory and make sure to use the full URL to your Sitemap (including the domain):</p>
 
   <samp>Sitemap: http://www.example.com/sitemap.xml</samp>
 
@@ -81,8 +81,8 @@ updated: 2007-12-12 12:42:31
   <h2>Resources</h2>
 
   <ul>
-    <li><a href="http://www.sitemaps.org/" title="sitemaps.org" class="ext">Official Sitemap definition</a></li>
-    <li><a href="http://www.d-jones.com/2007/4/5/google-sitemaps-in-ruby-on-rails" title="Great article I used to get started" class="ext">Google Sitemaps in Ruby on Rails</a></li>
+    <li><a href="http://www.sitemaps.org/" title="sitemaps.org">Official Sitemap definition</a></li>
+    <li><a href="https://web.archive.org/web/20090126073513/http://d-jones.com:80/2007/4/5/google-sitemaps-in-ruby-on-rails" title="Great article I used to get started">Google Sitemaps in Ruby on Rails</a></li>
     <li><a href="/sitemap.xml" title="My Sitemap as an example">My site's Sitemap</a> as an example</li>
   </ul>
 </div>

@@ -9,7 +9,7 @@ updated: 2008-05-20 12:05:59
   <p>As I had some troubles finding out how to show some of my own Flickr photos on this site using the Flickr API and Ruby on Rails I thought it would be useful to write it down in a small tutorial.</p>
   <h2>STEP 1: Finding a library: rFlickr</h2>
 
-  <p>Flickr lists 3 possible Ruby frameworks for their API. After trying flickr.rb (no longer available) and not being able to login I decided to switch to <a href="http://rubyforge.org/projects/rflickr/" title="The Flickr API kit I choose" class="ext">rFlickr</a> as it seems the most popular one. I didn't look at the last one: <a href="http://rubyforge.org/projects/flickr/" title="Another Flickr API kit for Ruby" class="ext">flickr-ruby</a>.</p>
+  <p>Flickr lists 3 possible Ruby frameworks for their API. After trying flickr.rb (no longer available) and not being able to login I decided to switch to <a href="https://github.com/digitalpardoe/rflickr/" title="The Flickr API kit I choose">rFlickr</a> as it seems the most popular one.</p>
 
   <p>Start with installing the rFlickr library. You may need to uninstall a previous library if you installed another one earlier.</p>
 
@@ -19,7 +19,7 @@ updated: 2008-05-20 12:05:59
 
   <h2>STEP 2: Get a Flickr API key</h2>
 
-  <p>Flickr doesn't use the username/password combination as most other API's do. An application can ask for permissions which the user has to grant. A token is returned when this is done allowing the application to connect the next time so we'll only have to do this once. <a href="http://flickr.com/services/api/keys/apply/" title="Request an API key" class="ext">Apply for a key</a> at the Flickr website and remember the key and the shared secret. I use a &ldquo;Web Application&rdquo; key as I want to use it for my blog.</p>
+  <p>Flickr doesn't use the username/password combination as most other API's do. An application can ask for permissions which the user has to grant. A token is returned when this is done allowing the application to connect the next time so we'll only have to do this once. <a href="http://flickr.com/services/api/keys/apply/" title="Request an API key">Apply for a key</a> at the Flickr website and remember the key and the shared secret. I use a &ldquo;Web Application&rdquo; key as I want to use it for my blog.</p>
 
   <h2>STEP 3: Get a Flickr token</h2>
 

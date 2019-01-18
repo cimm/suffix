@@ -6,7 +6,7 @@ updated: 2008-10-28 18:13:36
 ---
 
 <div class="narrow-col">
-  <p>In one of my <a href="generated-maps" title="Generated maps with Ruby on Rails">previous posts</a> I showed how to dynamically generate a map from a set of coordinates in Ruby on Rails (like the map on top of this page). This is nice but still required me to manually update my location each time... not very useable. I have a <a href="http://www.dopplr.com/" title="An online tool for frequent business travellers">Dopplr</a> account where I enter all my future trips so it feels stupid to enter the same information again on my own website. We can do better than that!</p>
+  <p>In one of my <a href="../generated-maps" title="Generated maps with Ruby on Rails">previous posts</a> I showed how to dynamically generate a map from a set of coordinates in Ruby on Rails (like the map on top of this page). This is nice but still required me to manually update my location each time... not very useable. I have a Dopplr account where I enter all my future trips so it feels stupid to enter the same information again on my own website. We can do better than that!</p>
 
   <p>Here is the idea: a script that checks my travel plans on Dopplr for to following day and creates a new map of that location if needed. Also: a perfect excuse to have a look at the Rake build language which I had never used.</p>
 
@@ -16,7 +16,7 @@ updated: 2008-10-28 18:13:36
 
   <h2>Tokens and sessions</h2>
 
-  <p>You will need a session key to use the Dopplr <abbr title="Application Programming Interface">API</abbr>, this key replaces your username and password (read &lsquo;<a href="http://adactio.com/journal/1357" title="The password anti-pattern @ Adactio">The password anti-pattern</a>&rsquo; if you want to know why). Here is how to get one:</p>
+  <p>You will need a session key to use the Dopplr <abbr title="Application Programming Interface">API</abbr>, this key replaces your username and password (read &lsquo;<a href="https://adactio.com/journal/1357" title="The password anti-pattern @ Adactio">The password anti-pattern</a>&rsquo; if you want to know why). Here is how to get one:</p>
 
   <ol>
     <li>Go to <samp>https://www.dopplr.com/api/AuthSubRequest?scope=http://www.dopplr.com&amp;next=<strong>&lt;your_url&gt;</strong>&amp;session=1</samp>. Replace <samp>&lt;your_url&gt;</samp> with your website's URL.</li>

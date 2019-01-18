@@ -14,7 +14,7 @@ updated: 2008-05-23 18:25:04
 
   <h2>What we need</h2>
 
-  <p>Generating the actual RSS feed is not in the scope of this article, we'll only add location awareness to our existing feed. Please head over to <span class="vcard"><span class="fn">Larry Myers</span></span>' <a href="http://www.myersds.com/notebook/2006/05/11/how_to_generate_rss_feeds_with_rails" title="How To Generate RSS Feeds with Rails">How To Generate RSS Feeds with Rails</a> article if you don't generate your feed yet.</p>
+  <p>Generating the actual RSS feed is not in the scope of this article, we'll only add location awareness to our existing feed. Please head over to <span class="vcard"><span class="fn">Larry Myers</span></span>' <a href="https://web.archive.org/web/20080521213118/http://myersds.com:80/notebook/2006/05/11/how_to_generate_rss_feeds_with_rails" title="How To Generate RSS Feeds with Rails">How To Generate RSS Feeds with Rails</a> article if you don't generate your feed yet.</p>
 
   <p>We'll need to add one small XML element to each item in our feed with the latitude and longitude for the post:</p>
 
@@ -22,7 +22,7 @@ updated: 2008-05-23 18:25:04
   <georss:point>50.8668 4.69714</georss:point>
   {% endhighlight %}
 
-  <p>In Ruby on Rails this looks like the following (where latitude and longitude are 2 fields in our posts table). The syntax looks a little strange as we need a way to add the &lsquo;georss:point&rsquo; element and Ruby doesn't like the colon in there (it indicates a <a href="http://corelib.rubyonrails.org/classes/Symbol.html" title="Symbol class definition">symbol</a>).</p>
+  <p>In Ruby on Rails this looks like the following (where latitude and longitude are 2 fields in our posts table). The syntax looks a little strange as we need a way to add the &lsquo;georss:point&rsquo; element and Ruby doesn't like the colon in there (it indicates a <a href="https://ruby-doc.org/core-2.2.0/Symbol.html" title="Symbol class definition">symbol</a>).</p>
 
   {% highlight ruby %}
   xml.georss :point do
