@@ -14,26 +14,26 @@
     <meta name="viewport" content="width=device-width" />
     <link rel="alternate" href="{{ site.url }}{{ page.url }}" hreflang="en"/>
     <link rel="canonical" href="{{ site.url }}{{ page.url }}"/>
-    <link href="{{ '/feeds/blog.atom' | relativize_url }}" rel="alternate" title="Suffix's feed" type="application/atom+xml" />
-    <link rel="stylesheet" href="{{ '/assets/stylesheets/main.css' | relativize_url }}" />
-    <link rel="manifest" href="{{ '/manifest.json' | relativize_url }}" />
-    <link rel="shortcut icon" href="{{ '/assets/favicon.ico' | relativize_url }}">
+    <link href="{% relbase %}/feeds/blog.atom" rel="alternate" title="Suffix's feed" type="application/atom+xml" />
+    <link rel="stylesheet" href="{% relbase %}/assets/stylesheets/main.css" />
+    <link rel="manifest" href="{% relbase %}/manifest.json" />
+    <link rel="shortcut icon" href="{% relbase %}/assets/favicon.ico">
   </head>
   <body>
     <header class="narrow-col">
       <nav>
         <ul>
-          <li><a href="{{ '/blog/' | relativize_url }}">Blog</a></li>
-          <li><a href="{{ '/photos' | relativize_url }}">Photos</a></li>
-          <li><a href="{{ '/lego' | relativize_url }}">Lego</a></li>
-          <li><a href="{{ '/about' | relativize_url }}">About</a></li>
+          <li><a href="{% relbase %}/blog/">Blog</a></li>
+          <li><a href="{% relbase %}/photos/">Photos</a></li>
+          <li><a href="{% relbase %}/lego/">Lego</a></li>
+          <li><a href="{% relbase %}/about/">About</a></li>
         </ul>
       </nav>
     </header>
     {{ content }}
     <footer>
       <h1>
-        <a href="{{ '/policies' | relativize_url }}">SUFFIX</a>
+        <a href="{% relbase %}/policies/">SUFFIX</a>
       </h1>
     </footer>
   </body>
