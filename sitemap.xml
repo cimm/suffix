@@ -18,7 +18,7 @@ layout: null
   <!-- Posts -->
   {% for post in site.posts %}
     <url>
-      <loc>{{ site.url }}{{ post.id }}</loc>
+      <loc>{{ site.url }}/blog/{{ post.slug }}/</loc>
       <changefreq>monthly</changefreq>
       <lastmod>{{ post.updated | date_to_xmlschema }}</lastmod>
       <priority>0.5</priority>
