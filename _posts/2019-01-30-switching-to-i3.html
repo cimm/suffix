@@ -1,0 +1,95 @@
+---
+layout:      post
+title:       Switching to i3
+date:        2019-01-30 01:00:00
+updated:     2019-01-30 01:00:00
+coordinates: 50.86505 4.70068
+proofread:   no
+description: Switching to a tiling window manager on Ubuntu.
+---
+
+<div class="narrow-col">
+  <p>Two years ago I <a href="../year-of-linux-desktop" title="The Year of my Linux Deskotp">switched</a> from macOS to Linux on my main machine. I went for a standard Ubuntu 16.04 setup without any bells or whistles. A few months in and Ubuntu announced it would swap Unity for GNOME, my second desktop environment to discover. I couldn't have told you the difference between both a few years ago, now they feel like old friends.</p>
+
+  <p>I have always known tiling window managers existed but only Linux neckbeards use them. Since I am no longer only a Vim user but also a Linux one, I probably qualify as one now. Vim took some time to get used to but I never looked back, so why not try a tiling window manager for a while?</p>
+
+  <h2>A Tiling Window Manager</h2>
+
+  <p>A tiling window manager shows windows on a screen. It differs from your usual Windows or macOS desktop since windows in a tiling window manager don't overlap. You don't "hide" one window behind another. Linux being Linux has a <a href="https://wiki.archlinux.org/index.php/Comparison_of_tiling_window_managers" title="Comparison of tiling windown managers @ Arch wiki">few options</a>: Awesome, bspwm, dwm, i3, sway, and xmonad to name a few.</p>
+
+  <p>I went with <a href="https://i3wm.org/" title="Improved Tiling WM">i3</a> since it seems to be one of the simpler ones. There is also <a href="https://github.com/Airblader/i3" title="i3-gaps, a fork of i3">i3-gaps</a> which, to my understanding, is more or less the same with an added margin around the windows. Let's stick with i3 for now as it's easier to install. A simple &ldquo;<code>sudo apt install i3</code>&rdquo; on Ubuntu 18.04 should do the trick.</p>
+
+  <h2>Getting Started</h2>
+
+  <p>Log out and when you log back in you'll see a little gear icon under the password field, click and choose i3 form the list.</p>
+
+  <p>You are greeted with a minimalistic screen: a status bar at the bottom and a question if it needs to create a config file, press <kbd>enter</kbd>. Next i3 asks for your modifier key, I went for <kbd>alt</kbd>, we'll call that <kbd>$mod</kbd> from now on.</p>
+
+  <h2><abbr title="High Dots Per Inch">hDPI</abbr> Support</h2>
+
+  <p>The standard <abbr title="User Interface">UI</abbr> is extremely small on my Dell XPS 13 <abbr title="High Dots Per Inch">hDPI</abbr> screen. Press <kbd>$mod+enter</kbd> to open your first terminal an edit the <code>~/.Xresources</code> file (create it if it doesn't exist yet).
+
+  {% highlight bash %}
+Xft.antialias: true
+Xft.hinting: true
+Xft.rgba: rgba
+Xft.hintstyle: hintfull
+Xft.dpi: 220
+  {% endhighlight %}
+
+  <p>Log out with <kbd>$mod+shift+e</kbd> and back in, this should be better: crispy <abbr title="High Dots Per Inch">hDPI</abbr> text.</p>
+
+  <h2>WiFi Not Working</h2>
+
+  <p>I didn't have an ethernet cable close and the wireless connection didn't seem to work. I configured the wireless connection earlier and was surprised it didn't autoconnect. Welcome to i3, no hand-holding here, it only does what you tell it to do.</p>
+
+  <p>You need to run the network manager applet. Add this snippet to your <code>~/.config/i3/config</code> and reload i3 with <kbd>$mod+shift+r</kbd>.
+
+  {% highlight bash %}
+exec_always --no-startup-id nm-applet
+  {% endhighlight %}
+
+  <p>You'll see a new icon in the bottom right corner of the screen connecting with your previously configured <abbr title="wireless Fidelity">WiFi</abbr> network.</p>
+
+  <h2>Media Key Support</h2>
+
+  <p>The volume and screen brightness keys didn't work out-of-the-box. The keyboard brightness one does so I guess those are hardware keys.</p>
+
+  <p>As before, you'll need a few tweaks to your <code>~/.config/i3/config</code> file.</p>
+
+  {% highlight bash %}
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10
+  {% endhighlight %}
+
+  <p>and reload i3 with <kbd>$mod+shift+r</kbd>. This fixed the volume up. down, and mute keys but not the screen brightness.</p>
+  
+  <p>Looking more closely I realised it uses the <code>xbacklight</code> program which wasn't yet installed. A simple &ldquo;<code>sudo apt install xbacklight</code>&rdquo; will fix that.</p>
+
+  <p>A quick test by running <code>xbacklight</code> from the command line showed a new issue: &ldquo;No outputs have backlight property&rdquo;. This is potentially a missing <code>/sys/class/backlight</code> directory but I already had one. What I did not have, however, was the config file. create a <code>/etc/X11/xorg.conf</code> file and tell it what device to use. </p>
+
+  {% highlight bash %}
+Section "Device"
+    Identifier  "Intel Graphics" 
+    Driver      "intel"
+    Option      "Backlight" "intel_backlight"
+EndSection
+  {% endhighlight %}
+
+  <p>Tried once more and, sure enough, volume keys and screen brightness are now working.</p>
+
+  <h2>Lock Screen</h2>
+
+  <p>I work in a co-working office so locking my screen is an absolute must. i3 does not offer an out-of-the-box lock screen but you can install their <a href="https://i3wm.org/i3lock/" title="A simple screen locker for i3">i3lock</a> package. I went for GNOME's screensaver. &ldquo;<kbd>sudo apt install gnome-screensaver</kbd>&rdquo; and add the following to your i3 config:</p>
+
+  {% highlight bash %}
+bindsym $mod+Shift+o exec gnome-screensaver-command --lock
+  {% endhighlight %}
+
+  <h2>First Hour</h2>
+
+  <p>One hour in and I have a super simple working i3 setup! I switched to Linux two years ago since macOS was no longer exciting. Today I had exactly the same experience with i3: a ton of new stuff to learn, a little closer to understanding how computers work, and that fantastic feeling when you discover a whole new word!</p>
+</div>
