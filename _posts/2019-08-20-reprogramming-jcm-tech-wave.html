@@ -1,0 +1,69 @@
+---
+layout:      post
+title:       Reprogramming a JCM Tech WAVE motion receiver
+date:        2019-08-09 13:00:00
+updated:     2019-08-09 13:00:00
+coordinates: 50.86505 4.70068
+proofread:   no
+description: How to add or remove access cards on a JSM Technologies WAVE 500 garage door motion receiver.
+---
+
+
+<div class="narrow-col">
+  <p>The automated garage door can be opened by use of a <a href="https://en.wikipedia.org/wiki/Proximity_card " title="Proximity card @ Wikipedia">proximity card</a>. There is hardly any information available on how to add or remove cards from a JCM Technologies <a href="https://www.jcm-tech.com/JCM/wave/" title="JCM Technologies WAVE 500 Motion Receiver product page">WAVE 500</a> motion control unit, annoying, since losing a card means someone now has access to your property.</p>
+</div>
+
+<figure class="extended-col">
+  <picture>
+    <img src="../../assets/wave-500.svg" alt="JCM Tech WAVE 500 circuit board" width="70%" />
+  </picture>
+  <figcaption>JCM Tech WAVE 500 motion receiver circuit board</figcaption>
+</figure>
+
+<div class="narrow-col">
+  <h2>System Overview</h2>
+
+  <p>The system consists of an <a href="https://www.jcm-tech.com/JCM/proximity-readers/" title="JCM Technologies EVOProx proximity reader">EVOProx</a> card reader installed on the outside of the door, a <a href="https://www.jcm-tech.com/JCM/wave/" title="JCM Technologies WAVE 500 Motion Receiver product page">WAVE 500</a> unit on the inside for access control, connected to a motor opening the garage door, and, one or more <a href="https://www.jcm-tech.com/JCM/proximity-cards/" title="JCM Technologies MOTIONCard product page">MOTIONCards</a>. You swipe a 13.56 <abbr title="megahertz">MHz</abbr> MOTIONCard over the EVOProx card reader connected, by wire, to the WAVE unit. The unit looks up the card identifier and sends a pulse to the motor if the card is programmed in its internal memory.</p>
+
+  <h2>Accessing the unit’s memory</h2>
+
+  <p><strong>WARNING: the WAVE 500 runs on 230 <abbr title="Voltage Alternating Current">VAC</abbr>. 230 Volt is a high and dangerous voltage to work with! Consult a licensed electrician before opening the unit.</strong></p>
+
+  <p>The WAVE 500 motion receiver has 500 memory positions, meaning it can store 500 different proximity cards, more than enough for my little household. Cards can be added or removed from memory by opening the WAVE 500 unit’s case (4 standard Philips screws). This reveals a 4-digit display with 3 buttons labelled: 'C', ↑ and ↓. The alternating dots on the display show the unit is powered on.</p>
+
+  <p>Press one of the 3 buttons to activate the menu, the display shows 4 zeroes. The digits can be incremented with the ↑ button, the ↓ button moves to the next position and the 'C' button confirms the entered number.</p>
+  
+  <p>A <abbr title="Personal Identification Number">PIN</abbr> is required to access the menu. Nor JCM Tech nor the vendor would give me the code for my unit. Annoying since we lost a card that still had access to our house. A fair bit of internetting later learned me <strong>the <abbr title="Personal Identification Number">PIN</abbr> is printed on the circuit board itself</strong>! The module that sticks out underneath the display is the memory module with the 500 memory positions. Power-off the unit and pull the memory module out of the board and look for the sticker with the 4-digit <abbr title="Personal Identification Number">PIN</abbr>.</p>
+
+  <h2>Adding and removing MOTIONCards</h2>
+
+  <p>Enter the <abbr title="Personal Identification Number">PIN</abbr> and confirm with the 'C' button. An incorrect <abbr title="Personal Identification Number">PIN</abbr> shows an 'Err' message, a correct one shows 'Mod1'. There are 2 modes: 'Mod1' or basic mode and 'Mod2' or advanced mode. Toggle modes with the ↑↓ buttons, confirm with the 'C' button.</p>
+
+  <h3>Mod1 (basic mode)</h3>
+
+  <p>The display shows '001' or the first memory position. A dot on the bottom right of the number indicates the position is taken by a MOTIONCard. Other positions can be select by pressing the ↑↓ buttons.</p>
+  
+  <p>Pressing the 'C' button on a stored memory position (one with a dot) empties that position. The card stored on that memory position has now been revoked. Swipe a card over the EVOProx reader when an empty position (no dot) is shown to store it on that position. This card has now been granted access.</p>
+  
+  <p>Move to a '----' position and press the 'C' button to exit or wait 60 seconds.</p>
+
+  <h3>Mod2 (advanced mode)</h3>
+
+  <p>Is still a bit of a black box at the moment. I'll update this article when I learn more.</p>
+
+  <h3>Exiting</h3>
+
+  <p>The programming mode exits automatically after 60 seconds of no activity with 2 short beeps.</p>
+
+  <h2>Open Questions</h2>
+
+  <p>It took me a bit of trial &amp; error to understand how the JCM Tech WAVE 500 works and the relay on the unit’s board hint at more features I have yet to discover. A list of questions still waiting to be answered.</p>
+
+  <ul>
+    <li>How does encryption work? I think it uses a rolling key, the card is passive, so how can an identifier &ldquo;roll&rdquo;?</li>
+    <li>Why can't I read out a MOTIONCard with the <abbr title="Near Field Communication">NFC</abbr> reader I tested? Is it using <abbr title="High Frequency Radio Frequency IDentification">HF RFID</abbr> at 13.56 <abbr title="megahertz">MHz</abbr>?</p>
+      <li>There is a BUS-LIN (sometimes referred to as BUS-L) terminal on the WAVE ACCESS unit. I assume I can be used to receive signals from the unit, can I read that  out in some way? Is it a <a href="https://en.wikipedia.org/wiki/Wiegand_interface" title="Wiegand interface @ Wikipedia">Wiegand</a> interface?</p>
+    <li>Are there open-source/open-hardware alternatives that offer a secure alternative and are better documented?</li>
+    <li>What’s the use of the <abbr title="Personal Identification Number">PIN</abbr> if it's printed on the memory module? Preventing remote programming?
+  </ul>
+</div>
