@@ -97,6 +97,11 @@ body {
   figcaption {
     color: $black;
     font-style: italic;
+
+    ol {
+      margin-left: 30%;
+      text-align: left;
+    }
   }
 
   blockquote {
