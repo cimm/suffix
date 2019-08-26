@@ -70,7 +70,7 @@ set_numbers:
           <div class="frame">
             <picture>
               <source type="image/webp" srcset="../{% rebrickable set_num set_img_webp_url %}" />
-              <img src="../{% rebrickable set_num set_img_url %}" alt="Lego set Nº{{set_num}}" />
+              <img src="../{% rebrickable set_num set_img_url %}" loading="lazy" alt="Lego set Nº{{set_num}}" />
             </picture>
           </div>
           <figcaption>{% rebrickable set_num name %}</figcaption>
