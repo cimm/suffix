@@ -1,51 +1,53 @@
-header.post {
-  text-align: center;
+@mixin posts($primary, $secondary, $tertiary) {
+  header.post {
+    text-align: center;
 
-  h1 {
-    margin: 0;
+    h1 {
+      margin: 0;
+    }
+
+    time {
+      color: ligthen($primary, 30%);
+    }
   }
 
-  time {
-    color: $muted;
+  .posts-col {
+    grid-column: middle-left / span 2;
+    line-height: 2em;
+
+    time {
+      color: ligthen($primary, 30%);
+      display: block;
+    }
+
+    a {
+      color: $tertiary;
+      font-family: $title-font;
+      font-size: larger;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
   }
-}
 
-.posts-col {
-  grid-column: middle-left / span 2;
-  line-height: 2em;
-
-  time {
-    color: $muted;
-    display: block;
+  .notice {
+    background: url('../../assets/git-branch.svg') 15px 15px no-repeat;
+    background-size: 20px;
+    border: 1px solid lighten($primary, 30%);
+    color: lighten($primary, 30%);
+    grid-column: middle-left / span 2;
+    padding-left: 45px;
   }
 
-  a {
-    color: $black;
-    font-family: $title-font;
-    font-size: larger;
-    text-decoration: none;
-    text-transform: uppercase;
+  .download {
+    margin: 2em 0;
+    text-align: center;
+
+    img {
+      vertical-align: bottom;
+    }
   }
-}
 
-.notice {
-  background: url('../../assets/git-branch.svg') 15px 15px no-repeat;
-  background-size: 20px;
-  border: 1px solid lighten($muted, 40%);
-  color: darken($muted, 10%);
-  grid-column: middle-left / span 2;
-  padding-left: 45px;
-}
-
-.download {
-  margin: 2em 0;
-  text-align: center;
-
-  img {
-    vertical-align: bottom;
+  .highlight {
+    text-align: left;
   }
-}
-
-.highlight {
-  text-align: left;
 }

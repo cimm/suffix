@@ -1,0 +1,11 @@
+@media (prefers-color-scheme: no-preference), (prefers-color-scheme: light) {
+  @include main(#4c566a, #fff, #5e81ac);
+  @include posts(#4c566a, #fff, #5e81ac);
+  @include cards(#4c566a, #fff, #5e81ac);
+}
+
+@media (prefers-color-scheme: dark) {
+  @include main(#eceff4, #2e3440, #88c0d0);
+  @include posts(#eceff4, #2e3440, #88c0d0);
+  @include cards(#eceff4, #2e3440, #88c0d0);
+}
