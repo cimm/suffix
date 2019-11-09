@@ -1,0 +1,35 @@
+---
+layout:      post
+title:       Dark Theme
+date:        2019-11-08 13:00:00
+updated:     2019-11-08 13:00:00
+coordinates: 50.86505 4.70068
+proofread:   no
+description: Enable website dark mode in browsers on Linux
+---
+
+<div class="narrow-col">
+  <p>Dark themes are all the rage. macOS introduced <a href="https://developer.apple.com/design/human-interface-guidelines/macos/visual-design/dark-mode/" title="Apple’s Human Interface Guidelines on Dark Mode">dark mode</a> with Mojave in September last year. Microsoft shipped its system-wide dark mode in the October 2018 Windows 10 update and iOS 13 added a dark mode for iPhones in September this year. Google added a dark theme with its <a href="https://www.android.com/android-10/" title="Android 10 product page">Android 10</a> release that same month.</p>
+
+  <p>Most browsers (Chrome, Firefox, Safari, and Opera) now <a href="https://caniuse.com/#search=prefers-color-scheme" title="Browser support for ‘prefers-color-scheme’ on Can I use">support</a> the ‘<a href="https://drafts.csswg.org/mediaqueries-5/#prefers-color-scheme" title="The ‘prefers-color-scheme’ spec">prefers-color-scheme</a>’ CSS media query and will switch the website’s color scheme based on the system-wide setting (if the website defines it of course).</p>
+
+  <h2>Linux</h2>
+
+  <p>The is no system-wide ‘dark mode’ on Linux as far as I know, so how do you tell your browser you prefer a darker color scheme? Luckily you can configure each browser individually to request the website’s dark mode if the website support’s it, but it requires a bit of digging.</p>
+
+  <h3>Firefox</h3>
+
+  <p>Firefox doesn’t expose the setting in the interface. Type ‘about:config’ in the location bar and press enter. Right-click anywhere in the list and choose “New &gt; Integer”. Enter ‘ui.systemUsesDarkTheme’ as preference and 1 as the integer value. Open a website that supports a dark mode CSS theme and&hellip; voilà. Search for ‘ui.systemUsesDarkTheme’ and change its value to 0 to deactivate dark mode again.</p>
+
+  <h3>Chrome</h3>
+
+  <p>The interwebs explain you should be able to launch Google Chrome with the ‘--force-dark-mode’ option but I could not get it to work on Ubuntu 18.04. Google Chrome simply ignores it, Chromium does switch its <abbr title="User Interface">UI</abbr> to a dark one but does not seem to trigger the ‘prefers-color-scheme’ CSS media query so websites do not switch to their dark scheme.</p>
+
+  <h3>Opera</h3>
+
+  <p><a href="https://www.opera.com/reborn3" title="Opera’s Web 3 product page">Opera</a> is by far the easiest to switch between a dark and light color scheme: simply click the “Easy Setup” button on the right side of the toolbar and choose ‘Dark’ from the ‘Themes’ section. Done.</p> 
+
+  <h2>Suffix</h2>
+
+  <p>Need a website to try it out? I added a dark theme to this website of course, try it out! Check the <a href="https://github.com/cimm/suffix/commit/3b282a3ac200249da8afa27661faa952fb745c88" title="The commit that implements dark mode for this website">Github commit</a> to see how it was implemented.</p>
+</div>
