@@ -7,14 +7,14 @@ updated: 2007-12-12 12:42:31
 
 <div class="narrow-col">
   <blockquote cite="http://www.sitemaps.org/">
-    <p>Sitemaps are an easy way for webmasters to inform search engines about pages on their sites that are available for crawling. In its simplest form, a Sitemap is an XML file that lists URLs for a site along with additional metadata about each URL (when it was last updated, how often it usually changes, and how important it is, relative to other URLs in the site) so that search engines can more intelligently crawl the site.</p>
+    <p>Sitemaps are an easy way for webmasters to inform search engines about pages on their sites that are available for crawling. In its simplest form, a sitemap is an <abbr title="Extensible Markup Language">XML</abbr> file that lists URLs for a site along with additional metadata about each URL (when it was last updated, how often it usually changes, and how important it is, relative to other URLs in the site) so that search engines can more intelligently crawl the site.</p>
   </blockquote>
 
   <p>Sitemaps have a wide adoption including Google, Yahoo! and Microsoft so I thought it would be a good idea to integrate this in my website. A few posts later I was tired updating this XML file manually every time I changed something in the URL scheme so why not pass the task to Ruby on Rails and build the file automatically?</p>
 
   <h2>The controller</h2>
 
-  <p>First you'll need a method to collect the data. I choose for the application controller as the Sitemap doesn't really belong anywhere else. The pages controller would be a better choice if you have one that manages all your sites URL's but that's entirely up to you.</p>
+  <p>First you’ll need a method to collect the data. I choose for the application controller as the sitemap doesn’t really belong anywhere else. The pages controller would be a better choice if you have one that manages all your sites URLs but that’s entirely up to you.</p>
 
   {% highlight ruby %}
   class ApplicationController < ActionController::Base
@@ -24,11 +24,11 @@ updated: 2007-12-12 12:42:31
   end
   {% endhighlight %}
 
-  <p>The &lsquo;render_without_layout&rsquo; part calls the view. My view is in the views/layouts folder but again, this can be anything you want.</p>
+  <p>The “render_without_layout” part calls the view. My view is in the views/layouts folder but again, this can be anything you want.</p>
 
   <h2>The view</h2>
 
-  <p>As defined in the Sitemap method above we need a view that renders the data in an XML file. Create the Sitemap XML template in the folder you defined above (views/layouts in my case) and call it &lsquo;sitemap.rxml&rsquo;. Now build the structure of the Sitemap:</p>
+  <p>As defined in the sitemap method above we need a view that renders the data in an XML file. Create the sitemap XML template in the folder you defined above (views/layouts in my case) and call it “sitemap.rxml”. Now build the structure of the sitemap:</p>
 
   {% highlight ruby %}
   xml.instruct!
@@ -49,7 +49,7 @@ updated: 2007-12-12 12:42:31
 
   <p>This <a href="http://en.wikipedia.org/wiki/Code_snippets" title="Code snippets definition on Wikipedia">snippet</a> assumes your page object has a permalink and an updated_at parameter, change these if yours looks different.</p>
 
-  <p>There are a few things you need to know about Sitemaps: &lsquo;loc&rsquo; is the only required element so you can drop the &lsquo;lastmod&rsquo;, &lsquo;changefreq&rsquo; and &lsquo;priority&rsquo; elements if you don't have any useful data for these parameters. More in detail:</p>
+  <p>There are a few things you need to know about sitemaps: ‘loc’ is the only required element so you can drop the ‘lastmod’, ‘changefreq’ and ‘priority’ elements if you don't have any useful data for these parameters. More in detail:</p>
 
   <ul>
     <li><strong>loc</strong> - required: the full URL to the page, include your domain as well.</li>
@@ -58,31 +58,31 @@ updated: 2007-12-12 12:42:31
     <li><strong>priority</strong> - optional: the priority of this URL relative to other URLs in your site. Valid values range from 0.0 to 1.0.</li>
   </ul>
 
-  <p>See the official <a href="http://www.sitemaps.org/protocol.php" title="sitemaps.org protocol description">Sitemap protocol definition</a> site for a full description.</p>
+  <p>See the official <a href="http://www.sitemaps.org/protocol.php" title="sitemaps.org protocol description">sitemap protocol definition</a> site for a full description.</p>
 
   <h2>The route</h2>
 
-  <p>You have a automatically generated Sitemap but no way to get there. Tell Rails to call your Sitemap in the routes.rb file by adding the following mapping (change the controller if you choose a different one above):</p>
+  <p>You have a automatically generated sitemap but no way to get there. Tell Rails to call your sitemap in the routes.rb file by adding the following mapping (change the controller if you choose a different one above):</p>
 
   {% highlight ruby %}
   map.connect 'sitemap.xml', :controller => 'application', :action => 'sitemap'
   {% endhighlight %}
 
-  <p>Request your new Sitemap with http://www.example.com/sitemap.xml. You may need to restart your Rails server to enable the new route.</p>
+  <p>Request your new sitemap with http://www.example.com/sitemap.xml. You may need to restart your Rails server to enable the new route.</p>
 
   <h2>The robots.txt</h2>
 
-  <p>Almost done. The Sitemap should be working by now but how does a crawler (like the <a href="http://en.wikipedia.org/wiki/Googlebot" title="Googlebot's page on Wikipedia">Googlebot</a>) where to look for you Sitemap? That's where the robots.txt file is for. Every crawler should request the robots.txt file first to see what it may or may not index so this is the ideal place to advertise our Sitemap. Add the following line to the robots.txt file in you public directory and make sure to use the full URL to your Sitemap (including the domain):</p>
+  <p>Almost done. The sitemap should be working by now but how does a crawler (like the <a href="http://en.wikipedia.org/wiki/Googlebot" title="Googlebot's page on Wikipedia">Googlebot</a>) where to look for you sitemap? That's where the robots.txt file is for. Every crawler should request the robots.txt file first to see what it may or may not index so this is the ideal place to advertise our sitemap. Add the following line to the robots.txt file in you public directory and make sure to use the full URL to your sitemap (including the domain):</p>
 
   <samp>Sitemap: http://www.example.com/sitemap.xml</samp>
 
-  <p>That's it for today! The next time a crawler visits you site it will find the Sitemap and index it.</p>
+  <p>That’s it! The next time a crawler visits you site it will find the sitemap and index it.</p>
 
   <h2>Resources</h2>
 
   <ul>
-    <li><a href="http://www.sitemaps.org/" title="sitemaps.org">Official Sitemap definition</a></li>
+    <li><a href="http://www.sitemaps.org/" title="sitemaps.org">Official sitemap definition</a></li>
     <li><a href="https://web.archive.org/web/20090126073513/http://d-jones.com:80/2007/4/5/google-sitemaps-in-ruby-on-rails" title="Great article I used to get started">Google Sitemaps in Ruby on Rails</a></li>
-    <li><a href="/sitemap.xml" title="My Sitemap as an example">My site's Sitemap</a> as an example</li>
+    <li><a href="../sitemap.xml" title="My sitemap as an example">My site’s sitemap</a> as an example</li>
   </ul>
 </div>

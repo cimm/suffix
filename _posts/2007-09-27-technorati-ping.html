@@ -6,13 +6,13 @@ updated: 2008-05-20 12:04:59
 ---
 
 <div class="narrow-col">
-  <p><a href="http://www.technorati.com/">Technorati</a>, a search engine for searching blogs, allows any blog owner to &lsquo;ping&rsquo; his/her blog. In this way Technorati can index your blog based on the tags you assigned to your post.</p>
+  <p>Technorati, a search engine for searching blogs, allows any blog owner to “ping” his/her blog. In this way Technorati can index your blog based on the tags you assigned to your post.</p>
 
-  <p>You can do this manually by requesting a ping with the &lsquo;Technorati ping form&rsquo; but let's have a look how we can automate this, shall we? Turns out it's really easy to do so even though it's hard to find some documentation about this on Google.</p>
+  <p>You can do this manually by requesting a ping with the “Technorati ping form” but let’s have a look how we can automate this, shall we? Turns out it’s really easy to do so even though it’s hard to find some documentation about this on Google.</p>
 
   <ol>
-    <li>First we'll need Ruby on Rails built in XMLRPC protocol and create a new client that listens to the Technorati web service.</li>
-    <li>Next we call the weblogUpdates.ping service method and pass the name and URL of our blog. We'll keep returned result in the result parameter.</li>
+    <li>First we’ll need Ruby on Rails built in <abbr title="Extensible Markup Language - Remote Procedure Call">XML-RPC</abbr> protocol and create a new client that listens to the Technorati web service.</li>
+    <li>Next we call the ‘weblogUpdates.ping’ service method and pass the name and URL of our blog. We’ll keep returned result in the result parameter.</li>
     <li>Now we only need to check if the request succeeded by looking at the result parameter and we are done.</li>
   </ol>
 

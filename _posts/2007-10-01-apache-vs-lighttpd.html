@@ -8,17 +8,17 @@ updated: 2010-09-23 21:44:22
 <div class="narrow-col">
   <p>Ever wondered why none of the Ruby on Rails websites run on Apache?</p>
 
-  <p>If you start with Perl, PHP or whatever programming language you are used to you never wonder about the web server, you run Apache, just like everyone else does. If you start playing with Ruby on Rails you get the WEBrick development server built in so that's what you start using, right? When my development work was finished I looked for a way to get a production server running with Apache but it seemed hard to find any documentation. What? No one is using Apache for <abbr title="Ruby on Rails">RoR</abbr> production environments?!</p>
+  <p>If you start with Perl, PHP or whatever programming language you are used to you never wonder about the web server, you run Apache, just like everyone else does. If you start playing with Ruby on Rails you get the WEBrick development server built in so that’s what you start using, right? When my development work was finished I looked for a way to get a production server running with Apache but it seemed hard to find any documentation. What? No one is using Apache for <abbr title="Ruby on Rails">RoR</abbr> production environments?!</p>
 
-  <p>Names like WEBrick, <a href="http://www.lighttpd.net/" title="LightTPD a web server optimized for high RoR performance environments">LightTPD</a>, <a href="https://github.com/mongrel/mongrel" title="Mongrel, a fast HTTP library and server for Ruby">Mongrel</a> and <a href="http://nginx.net/" title="A HTTP server and mail proxy server">nginx</a> keep popping up in the search results but no, no one mentions Apache. So I choose to give Apache a try, stubborn as I am. Well, I finally understand why Apache is a dead end for RoR: it's way to slow (and yes, I had FastCGI enabled). It took Apache a few seconds to build and render a simple page, even with caching enabled, unacceptable.</p>
+  <p>Names like WEBrick, <a href="http://www.lighttpd.net/" title="LightTPD a web server optimized for high RoR performance environments">LightTPD</a>, <a href="https://github.com/mongrel/mongrel" title="Mongrel, a fast HTTP library and server for Ruby">Mongrel</a> and <a href="http://nginx.net/" title="A HTTP server and mail proxy server">nginx</a> keep popping up in the search results but no, no one mentions Apache. So I choose to give Apache a try, stubborn as I am. Well, I finally understand why Apache is a dead end for RoR: it’s way to slow (and yes, I had FastCGI enabled). It took Apache a few seconds to build and render a simple page, even with caching enabled, unacceptable.</p>
 
   <h2>LightTPD</h2>
 
-  <p>Maybe it's time to start believing everyone else who isn't using Apache? Let's try LightTPD (pronounced as lighty) instead. For the record: I only compared LightTPD and Apache, there may be better solutions but as <a href="https://www.joyent.com/" title="Joyent, a Ruby on Rails hosting provider">Joyent</a> (a rather large Rails hosting provider) uses LightTPD, it has a decent documentation tree and the newest release was brand new it seemed a good candidate.</p>
+  <p>Maybe it’s time to start believing everyone else who isn't using Apache? Let’s try LightTPD (pronounced as lighty) instead. For the record: I only compared LightTPD and Apache, there may be better solutions but as <a href="https://www.joyent.com/" title="Joyent, a Ruby on Rails hosting provider">Joyent</a> (a rather large Rails hosting provider) uses LightTPD, it has a decent documentation tree and the newest release was brand new it seemed a good candidate.</p>
 
   <p>After installing LightTPD I ran a few performance tests (request the first page of my website) with Apache on one port and LightTPD on another port. The table shows the completion time in seconds on the server for each request:</p>
 
-  <table summary="Completion time in seconds for each request" class="post">
+  <table summary="Completion time in seconds for each request">
     <thead>
       <tr>
         <th>Apache</th>
@@ -105,5 +105,5 @@ updated: 2010-09-23 21:44:22
 <div class="narrow-col">
   <h2>Conclusion</h2>
 
-  <p>The test clearly shows the performance differences between Apache and LightTPD. It takes Apache 61.5% longer to render the same page showing that LightTPD is indeed a lot faster for my website. There may be even better solutions out there as I only evaluated LightTPD but I think I'll stick with lighty for now!</p>
+  <p>The test clearly shows the performance differences between Apache and LightTPD. It takes Apache 61.5% longer to render the same page showing that LightTPD is indeed a lot faster for my website. There may be even better solutions out there as I only evaluated LightTPD but I think I’ll stick with lighty for now!</p>
 </div>

@@ -6,7 +6,7 @@ updated: 2008-05-20 12:05:59
 ---
 
 <div class="narrow-col">
-  <p>As I had some troubles finding out how to show some of my own Flickr photos on this site using the Flickr API and Ruby on Rails I thought it would be useful to write it down in a small tutorial.</p>
+  <p>As I had some troubles finding out how to show some of my own Flickr photos on this site using the Flickr <abbr title="Application Programming Interface">API</abbr> and Ruby on Rails I thought it would be useful to write it down in a small tutorial.</p>
   <h2>STEP 1: Finding a library: rFlickr</h2>
 
   <p>Flickr lists 3 possible Ruby frameworks for their API. After trying flickr.rb (no longer available) and not being able to login I decided to switch to <a href="https://github.com/digitalpardoe/rflickr/" title="The Flickr API kit I choose">rFlickr</a> as it seems the most popular one.</p>
@@ -19,7 +19,7 @@ updated: 2008-05-20 12:05:59
 
   <h2>STEP 2: Get a Flickr API key</h2>
 
-  <p>Flickr doesn't use the username/password combination as most other API's do. An application can ask for permissions which the user has to grant. A token is returned when this is done allowing the application to connect the next time so we'll only have to do this once. <a href="http://flickr.com/services/api/keys/apply/" title="Request an API key">Apply for a key</a> at the Flickr website and remember the key and the shared secret. I use a &ldquo;Web Application&rdquo; key as I want to use it for my blog.</p>
+  <p>Flickr doesn’t use the username/password combination as most other API's do. An application can ask for permissions which the user has to grant. A token is returned when this is done allowing the application to connect the next time so we'll only have to do this once. <a href="http://flickr.com/services/api/keys/apply/" title="Request an API key">Apply for a key</a> at the Flickr website and remember the key and the shared secret. I use a “Web Application” key as I want to use it for my blog.</p>
 
   <h2>STEP 3: Get a Flickr token</h2>
 
@@ -40,20 +40,20 @@ updated: 2008-05-20 12:05:59
   => 'http://flickr.com/services/auth/?api_sig=a07a7...'
   {% endhighlight %}
 
-  <p>This will return a URL you need to copy &amp; paste in your browser to allow the application to read, write and delete your photos. If you don't need all this permissions your can add the &lsquo;perms&rsquo; parameter for a less greedy permissions. Use the following if you only need read access to the photos:</p>
+  <p>This will return a URL you need to copy &amp; paste in your browser to allow the application to read, write and delete your photos. If you don’t need all this permissions your can add the “perms” parameter for a less greedy permissions. Use the following if you only need read access to the photos:</p>
 
   {% highlight ruby %}
   >> flickr.auth.login_link(perms='read')
   {% endhighlight %}
 
-  <p>Allow the application to access your photos when you open the URL. You can request the forb we need and make sure to to keep it for now.</p>
+  <p>Allow the application to access your photos when you open the <abbr title="Uniform Resource Locator">URL</abbr>. You can request the forb we need and make sure to to keep it for now.</p>
 
   {% highlight ruby %}
   >> flickr.auth.getFrob
   => '7215760...'
   {% endhighlight %}
 
-  <p>Now we&apos;ll need a token. The token is more permanent as the frob but we need the forb to get one. Finally cache the token:</p>
+  <p>Now we’ll need a token. The token is more permanent as the frob but we need the forb to get one. Finally cache the token:</p>
 
   {% highlight ruby %}
   >> flickr.auth.getToken('YOUR_FROB')
@@ -64,7 +64,7 @@ updated: 2008-05-20 12:05:59
 
   <h2>STEP 4: Give me my photos!</h2>
 
-  <p>Now it&apos;s time to do something more useful with the token. What about showing the thumbnails of the 6 last added photos? We'll need your NSID which is the strange number in your Flickr URL that looks like 26227936@N00.</p>
+  <p>Now it’s time to do something more useful with the token. What about showing the thumbnails of the 6 last added photos? We’ll need your NSID which is the strange number in your Flickr URL that looks like 26227936@N00.</p>
 
   {% highlight ruby %}
   def flickr
@@ -79,5 +79,5 @@ updated: 2008-05-20 12:05:59
   end
   {% endhighlight %}
 
-  <p>Look, you now have an array with the last 6 posted public photos and their ID. Good luck!</p>
+  <p>Look, you now have an array with the last 6 posted public photos and their ID.</p>
 </div>
