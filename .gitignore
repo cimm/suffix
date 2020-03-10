@@ -4,3 +4,4 @@ _config.yml
 .asset-cache/
 .sass-cache/
 assets/lego/*.jpg
+.jekyll-cache
