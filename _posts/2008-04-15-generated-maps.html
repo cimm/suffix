@@ -6,11 +6,11 @@ updated: 2010-09-23 21:48:21
 ---
 
 <div class="narrow-col">
-  <p>It's all about the map in this sites header today. The header background shows a dynamically generated map of the coordinates shown in the right top corner, or my last recorded place. I can select my current location (latitude and longitude) and the header background map is updated accordingly. So how exactly does this work?!</p>
+  <p>It’s all about the map in this sites header today. The header background shows a dynamically generated map of the coordinates shown in the right top corner, or my last recorded place. I can select my current location (latitude and longitude) and the header background map is updated accordingly. So how exactly does this work?!</p>
 
   <h2>No Google or Yahoo! maps?</h2>
 
-  <p>I integrated Yahoo! Maps first. The Yahoo! Maps look nice, the API is easy to use and well documented but the problem is that you are only allowed to play with these maps within limits placed on you by the API's terms and conditions. Below are some extracts from the <a href="http://info.yahoo.com/legal/us/yahoo/maps/mapsapi/mapsapi-2141.html" title="Yahoo! Terms Center">Yahoo! Maps API Terms of Use</a>:</p>
+  <p>I integrated Yahoo! Maps first. The Yahoo! Maps look nice, the <abbr title="Application Programming Interface">API</abbr> is easy to use and well documented but the problem is that you are only allowed to play with these maps within limits placed on you by the APIs terms and conditions. Below are some extracts from the Yahoo! Maps API Terms of Use:</p>
 
   <ul>
     <li>You understand and agree that you must retain the attribution text and links contained within all Yahoo! Maps and Yahoo! Map images without alteration.</li>
@@ -21,9 +21,9 @@ updated: 2010-09-23 21:48:21
 
   <h2>OpenStreetMap</h2>
 
-  <p>Luckily for us there are other solutions out there. Let's take a look at <a href="http://www.openstreetmap.org/">OpenStreetMap</a> for example. OpenStreetMap is a &lsquo;wiki style&rsquo; editable map, made by people like you and me. The content is available under the Creative Commons Attribution-ShareAlike 2.0 license which means anyone can use (and remix) the data as long as you share it with a similar license.</p>
+  <p>Luckily for us there are other solutions: <a href="https://www.openstreetmap.org/">OpenStreetMap</a> for example. OpenStreetMap is a “wiki style” editable map, made by people like you and me. The content is available under the Creative Commons Attribution-ShareAlike 2.0 license which means anyone can use (and remix) the data as long as you share it with a similar license.</p>
 
-  <p>This &lsquo;Wikipedia-like&rsquo; approach has some drawbacks as well: the map is incomplete and the data is not 100% reliable. On the other side you can correct or complete the map where needed. This may or may not be important for your project but I only needed a nice background image for this website so a general overview of the area is more than sufficient.</p>
+  <p>This ‘Wikipedia-like’ approach has some drawbacks as well: the map is incomplete and the data is not 100% reliable. On the other side you can correct or complete the map where needed. This may or may not be important for your project but I only needed a nice background image for this website so a general overview of the area is more than sufficient.</p>
 
   <p>OpenStreetMap has a RESTfull way to build a map image with a given latitude, longitude, zoom level and image size:</p>
 
@@ -48,14 +48,15 @@ updated: 2010-09-23 21:48:21
 </figure>
 
 <div class="narrow-col">
-  <p>We'll use <a href="https://rmagick.github.io/" title="Graphics Processing for Ruby and Ruby on Rails">RMagick</a> and Ruby on Rails to convert the downloaded image to something else so make sure you have this installed first.</p>
+  <p>We’ll use <a href="https://rmagick.github.io/" title="Graphics Processing for Ruby and Ruby on Rails">RMagick</a> and Ruby on Rails to convert the downloaded image to something else so make sure you have this installed first.</p>
 
   {% highlight ruby %}
   # Writes an image with a map of the location, the zoom ranges from 4 to 17
   require 'RMagick'
   require 'open-uri'
   def map(latitude, longitude, width = 500, height = 500, zoom = 7)
-    map_request_url = "http://tah.openstreetmap.org/MapOf?lat=#{latitude}&amp;long=#{longitude}&amp;z=#{zoom}&amp;w=#{width}&amp;h=#{height}"
+    map_request_url = "http://tah.openstreetmap.org/MapOf?"
+    map_request_url += "lat=#{latitude}&amp;long=#{longitude}&amp;z=#{zoom}&amp;w=#{width}&amp;h=#{height}"
     uri = URI.parse(map_request_url)
     map = Magick::ImageList.new
     map.from_blob(uri.read)
@@ -64,7 +65,7 @@ updated: 2010-09-23 21:48:21
   end
   {% endhighlight %}
 
-  <p>That's it, this method downloads and converts the image and saves it in your images folder so from now on you can use this image in your website:</p>
+  <p>That’s it, this method downloads and converts the image and saves it in your images folder so from now on you can use this image in your website:</p>
 
   {% highlight html %}
   <img src="/images/map.png" alt="Map" />
@@ -73,6 +74,6 @@ updated: 2010-09-23 21:48:21
   <h2>More resources</h2>
 
   <ul>
-    <li><a href="http://www.alistapart.com/articles/takecontrolofyourmaps" title="Take Control of Your Maps">Take Control of Your Maps</a> explains how to build you own map stack.</li>
+    <li><a href="https://alistapart.com/article/takecontrolofyourmaps/" title="Take Control of Your Maps">Take Control of Your Maps</a> explains how to build you own map stack.</li>
   </ul>
 </div>
