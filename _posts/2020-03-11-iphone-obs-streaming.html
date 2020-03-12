@@ -1,0 +1,76 @@
+---
+layout:      post
+title:       Live streaming on a budget
+date:        2020-03-11 12:00:00
+updated:     2020-03-11 12:00:00
+description: Live stream an event on a budget with OBS and an iPhone.
+---
+
+<div class="narrow-col">
+  <p>I was asked to stream an event for work the other day on a limited budget. We had different entrepreneurs pitching their ideas for a live audience and had some people joining remotely. I have no experience in audio or video streaming but given the <a href="https://en.wikipedia.org/wiki/2019%E2%80%9320_coronavirus_pandemic" title="The 2019-2020 Coronavirus pandemic @ Wikipedia">COVID-19 pandemic</a>, I suppose others will have the same questions. These were our requirements:</p>
+
+  <ul>
+    <li>Auditorium style presentations</li>
+    <li>Around 100 people in the room, a bit less remote</li>
+    <li>One way only, remote participants couldn’t ask questions</li>
+    <li>Limited budget, around €200</li>
+  </ul>
+
+  <p>We dabbled a bit with Facebook Live a few years ago, simple streaming from a mobile phone, but the sound was atrocious and slides unreadable.</p>
+
+  <h2>Distribution</h2>
+
+  <p>Opted for YouTube Live since we have some experience with YouTube and didn’t need the online <abbr title="Questions and Answers">Q&amp;A</abbr>. I would have liked to build our own solution (<a href="https://www.wowza.com/" title="Self hosted video streaming platform I used in the past" class="h-product">Wowza</a> maybe) but played safe here. Maybe we’ll add Facebook Live next time, Twitch is not a good fit for our audience.</p>
+
+  <p>On the software side, I went for <a href="https://obsproject.com" title="Open Broadcaster Software" class="h-product">OBS Studio</a>. Its scene takes the professionalism up a notch: a coming soon scene, slides with presenter overlays, etc.</p>
+
+  <h2>Audio</h2>
+
+  <p>The presentations took place in a noisy auditorium of a co-working space. Some speakers are not used to present so any additional tech, like a microphone, was a potential for failure.</p>
+
+  <p><span class="h-card">Marco Arment</span>’s <a href="https://marco.org/podcasting-microphones">Podcasting Microphones Mega-Review</a> pointed me to the <span class="h-product">Audio-Technica ATR2100x-USB microphone</span> (around €100). It’s a cheap and highly praised mic that’s less sensitive to background noise, ideal for our noisy auditorium.</p>
+
+  <h2>Video</h2>
+
+  <p>My old <abbr title="Digital Single-lens Reflex Camera">DSLR</abbr> camera doesn’t support live clean video output. A webcam with a tripod mount, like the <span class="h-product">Logitech C922 <abbr title="High Definition">HD</abbr> Pro</span> (around €100), could be an acceptable budget solution. My colleague picked up an <span class="h-product">iPhone 11 Pro</a> the other day. That camera is probably way better quality so how do we capture its output?</p>
+
+  <p><abbr title="Open Broadcaster Software">OBS</abbr> Studio on macOS can see the iPhone as a video capture device when connected via <abbr title="Universal Serial Bus">USB</abbr>. The input can be cropped in OBS the hide the camera <abbr title="User Interface">UI</abbr>. One problem though: the camera will show a yellow square while focussing, not so professional to have that showing in the stream. I found the <a href="https://apps.apple.com/be/app/shoot-clean-camera-feed-for-mirroring/id964565026">Shoot</a> iOS app which simply shows the camera without UI.</p>
+
+  <p>Adding a tripod as well with phone mount to have some control over the frame (and prevent nose shots and fumbling while streaming).</p>
+
+  <h2>Bill of Materials</h2>
+
+  <table>
+    <tbody>
+      <tr>
+        <td>Tripod with phone mount</td><td>€63</td>
+      </tr>
+      <tr>
+        <td class="h-product">ATR2100x-USB microphone</td><td>€102</td>
+      </tr>
+      <tr>
+        <td>Microphone pop filter</td><td>€9</td>
+      </tr>
+      <tr>
+        <td>USB extension cord</td><td>€6</td>
+      </tr>
+      <tr>
+        <td class="h-product">Shoot</td><td>€3.49</td>
+      </tr>
+      <tr>
+        <td class="h-product">OBS Studio</td><td>€0</td>
+      </tr>
+      <tr>
+        <td>YouTube Live</td><td>€0</td>
+      </tr>
+      <tr>
+        <td class="h-product">iPhone 11 Pro</td><td>-</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th>Total</th><td>€134.49</td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
