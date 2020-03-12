@@ -6,7 +6,7 @@ updated: 2008-05-20 10:45:44
 ---
 
 <div class="narrow-col">
-  <p>Have a look at my social graph in the sidebar on the <a href="/about" title="About Suffix">about</a> page. It shows a bunch of links to websites elsewhere on the web that are loosely related to me (e.g. my LinkedIn profile or Flickr photos) or my &ldquo;friends&rdquo;. These links are automatically collected based on <a href="http://gmpg.org/xfn/" title="XHTML Friends Network">XFN</a> and <a href="http://www.foaf-project.org/" title="Friend of a Friend (FOAF) project">FOAF</a> data with the Google Social Graph <abbr title="Application Programming Interface">API</abbr>.</p>
+  <p>Have a look at my social graph in the sidebar on the <a href="../about" title="About Suffix">about</a> page. It shows a bunch of links to websites elsewhere on the web that are loosely related to me (eg. my LinkedIn profile or Flickr photos) or my “friends”. These links are automatically collected based on <a href="http://gmpg.org/xfn/" title="XHTML Friends Network">XFN</a> and <a href="http://www.foaf-project.org/" title="Friend of a Friend (FOAF) project">FOAF</a> data with the Google Social Graph <abbr title="Application Programming Interface">API</abbr>.</p>
 
   <h2>What?</h2>
 
@@ -14,17 +14,16 @@ updated: 2008-05-20 10:45:44
 
   {% highlight html %}
   <a href="http://fousa.be" rel="friend met">Jelle</a>
-  <a href="http://flickr.com/photos/schoeters" rel="me">My photos</a>
+  <a href="https://flickr.com/photos/schoeters" rel="me">My photos</a>
   {% endhighlight %}
 
-  <p>The previous 2 XFN examples describe my connections with <span class="vcard"><a class="url fn n" href="http://www.fousa.be"><span class="given-name">Jelle</span><span class="family-name hidden"> Vandebeeck</span>
-  </a></span>'s website, a friend of mine, and my Flickr photo page. Now, I'm not the only one using this, thousands of links (blogs, LinkedIn profiles, Twitter profiles, etc.) have been marked up in this way. Wouldn't it be nice when we could visualize all these online connections?</p>
+  <p>The previous 2 XFN examples describe my connections with <a class="h-card" href="http://www.fousa.be">Jelle Vandebeeck</a>’s website, a friend of mine, and my Flickr photo page. Now, I’m not the only one using this, thousands of links (blogs, LinkedIn profiles, Twitter profiles, etc.) have been marked up in this way. Wouldn’t it be nice when we could visualize all these online connections?</p>
 
-  <p>Google recently released their <a href="http://code.google.com/apis/socialgraph/" title="Google Social Graph API">Social Graph API</a> which crawls the Google index for all XFN and FOAF enabled links based on a list of URL's. This returns a <abbr title="JavaScript Object Notation">JSON</abbr> response with all these links and the connection types associated with it. As the API is using the Google index you have access to a huge amount of data in a very fast way. On the  downside the correctness of the data depends on the freshness of the Google index. Today my Twitter profile link still shows up in the results even though I removed my account a few months ago and the links in my previous blog post aren't found yet.</p>
+  <p>Google recently released their <a href="https://web.archive.org/web/20120128111928/http://code.google.com/apis/socialgraph/" title="Google Social Graph API">Social Graph API</a> which crawls the Google index for all XFN and FOAF enabled links based on a list of URL’s. This returns a <abbr title="JavaScript Object Notation">JSON</abbr> response with all these links and the connection types associated with it. As the API is using the Google index you have access to a huge amount of data in a very fast way. On the  downside the correctness of the data depends on the freshness of the Google index. Today my Twitter profile link still shows up in the results even though I removed my account a few months ago and the links in my previous blog post aren’t found yet.</p>
 
   <h2>Ruby on Rails implementation</h2>
 
-  <p>Let's have a look at the Ruby on Rails code to build our own social graph. First you'll need the JSON gem to parse the response from Google (the may be different in Rails 2.x, I didn't check).</p>
+  <p>Let’s have a look at the Ruby on Rails code to build our own social graph. First you’ll need the JSON gem to parse the response from Google (the may be different in Rails 2.x, I didn’t check).</p>
 
   {% highlight html %}
   gem install json
@@ -50,22 +49,22 @@ updated: 2008-05-20 10:45:44
   graph.uniq!
   {% endhighlight %}
 
-  <p>At the end we remove the duplicate URL's and there you have it, an array with all you XFN and FOAF friends linking to the given URL's. You can play around with the 3 parameters at the end of the Google URL:</p>
+  <p>At the end we remove the duplicate URL’s and there you have it, an array with all you XFN and FOAF friends linking to the given URL’s. You can play around with the 3 parameters at the end of the Google URL:</p>
 
   <table summary="List of possible URL parameters and their values">
     <tr>
       <th>fme</th>
       <td>true, false, 1 or 0</td>
-      <td>Follow the &lsquo;me&rsquo; links found on the given URL's.<td>
+      <td>Follow the ‘me’ links found on the given URL’s.<td>
     </tr>
     <tr>
       <th>edi</th>
       <td>true, false, 1 or 0</td>
-      <td>Return a list with pages linking <strong>to</strong> the given URL's.<td>
+      <td>Return a list with pages linking <strong>to</strong> the given URL’s.<td>
     <tr>
       <th>edo</th>
       <td>true, false, 1 or 0</td>
-      <td>Return a list with pages linked <strong>from</strong> the given URL's.<td>
+      <td>Return a list with pages linked <strong>from</strong> the given URL’s.<td>
     </tr>
   </table>
 </div>
