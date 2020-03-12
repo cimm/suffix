@@ -68,7 +68,8 @@
       text-decoration: none;
     }
 
-    figure, picture {
+    figure,
+    picture {
       text-align: center;
 
       img {
@@ -80,6 +81,10 @@
     p,
     ul {
       margin: .5em 0;
+    }
+
+    ul {
+      margin-left: 1em;
     }
 
     dl,
@@ -113,6 +118,19 @@
       cite {
         font-style: italic;
       }
+    }
+
+    table {
+      border-collapse: collapse;
+    }
+
+    tr {
+      border-bottom: 1px solid lighten($primary, 50%);
+    }
+
+    th,
+    td {
+      padding: .4em;
     }
 
     .extended-col {
