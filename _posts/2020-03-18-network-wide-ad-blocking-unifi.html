@@ -1,0 +1,75 @@
+---
+layout:      post
+title:       Network-wide ad blocking with UniFi
+date:        2020-03-18 12:00:00
+updated:     2020-03-18 21:00:00
+description: Implementing network-wide ad blocking with a Ubiquiti UniFi Security Gateway.
+---
+
+<div class="narrow-col">
+  <p>I use <a href="../firefox-extensions-2020" title="My Firefox 2020 extensions" class="h-product">uBlock Origin</a> in my browser to block ads and malware. uBlock is great but it doesn’t work on all my (and my housemates’) devices. A Raspberry Pi with <a href="https://pi-hole.net/" title="A black hole for Internet advertisements" class="h-product">Pi-hole</a> installed would offer an extra layer of protection, but I wasn’t too keen on adding yet another device to my home network. Why not use my Ubiquiti <a href="https://www.ui.com/unifi-routing/usg/" class="p-product">UniFi Security Gateway</a> (USG)? It’s already blocking threats via its built-in threat management module. The USG uses <a href="http://www.thekelleys.org.uk/dnsmasq/doc.html" class="h-product">dnsmasq</a> as <abbr title="Domain Name System">DNS</abbr> forwarder which means it can be used to sinkhole DNS queries. It will simply respond with 0.0.0.0 instead of the real <abbr title="Internet Protocol">IP</abbr> address for blacklisted domains.</p>
+
+  <h2>Connect</h2>
+
+  <p>Warning, playing around with the USG’s command line can brick the device. I am not liable for any damages.</p>
+
+  <ol>
+    <li>First enable <abbr title="Secure Shell">SSH</abbr> access via the UniFi controller: Settings ⇢ Network Settings ⇢ Device Authentication ⇢ Enable SSH Authentication.</li>
+    <li>Next, find the IP address of your USG: Devices ⇢ select the USG ⇢ copy the IP address.</li>
+    <li>Log in to your USG via SSH with the account configured in step 1.</li>
+    <li>Don’t forget to disable the SSH access when done, it’s safer to have it disabled.</li>
+  </ol>
+
+  <h2>Install</h2>
+
+  <p class="h-card">The following is based on a <span class="p-org">Ubiquity</span> <a href="https://community.ui.com/questions/HowTo-Ad-blocking-using-dnsmasq-d-instead-of-etc-hosts/1598a96d-28af-4f3f-ab96-97bccdb897b3#M66463" title="HowTo: Ad blocking using dnsmasq.d instead of /etc/hosts">forum post</a> (<a href="https://archive.vn/kq6XB" title="Same but archived version as a fallback">archived</a>) by ‘<span class="p-name">unifiMynet</span>’. The script can be downloaded from this <a href="https://github.com/unifiMynet/dnsmasqAdBlock/" class="u-url">Github repository</a>.</p>
+
+  <p>Elevate to root privileges and download the getBlacklistHosts script.</p>
+
+  {% highlight bash %}
+  sudo -i
+  cd /config/scripts
+  curl 'https://raw.githubusercontent.com/unifiMynet/dnsmasqAdBlock/master/getBlacklistHosts.V8.5.zip' > getBlacklistHosts.zip
+  {% endhighlight %}
+
+  <p>Unpack the script, make it executable and run it twice.</p>
+
+  {% highlight bash %}
+  unzip getBlacklistHosts.zip
+  rm getBlacklistHosts.zip
+  chmod +x getBlacklistHosts.sh
+  ./getBlacklistHosts.sh (2×)
+  {% endhighlight %}
+
+  <p>The script will generate a config file the first time it has run. Update the config file (if you want) and run it a <strong>second time</strong> to download the blocklists. Your DNS is now blocking the domains from the blacklists.</p>
+
+  <h2>Crontab</h2>
+
+  <p>These blocklists change from time to time: new domains are added, old ones removed. You can configure the Security Gateway to download the new lists on a regular basis. Add to following to your ‘<a href="https://help.ubnt.com/hc/en-us/articles/215458888-UniFi-USG-Advanced-Configuration#2" title="Creating a config.gateway.json file on the USG">config.gateway.json</a>’ to update daily at 5 <abbr title="Ante Meridiem">A.M.</abbr></p>
+
+  {% highlight json %}
+  {
+    "system": {
+      "task-scheduler": {
+        "task": {
+          "hostblacklist": {
+            "crontab-spec": "0 5 * * *",
+            "executable": {
+              "path": "/config/scripts/getBlacklistHosts.sh"
+            }
+          }
+        }
+      }
+    }
+  }
+  {% endhighlight %}
+
+  <h2>Whitelist/blacklist</h2>
+
+  <p>Maybe you need access to a blocked domain. This is easy to do with a client-side blocker, like uBlock Origin, but a bit harder with a network-wide blocklist.</p>
+
+  <ul>
+    <li>Create a file named ‘dnswhitelist’ (no extension) in the same directory as the getBlacklistHosts.sh script and add the domain(s) you want to whitelist, one per line. Rerun the getBlacklistHosts script for it to pick up the changes.</li>
+    <li>You can also create a ‘dnsblacklist’ file in the same style to block extra domains.</li>
+  </ul>
+</div>
