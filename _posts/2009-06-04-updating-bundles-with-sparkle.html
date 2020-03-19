@@ -6,9 +6,9 @@ updated: 2010-09-23 22:07:46
 ---
 
 <div class="narrow-col">
-  <p>Did you ever use the <a href="https://sparkle-project.org/" title="Framework designed to simplify updating software">Sparkle</a> framework in your Cocoa applications? It's a great framewok that makes it easy for end-users to update your Mac OS X applications when a new version is released. We use it for <a href="https://web.archive.org/web/20100103063358/http://www.milkcarton.be/apps/lustro" title="Export Address Book contacts to CSV, TAB, microformats and Google Contacts">Lustro</a>, our first Cocoa application. It's fairly easy to install and well documented. The problem is I needed it for a Cocoa bundle (also called a non-app bundle): a preference pane we want to install in the Mac OS X System Preferences.</p>
+  <p>Did you ever use the <a href="https://sparkle-project.org/" title="Framework designed to simplify updating software">Sparkle</a> framework in your Cocoa applications? It’s a great framewok that makes it easy for end-users to update your Mac OS X applications when a new version is released. We use it for <a href="https://web.archive.org/web/20100103063358/http://www.milkcarton.be/apps/lustro" title="Export Address Book contacts to CSV, TAB, microformats and Google Contacts">Lustro</a>, our first Cocoa application. It’s fairly easy to install and well documented. The problem is I needed it for a Cocoa bundle (also called a non-app bundle): a preference pane we want to install in the Mac OS X System Preferences.</p>
 
-  <p>The Sparkle documentation has some bundle installation <a href="https://sparkle-project.org/documentation/" title="Sparkle documentation: Updating a Bundle">instructions</a> but my Cocoa level is not good enough to understand the different steps. Let's see how we can activate Sparkle for our own bundle, step by step (I'm using version 1.5 b6 here).</p>
+  <p>The Sparkle documentation has some bundle installation <a href="https://sparkle-project.org/documentation/" title="Sparkle documentation: Updating a Bundle">instructions</a> but my Cocoa level is not good enough to understand the different steps. Let’s see how we can activate Sparkle for our own bundle, step by step (I’m using version 1.5 b6 here).</p>
 
   <h2>Basic setup</h2>
 
@@ -18,10 +18,10 @@ updated: 2010-09-23 22:07:46
 
   <ul>
     <li>Open up your NIB file in Interface Builder.</li>
-    <li>Go to &lsquo;File &rarr; Read Class Files...&rsquo; and choose all the files inside Sparkle.framework/Headers.</li>
+    <li>Go to ‘File → Read Class Files…’ and choose all the files inside Sparkle.framework/Headers.</li>
     <li>Drag a generic Object (a blue cube) from the Library to your document.</li>
     <li>Select this object in your document window, and under the Information tab of the inspector, set the class of the object to SUUpdater.</li>
-    <li>If you'd like, make a &lsquo;Check for Updates...&rsquo; menu item in the application menu. Set its target to the SUUpdater instance and its action to checkForUpdates:.</li>
+    <li>You add a ‘Check for Updates…’ menu item to the application menu. Set its target to the SUUpdater instance and its action to checkForUpdates.</li>
   </ul>
 
   <h2>Bundle specific setup</h2>
@@ -30,7 +30,7 @@ updated: 2010-09-23 22:07:46
 
   <samp>#import &lt;Sparkle.h&gt;</samp>
 
-  <p>We need to instantiate the SUUpdater in our code, something that you don't need to do for a full blown application. I added the following to my awakeFromNib method (that method will be loaded when the user opens your preference pane).</p>
+  <p>We need to instantiate the SUUpdater in our code, something that you don’t need to do for a full blown application. I added the following to my awakeFromNib method (that method will be loaded when the user opens your preference pane).</p>
 
   {% highlight objective-c %}
   - (void)awakeFromNib
@@ -45,7 +45,7 @@ updated: 2010-09-23 22:07:46
 
   <h2>Custom bundle identifier</h2>
 
-  <p>This will work but is incorrect. Sparkle will now write it's user defaults in the com.apple.systempreferences which is a wrong practice. Sparkle will get confused as soon as 2 or more bundles use this method (the will use the same variables). You'll need to point Sparkle to identifier specific for you bundle. Luckily we can tell Sparkle to use our bundle:</p>
+  <p>This will work but is incorrect. Sparkle will now write it’s user defaults in the com.apple.systempreferences which is a wrong practice. Sparkle will get confused as soon as 2 or more bundles use this method (the will use the same variables). You’ll need to point Sparkle to identifier specific for you bundle. Luckily we can tell Sparkle to use our bundle:</p>
 
   {% highlight objective-c %}
   [NSBundle bundleWithIdentifier:@"com.you.yourbundle"]
@@ -55,11 +55,11 @@ updated: 2010-09-23 22:07:46
 
   <h2>User defaults</h2>
 
-  <p>Start your bundle and click the update button. Close the System Preferences and check the user defaults to see if it works. There is a nice command in Mac OS X called &lsquo;defaults&rsquo; that can read these user defaults for you (be sure to close the application first as it will only write the new settings to disk when the application closes). Open Terminal and type:</p>
+  <p>Start your bundle and click the update button. Close the System Preferences and check the user defaults to see if it works. There is a nice command in Mac OS X called ‘defaults’ that can read these user defaults for you (be sure to close the application first as it will only write the new settings to disk when the application closes). Open Terminal and type:</p>
 
   {% highlight bash %}
   defaults read com.example.yourbundle
   {% endhighlight %}
 
-  <p>Look for &lsquo;SU-&rsquo; prefixed parameters. Do you see them? That should be all for today. You can have a look in <a href="https://github.com/milkcarton/lazypoken/blob/master/classes/LPPreferencePaneController.m" title="The LazyPoken PreferencePaneController source code">our code</a> to see how the end result looks like.</p>
+  <p>Look for ‘SU-’ prefixed parameters. You can have a look in <a href="https://github.com/milkcarton/lazypoken/blob/master/classes/LPPreferencePaneController.m" title="The LazyPoken PreferencePaneController source code">our code</a> to see how the end result looks like.</p>
 </div>

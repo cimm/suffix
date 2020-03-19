@@ -8,7 +8,7 @@ updated: 2010-09-23 22:00:07
 <div class="narrow-col">
   <p>I needed some avatar images in a recent Ruby on Rails project. File uploading in Rails is never easy but the <a href="https://github.com/thoughtbot/paperclip" title="Paperclip gem on github">paperclip</a> gem makes it so much easier.</p>
 
-  <p>Now, paperclip has a fallback method when an image is missing. Defining the default image saves you from writing duplicate tests in your views to handle the missing image cases. You can specify the default URL like this:</p>
+  <p>Paperclip has a fallback method when an image is missing. Defining the default image saves you from writing duplicate tests in your views to handle the missing image cases. You can specify the default <abbr title="Uniform Resource Locator">URL</abbr> like this:</p>
 
   {% highlight ruby %}
   has_attached_file :avatar, :default_url => '/images/avatar_missing.png'
