@@ -10,13 +10,13 @@ proofread:   yes
 <div class="narrow-col">
   <p>The Bitcoin protocol has built-in support for multisig addresses. A multisig address needs <em>n</em> out of <em>i</em> signatures before the coins can be withdrawn. A good example is an escrow-like service that allows safer payments by holding the buyer's coins in escrow until the terms of the sale are met.</p>
 
-  <p>Currently, none of the Bitcoin clients support these kinds of addresses via the <abbr title="Graphical User Interface">GUI</abbr>, but it's fully supported via the <a href="https://bitcoin.org/en/choose-your-wallet" title="Download the Bitcoin Core client">Bitcoin Core</a> (previously named Bitcoin-Qt) client's <abbr title="Application Programming Interface">API</abbr>.</p>
+  <p>Currently, none of the Bitcoin clients support these kinds of addresses via the <abbr title="Graphical User Interface">GUI</abbr>, but it’s fully supported via the <a href="https://bitcoin.org/en/choose-your-wallet" title="Download the Bitcoin Core client">Bitcoin Core</a> (previously named Bitcoin-Qt) client’s <abbr title="Application Programming Interface">API</abbr>.</p>
 
-  <p>You might want to run the Bitcoin Core client in <a href="/blog/getting-started-bitcoin-testnet">testnet mode</a> to play with fake coins.</p>
+  <p>You might want to run the Bitcoin Core client in <a href="../getting-started-bitcoin-testnet/">testnet mode</a> to play with fake coins.</p>
 
-  <p>The example code assumes you have the <a href="https://en.bitcoin.it/wiki/API_reference_%28JSON-RPC%29" title="JSON-RPC API reference">Ruby <abbr title=" JavaScript Object Notation">JSON</abbr>-<abbr title="Remote Procedure Call">RPC</abbr> wrapper</a> to make things a little easier.</p>
+  <p>The example code assumes you have the <a href="https://en.bitcoin.it/wiki/API_reference_%28JSON-RPC%29" title="JSON-RPC API reference">Ruby <abbr title="JavaScript Object Notation">JSON</abbr>-<abbr title="Remote Procedure Call">RPC</abbr> wrapper</a> to make things a little easier.</p>
 
-  <p>We create a Bitcoin<abbr title="Remote Procedure Call">RPC</abbr> instance which we'll reuse in our examples.</p>
+  <p>We create a Bitcoin<abbr title="Remote Procedure Call">RPC</abbr> instance which we’ll reuse in our examples.</p>
 
   {% highlight ruby %}
   rpc = BitcoinRPC.new('http://user:pass@127.0.0.1:8332')
@@ -24,7 +24,7 @@ proofread:   yes
 
   <h2>Bits &amp; pieces</h2>
 
-  <p>We'll create an address that needs 2 signatures out of 3 to withdraw the coins, but you can choose whatever combination you desire. Say we have the following 3 addresses:</p>
+  <p>We’ll create an address that needs 2 signatures out of 3 to withdraw the coins, but you can choose whatever combination you desire. Say we have the following 3 addresses:</p>
 
   <ol>
     <li>Buyer: <code>muYqjrmbDQTGgdJRaFwJiihk8qEionVVm4</code></li>
@@ -34,7 +34,7 @@ proofread:   yes
 
   <h2>Create a multisig address</h2>
 
-  <p>Let's get started by creating a new multisig address. The first parameter defines the number of signatures needed to withdraw the coins (2 in our example):</p>
+  <p>Let’s get started by creating a new multisig address. The first parameter defines the number of signatures needed to withdraw the coins (2 in our example):</p>
 
   {% highlight ruby %}
   rpc.createmultisig(2, [
@@ -101,7 +101,7 @@ proofread:   yes
   "01000000011f1d82c5cd93eed9d658d98682cc968c2fe48bee5d2a177ce6e2583815a01a2d0000000000ffffffff01c02709000000000017a914eb24ff395813fd1411c2093394396266d77722ff8700000000"
   {% endhighlight %}
 
-  <p><strong>DONE</strong> You now have a transaction of 0.006 <abbr title="Bitcoin">BTC</abbr> linked to the multisig address. You'll need 2 of the 3 signatures to spend these coins.</p>
+  <p><strong>DONE</strong> You now have a transaction of 0.006 <abbr title="Bitcoin">BTC</abbr> linked to the multisig address. You’ll need 2 of the 3 signatures to spend these coins.</p>
 
   <h2>Announce to the network</h2>
 
