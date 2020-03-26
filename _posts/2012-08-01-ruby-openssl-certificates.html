@@ -11,17 +11,17 @@ proofread: no
 
   <code>SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B: certificate verify failed</code>
 
-  <p>The Open<abbr title="Secure Secure Layer">SSL</abbr> library can't verify the Certificate Authority (CA) the certificate from the responding server is signed against and breaks. Certificates are verified using a <a href="https://en.wikipedia.org/wiki/Root_certificate" class="ext">chain of trust</a>. The certificate should be verified by his parent, which, in his turn should be verified by his parent until you reach a root certificate.</p>
+  <p>The OpenSSL library can’t verify the Certificate Authority (CA) the certificate from the responding server is signed against and breaks. Certificates are verified using a <a href="https://en.wikipedia.org/wiki/Root_certificate" title="Root certificate article @ Wikipedia">chain of trust</a>. The certificate should be verified by his parent, which, in his turn should be verified by his parent until you reach a root certificate.</p>
 
-  <h2><abbr title="Secure Socekts Layer">SSL</abbr>::VERIFY_NONE</h2>
+  <h2>SSL::VERIFY_NONE</h2>
 
-  A lot of resources on the web seem to take the easy route: not verifying certificates with Open<abbr title="Secure Sockets Layer">SSL</abbr>::<abbr title="Secure Sockets Layer">SSL</abbr>::VERIFY_NONE. While this works, it's insecure. Why use <abbr title="Secure Sockets Layer">SSL</abbr> if you don't intend to use its advantages? Not verifying a certificate means you simply trust the remote server is whom he claims to be, not who he really is. That might be acceptable for your personal website but not for a payment gateway. <span class="vcard"><span class="fn">James Golick</span> wrote a nice <a href="https://jamesgolick.com/2011/2/15/verify-none..html" title="James Golick vs. VERIFY_NONE" class="ext url">article</a></span> explaining his fight against <abbr title="Secure Sockets Layer">SSL</abbr>::VERIFY_NONE.</p>
+  <p>A lot of resources on the web seem to take the easy route: not verifying certificates with OpenSSL::SSL::VERIFY_NONE. While this works, it’s insecure. Why use SSL if you don’t intend to use its advantages? Not verifying a certificate means you simply trust the remote server is whom he claims to be, not who he really is. That might be acceptable for your personal website but not for a payment gateway. <span class="h-card"><span class="p-name">James Golick</span> wrote a nice <a href="https://jamesgolick.com/2011/2/15/verify-none..html" title="James Golick vs. VERIFY_NONE" class="u-url">article</a></span> explaining his fight against SSL::VERIFY_NONE.</p>
 
   <h2>The Certificate Authority (CA) bundle</h2>
 
-  <p>You'll need a <abbr title="Certificate Authority">CA</abbr> bundle. The <a href="http://curl.haxx.se/ca/" title="Extracted CA certs from Mozilla" class="ext">cURL website</a> maintains a version of the Mozilla <abbr title="Certificate Authority">CA</abbr> bundle in <abbr title="Privacy-enhanced Electronic Mail">PEM</abbr> format. Grab one of their certificates.</p>
+  <p>You’ll need a <abbr title="Certificate Authority">CA</abbr> bundle. The <a href="http://curl.haxx.se/ca/" title="Extracted CA certs from Mozilla">cURL website</a> maintains a version of the Mozilla CA bundle in <abbr title="Privacy-enhanced Electronic Mail">PEM</abbr> format. Grab one of their certificates.</p>
 
-  <p>Once dowloaded you can tell <a href="http://www.ruby-doc.org/stdlib-1.9.3/libdoc/net/http/rdoc/Net/HTTP.html" title="Net::HTTP in the Ruby Standard Library" class="ext">Net::HTTP</a> to use this certificate:</p>
+  <p>Once dowloaded you can tell <a href="https://ruby-doc.org/stdlib-1.9.3/libdoc/net/http/rdoc/Net/HTTP.html" title="Net::HTTP in the Ruby Standard Library">Net::HTTP</a> to use this certificate:</p>
 
   {% highlight ruby %}
   require "net/https"
@@ -35,5 +35,5 @@ proofread: no
 
   <code>export SSL_CERT_FILE="path_to_certificate"</code>
 
-  <p>Or, install it in your <abbr title="Ruby Version Manager">RVM</abbr> directory: <a href="http://fredwu.me/post/28834446907/fix-openssl-error-on-mountain-lion-and-rvm" title="Fix OpenSSL Error on Mountain Lion (and RVM)" class="ext">Fix OpenSSL Error on Mountain Lion (and RVM)</a>.</p>
+  <p>Or, install it in your RVM directory: <a href="https://fredwu.me/blog/2012-08-06-fix-openssl-error-on-mountain-lion-and-rvm/" title="Fix OpenSSL Error on Mountain Lion (and RVM)">Fix OpenSSL Error on Mountain Lion (and RVM)</a>.</p>
 </div>

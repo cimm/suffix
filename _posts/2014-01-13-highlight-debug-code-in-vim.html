@@ -10,11 +10,11 @@ proofread:   yes
 <div class="narrow-col">
   <p>I have been looking for a way to prevent myself from committing debug code to project repositories. I add <code>console.log</code> statements to debug problems all the time. This is no big deal if I would only remember to remove those lines before committing the patch.</p>
 
-  <p>My first approach was to add a Git <a href="https://githooks.com/" alt="What are Git hooks?">pre-commit hook</a> to warn me when I was ready to commit something stupid. While this works, it&apos;s a bit too intrusive for my liking. It also happens at the wrong moment. The pre-commit hook would only warn me when I was committing something, not right there when I was looking at the file.</p>
+  <p>My first approach was to add a Git <a href="https://githooks.com/" alt="What are Git hooks?">pre-commit hook</a> to warn me when I was ready to commit something stupid. While this works, it’s a bit too intrusive for my liking. It also happens at the wrong moment. The pre-commit hook would only warn me when I was committing something, not right there when I was looking at the file.</p>
 
-  <p>Last week, <span class="vcard"><span class="fn">Wynn Netherland</span> posted a way to highlight <a class="url" href="http://wynnnetherland.com/linked/2014010902/words-to-avoid-in-tech-writing" title="Words to avoid in tech writing post by Wynn Netherland">words to avoid in tech writing</a></span>, isn&apos;t that convenient?</span></p>
+  <p class="h-card">Last week, <span class="p-name">Wynn Netherland</span> posted a way to highlight <a class="u-url" href="https://wynnnetherland.com/linked/2014010902/words-to-avoid-in-tech-writing" title="Words to avoid in tech writing post by Wynn Netherland">words to avoid in tech writing</a>, isn’t that convenient?</p>
 
-  <p>I shamelessly took his snippet and modified it to highlight words that I don&apos;t want to commit:</p>
+  <p>I shamelessly took his snippet and modified it to highlight words that I don’t want to commit:</p>
 
   {% highlight vim %}
   highlight DebugCode ctermfg=red guifg=red
@@ -25,7 +25,7 @@ proofread:   yes
   autocmd BufWinLeave * call clearmatches()
   {% endhighlight %}
 
-  <p>Here is how it looks with the light <a href="http://ethanschoonover.com/solarized" alt="Solarized color theme">Solarized</a> theme:</p>
+  <p>Here is how it looks with the light <a href="https://ethanschoonover.com/solarized/" alt="Solarized color theme">Solarized</a> theme:</p>
 </div>
 
 <figure class="extended-col">
@@ -33,7 +33,7 @@ proofread:   yes
 </figure>
 
 <div class="narrow-col">
-  <p>You will want to make sure that you enabled syntax highlighting. I was missing the <code>syntax enable</code> line and it wouldn't work.</p>
+  <p>You will want to make sure that you enabled syntax highlighting. I was missing the <code>syntax enable</code> line and it wouldn’t work.</p>
 
   {% highlight vim %}
   syntax on
@@ -42,7 +42,7 @@ proofread:   yes
 
   <p>There you go, big red boxes for lines you might want to remove before pushing.</p>
 
-  <p>A small extra tip: using Vim <a href="http://vim.wikia.com/wiki/Using_abbreviations" title="Using abbreviations @ Vim wiki">abbreviations</a>, from my <a href="https://github.com/cimm/dotvim/blob/master/vimrc" title="My .vimrc file"><code>.vimrc</code></a> file, will help you type longer commands:</p>
+  <p>A small extra tip: using Vim <a href="https://vim.fandom.com/wiki/Using_abbreviations" title="Using abbreviations @ Vim wiki">abbreviations</a>, from my <a href="https://github.com/cimm/dotvim/blob/master/vimrc" title="My .vimrc file" rel="me"><code>.vimrc</code></a> file, will help you type longer commands:</p>
 
   {% highlight vim %}
   abbr clog console.log

@@ -12,36 +12,32 @@ description: Configuring mutt as a text-based e-mail client.
   <img src="../../assets/mutt.jpg" alt="Mutt" />
 </figure>
 
-<blockquote class="vcard narrow-col">
+<blockquote class="narrow-col">
   All mail clients suck. This one just sucks less.
   &mdash;
-  <cite class="fn">
-    <span class="given-name">Michael</span>
-    <span class="additional-name">R.</span>
-    <span class="family-name">Elkins</span>
-  </cite>
+  <cite class="h-card">Michael R.  Elkins</cite>
 </blockquote>
 
 <div class="narrow-col">
-  <p><a href="http://mutt.org/">Mutt</a> is a text-based e-mail client for UN*X systems. It doesn't do nicely formatted <abbr title="HyperText Markup Language">HTML</abbr> emails or images, but it's extremely customizable and completely keyboard-driven.</p>
+  <p><a href="http://mutt.org/">Mutt</a> is a text-based e-mail client for UN*X systems. It doesn’t do nicely formatted <abbr title="HyperText Markup Language">HTML</abbr> emails or images, but it’s extremely customizable and completely keyboard-driven.</p>
 
-  <p>I have been using Mozilla's <a href="https://www.mozilla.org/thunderbird/" title="Thunderbird open source e-mail client">Thunderbird</a> for a while now and I'm not completely satisfied with the way it handles mailboxes. It's time to try something 'new': Mutt. The plan is to use Mutt for all things e-mail for a full month.</p>
+  <p>I have been using Mozilla’s <a href="https://www.thunderbird.net/" title="Thunderbird open source e-mail client">Thunderbird</a> for a while now and I’m not completely satisfied with the way it handles mailboxes. It’s time to try something ‘new’: Mutt. The plan is to use Mutt for all things e-mail for a full month.</p>
 
-  <p>A word of warning: Mutt is known for its complicated setup (there are literally hundreds of configuration commands), and I had to stitch together quite a few blog posts before I got a working setup. If you don't like braking and rebuilding stuff or hunting down a missing comma for half an hour, Mutt is probably not for you.</p>
+  <p>A word of warning: Mutt is known for its complicated setup (there are literally hundreds of configuration commands), and I had to stitch together quite a few blog posts before I got a working setup. If you don’t like braking and rebuilding stuff or hunting down a missing comma for half an hour, Mutt is probably not for you.</p>
 
   <h2>Fetching emails with isync</h2>
 
   <p>I use <a href="http://isync.sourceforge.net/" title="IMAP and MailDir mailbox synchronizer">isync</a> to synchronize my e-mail locally and Mutt to read and send emails. <abbr title="Internet Message Access Protocol">IMAP</abbr> only. Mutt can do more, much more, but you will have to look elsewhere for that.</p>
 
-  <p>Mutt comes with <abbr title="Internet Message Access Protocol">IMAP</abbr> support built-in. This works superbly but is a bit slower when dealing with larger mailboxes. Mutt's built-in <abbr title="Internet Message Access Protocol">IMAP</abbr> support fetches your e-mail as soon as you start the program. There is a cache that is quite fast but requires a bit of patience every time you open the program. It also means you can't read your e-mail offline. I want a little more and use isync to download or better, synchronise, my e-mail locally via a crontab.</p>
+  <p>Mutt comes with IMAP support built-in. This works superbly but is a bit slower when dealing with larger mailboxes. Mutt’s built-in IMAP support fetches your e-mail as soon as you start the program. There is a cache that is quite fast but requires a bit of patience every time you open the program. It also means you can’t read your e-mail offline. I want a little more and use isync to download or better, synchronise, my e-mail locally via a crontab.</p>
 
   <p>isync syncs your different e-mail accounts to a local folder structure. As much as it can be used outside of Mutt, they work together nicely and it makes Mutt faster and available on the go.</p>
 
-  <p>Be careful because isync doesn't download but <strong>synchronizes</strong> your mailbox! If you mess up the configuration, you could easily delete all your mail from the mail server. Play with a test account first and/or make sure you have a <strong>backup</strong> before you try this. You do have a backup, right?</p>
+  <p>Be careful because isync doesn’t download but <strong>synchronizes</strong> your mailbox! If you mess up the configuration, you could easily delete all your mail from the mail server. Play with a test account first and/or make sure you have a <strong>backup</strong> before you try this. You do have a backup, right?</p>
 
-  <p>The executable isync is called 'mbsync' and can be configured with a '.mbsyncrc' configuration file in your home dir. Let's configure our different <abbr title="Internet Message Access Protocol">IMAP</abbr> accounts and add a crontab to fetch our new e-mail.</p>
+  <p>The executable isync is called ‘mbsync’ and can be configured with a ‘.mbsyncrc’ configuration file in your home dir. Let’s configure our different IMAP accounts and add a crontab to fetch our new e-mail.</p>
 
-  <p>Create a '~/.mbsyncrc' file with the following:</p>
+  <p>Create a ‘~/.mbsyncrc’ file with the following:</p>
 
   {% highlight bash %}
   SyncState *
@@ -76,7 +72,7 @@ description: Configuring mutt as a text-based e-mail client.
       Channel john-sent
   {% endhighlight %}
 
-  <p>Repeat this for every account you wish to synchronize. The example will only synchronize your inbox and sent mailbox, add other folders you might need, like a trash or spam folder. I had to create each of the account directories in '~/.mail' manually as well.</p>
+  <p>Repeat this for every account you wish to synchronize. The example will only synchronize your inbox and sent mailbox, add other folders you might need, like a trash or spam folder. I had to create each of the account directories in ‘~/.mail’ manually as well.</p>
 
   <p>Now add a crontab command to fetch all e-mail every 5 minutes:</p>
 
@@ -84,13 +80,13 @@ description: Configuring mutt as a text-based e-mail client.
   */5 * * * * mbsync -a
   {% endhighlight %}
 
-  <p>The 'mbsync -a' command fetches all configured e-mail accounts. You can define different schedules with 'mbsync john', for example, which only synchronizes the john@example.com account in our configuration example.</p>
+  <p>The ‘mbsync -a’ command fetches all configured e-mail accounts. You can define different schedules with ‘mbsync john’, for example, which only synchronizes the john@example.com account in our configuration example.</p>
 
   <p>Once done, you will see a folder for each channel in the ~/.mail/john directory with all your emails. You now have an offline copy, which is great.</p>
 
   <h2>Installing Mutt</h2>
 
-  <p>Mutt time! Mutt doesn't come with a sidebar folder view out-of-the-box, but you probably want one. There is a patch, but you need to instruct Homebrew to include it when installing Mutt.</p>
+  <p>Mutt time! Mutt doesn’t come with a sidebar folder view out-of-the-box, but you probably want one. There is a patch, but you need to instruct Homebrew to include it when installing Mutt.</p>
 
   {% highlight bash %}
   brew edit mutt
@@ -121,9 +117,9 @@ description: Configuring mutt as a text-based e-mail client.
 
   <h2>Configuring Mutt</h2>
 
-  <p>Muttt's config lives in the '.muttrc' file in your home dir, right next to the isync config file. However, I prefer a '.mutt' folder with a 'muttrc' (no dot here) file to have all the Mutt dependencies in a single place.</p>
+  <p>Muttt’s config lives in the ‘.muttrc’ file in your home dir, right next to the isync config file. However, I prefer a ‘.mutt’ folder with a ‘muttrc’ (no dot here) file to have all the Mutt dependencies in a single place.</p>
 
-  <p>Let's start by telling Mutt where to look. Add the following to the '~/.mutt/muttrc' file:</p>
+  <p>Let’s start by telling Mutt where to look. Add the following to the ‘~/.mutt/muttrc’ file:</p>
 
   {% highlight bash %}
   set folder           = ~/.mail            # mailboxes
@@ -144,9 +140,9 @@ description: Configuring mutt as a text-based e-mail client.
   set   mail_check = 0       # minimum time between scans
   set   markers    = no      # no + sign for wrapped lines
   unset move                 # gmail does that
-  set   delete               # don't ask, just do
-  unset confirmappend        # don't ask, just do
-  set   quit                 # don't ask, just do
+  set   delete               # don’t ask, just do
+  unset confirmappend        # don’t ask, just do
+  set   quit                 # don’t ask, just do
   unset mark_old             # read/new is good enough
   set   beep_new             # bell on new emails
   set   pipe_decode          # strip headers and eval
@@ -172,14 +168,14 @@ description: Configuring mutt as a text-based e-mail client.
 
   <h2>Accounts</h2>
 
-  <p>Let's configure an account. I created a file for each account and used the folder hooks to trigger the right config for the selected mailbox:</p>
+  <p>Let’s configure an account. I created a file for each account and used the folder hooks to trigger the right config for the selected mailbox:</p>
 
   {% highlight bash %}
   folder-hook example/* source ~/.mutt/accounts/example
   folder-hook gmail/*   source ~/.mutt/accounts/gmail
   {% endhighlight %}
 
-  <p>And the 'example' file in the accounts folder:</p>
+  <p>And the ‘example’ file in the accounts folder:</p>
 
   {% highlight bash %}
   set realname            = "John Doe"
@@ -199,24 +195,24 @@ description: Configuring mutt as a text-based e-mail client.
             +example/sent
   {% endhighlight %}
 
-  <p>Note that the password is <strong>not encrypted</strong> here. Therefore, only use this if you know what you are doing and make sure the file is only readable for your user. There are some ways around this if this scares you, but that's beyond the scope of this post.</p>
+  <p>Note that the password is <strong>not encrypted</strong> here. Therefore, only use this if you know what you are doing and make sure the file is only readable for your user. There are some ways around this if this scares you, but that’s beyond the scope of this post.</p>
 
-  <p>If your password contains special characters ($, &amp;, %, #, * and the like), you'll need to URL encode them. This took me a while to figure out. The password will be used in the 'smtp_url' setting so it makes sense you URL encode the special characters like you would in any URL. I used <a href="https://en.wikipedia.org/wiki/Interactive_Ruby_Shell" title="Interactive Ruby Shell">irb</a> to quickly encode my password:</p>
+  <p>If your password contains special characters ($, &amp;, %, #, * and the like), you’ll need to URL encode them. This took me a while to figure out. The password will be used in the ‘smtp_url’ setting so it makes sense you URL encode the special characters like you would in any URL. I used <a href="https://en.wikipedia.org/wiki/Interactive_Ruby_Shell" title="Interactive Ruby Shell">irb</a> to quickly encode my password:</p>
 
   {% highlight ruby %}
   require "uri"
   URI::encode("password")
   {% endhighlight %}
 
-  <p>The mailboxes section at the end of the file sets the mailboxes you will see in the sidebar. These have to match the mailboxes you defined earlier in the 'mbsync' configuration file. The first "Example" line is not a real mailbox, but a little hack to have a visual separation between the accounts.</p>
+  <p>The mailboxes section at the end of the file sets the mailboxes you will see in the sidebar. These have to match the mailboxes you defined earlier in the ‘mbsync’ configuration file. The first "Example" line is not a real mailbox, but a little hack to have a visual separation between the accounts.</p>
 
-  <p>You'll find plenty of Gmail example files if you want to add one of those. They are basically the same as the example above, but with Google's <abbr title="Simple Mail Transfer Protocol">SMTP</abbr> server and your Gmail address.</p>
+  <p>You’ll find plenty of Gmail example files if you want to add one of those. They are basically the same as the example above, but with Google’s <abbr title="Simple Mail Transfer Protocol">SMTP</abbr> server and your Gmail address.</p>
 
   <h2>Quick Look</h2>
 
   <p>By default, Mutt saves attachments you open within Mutt to disk. This works but is cumbersome if you simply want to look at a photo someone sent you or quickly scan an attached <abbr title="Microsoft">MS</abbr> Word document. OS X has this awesome <a href="https://en.wikipedia.org/wiki/Quick_Look" title="OS X Quick Look @ Wikipedia">Quick Look</a> feature that quickly opens most files without having to install separate applications. Why not use Quick Look for e-mail attachments in Mutt?</p>
 
-  <p>Did you know you can run Quick Look from the command line with 'qlmanage -p file'? We''ll use this trick to tell Mutt to run Quick Look when opening attachments. Add a 'mailcap' file in the '~/.mutt' folder you created earlier with the following:</p>
+  <p>Did you know you can run Quick Look from the command line with ‘qlmanage -p file’? We’ll use this trick to tell Mutt to run Quick Look when opening attachments. Add a ‘mailcap’ file in the ‘~/.mutt’ folder you created earlier with the following:</p>
 
   {% highlight bash %}
   text/html; qlmanage -p %s; nametemplate=%s.html
@@ -235,14 +231,14 @@ description: Configuring mutt as a text-based e-mail client.
 
   <h2>Sources</h2>
 
-  <p>I obviously didn't find this all by myself so here are some of the most useful snippets I stole:</p>
+  <p>I obviously didn’t find this all by myself so here are some of the most useful snippets I stole:</p>
 
   <ul>
-    <li class="vcard">
-      <a class="url" href="http://stevelosh.com/blog/2012/10/the-homely-mutt/">The Homely Mutt</a> by <span class"fn">Steve Losh</span>.
+    <li class="h-card">
+      <a class="u-url" href="http://stevelosh.com/blog/2012/10/the-homely-mutt/">The Homely Mutt</a> by <span class="p-name">Steve Losh</span>.
     </li>
-    <li>
-      <a class="url" href="https://twitter.com/paulcbetts/status/308344358409756672">Quick Look and mailcap</a> tweet by <span class="fn">Paul Betts</span>.
+    <li class="h-card">
+      <a class="u-url" href="https://twitter.com/paulcbetts/status/308344358409756672">Quick Look and mailcap</a> tweet by <span class="p-name">Paul Betts</span>.
     </li>
   </ul>
 </div>

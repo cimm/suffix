@@ -14,7 +14,6 @@ description: Use a unique email per service, like you do for passwords.
 </picture>
 
 <div class="narrow-col">
-
   <p>You already use a <a href="https://ssd.eff.org/module/animated-overview-using-password-managers-stay-safe-online" title="Using Password Managers to Stay Safe Online @ EFF">password manager</a> to keep track of all the unique passwords for each of your online accounts. If one of these services gets breached or a malicious developer steals your password you can be sure they don’t hack all your other online accounts. You do, however, use the same email address. Not as important as your passwords but a breach will still expose the email address. It also means all these websites can keep sending you spam now that they have your email. What if we would use a unique email per online service as we do with passwords?</p>
 
   <h2>Beginner</h2>
@@ -80,7 +79,7 @@ description: Use a unique email per service, like you do for passwords.
 
   <p>Note, there is more you should do to harden your server but that’s out-of-scope for this tutorial!</p>
 
-  <h3><abbr title="Domain Name System">DNS</h3>
+  <h3><abbr title="Domain Name System">DNS</abbr></h3>
 
   <p>The internet doesn’t know that our new server is ready to receive emails to <code>twitter@example.com</code> and <code>facebook@example.com</code> yet. You can probably configure the DNS in the same place where you bought your domain name. Add an A-record for the mail subdomain pointing to the <abbr title="Internet Protocol">IP</abbr> of the server (replace 127.0.01 with the <abbr title="Internet Protocol">IP</abbr>-address of your server.</p>
 
@@ -146,6 +145,6 @@ description: Use a unique email per service, like you do for passwords.
 
   <ul>
     <li>MXToolBox has an <abbr title="Simple Mail Transfer Protocol">SMTP</abbr> <a href="https://mxtoolbox.com/diagnostic.aspx" title="Email Server Test @ MXToolBox">diagnostics tool</a> to test your setup.</li>
-    <li>The Postfix installation is based on the <a href="https://www.binarytides.com/postfix-mail-forwarding-debian/" title="Setup mail forwarding in postfix on Ubuntu or Debian @ BinaryTides">Setup mail forwarding in postfix on Ubuntu or Debian</a> article by <span itemprop="customer" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Silver Moon</span></span>.
+    <li>The Postfix installation is based on the <a href="https://www.binarytides.com/postfix-mail-forwarding-debian/" title="Setup mail forwarding in postfix on Ubuntu or Debian @ BinaryTides">Setup mail forwarding in postfix on Ubuntu or Debian</a> article by <span class="h-card">Silver Moon</span>.</li>
   </ul>
 </div>

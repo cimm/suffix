@@ -13,17 +13,17 @@ description: Running ARM Raspian in a QEMU virtual machine.
 
   <p>Why not virtualize the Raspberry in a <abbr title="Virtual Machine">VM</abbr> on my laptop? No need for a physical Raspberry, no extra hardware to carry around, and I can boot up as many Pi's as I desire (or my laptop can handle).</p>
 
-  <p>I used the free and open-source <span itemscope itemtype="http://schema.org/SoftwareApplication"><a href="https://www.qemu.org/" title="Official QEMU homepage" itemprop="name">QEMU</span></a> <span itemprop="applicationCategory">hypervisor</span></span> to virtualise the Raspberry hardware. Let's download and install QEMU:</p>
+  <p>I used the free and open-source <a href="https://www.qemu.org/" title="Official QEMU homepage" class="h-product u-url">QEMU</a> hypervisor to virtualise the Raspberry hardware. Let’s download and install QEMU:</p>
 
   {% highlight bash %}
   sudo apt install qemu
   {% endhighlight %}
 
-  <p>QEMU does not (yet) know the Raspberry kernel. I downloaded the most recent kernel from <span itemscope itemtype="http://schema.org/Person"><span itemprop="name">Dhruv Vyas</span></span>' <a href="https://github.com/dhruvvyas90/qemu-rpi-kernel" title="QEMU kernel for emulating Rpi on QEMU @ Github">QEMU RPi Kernel</a> repository and the <code>versatile-pb.dtb</code> device tree blob from the same repo (not the slightest idea what this does but it won't run without it).</p>
+  <p>QEMU does not (yet) know the Raspberry kernel. I downloaded the most recent kernel from <span itemprop="h-card">Dhruv Vyas</span>’ <a href="https://github.com/dhruvvyas90/qemu-rpi-kernel" title="QEMU kernel for emulating Rpi on QEMU @ Github">QEMU RPi Kernel</a> repository and the <code>versatile-pb.dtb</code> device tree blob from the same repo (not the slightest idea what this does but it won’t run without it).</p>
 
-  <p>Only the Linux image itself left. I don't need a <abbr title="Graphical User Interface">GUI</abbr> on the Pi, it's a build machine, so I took the <a href="https://www.raspberrypi.org/downloads/raspbian/" title="Raspberry Pi OS image downloads">Raspbian Stretch Lite</a> version. Unzipping the image gives a <code>.img</code> file.</p>
+  <p>Only the Linux image itself left. I don’t need a <abbr title="Graphical User Interface">GUI</abbr> on the Pi, it’s a build machine, so I took the <a href="https://www.raspberrypi.org/downloads/raspbian/" title="Raspberry Pi OS image downloads">Raspbian Stretch Lite</a> version. Unzipping the image gives a <code>.img</code> file.</p>
 
-  <p>With QEMU installed, the patched kernel and dtb file in place, and the Raspbian image it's time to get the VM spun up:</p>
+  <p>With QEMU installed, the patched kernel and dtb file in place, and the Raspbian image it’s time to get the VM spun up:</p>
 
   {% highlight bash %}
   sudo qemu-system-arm \
@@ -36,7 +36,6 @@ description: Running ARM Raspian in a QEMU virtual machine.
     -net nic -net user \
     -hda 2018-06-27-raspbian-stretch-lite.img
   {% endhighlight %}
-
 </div>
 
 <figure class="extended-col">
@@ -46,5 +45,5 @@ description: Running ARM Raspian in a QEMU virtual machine.
 <div class="narrow-col">
   <p>The user-mode network used in the previous command does not support the <code>ping</code> command out-of-the-box, only TCP and UDP are. I've found better network configurations online, but they look too complex for my little test setup.</p>
 
-  <p>This post is heavily based on <span itemscope itemtype="http://schema.org/Person"><span itemprop="name">Alistair Chapman</span>'s</span> <a href="https://blog.agchapman.com/using-qemu-to-emulate-a-raspberry-pi/" title="Using QEMU to emulate a Raspberry Pi">blog post</a> with slight modifications to make it work for me.</p>
+  <p class="h-card">This post is heavily based on <span class="p-name">Alistair Chapman</span>’s <a href="https://blog.agchapman.com/using-qemu-to-emulate-a-raspberry-pi/" title="Using QEMU to emulate a Raspberry Pi" class="u-url">blog post</a> with slight modifications to make it work for me.</p>
 </div>

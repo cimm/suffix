@@ -7,9 +7,9 @@ proofread: yes
 ---
 
 <div class="narrow-col">
-  <p>My invoices are generated from a LaTeX template using the <a href="../../assets/invoice.zip" title="Download the package (mirrored on this domain)">invoice package</a> by <span class="vcard"><span class="fn">Oliver Corff</span></span> (no longer available now). <span class="vcard"><span class="fn">Paul Asmuth</span> <a class="url" href="https://web.archive.org/web/20131215213244/http://paulasmuth.com/blog/latex_invoice/" title="HowTo: Write invoices in LaTeX">wrote</a> a little example on how to use the invoice package if you would like to try it out.</p>
+  <p>My invoices are generated from a LaTeX template using the <a href="../../assets/invoice.zip" title="Download the package (mirrored on this domain)">invoice package</a> by <span class="h-card">Oliver Corff</span> (no longer available now). <span class="h-card"><span class="p-name">Paul Asmuth</span> <a class="u-url" href="https://web.archive.org/web/20131215213244/http://paulasmuth.com/blog/latex_invoice/" title="HowTo: Write invoices in LaTeX">wrote</a></span> a little example on how to use the invoice package if you would like to try it out.</p>
 
-  <p>After installing OS X Mountain Lion and the most recent distribution of <a href="http://www.tug.org/mactex/" title="Download the MacTex distrubtion">MacTex</a> (<abbr title="2012-06-01">1 July 2012</abbr>), my invoices wouldn't generate any more. I checked the invoice package in the TeX Live Utility and sure enough, it was installed by default and updated to the latest version the TeX Live Utility could find.</p>
+  <p>After installing OS X Mountain Lion and the most recent distribution of <a href="https://www.tug.org/mactex/" title="Download the MacTex distrubtion">MacTex</a> (<time datetime="2012-06-01">1 July 2012</time>), my invoices wouldn't generate any more. I checked the invoice package in the TeX Live Utility and sure enough, it was installed by default and updated to the latest version the TeX Live Utility could find.</p>
 
   <p>Still, generating an invoice with <em>pdflatex</em> kept producing the following error:</p>
 
@@ -21,7 +21,7 @@ proofread: yes
 
   <h2>RequirePackage</h2>
 
-  <p>Luckily it's easy to patch the problem. Have a look at the <em>/usr/local/texlive/2012/texmf-dist/tex/latex/invoice/invoice.sty</em> file and look for the line that requires the <em>fp</em> package in the &lsquo;initialize code&rsquo; block, near the beginning of the file:</p>
+  <p>Luckily it’s easy to patch the problem. Have a look at the <em>/usr/local/texlive/2012/texmf-dist/tex/latex/invoice/invoice.sty</em> file and look for the line that requires the <em>fp</em> package in the ‘initialize code’ block, near the beginning of the file:</p>
 
   <code>\input{fp}</code>
 
@@ -29,5 +29,5 @@ proofread: yes
 
   <code>\RequirePackage{fp}</code>
 
-  <p>Save the file and try running <em>pdflatex</em> again. Is it fixed now? Thanks to <span class="vcard"><a class="url fn" href="http://www.texdev.net/" title="Some TeX Developments">Joseph Wright</a></span> and his <a href="http://tex.stackexchange.com/questions/61113/using-graphicx-with-invoice-results-in-strange-pdf-output" title="Using graphicx with invoice results in strange PDF output">TeX StackExchange answer</a> for solving the issue!</p>
+  <p>Save the file and try running <em>pdflatex</em> again. Is it fixed now? Thanks to <a class="h-card" href="http://www.texdev.net/" title="Some TeX Developments">Joseph Wright</a> and his <a href="https://tex.stackexchange.com/questions/61113/using-graphicx-with-invoice-results-in-strange-pdf-output" title="Using graphicx with invoice results in strange PDF output">TeX StackExchange answer</a> for solving the issue!</p>
 </div>
