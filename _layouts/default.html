@@ -13,8 +13,8 @@
     <meta name="msapplication-navbutton-color" content="#333" />
     <meta name="viewport" content="width=device-width" />
     <meta name="google-site-verification" content="iucc-gveOZVN1BSKSqUHhY3Gn3pYqZdQl1ZnDRCCVQM" />
-    <link rel="alternate" href="{{ site.url }}{{ page.url }}" hreflang="en"/>
-    <link rel="canonical" href="{{ site.url }}{{ page.url }}"/>
+    <link rel="alternate" href="{{ page.url | absolute_url | remove: 'index.html' }}" hreflang="en"/>
+    <link rel="canonical" href="{{ page.url | absolute_url | remove: 'index.html' }}"/>
     <link href="{% relbase %}/feeds/blog.xml" rel="alternate" title="Suffix's feed" type="application/atom+xml" />
     <link rel="stylesheet" href="{% relbase %}/assets/stylesheets/main.css" />
     <link rel="manifest" href="{% relbase %}/manifest.json" />
