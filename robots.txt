@@ -1,1 +1,3 @@
 Sitemap: https://www.suffix.be/sitemap.xml
+User-agent: *
+Disallow: /404/
