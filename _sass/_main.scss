@@ -99,6 +99,10 @@
       padding-left: 1em;
     }
 
+    pre {
+      overflow-x: auto;
+    }
+
     figcaption {
       color: $primary;
       font-style: italic;
