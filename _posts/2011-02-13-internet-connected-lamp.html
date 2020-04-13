@@ -11,13 +11,15 @@ updated: 2011-03-01 21:50:41
   <p>What follows is my very first Arduino project, feel free to comment and improve wherever you see fit.</p>
 </div>
 
-<figure class="extended-col-left">
-  <img src="https://c1.staticflickr.com/6/5052/5480018182_610e32cd95_z.jpg" alt="Internet-connected lamp"/>
-</figure>
+<picture class="extended-col-left">
+  <source type="image/webp" srcset="../../assets/photos/5480018182_610e32cd95_m.webp" />
+  <img src="../../assets/photos/5480018182_610e32cd95_m.jpg" alt="Internet-connected lamp"/>
+</picture>
 
-<figure class="extended-col-right">
-  <img src="https://c1.staticflickr.com/6/5060/5479417753_7579ac170f.jpg" alt="Internet-connected lamp"/>
-</figure>
+<picture class="extended-col-right">
+  <source type="image/webp" srcset="../../assets/photos/5479417753_7579ac170f_m.webp" />
+  <img src="../../assets/photos/5479417753_7579ac170f_m.jpg" alt="Internet-connected lamp"/>
+</picture>
 
 <div class="narrow-col">
   <h2>Project outline</h2>
@@ -74,13 +76,12 @@ updated: 2011-03-01 21:50:41
   <p>The Arduino will serve as a serial port between the computer and the lamp. It will translate the &ldquo;turn green&rdquo; command to a high voltage on one of the Arduino pins. The &ldquo;turn red&rdquo; command is exactly the same but uses another pin. The resistor will make sure we don&apos;t burn the <abbr title="Light Emitting Diode">LED</abbr>s.</p>
 
   <p>Connect the 5 wires as shown:</p>
-</div>
 
-<figure class="extended-col">
-  <img src="https://github.com/cimm/orb/raw/master/schema.png" alt="Arduino wiring schema" />
-</figure>
+  <picture>
+    <source type="image/webp" srcset="../../assets/connected-lamp-schema.webp" />
+    <img src="../../assets/connected-lamp-schema.png" alt="Arduino wiring schema"/>
+  </picture>
 
-<div class="narrow-col">
   <p>Hide the <abbr title="Light Emitting Diode">LED</abbr>s and wires in the lamp (together with the Arduino if you can) and connect the <abbr title="Unviversal Serial Bus">USB</abbr> cable to the computer.</p>
 
   <h2>The Arduino software</h2>
