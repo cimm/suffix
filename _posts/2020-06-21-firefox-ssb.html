@@ -1,0 +1,47 @@
+---
+layout:      post
+title:       Firefox’s Site Specific Browser
+date:        2020-06-21 14:00:00
+updated:     2020-06-21 14:00:00
+description: Firefox 73 has a build-in SSB mode.
+---
+
+<div class="narrow-col">
+  <p>Back in <time>2007</time>, Mozilla released <a href="https://web.archive.org/web/20120503194318/http://prism.mozillalabs.com/" title="Archived version of the Prism product page">Prism</a>, a “mini-browser” to run websites outside of Firefox. It removed all the unnecessary chrome around the page (buttons, address bar, etc). Prism came and went. Years later hybrid applications (Electron, Ionic and others) took its place.</p>
+
+  <p>But why install a separate application for websites like Spotify or Slack? Can’t we simply open them in a separate browser window? They are “just” websites after all.</p>
+
+  <p>Google Chrome has had this for a while now. Any <abbr title="Progressive Web App">PWA</abbr> enabled site automatically gets an “Install app” icon in the address bar:</p>
+</div>
+
+<figure class="extended-col">
+  <picture>
+    <source type="image/webp" srcset="../../assets/ssb-chrome.webp" />
+    <img src="../../assets/ssb-chrome.jpg" alt="Chromium’s PWA installation prompt"/>
+    <figcaption>Chromium’s <abbr title="Progressive Web App">PWA</abbr> installation prompt</figcaption>
+  </picture>
+</figure>
+
+<div class="narrow-col">
+  <p>I always wondered why Firefox abandoned the idea. They didn’t. <abbr title="Today I Learned">TIL</abbr>, thanks to a post by <a href="https://trivial.observer/blog/mastodon-ssb-client/" title="Meet the New Mastodon Client, Same as the Old Mastodon Client" class="h-card">Basil</a>, Firefox 73 and later has an experimental server-specific browser (SSB) option build-in!</p>
+
+  <ol>
+    <li>Type <a href="https://support.mozilla.org/en-US/kb/about-config-editor-firefox" title="About config editor documentation">about:config</a> in the Firefox address bar and accept the risk if you haven’t yet.</li>
+    <li>Search for the <kbd>browser.ssb.enabled</kbd> setting and click the double arrow button to change its value to true.</li>
+    <li>Open a website and click the … in the address bar and choose “Use This Site in App Mode” or start Firefox from the command line with <kbd>firefox -ssb https://www.suffix.be/blathy/</kbd>.</p>
+  </ol>
+</div>
+
+<figure class="extended-col">
+  <picture>
+    <source type="image/webp" srcset="../../assets/ssb-firefox.webp" />
+    <img src="../../assets/ssb-firefox.jpg" alt="Firefox’s SSB menu"/>
+    <figcaption>Firefox’s <abbr title="Site Specific Browser">SSB</abbr> menu</figcaption>
+  </picture>
+</figure>
+
+<div class="narrow-col">
+  <p>Note that the SSB windows close when you quit the “main” Firefox window. Secondly, all extensions still apply but they aren’t “visible”. This got me the first time as <a href="../firefox-extensions-2020/" title="My Firefox Extensions for 2020">Cookie AutoDelete</a> removed some cookies I still needed in the SSB window.</p>
+
+
+</div>
