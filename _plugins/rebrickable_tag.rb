@@ -71,7 +71,7 @@ module Jekyll
       filename = URI(url).path.split('/').last
       path = File.join(ASSET_DIR, filename)
       return path if File.exists?(path)
-      io = open(url)
+      io = URI.open(url)
       FileUtils.mv(io.path, path)
       FileUtils.chmod(0644, path)
       path
