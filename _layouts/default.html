@@ -3,12 +3,13 @@
   <head>
     <meta charset="utf-8">
     <title>{{ page.title }} - {{ site.name }}</title>
-    <meta name="description" content="{{ page.description }}">
-    <meta property="og:title" content="{{ site.name }}" />
+    <meta property="og:image" content="{{ page.cover_image_url | absolute_url }}">
+    <meta property="og:title" content="{{ page.title }}" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="{{ site.url }}" />
+    <meta property="og:url" content="{{ page.url | absolute_url | remove: 'index.html' }}" />
     <meta property="og:site_name" content="{{ site.name }}" />
-    <meta property="og:description" content="{{ site.description }}" />
+    <meta property="og:description" content="{{ page.description }}" />
+    <meta name="description" content="{{ page.description }}">
     <meta name="theme-color" content="#333" />
     <meta name="msapplication-navbutton-color" content="#333" />
     <meta name="viewport" content="width=device-width" />
