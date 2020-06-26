@@ -1,0 +1,46 @@
+---
+layout:          post
+title:           Second factor authentication for SSH
+date:            2020-06-25 19:00:00
+updated:         2020-06-25 19:00:00
+description:     Using ecdsa-sk or ed25519-sk combined with a hardware security key for multifactor SSH authentication.
+cover_image_url: ../../assets/yubikey.jpg
+---
+
+<figure class="extended-col">
+  <picture>
+    <source type="image/webp" srcset="../../assets/yubikey.webp" />
+    <img src="../../assets/yubikey.jpg" alt="Standard sized Yubikey security key"/>
+  </picture>
+</figure>
+
+<div class="narrow-col">
+  <p><abbr title="Secure Shell">SSH</abbr> is a protocol to securely login to a remote machine (it can do much more but it’s mostly used in this context). Even though it can be protected by a simple username and password most people will advise you to use public keys. Public keys are longer, more complex than passwords (<abbr title="Your Mileage May Vary">YMMV</abbr>) and are not send over the wire like passwords are. Passwords or public keys, this is still single-factor authentication, there is only one secret a hacker has to steal to get access. Multifactor authentication adds another layer of security. That’s how (European) credit cards work: you need the card and the <abbr title="Personal Identifier Number">PIN</abbr>, one won’t work without the other. You need something you have (the card) and something you know (your PIN).</p>
+
+  <h2>SSH with <abbr title="Universal 2nd Factor">U2F</abbr></h2>
+
+  <p>There are multiple ways to add second-factor authentication to a server (from <abbr title="Time-based One-Time Password">TOTP</abbr>s to hardware authentication devices like a YubiKey). It always required extra software when setting up a new server, and I was often scared to touch it since you can easily lock yourself out when doing it wrong. While migrating to a new server last weekend I <a href="https://powersj.io/post/ubuntu-focal-enhanced-ssh/" title="Enhanced SSH 2FA in Ubuntu 20.04 LTS">learned</a> Ubuntu 20.04 comes with OpenSSH 8.2 out of the box. This version of OpenSSH adds ecdsa-sk and ed25519-sk keys, which support U2F devices (‘sk’ meaning ‘security key’). You tap the security key when generating one of these keys, add it you your SSH authorized_keys file like you would normally do and voilà, you have second-factor authentication for SSH.</p>
+
+  <h2>Generating keys</h2>
+
+  <p>You need one of these fancy new key types for this to work so start with generating a new key. There shouldn’t be any noticeable difference between the two variants for hobbyists like myself but I am no security expert. You will be asked to tap the security key when generating a new key:</p>
+
+  {% highlight bash %}
+  $ ssh-keygen -t ecdsa-sk
+  Generating public/private ecdsa-sk key pair.
+  You may need to touch your authenticator to authorize key generation.
+  Enter file in which to save the key (/home/john/.ssh/id_ecdsa_sk):
+  Enter passphrase (empty for no passphrase):
+  Enter same passphrase again:
+  Your identification has been saved in /home/john/.ssh/id_ecdsa_sk
+  Your public key has been saved in /home/john/.ssh/id_ecdsa_sk.pub
+  {% endhighlight %}
+
+  <p>Now add the public key (the one ending in .pub) to the <a href="https://www.ssh.com/ssh/authorized_keys/" title="Adding your public key to the server">authorized_keys</a> file on the server. Next, wait… no, that’s it! When you SSH in the server you will need to tap the key. A virtual key and a hardware security key: two factors.</p>
+
+  <p>I lied, there is another step. You need to generate another key with another hardware security key and upload it to the same server. Store that second “backup” security key somewhere safe or you won’t be able to access the server when you lose the first one.</p>
+
+  <h2>Shopping advice</h2>
+
+  <p>You’ll need to two hardware security keys. The main, well-known, brand is <a href="https://www.yubico.com/" title="Yubico, YubiKey manufacturer">YubiKey</a> (pictured above). They are great and come with a ton of features. So many features I never know which one to buy. <a href="https://solokeys.com/" title="Cheaper, simpler, open-source security keys">SoloKey</a> is the new kid on the block, these are cheaper, simpler and open-source. Never tried them though.</p>
+</div>
