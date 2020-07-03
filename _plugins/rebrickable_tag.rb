@@ -52,6 +52,7 @@ module Jekyll
     def render(context)
       @set_num = context[attrs.first]
       data = cached? ? read_cache : fetch_and_cache
+      return if data.nil?
       rendered = data[attrs.last]
       rendered = get_image(data['set_img_url']) if set_img_url?
       rendered
