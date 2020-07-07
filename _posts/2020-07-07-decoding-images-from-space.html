@@ -1,0 +1,153 @@
+---
+layout:      post
+title:       Decoding Images from Space
+date:        2020-07-07 22:00:00
+updated:     2020-07-07 22:00:00
+description: Using an SDR dongle to listen to weather images from NOAA satellites.
+cover_image_url: ../../assets/noaa15-europe-single.jpg
+---
+
+<figure class="extended-col">
+  <picture>
+    <img src="../../assets/noaa15-europe-single.jpg" alt="Cropped NOAA 15 APT image"/>
+    <figcaption>Europe seen from NOAA 15 on 7 July 2020</figcaption>
+  </picture>
+</figure>
+
+<div class="narrow-col">
+  <p><a href="https://www.noaa.gov/satellites" title="NOAA’s satelittes introduction page">NOAA</a>, the American National Oceanic and Atmospheric Administration, operates satellites to monitor Earth. The geostationary ones<a href="#fn1" id="fnref1"><sup>1</sup></a> have an orbital period that is equal to the Earth’s rotational period, seen from the ground they appear motionless. Geostationary satellites orbit Earth at 35,786 kilometers and are often used for communication. NOAA’s polar satellites<a href="#fn2" id="fnref2"><sup>2</sup></a> follow a heliosynchronous orbit, more useful for imaging, because every time that the satellite is overhead, the surface illumination angle on the ground will be the same. Polar satellites orbit Earth at ±800 kilometers and take pictures of the clouds underneath, used for weather forecasting. The cool thing is we can listen in and receive these photos ourselves!</p>
+
+  <h2>NOAA-15, 18, and 19</h2>
+
+  <p>Three polar satellites are currently operational: NOAA-15, NOAA-18, and NOAA-19. <a href="https://en.wikipedia.org/wiki/TIROS-N" title="TIROS-N satellite series @ Wikipedia">TRIOS-N</a> satellites, weighting around 1.5 ton, using 830 watts of power. Given they orbit Earth in a little over 100 minutes there is a good chance you can capture them multiple times per day. The weather images have a 4 km per pixel resolution and are sent back to Earth via an analog transmission mode called Automatic Picture Transmission or <a href="https://www.sigidwiki.com/wiki/Automatic_Picture_Transmission_(APT)" title="In-depth APT info @ Signal Identification Guide">APT</a>. There are two images side by side: one in long-wave infrared and the other near-visible or mid-wave infrared depending whether it’s day or night on the ground. The APT transmission can be recorded as sound and converted to an image.</p>
+</div>
+
+<figure class="extended-col">
+  <picture>
+    <img src="../../assets/noaa15-europe-double.jpg" alt="Raw NOAA 15 APT image"/>
+  </picture>
+</figure>
+
+<div class="narrow-col">
+  <h2>FM Radio</h2>
+
+  <p>Radio equipment used to be expensive, but since software is eating the world we now have <abbr title="Software Defined Radio">SDR</abbr>! Radio components that traditionally have been implemented in hardware are now implemented in software. I have an <a href="https://www.rtl-sdr.com/" title="Software Defined Radio news and projects">RTL-SDR</a> <abbr title="Universal Serial Bus">USB</abbr> dongle which seems well supported and for under €30 it even came with an antenna.</p>
+
+  <p>We’ll also need some free and open-source software to tune the radio: <a href="https://gqrx.dk/" title="Open source software defined radio by Alexandru Csete">gqrx</a><a href="#fn3" id="fnref3"><sup>2</sup></a>. The first time you start gqrx it’ll ask you to configure the I/O device: select the dongle from the dropdown and leave the other settings untouched. Choose “WFM” from the “Mode” dropdown in the “Receiver Options” section on the right. Click the play button (top left) and try to find one of your local FM radio stations to confirm everything is working. Drag the red line (frequency) and change the width of the grey box (filter width) in the top section to see how it behaves, we’ll need this later. The top section is called the panadapter, it shows what is currently being received. The bottom section is called the waterfall, it shows a log of what has been received. Enjoy your old-school radio on your high-tech computer. Try recording a bit as well (use the “Rec” button). If you need an extra challenge you can find the departure or approach frequencies for your local airport and listen to air traffic control.</p>
+
+  <h2>Satellite Tracking</h2>
+
+  <p>Back to our satellites. You can only listen to a satellite if you have line-of-sight. I use the paid <a href="https://apps.apple.com/us/app/star-walk-2-night-sky-map/id892279069" title="Stars and constellations guide">StarWalk 2</a> iOS app to see when NOAA-15, 18, or 19 will appear on the horizon but there are free <a href="http://gpredict.oz9aec.net/" title="Gpredict is a real-time satellite tracking and orbit prediction application">applications</a> or <a href="http://www.satview.org/5d.php?sat_id=25338U" title="NOAA-15 5 days forecast">websites</a> you can use as well. The higher in the sky the better, a satellite that only skimps the horizon will be difficult to hear. Same for the antenna: the higher up the better. I stick mine on the window in the attic. When do you watch satellites? At night, of course, there is too much light during the day. Listening to weather satellites is better during the day since the photos at night tend to be a bit… dark. No wonder my first capture was disappointing.</p>
+
+  <p>My dongle came with a V-dipole antenna, aka a bunny ears antenna, aka the antenna from an old TV. It so happens to be a good antenna to listen to weather satellites. For optimal results, the antenna has to be horizontal (less interference from vertical broadcast sources), with the tip of the V pointing north (or south if you are in the southern hemisphere) with rods of 52 cm at a 120° angle (see this <a href="https://noaa-apt.mbernardi.com.ar/guide.html#antenna" title="Antenna guide by the noaa-apt developer">antenna guide</a>).</p>
+
+  <h2>Recording</h2>
+
+  <p>Ready? Start gqrx and tune into the frequency for the satellite you are expecting (pro tip, add these as bookmarks in gqrx).</p>
+
+  <dl>
+    <dt>NOAA-15</dt>
+    <dd>137.620 MHz</dd>
+    <dt>NOAA-18</dt>
+    <dd>137.9125 MHz</dd>
+    <dt>NOAA-19</dt>
+    <dd>137.1 MHz</dd>
+  </dl> 
+
+  <p>These are the settings that work best for me but you might need to play around a bit, I am not a radio amateur.</p>
+
+  <h3>Input Controls</h3>
+
+  <dl>
+    <dt>KNB LO</dt>
+    <dd>I have no idea what this is for. Leave it at 0 MHz.</dd>
+    <dt>Hardware AGC</dt>
+    <dd>Automatic gain control, the tooltip mentions it is known to work with RTL-SDR devices so I turned it on. Haven’t tried without yet so not sure if it’s really needed.</dd>
+    <dt>Freq. correction</dt>
+    <dd>Keep the default 0.0 ppm, no idea what this does.</dd>
+  </dl>
+
+  <p>Leave the other options turned off.</p>
+
+  <h3>Receiver Options</h3>
+
+  <dl>
+    <dt>Frequency bar (black bar at the top)</dt>
+    <dd>Don’t worry about this one, we’ll do this manually by dragging the red line in the panadapter section.</dd>
+    <dt>Frequency</dt>
+    <dd>Same, we’ll use the panadapter.</dd>
+    <dt>Filter width</dt>
+    <dd>Change the width in the panadapter section. It’s the light gray box around the red line and you can change its width by grabbing the sides. The box should cover the width of the pattern you see in the waterfall section when the satellite is in range (around 40 k).</dd>
+    <dt>Filter share</dt>
+    <dd>Normal. I think it’s tuning how sharp the signal dorps of near the edges of the filter width. I didn’t see any changes between the different options so leave it as is.</dd>
+    <dt>Mode: WFM (mono)</dt>
+    <dd>APT signals are mono so no need listen to a stereo signal.</dd>
+    <dt>AGC</dt>
+    <dd>I have it on fast but, again, no idea what this does.</dd>
+    <dt>Squelch</dt>
+    <dd>The squelch “hides” the noise floor so you only hear the peaks and not the constant white noise. It potentially hides part of the transmission so turning it off is our best bet: clicking the “R”eset button will set it to its lowest value (-150 dB).</dd>
+    <dt>Noise blanker</dt>
+    <dd>Make sure these are turned off.</dd>
+  <dl>
+
+  <h3><abbr title="Fast Fourier Transform">FFT</abbr> Settings</h3>
+
+  <p>I think these are only display options so nothing here will change the quality of the recording but it might make it easier to detect the signal when the satellite is overhead.</p>
+
+  <dl>
+    <dt>FFT size and Rate</dt>
+    <dd>Defines how many FFT points are calculated. I choose the maximum numbers from both lists, since less is more? I have no idea if this does something useful.</dd>
+    <dt>Time span</dt>
+    <dd>Auto</dd>
+    <dt>Window</dt>
+    <dd>Whatever you like.</dd>
+    <dt>Averaging</dt>
+    <dd>Around 75%, enough to hide the noise but not too much to hide the signal.</dd>
+    <dt>Panadapter</dt>
+    <dd>This changes the height of the panadapter and waterfall sections. Not sure why this is even an option since you can simply resize them with the mouse as well.</dd>
+    <dt>Peak</dt>
+    <dd>Leave both off.</dd>
+    <dt>Pand. dB and Wf. dB<dt>
+    <dd>Use the “Lock” setting to keep them linked. These are useful to horizontally center the FTT graph.</dd>
+    <dt>Freq zoom</dt>
+    <dd>Turn the frequency to the satellite you are expecting to see and use the slider to zoom in, it will make it easier to spot the pattern.</dd>
+    <dt>Color and colormap</dt>
+    <dd>Whatever color combination you fancy.</dd>
+  </dl>
+</div>
+
+<figure class="extended-col">
+  <picture>
+    <img src="../../assets/noaa19-gqrx-reception.gif" alt="Animation of gqrx receiving APT data"/>
+    <figcaption>NOAA 19’s signal with waterfall in gqrx</figcaption>
+  </picture>
+</figure>
+
+<div class="narrow-col">
+  <p>Now, wait for the satellite to appear at the horizon. Hit the “Rec” button as soon as you see the pattern appearing in the waterfall section. The pattern should get clearer the higher the satellite rises above the horizon. Manually change the width of the filter so it’s slightly larger than the striped pattern in the waterfall section. The frequency will not be exactly right, it’s a cheap dongle, so you might want to adjust the red frequency line in the panadapter to match the center peak. You might have to do this a few more times since the Doppler effect will cause the peaks to drift. This is not needed if the filter is wide enough though. Don’t stop the recording until the satellite is back behind the horizon and the pattern is gone.</p>
+
+  <figure>
+    <audio controls src="../../assets/noaa15-apt-signal.mp3"/>
+    <figcaption>APT signal from NOAA 15</figcaption>
+    </audio>
+  </figure>
+
+  <p>Don’t forget to enjoy the therapeutic beeping sound send to you from 800 km away <strong>from space</strong>!</p>
+
+  <h2>Decoding</h2>
+
+  <p>Time for the big reveal. Install <a href="https://noaa-apt.mbernardi.com.ar/" title="Converts the recorded audio file to an image">noaa-apt</a> and feed it the recording you made earlier. Click decode. Switch to the processing tab and click process. Did it work? If not, don’t worry, it took me a 3 or 4 tries to get something recognizable. Tweak some parameters and try again on the next pass.<p>
+
+  <p>The images will always be greyscale without country contours. The colored ones with contours you see online are colored in by software. The country lines can be added by noaa-apt as well but for coloring, you’ll need <a href="https://wxtoimgrestored.xyz/" title="Weather satellite signal to image decoder (no longer maintained)">WXtoImg</a>.</p>
+
+  <p>We downloaded a live image from space, with €30 hardware, from a satellite launched 22 years<a href="#fn4" id="fnref4"><sup>4</sup></a> ago flying at 30.000 km/hour that draws less power than your toaster. Who said 2020 can't be awesome?</p>
+
+  <h2>Footnotes</h2>
+
+  <ol>
+    <li id="fn1">GOES or Geostationary Operational Environmental Satellites system. <a href="#fnref1">↩</a></li>
+    <li id="fn2">POES or Polar Operational Environmental Satellites system. <a href="#fnref2">↩</a></li>
+    <li id="fn3"><a href="https://cubicsdr.com" title="Cross-platform and open-Source software defined radio application">CubicSDR</a> or <a href="https://airspy.com/download/" title="SDRSharp: free SDR software for Airspy and RTL-SDR dongles">SDR#</a> are other options but I haven’t tried these. <a href="#fnref3">↩</a></li>
+    <li id="fn4">NOAA-15, the oldest satellite of the three, was launched on May 13, 1998. <a href="#fnref4">↩</a></li>
+  </ol>
+</div>
