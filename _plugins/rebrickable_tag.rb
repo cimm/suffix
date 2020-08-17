@@ -52,7 +52,6 @@ module Jekyll
     def render(context)
       @set_num = context[attrs.first]
       data = cached? ? read_cache : fetch_and_cache
-      return if data.nil?
       rendered = data[attrs.last]
       rendered = get_image(data['set_img_url']) if set_img_url?
       rendered
@@ -125,12 +124,14 @@ module Jekyll
     end
 
     def fetch
+      sleep 2 # Rebirckable requests are easily thorttled see https://rebrickable.com/api/v3/docs/
       set_num_with_suffix = "#{@set_num}-1"
       uri = URI.join(SETS_ENDPOINT_PREFIX, set_num_with_suffix)
       response = uri.open('Accept' => 'application/json', 'Authorization' => "key #{REBRICKABLE_KEY}").read
       JSON.parse(response)
     rescue OpenURI::HTTPError => error
       raise 'Rebrickable auth error, check your API key' if error.io.status.first == '401'
+      raise 'Rebrickable request throttled' if error.io.status.first == '429'
     end
 
     def image_width(image_path)
