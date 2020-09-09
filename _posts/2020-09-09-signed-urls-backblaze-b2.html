@@ -1,0 +1,46 @@
+---
+layout:          post
+title:           Signed URLs with Backblaze B2
+date:            2020-09-09 12:00:00
+updated:         2020-09-09 12:00:00
+description:     Temporary access to private files in Backblaze B2 with secure links.
+cover_image_url: ../../assets/backblaze.png
+---
+
+<figure class="extended-col">
+  <picture>
+    <source type="image/webp" srcset="../../assets/backblaze.webp" />
+    <img src="../../assets/backblaze.png" alt="Backblaze B2 logo"/>
+  </picture>
+</figure>
+
+<div class="narrow-col">
+  <p>I am looking for a simple and privacy-friendly way to share old family videos with my close ones. YouTube is a hard no. I don’t want an algorithm analyzing my home videos, nor have them potentially taken down because there is some unlicensed music playing in the background. Some cloud storage with a simple static site will be just fine.</p>
+
+  <h2>Pre-Signed URLs</h2>
+
+  <p>A public file bucket with videos would be easy enough but signed <abbr title="Uniform Resource Locator">URL</abbr>s (sometimes called pre-authorized or pre-signed URLs) that expire after some time would be even better. This adds a bit of security: shared links won’t linger around forever, limiting possible exposure.</p>
+
+  <p>Backblaze is known for their backup service but also offers cloud storage similar to Amazon’s S3, Microsoft’s Azure, or Google’s Cloud Storage. <a href="https://www.backblaze.com/b2/" title="Backblaze B2 cloud storage product page">Backblaze B2</a> is <abbr title="Application Programming Interface">API</abbr> compatible with <abbr title="Amazon Web Services">AWS</abbr> S3 and is <a href="https://www.backblaze.com/b2/cloud-storage-pricing.html" title="Backblaze’s B2 pricing">more affordable</a> than the big players. Although API compatible with S3, Backblaze’s documentation is sparse, only has three datacenters (California, Arizona & Amsterdam), and doesn’t offer client libraries. Backblaze does have a command-line tool and all AWS S3 libraries should be usable as well (by changing the API endpoint). Note that you can only choose the datacenter on account creation. I had to close my old account and open a new one in their <abbr title="European Union">EU</abbr> region since my family videos will only ever be watched form Europe (latency and <abbr title="General Data Protection Regulation">GDPR</abbr> reasons).</p>
+
+  <h2>Download Authorization with Backblaze B2</h2>
+
+  <p>I used singed URLs before on AWS S3 so the same should work for Backblaze B2.</p>
+
+  <p>Head over to the “App Keys” section in the Backblaze web interface and add a new application key. Write down the newly generated ‘keyID’ and ‘applicationKey’. Add a private bucket while you are at it, and upload a file.</p>
+
+  <p>Download and install their <a href="https://www.backblaze.com/b2/docs/quick_command_line.html" title="Backblaze’s B2 CLI tool">CLI client</a> and authorize your account using the two keys generated before. List the buckets to check if it works.</p>
+
+  {% highlight bash %}
+  $ b2 authorize_account
+  $ b2 list_buckets
+  {% endhighlight %}
+
+  <p>Generate a signed pre-signed URL with the <a href="https://www.backblaze.com/b2/docs/b2_get_download_authorization.html" title="b2_get_download_authorization API documentation">duration, bucket, and filename</a>. The minimum duration is 1 second, the maximum is 604800 seconds (= one week).</p> 
+
+  {% highlight bash %}
+  $ b2 get-download-url-with-auth --duration 60 bucketname filename.mp4
+  {% endhighlight %}
+
+  <p>Voilà, a quick, simple, and reasonably secure way to share bigger files.</p>
+</div>
