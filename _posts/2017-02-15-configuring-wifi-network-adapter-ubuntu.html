@@ -2,20 +2,20 @@
 layout:      post
 title:       Configuring a wireless network adapter on Ubuntu
 date:        2017-02-15 09:00:00
-updated:     2017-02-15 09:00:00
+updated:     2020-09-09 09:00:00
 coordinates: 50.86505 4.70068
-proofread:   no
-description: Connection to a WiFi network from the Linux command line, without graphical interface
+proofread:   yes
+description: Connecting to a WiFi network from the Ubuntu command-line terminal, without a graphical interface.
 ---
 
 <div class="narrow-col">
-  <p>I installed <a href="https://www.ubuntu.com/server" title="Ubuntu Server product page">Ubuntu Server</a> on an older machine at the office recently. We only have WiFi access, no Ethernet, and the machine does not have a wireless chip. I got a D-Link WiFi <abbr title="Universal Serial Bus">USB</abbr> adapter and plugged it in. Fine, but now, how do I tell Ubuntu to use the newly installed wireless adapter when you only have a <abbr title="Command Line Interface">CLI</abbr> and no <abbr title="Graphical User Interface">GUI</abbr>?</p>
+  <p>I installed <a href="https://www.ubuntu.com/server" title="Ubuntu Server product page">Ubuntu Server</a> on an older machine at the office. The office only has a WiFi network, no Ethernet, and the computer does not have a wireless chip built-in. I bought a D-Link WiFi <abbr title="Universal Serial Bus">USB</abbr> adapter and plugged it in. Great, but how to tell Ubuntu to use the newly installed wireless adapter via the terminal, without a <abbr title="Graphical User Interface">GUI</abbr>?</p>
 
-  <p>Easy… well, not exactly, but it works.</p>
+  <p>Let’s configure the wireless adapter via the command-line interface. Useful for computers without a GUI like Ubuntu Server, but this will also work for say, a Raspberry Pi over <abbr title="Secure Shell">SSH</abbr> or any other Linux machine.</p>
 
-  <h2>Detecting the <abbr title="Universal Serial Bus">USB</abbr> adapter</h2>
+  <h2>Detect the Wireless USB Adapter</h2>
 
-  <p>Let's first check if the machine detected the <abbr title="Universal Serial Bus">USB</abbr> adapter. Run lsusb to list the <abbr title="Universal Serial Bus">USB</abbr> devices the machine knows about:</p>
+  <p>Check if the machine detected the USB adapter first. Run <em>lsusb</em> to list the USB devices the computer knows about:</p>
 
   {% highlight bash %}
   $ lsusb
@@ -25,11 +25,11 @@ description: Connection to a WiFi network from the Linux command line, without g
   Bus 001 Device 004: D-Link Corp.
   {% endhighlight %}
 
-  <p>There it is, our D-Link Corp. wireless <abbr title="Universal Serial Bus">USB</abbr> adapter. Nice.</p>
+  <p>There it is, our D-Link Corp. wireless USB adapter.</p>
 
-  <h2>Naming the adapter</h2>
+  <h2>Find the Adapter Name</h2>
 
-  <p>Now we need to find the <abbr title="Universal Serial Bus">USB</abbr> device's logical name, the name we can use to refer to it. Meet lshw.</p>
+  <p>Now we need to find the USB device’s logical name, the name we can use to refer to it. Meet <em>lshw</em>.</p>
 
   {% highlight bash %}
   $ lshw -C network
@@ -42,65 +42,62 @@ description: Connection to a WiFi network from the Linux command line, without g
      configuration: broadcast=yes driver=rt2800usb driverversion=4.4.0-62-generic firmware=0.29 ip=x.x.x.x link=yes multicast=yes wireless=IEEE 802.11abgn
   {% endhighlight %}
 
-  <p>Look for a device with a logical name starting with a 'w' (for wireless) and take note of its name.</p>
+  <p>Look for a device with a logical name starting with a 'w' (for wireless) and take note of its name: ‘wlan0’. Notice the WiFi interface is currently disabled.</p>
 
-  <h2>Manual connection</h2>
+  <h2>Manually Enable the Network Connection</h2>
 
-  <p>We now we have a <abbr title="Universal Serial Bus">USB</abbr> device and we know how to address it. Let's try to manually connect to a wireless network, make sure it's running first:</p>
+  <p>We now have the USB device’s logical name and know how to address it. Let’s manually connect to a wireless network but make sure it’s turned on first:</p>
 
   {% highlight bash %}
   $ ifconfig wlan0 up
   {% endhighlight %}
 
-  <p>We'll use <code>wlan0</code> as a generic device name here but you'll need to replace it with the logical name you found in the previous step.</p>
+  <p>We use ‘wlan0’ as a generic device name here but remember to replace it with the logical name found in the previous step.</p>
 
-  <p>Now connect to your wireless network:</p>
+  <p>Time to connect to the wireless network, replace the <abbr title="Service Set Identifier">SSID</abbr> with your wireless network name. Use <em>nmcli dev wifi</em> for a list of available networks if you don’t know the network name.</p>
 
   {% highlight bash %}
   $ wpa_passphrase <ssid> > wlan.config
   {% endhighlight %}
 
-  <p>It looks like the program hangs but it's simply waiting for you to give it the password to access the wireless network. Enter the password and press enter, it will create a <code>wlan.conf</code> file in the same directory containing the password and network name.</p>
-
-  <p>Connect to the network:</p>
+  <p>It might look like Ubuntu hangs but it’s waiting for you to type the password for the WiFi network. Enter the password and press enter, a ‘wlan.conf’ file will be created in the same directory with the network name and matching password. Use this file to connect to the network:</p>
 
   {% highlight bash %}
   $ wpa_supplicant -Dwext -i wlan0 -c wlan.conf -B
   {% endhighlight %}
 
-  <p>There won't be a lot to do without <abbr title="Internet Prototcol">IP</abbr> address so let's ask our router to give us one:</p>
+  <p>There won’t be a lot to do without an <abbr title="Internet Prototcol">IP</abbr> address so ask the router for one:</p>
 
   {% highlight bash %}
   $ dhclient -r
   $ dhclient wlan0
   {% endhighlight %}
 
-  <p>You should now be connected with the router. Check if you can see the internet:</p>
+  <p>You are now connected to your local network or hotspot. Check if your Ubuntu box can reach out to the internet:</p>
 
   {% highlight bash %}
-  $ ping 8.8.8.8
-  PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
-  64 bytes from 8.8.8.8: icmp_seq=1 ttl=42 time=16.4 ms
+  $ ping 1.1.1.1
+  PING 1.1.1.1 (1.1.1.1) 56(84) bytes of data.
+  64 bytes from 1.1.1.1: icmp_seq=1 ttl=42 time=16.4 ms
   {% endhighlight %}
 
-  <h2>Persist the config</h2>
+  <h2>Persist the Configuration for Ubuntu</h2>
 
-  <p>This is all fine… until you reboot and need to do the whole thing over again. Not optimal. It would be wise to store this somewhere so Ubuntu can reconnect to this network after a reboot. Let's use what we learned above and save that in a file. Open the <code>/etc/network/interfaces</code> file and add the following:</p>
+  <p>This is all fine… until you reboot and do the whole thing over again. It would be wise to store this somewhere so Ubuntu knows how to enable the network connection after a reboot. Add the following configuration settings to the <em>/etc/network/interfaces</em> file.</p>
 
 
   {% highlight bash %}
   auto lo
   iface lo inet loopback
-
   auto wlan0
   iface wlan0 inet dhcp
   wpa-ssid <ssid>
   wpa-psk <password>
   gateway 192.168.0.1
-  dns-nameservers 8.8.8.8 192.168.0.1
+  dns-nameservers 1.1.1.1 192.168.0.1
   {% endhighlight %}
 
-  <p>You'll need to replace the <code>wlan0</code> with the logical name you found earlier and 192.168.0.1 with the address of your router of course. Once done take down the interface and bring it back up:</p>
+  <p>Replace the wlan0, ssid, and password with your own and replace 192.168.0.1 with the IP address of the router. Save the config, disable the wireless interface, and turn it on once more.
 
   {% highlight bash %}
   $ ifconfig wlan0 down
