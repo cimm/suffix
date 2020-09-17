@@ -4,6 +4,9 @@ layout: default
 
 <header class="narrow-col post h-entry">
   <h1 class="p-name">{{ page.title }}</h1>
+  {% if page.description %}
+  <p><em>{{ page.description }}</em></p>
+  {% endif %}
   <time datetime="{{ page.date | date_to_xmlschema }}" class="dt-published">{{ page.date | date_to_long_string }}</time>
   <a href="../../about" class="u-author"></a>
 </header>
