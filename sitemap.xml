@@ -55,9 +55,4 @@ layout: null
     <changefreq>yearly</changefreq>
     <priority>0.1</priority>
   </url>
-  <url>
-    <loc>{{ site.url}}/404/</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.0</priority>
-  </url>
 </urlset>
