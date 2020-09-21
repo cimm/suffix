@@ -65,7 +65,7 @@ cover_image_url: ../../assets/stamped-pdf-invoice.jpg
 
   {% highlight bash %}
   pay() {
-    input_pdf=$1
+    input_pdf="$1"
     qpdf $input_pdf --replace-input --overlay /path/to/stamp.pdf --
     exiftool -keywords-=paid -keywords+=paid -overwrite_original $input_pdf
   }

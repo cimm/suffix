@@ -3,23 +3,25 @@ layout:      post
 title:       Making PDFs searchable
 date:        2020-05-24 12:00:00
 updated:     2020-05-24 21:00:00
-description: Using pdfsandwich to OCR PDFs on the command-line.
+description: Ever wanted to copy & paste from a scanned PDF? Using the pdfsandwich software to OCR PDFs from the command-line.
 ---
 
 <div class="narrow-col">
-  <p>I finally took my bookkeeping paperless, and scan paper invoices with the <a href="https://support.microsoft.com/en-us/office/microsoft-office-lens-for-ios-fbdca5f4-1b1b-4391-a931-dc1c2582397b" title="Microsoft Office Lens for iOS">Microsoft Lens</a> app on my phone. The app works great but doesn’t do <abbr title="Optical Character Recognition">OCR</abbr>, meaning the text of the scans is not searchable.</p>
+  <p>I finally took my bookkeeping paperless, and scan paper invoices with the <a href="https://support.microsoft.com/en-us/office/microsoft-office-lens-for-ios-fbdca5f4-1b1b-4391-a931-dc1c2582397b" title="Microsoft Office Lens for iOS">Microsoft Lens</a> mobile app. This works but Lens doesn’t <abbr title="Optical Character Recognition">OCR</abbr> the photo, meaning the text of the scans is not searchable. It would be nice to find the scanned PDF when searching for a word contained in the text.</p>
 
-  <h2>OCR PDFs</h2>
+  <h2>Searchable Scanned PDFs</h2>
 
-  <p>Scanned <abbr title="Portable Document Format">PDF</abbr>s can be made searchable by adding a layer of text over the background image. The text layer positions the characters over the image so it looks like you can select the words in the image by highlighting them. To extract the text from an image we need an OCR program. The OCR program will try to guess the characters found in the image. <a href="https://tesseract-ocr.github.io/" title="An open-source OCR engine">Tesseract</a> is such a free and open-source program.</p>
+  <p>Scanned <abbr title="Portable Document Format">PDF</abbr>s can be made searchable by adding a layer of text over the actual image. The text layer positions the characters over the image so it looks like you can select the words in the scan by highlighting them. To extract the text from an image we need OCR software. The OCR program will guess the characters found in the image. <a href="https://tesseract-ocr.github.io/" title="An open-source OCR engine">Tesseract</a> is free and open-source software that can detect text in an image.</p>
 
-  <p>Tesseract can not read PDFs, nor does it clean the images before attempting to extract the text. Scanned PDFs are often skewed with black bands on the sides which can make it harder for Tesseract to do interpret the text. <a href="http://www.tobias-elze.de/pdfsandwich/" title="A tool to make “sandwich” OCR pdf files">pdfsandwich</a> is a command-line tool that combines <a href="https://sourceforge.net/projects/unpaper/" title="A post-processing tool for scanned sheets of paper">unpaper</a>, to straighten and clean the PDFs, and Tesseract in a single package. The end result is a “sandwiched PDF” with the scanned image as the bottom layer and the OCRed text on the top.</p>
+  <p>Tesseract can not read PDFs, nor does it clean the images before attempting to extract the text. Scanned PDFs are often skewed with black bands on the sides which can make it harder for Tesseract to interpret the text. <a href="http://www.tobias-elze.de/pdfsandwich/" title="A tool to make “sandwich” OCR pdf files">pdfsandwich</a> is command-line software that combines <a href="https://sourceforge.net/projects/unpaper/" title="A post-processing tool for scanned sheets of paper">unpaper</a> (to straighten and clean the PDFs), <a href="https://imagemagick.org/" title="Powerfull command-line image editor">ImageMagick</a> (for image manipulation), and Tesseract in a single package. The end result is a “sandwiched PDF” with the scanned image as the bottom layer and the OCRed text on the top. All without touching Adobe Acrobat!</p>
 
   <p>It’s important to specify the language of the document as it greatly improves the text recognition. Run pdfsandwich with the <kbd>-list_langs</kbd> flag to list the available language codes (see the <a href="https://tesseract-ocr.github.io/tessdoc/Home.html" title="Installing extra language packs for Tesseract">Tesseract documentation</a> to install extra languages). These 3 letter language codes can be passed to pdfsandwich to improve the text parsing, even multiple languages in the same document.</p>
   
   <p><kbd>$ pdfsandwich -lang eng+nld document.pdf</kbd></p>
 
-  <p>The result will be stored in a new ‘document_ocr.pdf’ file (can be changed by passing the <kbd>-o</kbd> flag). The <kbd>-rgb</kbd> flag preserves color (careful though, the documentation mentions it could cause problems with some color spaces).</p>
+  <p>The result will be stored in a new ‘document_ocr.pdf’ file (can be changed by passing the <kbd>-o</kbd> flag). The <kbd>-rgb</kbd> flag preserves color (careful though, the documentation mentions it could cause problems with some color spaces). The <kbd>-rgb</kbd> option would sometimes create white boxes in the resulting PDF. I solved this by normalizing the image with a simple <kbd>-coo "-normalize"</kbd> flag.</p>
+
+  <p>Happy <kbd>CTRL+f</kbd>’ing! You now have a machine readable PDF.</p>
 
   <h2>Scripting</h2>
 
@@ -35,5 +37,5 @@ description: Using pdfsandwich to OCR PDFs on the command-line.
   done
   {% endhighlight %}
 
-  <p>This can now easily run as a cronjob to periodically OCR all scanned invoices.</p>
+  <p>This can now easily be ran as a cronjob to periodically OCR all scanned PDF invoices.</p>
 </div>
