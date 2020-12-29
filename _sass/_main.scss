@@ -96,7 +96,7 @@
     }
 
     dd {
-      border-left: 3px solid ligthen($primary, 30%);
+      border-left: 3px solid lighten($primary, 30%);
       padding-left: 1em;
     }
 
@@ -115,7 +115,7 @@
     }
 
     blockquote {
-      color: ligthen($primary, 30%);
+      color: lighten($primary, 30%);
 
       cite {
         font-style: italic;
