@@ -8,5 +8,6 @@ description: Personal blog for posting my ramblings, mostly about programming.
   <div class="posts-col">
     <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %Y" }}</time>
     <a href="{{ post.slug }}/">{{ post.title }}</a>
+    <p>{{ post.description }}</p>
   </div>
 {% endfor %}
