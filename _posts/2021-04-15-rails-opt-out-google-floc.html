@@ -1,0 +1,39 @@
+---
+layout:      post
+title:       Opt-out of Google’s FLoC in Rails
+date:        2021-04-16 13:00:00
+updated:     2021-04-16 13:00:00
+description: Opting out from Google’s Federated Learning of Cohorts in Ruby on Rails.
+---
+
+<div class="narrow-col">
+  <h2>What is FLoC?</h2>
+  <p>Federated Learning of Cohorts or FLoC, in short, is Google’s next-generation web tracking feature. FLoC will profile users in the browser itself instead of relying on third-party tracking cookies. FLoC, as part of Google Chrome, records the websites you visit and groups users with similar interests under a “cohort ID”. This identifier can then be used by advertisers to decide what ads to show.</p>
+
+  <p>There has been some criticism: browsers like <a href="https://brave.com/why-brave-disables-floc/" title="Why Brave Disables FLoC">Brave</a> and <a href="https://vivaldi.com/blog/no-google-vivaldi-users-will-not-get-floced/" title="No, Google! Vivaldi users will not get FLoC’ed">Vivaldi</a> pledged to not implement FLoC, DuckDuckGo has an <a href="https://spreadprivacy.com/block-floc-with-duckduckgo/" title="Use the DuckDuckGo Extension to Block FLoC, Google’s New Tracking Method in Chrome">extension</a> to block FLoC, and the <abbr title="Electronic Frontier Foundation">EFF</abbr> built a <a href="https://amifloced.org/" title="Am I FLoCed">website</a> to check your FLoC ID.</p>
+
+  <h2>Opt-out Header</h2>
+  <p>Like all Google Chrome users, websites will automatically opt-in if Chrome detects the website is serving ads or using the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Permissions_API" title="Permissions API documentation @ MDN">Permissions</a> <abbr title="Application Programming Interface">API</abbr>. This means your website visitors will be tracked if they use Google Chrome. It looks like websites can opt-out by sending a custom <abbr title="HyperText Transfer Protocol">HTTP</abbr> response header:</p>
+
+  {% highlight ruby %}
+  Permissions-Policy: interest-cohort=()
+  {% endhighlight %}
+
+  <p><a class="h-card" href="https://paramdeo.com/blog/opting-your-website-out-of-googles-floc-network">Paramdeo Singh</a> has a great post full of snippets to easily configure the most common web servers.</p>
+
+  <h2>Ruby on Rails</h2>
+
+  <p>If we are using Ruby on Rails we can set a custom HTTP header in the ApplicationController that will be sent with each response by adding the following to the app/controllers/application_controller.rb:</p>
+
+  {% highlight ruby %}
+  class ApplicationController < ActionController::Base
+    after_action :add_floc_opt_out_header
+
+    def add_floc_opt_out_header
+      response.set_header('Permissions-Policy', 'interest-cohort=()')
+    end
+  end
+  {% endhighlight %}
+
+  <p>Check the headers via the developer tools of your non-Chrome browser and you should see a ‘Permission-Policy’ response header. This should hopefully do the trick for now. Let’s hope Google doesn’t change its mind next week by changing the way websites can opt out.</p>
+</div>
