@@ -7,12 +7,10 @@ description: Using an SDR dongle to listen to weather images from NOAA satellite
 cover_image_url: ../../assets/noaa15-europe-single.jpg
 ---
 
-<figure class="extended-col">
-  <picture>
-    <img src="../../assets/noaa15-europe-single.jpg" alt="Cropped NOAA 15 APT image"/>
-    <figcaption>Europe seen from NOAA 15 on 7 July 2020</figcaption>
-  </picture>
-</figure>
+<picture class="extended-col">
+  <img src="../../assets/noaa15-europe-single.jpg" alt="Cropped NOAA 15 APT image"/>
+  <figcaption>Europe seen from NOAA 15 on 7 July 2020</figcaption>
+</picture>
 
 <div class="narrow-col">
   <p><a href="https://www.noaa.gov/satellites" title="NOAA’s satelittes introduction page">NOAA</a>, the American National Oceanic and Atmospheric Administration, operates satellites to monitor Earth. The geostationary ones have an orbital period that is equal to the Earth’s rotational period, seen from the ground they appear motionless. Geostationary satellites orbit Earth at 35,786 kilometers and are often used for communication. NOAA’s polar satellites follow a heliosynchronous orbit, more useful for imaging, because every time that the satellite is overhead, the surface illumination angle on the ground will be the same. Polar satellites orbit Earth at ±800 kilometers and take pictures of the clouds underneath, used for weather forecasting. The cool thing is we can listen in and receive these photos ourselves!</p>
@@ -23,9 +21,7 @@ cover_image_url: ../../assets/noaa15-europe-single.jpg
 </div>
 
 <figure class="extended-col">
-  <picture>
-    <img src="../../assets/noaa15-europe-double.jpg" alt="Raw NOAA 15 APT image"/>
-  </picture>
+  <img src="../../assets/noaa15-europe-double.jpg" alt="Raw NOAA 15 APT image"/>
 </figure>
 
 <div class="narrow-col">
@@ -116,19 +112,17 @@ cover_image_url: ../../assets/noaa15-europe-single.jpg
   </dl>
 </div>
 
-<figure class="extended-col">
-  <picture>
-    <img src="../../assets/noaa19-gqrx-reception.gif" alt="Animation of gqrx receiving APT data"/>
-    <figcaption>NOAA 19’s signal with waterfall in gqrx</figcaption>
-  </picture>
-</figure>
+<picture class="extended-col">
+  <img src="../../assets/noaa19-gqrx-reception.gif" alt="Animation of gqrx receiving APT data"/>
+  <figcaption>NOAA 19’s signal with waterfall in gqrx</figcaption>
+</picture>
 
 <div class="narrow-col">
   <p>Now, wait for the satellite to appear at the horizon. Hit the “Rec” button as soon as you see the pattern appearing in the waterfall section. The pattern should get clearer the higher the satellite rises above the horizon. Manually change the width of the filter so it’s slightly larger than the striped pattern in the waterfall section. The frequency will not be exactly right, it’s a cheap dongle, so you might want to adjust the red frequency line in the panadapter to match the center peak. You might have to do this a few more times since the Doppler effect will cause the peaks to drift. This is not needed if the filter is wide enough though. Don’t stop the recording until the satellite is back behind the horizon and the pattern is gone.</p>
 
   <figure>
     <audio controls src="../../assets/noaa15-apt-signal.mp3"/>
-    <figcaption>APT signal from NOAA 15</figcaption>
+      <figcaption>APT signal from NOAA 15</figcaption>
     </audio>
   </figure>
 
