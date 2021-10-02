@@ -13,9 +13,13 @@ cover_image_url: ../../assets/din-wattmeter.jpg
   <p>Luckily I do have a single-phase digital <a href="https://web.archive.org/web/20210928095605if_/https://i.ebayimg.com/images/i/181764598310-0-1/s-l1000.jpg" title="Photo of a kW meter"><abbr title="kilowatt">kW</abbr> meter</a> in the fuse box, as is often the case in Belgium for our “<a href="https://www.vlaanderen.be/groenestroomcertificaten-voor-zonnepanelen" title=" Groenestroomcertificaten voor zonnepanelen">groenestroomcertificaten</a>” (link in Dutch). The kilowatt meter flashes every time a watt-hour of power passes the meter. This sums up to 1.000 pulses per <abbr title="kilowatt-hour">kWh</abbr>. The meter also has two S0 pins which act as a switch every time the <abbr title="Light Emitting Diode">LED</abbr> flashes. The Arduino can detect these voltage changes and count the pulses, and thus learn the generated power from the solar installation. I used an old Arduino Ethernet, a <a href="http://resisto.rs/#10k" title="Color codes for a 10kΩ resistor">10kΩ</a> resistor, some wires—all found in my “big ol’ pile of electronics”—and loaded the <a href="https://github.com/cimm/pvpulse" title="Sketch to load on the Arduino Ethernet @ Github">sketch</a> on the Arduino. The sketch waits for an interrupt (= Voltage change) on pin 2 and fires an <abbr title="Message Queue Telemetry Transport">MQTT</abbr> message to the broker when it when it does.</p>
 </div>
 
-<picture class="extended-col">
+<picture class="extended-col-left">
   <source type="image/webp" srcset="../../assets/din-wattmeter.webp" />
-  <img src="../../assets/din-wattmeter.jpg" alt="Wiring diagram for the Arduino and S0 pins on the meter"/>
+  <img src="../../assets/din-wattmeter.jpg" alt="Wires connected to the DIN wattmeter"/>
+</picture>
+<picture class="extended-col-right">
+  <source type="image/webp" srcset="../../assets/din-wattmeter-schema.webp" />
+  <img src="../../assets/din-wattmeter-schema.jpg" alt="Wiring diagram for the Arduino and S0 pins on the meter"/>
 </picture>
 
 <div class="narrow-col">
