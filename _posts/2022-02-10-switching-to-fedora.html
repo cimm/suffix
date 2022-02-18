@@ -1,0 +1,35 @@
+---
+layout:      post
+title:       Switching to Fedora
+date:        2022-02-18 14:00:00
+updated:     2022-02-18 14:00:00
+description: Five years ago I switched from macOS to Ubuntu, last week I hopped to Fedora.
+---
+
+<div class="narrow-col">
+  <p>After <a href="../year-of-linux-desktop/" title="The year of my Linux desktop">five years</a> on Ubuntu, I have a good feel of the distro. Ubuntu works. Ubuntu is stable. Ubuntu lets me do my work. Thanks, Ubuntu team!</p>
+  <p>Still, there is this nagging feeling. What else is out there? Time to try something new: <a href="https://fedoramagazine.org/announcing-fedora-35/" title="Fedora Linux 35 Workstation Edition">Fedora</a>!</p>
+
+  <h2>Why Fedora?</h2>
+
+  <p>I don’t have a simple clear answer. There are, however, some arguments that pushed me over the fence:</p>
+  <ul>
+    <li>Fedora uses stock <a href="https://www.gnome.org/" title="The GNOME Desktop Environment">GNOME</a> while Ubuntu’s one is heavily modified. This is probably the mean reason that drew me to Fedora: it looks cleaner;</li>
+    <li>It isn’t based on Debian, meaning I can learn new things like <a href="https://docs.fedoraproject.org/en-US/fedora/f35/system-administrators-guide/package-management/DNF/" title="The Fedora package manager">dnf</a> and, well, that’s it for now I think;</li>
+    <li>Fedora supposedly has more recent package repositories and a faster release cycle (every six months) meaning fresher software;</li>
+    <li>It’s supported by a company, like Ubuntu, which hopefully means great support;</li>
+    <li>Fedora uses <abbr title="B-tree File System">BtrFS</abbr> instead of Ext4 by default, meaning I can play with snapshots!</li> 
+  </ul>
+
+  <h2>Small Annoyances</h2>
+
+  <p>Some of Fedora’s decisions already annoy me, luckily they can be changed easily.<p>
+  <ul>
+    <li>Fedora using stock GNOME means the windows don’t have a <a href="https://digitizor.com/gnome-3-maximize-minimize-buttons/" title="GNOME 3 Does Away With The Maximize And Minimize Buttons">minimize button</a>. A weird default, if you ask me. I quickly enabled the minimize button via GNOME <a href="https://wiki.gnome.org/Apps/Tweaks" title="Graphical interface for hidden GNOME settings">Tweaks</a> but later learned windows can be minimized with the <kbd>super + h</kbd> (think <i>h</i>-idden) shortcut.</li>
+    <li>Fedora’s package repositories don’t include non-free software. I understand the licensing choice but not being able to play videos in Firefox is a showstopper. Luckily there are the <a href="https://docs.fedoraproject.org/en-US/quick-docs/setup_rpmfusion/" title="Enabling the RPM Fusion repositories @ Fedora Docs">RPM Fusion</a> repositories to restore sanity.</li>
+    <li>Ubuntu has a larger userbase so logically most online documentation or support is Ubuntu oriented. This means you might have to search a bit to find the correct Fedora solution. Same when I switched from macOS to Ubuntu really. The biggest one I ran into so far was Signal: their installation instructions only mention Debian-based distros (there is a non-official <a href="https://flathub.org/apps/details/org.signal.Signal" title="Signal on Flathub">flatpack package</a> though).</li>
+    <li>GNOME no longer supports app indicators (those little icons in the top bar). I had to install the <a href="https://extensions.gnome.org/extension/615/appindicator-support/" title="AppIndicator and KStatusNotifierItem Support GNOME extension">AppIndicator</a> extension to get it back since it’s an easy way to see if my <abbr title="Virtual Private Network">VPN</a> is up.</li>
+    <li>Lastly, Firefox came with a Fedora add-on pre-installed. As far as I can tell it only changes the user-agent string. Pretty useless it is? Removed I have.</li>
+  </ul>
+  <p>How long untill I try the next Linux flavor?</p>
+</div>
