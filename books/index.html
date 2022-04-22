@@ -1,0 +1,85 @@
+---
+layout: default
+description: Some books I have read
+title: Books
+books:
+  - ["1984", "George Orwell", 9780140009729, 5]
+  - ["A People’s History of the United States", "Howard Zinn", 9780060528423, 1]
+  - ["Armada", "Ernest Cline", 9780804137270, 3]
+  - ["Boy", "Roald Dahl", 9782070333936, 2]
+  - ["Brave new world", "Aldous Huxley", 9781508976097, 3]
+  - ["Ca$hvertising", "Drew Eric Whitman", 9781601630322, 1]
+  - ["Code", "Charles Petzold", 9780735611313, 3]
+  - ["Countdown to Zero Day", "Kim Zetter", 9780770436193, 3]
+  - ["Data Jack", "Christopher Greyson", 9781512221213, 2]
+  - ["Dune", "Frank Herbert", 9780425027066, 5]
+  - ["Encryption in Everyday Life", "Richard White", "", 0, "2014-reading-list"]
+  - ["Ender’s Game", "Orson Scott Card", 9780765362339, 5]
+  - ["Extreme Ownership", "Jocko Willink", 9781250270962, 3]
+  - ["Fallen Dragon", "Peter F. Hamilton", 9780446527088, 4]
+  - ["Flash Boys", "Michael Lewis", 9780393244663, 5]
+  - ["Freedom", "Daniel Suarez", 9780857381224, 4]
+  - ["Harry Potter and the Chamber of Secrets", "J.K. Rowling", 9781408855669, 3]
+  - ["Harry Potter and the Prisoner of Azkaban", "J.K. Rowling", 9788498386615, 3]
+  - ["Harry Potter and the Sorcerer’s Stone", "J.K. Rowling", 9780747542988, 4]
+  - ["Het ministerie van Oplossingen", "Sanne Rooseboom", 9789000351091, 4]
+  - ["Information Doesn’t Want to Be Free", "Cory Doctorow", 9781940450285, 3]
+  - ["James and Giant Peach", "Roald Dahl", 9780394912820, 3]
+  - ["Kingpin", "Kevin Poulsen", 9780307588685, 4]
+  - ["Legend", "Marie Lu", 9780399256752, 9999]
+  - ["Little Brother", "Cory Doctorow", 9780765319852, 4]
+  - ["Matilda", "Roald Dahl", 9780590996839, 4]
+  - ["Microformats", "John Allsopp", 9781590598146, 3, "microformats-book"]
+  - ["Midnight in Chernobyl", "Adam Higginbotham", 9781501134616, 4]
+  - ["Need to know", "Karen Cleveland", 9780525587828, 9999]
+  - ["Neuromancer", "William F. Gibson", 9780441569595, 2]
+  - ["Pandora’s Star", "Peter F. Hamilton", 9780345461629, 2]
+  - ["Peopleware", "Tom DeMarco", 9780932633439, 5]
+  - ["Practical Vim", "Drew Neil", 9781680501278, 1]
+  - ["Project Hail Mary", "Andy Weir", 9780593395561, 4, "project-hail-mary"]
+  - ["Quiet power", "Susan Cain", 9780803740600, 4]
+  - ["Ready Player One", "Ernest Cline", 9781524763282, 5]
+  - ["Sandworm", "Andy Greenberg", 9780385544405, 4]
+  - ["Seveneves", "Neal Stephenson", 9780062190376, 4]
+  - ["Skunk Works", "Ben R. Rich", 9780316246934, 4]
+  - ["Steve Jobs", "Walter Isaacson", 9788937483943, 4, "2014-reading-list"]
+  - ["The 7 habits of highly effective people", "Stephen R. Covey", 9781451639612, 1]
+  - ["The BFG", "Roald Dahl", 9782070336029, 4]
+  - ["The Bitcoin Primer", "David Seaman", "", 1, "2014-reading-list"]
+  - ["The Box", "Marc Levinson", 9780691123240, 2]
+  - ["The Martian", "Andy Weir", 9780553418026, 5]
+  - ["The Palmer method of business writing", "A.N. Palmer", "", 4, "palmer-writing-method"]
+  - ["The Woman in Cabin 10", "Ruth Ware", 9783423261784, 3]
+  - ["The girl who knew too much", "Jayne Ann Krentz", 9780399174476, 2]
+  - ["The little prince", "Antoine de Saint-Exupéry", 9780152023980, 2]
+  - ["The man in the high castle", "Philip K. Dick", 9780544817289, 3]
+  - ["The trial", "Franz Kafka", 9780805210408, 2, "2014-reading-list"]
+  - ["The witches", "Roald Dahl", 9780140340204, 3]
+  - ["Woman in the Window", "A.J. Finn", 9780008333324, 2]
+---
+
+<table class="extended-col">
+  <caption>Books</caption>
+  <tbody>
+    {% for book in page.books %}
+      <tr class="h-product">
+        <td class="p-name">
+          {% if book[4] %}
+          <a href="{% relbase %}/blog/{{ book[4] }}/" title="My {{ book[0] }} book review">{{ book[0] }}</a>
+          {% else %}
+            {{ book[0] }}
+          {% endif %}
+        <td>{{ book[1] }}</td>
+        <td class="u-identifier">
+          <a href="https://openlibrary.org/search?isbn={{ book[2] }}" title="{{ book[0] }} @ OpenLibrary">{{ book[2] }}</a>
+        </td>
+        <td class="p-rating" value="{{ book[3] }}">
+          {% if book[3] <= 5 %}
+            {% for i in (1..book[3]) %}★{% endfor %}
+            {%- for i in (book[3]..4) %}☆{% endfor %}
+          {% endif %}
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
