@@ -22,6 +22,7 @@ books:
   - ["Harry Potter and the Chamber of Secrets", "J.K. Rowling", 9781408855669, 3]
   - ["Harry Potter and the Prisoner of Azkaban", "J.K. Rowling", 9788498386615, 3]
   - ["Harry Potter and the Sorcerer’s Stone", "J.K. Rowling", 9780747542988, 4]
+  - ["Het Kattenmeisje: Groene Klauwen", "Nico De Braeckeleer", 9789059247635, 2]
   - ["Het ministerie van Oplossingen", "Sanne Rooseboom", 9789000351091, 4]
   - ["Information Doesn’t Want to Be Free", "Cory Doctorow", 9781940450285, 3]
   - ["James and Giant Peach", "Roald Dahl", 9780394912820, 3]
@@ -51,7 +52,7 @@ books:
   - ["The Martian", "Andy Weir", 9780553418026, 5]
   - ["The Palmer method of business writing", "A.N. Palmer", "", 4, "palmer-writing-method"]
   - ["The Spy and the Traitor", "Ben Macintyre", 9780771060335, 5]
-  - ["The Woman in Cabin 10", "Ruth Ware", 9783423261784, 3]
+  - ["The Woman in Cabin 10", "Ruth Ware", 9783423261784, 2]
   - ["The girl who knew too much", "Jayne Ann Krentz", 9780399174476, 2]
   - ["The little prince", "Antoine de Saint-Exupéry", 9780152023980, 2]
   - ["The man in the high castle", "Philip K. Dick", 9780544817289, 3]
@@ -60,25 +61,31 @@ books:
   - ["Woman in the Window", "A.J. Finn", 9780008333324, 2]
 ---
 
-<table class="extended-col">
+<table vocab="http://schema.org/" class="extended-col">
   <caption>Books</caption>
   <tbody>
     {% for book in page.books %}
-      <tr class="h-product">
-        <td class="p-name">
+      <tr typeof="Book">
+        <td property="name">
           {% if book[4] %}
-          <a href="{% relbase %}/blog/{{ book[4] }}/" title="My {{ book[0] }} book review">{{ book[0] }}</a>
+          <span property="review" typeof="Review" resource="#{{ book[0] | slugify }}">
+              <a href="{% relbase %}/blog/{{ book[4] }}/" property="url" title="My {{ book[0] }} book review">{{ book[0] }}</a>
+            </span>
           {% else %}
             {{ book[0] }}
           {% endif %}
-        <td>{{ book[1] }}</td>
-        <td class="u-identifier">
-          <a href="https://openlibrary.org/search?isbn={{ book[2] }}" title="{{ book[0] }} @ OpenLibrary">{{ book[2] }}</a>
+        <td property="author">{{ book[1] }}</td>
+        <td property="isbn">
+          <a href="https://openlibrary.org/search?isbn={{ book[2] }}" property="mainEntityOfPage" title="{{ book[0] }} @ OpenLibrary">{{ book[2] }}</a>
         </td>
-        <td class="p-rating" value="{{ book[3] }}">
+        <td property="review" typeof="Review">
           {% if book[3] <= 5 %}
-            {% for i in (1..book[3]) %}★{% endfor %}
-            {%- for i in (book[3]..4) %}☆{% endfor %}
+            <span property="reviewRating" typeof="Rating">
+              <meta property="bestRating" content="5">
+              <meta property="ratingValue" content="{{ book[3] }}">
+              {% for i in (1..book[3]) %}★{% endfor %}
+              {%- for i in (book[3]..4) %}☆{% endfor %}
+            </span>
           {% endif %}
         </td>
       </tr>
