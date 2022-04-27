@@ -31,9 +31,9 @@ layout: null
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>{{ site.url}}/policies/</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
+    <loc>{{ site.url}}/reading/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>{{ site.url}}/photos/</loc>
@@ -54,5 +54,10 @@ layout: null
     <loc>{{ site.url}}/wishlist/</loc>
     <changefreq>yearly</changefreq>
     <priority>0.1</priority>
+  </url>
+  <url>
+    <loc>{{ site.url}}/policies/</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
   </url>
 </urlset>
