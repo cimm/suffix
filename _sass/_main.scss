@@ -2,18 +2,17 @@
   body {
     background-color: $secondary;
     color: $primary;
-    display: grid;
     font-family: $body-font;
-    grid-gap: 2em;
-    grid-template-columns: [extend-left] minmax(1em, 1fr) [middle-left] minmax(0, 18em) [middle-right] minmax(0, 18em) [extend-right] minmax(1em, 1fr);
-    grid-template-rows: auto;
     line-height: 2em;
     margin: 0 auto;
-    max-width: 800px;
+    max-width: 670px;
 
     header {
-      grid-column: middle-left / middle-right;
       padding: 2em 0;
+
+      nav ul {
+        margin: 0;
+      }
 
       nav li {
         display: inline;
@@ -26,17 +25,22 @@
     }
 
     footer {
-      font-family: $body-font;
-      font-size: 1em;
-      font-weight: bolder;
-      grid-column: middle-left / span 2;
-      margin: 0;
-      padding-bottom: 2em;
-      text-align: right;
-    }
+      background: url('../../assets/git-branch.svg') 0 10px no-repeat;
+      background-size: 20px;
+      color: lighten($primary, 35%);
+      margin: 2em 0;
 
-    abbr {
-      text-decoration: none;
+      p {
+        padding-left: 30px;
+      }
+
+      h1 {
+        font-family: $body-font;
+        font-size: 1.5em;
+        font-weight: bolder;
+        margin: 0;
+        text-align: right;
+      }
     }
 
     h1,
@@ -134,40 +138,33 @@
       padding: .4em;
     }
 
-    .extended-col {
-      grid-column: extend-left / span 4;
-    }
+    .list-item {
+      line-height: 2em;
+      margin: 2em 0;
 
-    .extended-col-left {
-      grid-column: extend-left / span 2;
-    }
+      h1 {
+        font-family: $title-font;
+        font-size: 1.2em;
+        margin: 0;
+        text-align: left;
+        text-transform: uppercase;
+      }
 
-    .extended-col-right {
-      grid-column: middle-right / span 2;
-    }
+      time {
+        color: lighten($primary, 30%);
+        display: block;
+      }
 
-    .narrow-col {
-      grid-column: middle-left / span 2;
-    }
-
-    .hidden {
-      display: none;
+      a {
+        color: $tertiary;
+        text-decoration: none;
+      }
     }
   }
 
   @media only screen and (max-width: 767px) {
     body {
-      grid-gap: 1em;
-
-      .extended-col,
-      .extended-col-left,
-      .extended-col-right {
-        grid-column: extend-left / span 4;
-
-        figcaption {
-          margin: auto 1em;
-        }
-      }
+      margin: 0 1em;
     }
   }
 }

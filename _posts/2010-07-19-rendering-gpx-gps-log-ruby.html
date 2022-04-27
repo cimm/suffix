@@ -5,62 +5,59 @@ date:    2010-07-19 23:25:47
 updated: 2010-11-18 22:14:47
 ---
 
-<div class="narrow-col">
-  <p>For a little while now I want to plot my own <abbr title="Global Positioning System">GPS</abbr> logs (like my last cycling trip). I am obsessed with geolocation.</p>
+<p>For a little while now I want to plot my own <abbr title="Global Positioning System">GPS</abbr> logs (like my last cycling trip). I am obsessed with geolocation.</p>
 
-  <p>Sure, you can use Google Maps, the default weapon of choice these days. With their <abbr title="Application Programming Interface ">API</abbr> you can plot your track log on top of their maps and satellite images. You don't even have to program that, Google Maps can render <abbr title="Keyhole Markup Language">KML</abbr> files out of the box and there are tons of tools out there to do the same. But I'm a programmer, loading KML files in Google is no fun. I want to learn to plot my own stuff and here is how.</p>
+<p>Sure, you can use Google Maps, the default weapon of choice these days. With their <abbr title="Application Programming Interface ">API</abbr> you can plot your track log on top of their maps and satellite images. You don't even have to program that, Google Maps can render <abbr title="Keyhole Markup Language">KML</abbr> files out of the box and there are tons of tools out there to do the same. But I'm a programmer, loading KML files in Google is no fun. I want to learn to plot my own stuff and here is how.</p>
 </div>
 
-<figure class="extended-col">
+<figure>
   <img src="../../assets/cycling-log.svg" alt="Plotted GPS log" />
 </figure>
 
-<div class="narrow-col">
-  <h2>Plan of attack</h2>
+<h2>Plan of attack</h2>
 
-  <p>Obviously, you'll need some kind of source data to start with. I keep all my logs as a <abbr title="GPS eXchange Format">GPX</abbr> file but you can use whatever format you like as you'll have to parse it never the less. You can use the cross-platform open source tool <a href="https://www.gpsbabel.org/" title="Free software for GPS data conversion and transfer">GPSBabel</a> to convert between different formats.</p>
+<p>Obviously, you'll need some kind of source data to start with. I keep all my logs as a <abbr title="GPS eXchange Format">GPX</abbr> file but you can use whatever format you like as you'll have to parse it never the less. You can use the cross-platform open source tool <a href="https://www.gpsbabel.org/" title="Free software for GPS data conversion and transfer">GPSBabel</a> to convert between different formats.</p>
 
-  <p>Secondly, we also need some kind of rendering library. I went with <a href="http://www.gnuplot.info/" title="Cross-platform portable command-line driven graphing utility">gnuplot</a> as there is a <a href="https://github.com/rdp/ruby_gnuplot" title="The ruby gnuplot gem">Ruby binding</a> for that one, more on this later. You'll need to install gnuplot if you don't have it yet.</p>
+<p>Secondly, we also need some kind of rendering library. I went with <a href="http://www.gnuplot.info/" title="Cross-platform portable command-line driven graphing utility">gnuplot</a> as there is a <a href="https://github.com/rdp/ruby_gnuplot" title="The ruby gnuplot gem">Ruby binding</a> for that one, more on this later. You'll need to install gnuplot if you don't have it yet.</p>
 
-  <h2>Code</h2>
+<h2>Code</h2>
 
-  <p>The gnuplot program expects tabular data in a tab separated format so our first step is to convert our source document to a gnuplot readable format. For this I parse the GPX file with <a href="http://nokogiri.org/" title="An HTML, XML, SAX and Reader parser with the ability to search documents via XPath or CSS3 selectors">Nokogiri</a> (an <abbr title="Extensible Markup Languag">XML</abbr> parser):</p>
+<p>The gnuplot program expects tabular data in a tab separated format so our first step is to convert our source document to a gnuplot readable format. For this I parse the GPX file with <a href="http://nokogiri.org/" title="An HTML, XML, SAX and Reader parser with the ability to search documents via XPath or CSS3 selectors">Nokogiri</a> (an <abbr title="Extensible Markup Languag">XML</abbr> parser):</p>
 
-  {% highlight ruby %}
-  #!/usr/bin/env ruby
-  require 'rubygems'
-  require 'nokogiri'
-  require 'gnuplot'
-  doc = Nokogiri::XML(open("your_file.gpx"))
-  x = doc.xpath('//xmlns:trkpt/@lon').map{|pt| pt.to_s.to_f}
-  y = doc.xpath('//xmlns:trkpt/@lat').map{|pt| pt.to_s.to_f}
-  {% endhighlight %}
+{% highlight ruby %}
+#!/usr/bin/env ruby
+require 'rubygems'
+require 'nokogiri'
+require 'gnuplot'
+doc = Nokogiri::XML(open("your_file.gpx"))
+x = doc.xpath('//xmlns:trkpt/@lon').map{|pt| pt.to_s.to_f}
+y = doc.xpath('//xmlns:trkpt/@lat').map{|pt| pt.to_s.to_f}
+{% endhighlight %}
 
-  <p>It loads the GPX source file (which is an XML document after all) and extracts all the coordinates with XPath. We now have two arrays, one with the latitudes an the other with the longitudes.</p>
+<p>It loads the GPX source file (which is an XML document after all) and extracts all the coordinates with XPath. We now have two arrays, one with the latitudes an the other with the longitudes.</p>
 
-  <h2>Plotting</h2>
+<h2>Plotting</h2>
 
-  <p>We can now pass our 2 data sets to gnuplot. It has no notion of spatial data so it will just link the points. Therefore we'll need to tell gnuplot to use the same scale on both the X- and Y-axis or our plotted path will be distorted (gnuplot tries to auto scale it by default).</p>
+<p>We can now pass our 2 data sets to gnuplot. It has no notion of spatial data so it will just link the points. Therefore we'll need to tell gnuplot to use the same scale on both the X- and Y-axis or our plotted path will be distorted (gnuplot tries to auto scale it by default).</p>
 
-  {% highlight ruby %}
-  Gnuplot.open do |gp|
-    Gnuplot::Plot.new(gp) do |plot|
-      plot.arbitrary_lines << "set size square"
-      plot.data << Gnuplot::DataSet.new([x, y]) do |ds|
-        ds.with = "lines"
-        ds.notitle
-      end
+{% highlight ruby %}
+Gnuplot.open do |gp|
+  Gnuplot::Plot.new(gp) do |plot|
+    plot.arbitrary_lines << "set size square"
+    plot.data << Gnuplot::DataSet.new([x, y]) do |ds|
+      ds.with = "lines"
+      ds.notitle
     end
   end
-  {% endhighlight %}
+end
+{% endhighlight %}
 
-  <p>Got it? That's the basic stuff, you can now play around with the gnuplot options to change colors, add a grid, change the line widths, etc.</p>
+<p>Got it? That's the basic stuff, you can now play around with the gnuplot options to change colors, add a grid, change the line widths, etc.</p>
 
-  <h2>Conclusion</h2>
+<h2>Conclusion</h2>
 
-  <p>gnuplot is a graphing library, it's great in drawing all kinds of graphs... it's not that great in rendering spatial data. If you know a better way to plot coordinates please leave a comment.</p>
+<p>gnuplot is a graphing library, it's great in drawing all kinds of graphs... it's not that great in rendering spatial data. If you know a better way to plot coordinates please leave a comment.</p>
 
-  <p>I'm not a <abbr title="Geographic Information System">GIS</abbr> expert. This approach is way too simplified and will only work for shorter distances. If you are building something serious you may want to look at map projections, <a href="http://en.wikipedia.org/wiki/Dilution_of_precision_(GPS)" title="Specifies the additional multiplicative effect of GPS satellite geometry on GPS precision">dilution of precision</a> and the like.</p>
+<p>I’m not a <abbr title="Geographic Information System">GIS</abbr> expert. This approach is way too simplified and will only work for shorter distances. If you are building something serious you may want to look at map projections, <a href="http://en.wikipedia.org/wiki/Dilution_of_precision_(GPS)" title="Specifies the additional multiplicative effect of GPS satellite geometry on GPS precision">dilution of precision</a> and the like.</p>
 
-  <p>The full - unfinished - script is available at <a href="https://gist.github.com/482030" rel="me" title="The gpx2image script converts a GPX GPS log to an image">GitHub</a>.</p>
-</div>
+<p>The full - unfinished - script is available at <a href="https://gist.github.com/482030" rel="me" title="The gpx2image script converts a GPX GPS log to an image">GitHub</a>.</p>

@@ -7,51 +7,49 @@ description:     What does it cost to host this blog?
 cover_image_url: 
 ---
 
-<div class="narrow-col">
-  <p class="hcard"><span class="p-name">Francesco Di Lorenzo</span> mentions Vercel in his “<a href="https://francescodilorenzo.com/saas-we-pay-for" class="u-url">SaaS we happily pay for</a>” post. Vercel? Right, ZEIT’s <a href="https://vercel.com/blog/zeit-is-now-vercel" title="ZEIT is now Vercel announcement">new name</a>. This made me reflect on my own blogging stack, a remarkably uncool one it turns out.</p>
+<p class="hcard"><span class="p-name">Francesco Di Lorenzo</span> mentions Vercel in his “<a href="https://francescodilorenzo.com/saas-we-pay-for" class="u-url">SaaS we happily pay for</a>” post. Vercel? Right, ZEIT’s <a href="https://vercel.com/blog/zeit-is-now-vercel" title="ZEIT is now Vercel announcement">new name</a>. This made me reflect on my own blogging stack, a remarkably uncool one it turns out.</p>
 
-  <p>This is by no means the “only” or “right” way to publish your writings, it’s what works for me. Start writing, and if you are a little technically inclined, make sure to own your data. Syndicate, don’t write, on platforms like Twitter, Facebook, or Medium.</p>
+<p>This is by no means the “only” or “right” way to publish your writings, it’s what works for me. Start writing, and if you are a little technically inclined, make sure to own your data. Syndicate, don’t write, on platforms like Twitter, Facebook, or Medium.</p>
 
-  <h2>This Website</h2>
+<h2>This Website</h2>
 
-  <p>No fancy auto-scaling-deploy <a href="https://jamstack.wtf" title="What is a JAMstack?">JAMstack</a> here, a simple static website with Jekyll. Rough ideas, written in plain <abbr title="HyperText Markup Langauge">HTML</abbr>, go in the ‘_drafts’ folder. Why no Markdown you ask? Websites are published in HTML, not Markdown, and my blog posts are simple text documents. A few &lt;p&gt; and &lt;a&gt; tags are all that’s required. As a bonus I can easily add more complex markup. Once happy with the result the idea moves from the ‘_drafts’ to the ‘_posts’ folder and changes are pushed to GitHub (not really needed but serves as an extra backup). A <a href="https://github.com/cimm/suffix/blob/master/Rakefile" title="The script that deploys this website">Raketask</a> builds the static version and rsync’s it to the server.</p>
+<p>No fancy auto-scaling-deploy <a href="https://jamstack.wtf" title="What is a JAMstack?">JAMstack</a> here, a simple static website with Jekyll. Rough ideas, written in plain <abbr title="HyperText Markup Langauge">HTML</abbr>, go in the ‘_drafts’ folder. Why no Markdown you ask? Websites are published in HTML, not Markdown, and my blog posts are simple text documents. A few &lt;p&gt; and &lt;a&gt; tags are all that’s required. As a bonus I can easily add more complex markup. Once happy with the result the idea moves from the ‘_drafts’ to the ‘_posts’ folder and changes are pushed to GitHub (not really needed but serves as an extra backup). A <a href="https://github.com/cimm/suffix/blob/master/Rakefile" title="The script that deploys this website">Raketask</a> builds the static version and rsync’s it to the server.</p>
 
-  <h2>Hosting</h2>
+<h2>Hosting</h2>
 
-  <p>The server? A good ol’ <abbr title="Virtual Private Server">VPS</abbr>. No serverless, no Docker, no <abbr title="Amazon Web Services">AWS</abbr>. A <a href="https://www.netcup.eu">netcup</a> VPS running Ubuntu 20.04 with Apache and Let’s Encrypt for the <abbr title="Transport Layer Security">TLS</abbr> certificate. I <abbr title="Secure Shell">SSH</abbr> in every so often for the occasional <kbd>apt get upgrade</kbd> and reinstall the <abbr title="Operating System">OS</abbr> when a new Ubuntu <abbr title="Long Term Support">LTS</abbr> comes out.</p>
+<p>The server? A good ol’ <abbr title="Virtual Private Server">VPS</abbr>. No serverless, no Docker, no <abbr title="Amazon Web Services">AWS</abbr>. A <a href="https://www.netcup.eu">netcup</a> VPS running Ubuntu 20.04 with Apache and Let’s Encrypt for the <abbr title="Transport Layer Security">TLS</abbr> certificate. I <abbr title="Secure Shell">SSH</abbr> in every so often for the occasional <kbd>apt get upgrade</kbd> and reinstall the <abbr title="Operating System">OS</abbr> when a new Ubuntu <abbr title="Long Term Support">LTS</abbr> comes out.</p>
 
-  <p>I first rented a VPS at OVH, Digital Ocean next, and now netcup. Digital Ocean’s dashboard and support are top-notch but they <a href="https://ideas.digitalocean.com/ideas/DO-I-1007" title="Customer support ticket from 2018 asking for green energy">don’t seem to be pushing</a> for green energy datacenters. Netcup on the other hand is running on <a href="https://www.netcup.eu/ueber-netcup/oekostrom.php" title="More about netcup’s electricity">100% renewable energy</a> and supporting a European business is the cherry on the cake.</p>
+<p>I first rented a VPS at OVH, Digital Ocean next, and now netcup. Digital Ocean’s dashboard and support are top-notch but they <a href="https://ideas.digitalocean.com/ideas/DO-I-1007" title="Customer support ticket from 2018 asking for green energy">don’t seem to be pushing</a> for green energy datacenters. Netcup on the other hand is running on <a href="https://www.netcup.eu/ueber-netcup/oekostrom.php" title="More about netcup’s electricity">100% renewable energy</a> and supporting a European business is the cherry on the cake.</p>
 
-  <p>Managing a VPS for several years taught me a thing or two about Linux, networking, and web servers in general, useful skills for a web developer. The same server also doubled as a Card- and CalDAV, email, Mastodon, and database server over the years.</p>
+<p>Managing a VPS for several years taught me a thing or two about Linux, networking, and web servers in general, useful skills for a web developer. The same server also doubled as a Card- and CalDAV, email, Mastodon, and database server over the years.</p>
 
-  <h2>Cost</h2>
+<h2>Cost</h2>
 
-  <p>It’s more expensive than free but less expensive than <a href="https://www.quora.com/Who-originally-suggested-that-if-youre-not-paying-for-the-product-you-are-the-product" title="If you’re not paying for the product, you are the product">being the product</a>.</p>
+<p>It’s more expensive than free but less expensive than <a href="https://www.quora.com/Who-originally-suggested-that-if-youre-not-paying-for-the-product-you-are-the-product" title="If you’re not paying for the product, you are the product">being the product</a>.</p>
 
-  <table>
-    <tbody>
-      <tr>
-        <th>Domain name</th><td>gandi</td><td>€14.52 per year</td>
-      <tr>
-      </tr>
-        <th>DNS</th><td>gandi</td><td>free, comes with the domain name</td>
-      <tr>
-      </tr>
-        <th>VPS</th><td>netcup</td><td>€2.26 per month</td>
-      </tr>
-    </tbody>
-    <tfoot>
-      <tr>
-        <th>Total</th><th></th><th>€3.47 per month</th>
-      </tr>
-    </tfoot>
-  </table>
+<table>
+  <tbody>
+    <tr>
+      <th>Domain name</th><td>gandi</td><td>€14.52 per year</td>
+    <tr>
+    </tr>
+      <th>DNS</th><td>gandi</td><td>free, comes with the domain name</td>
+    <tr>
+    </tr>
+      <th>VPS</th><td>netcup</td><td>€2.26 per month</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th>Total</th><th></th><th>€3.47 per month</th>
+    </tr>
+  </tfoot>
+</table>
 
-  <p>Not too shabby.</p>
+<p>Not too shabby.</p>
 
-  <h2>Conclusion</h2>
+<h2>Conclusion</h2>
 
-  <p>There you have it. It requires more maintenance than any of the fancy JAMstack solutions, but no more than 10 minutes per month or so and I don’t have to worry about vendor lock-in (there are tons of VPS providers), fully open source stack, extra flexibility (can host what I like), and I learned some new skills in the process.</p>
+<p>There you have it. It requires more maintenance than any of the fancy JAMstack solutions, but no more than 10 minutes per month or so and I don’t have to worry about vendor lock-in (there are tons of VPS providers), fully open source stack, extra flexibility (can host what I like), and I learned some new skills in the process.</p>
 
-  <p>Boring, sure, but it served me well for over 10 years.</p>
-</div>
+<p>Boring, sure, but it served me well for over 10 years.</p>

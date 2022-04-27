@@ -5,39 +5,37 @@ date:    2011-10-03 08:25:36
 updated: 2011-11-24 22:50:52
 ---
 
-<div class="narrow-col">
-  <p>Rake has a new syntax for passing arguments. In the <strong>old</strong> version it looked something like this:</p>
+<p>Rake has a new syntax for passing arguments. In the <strong>old</strong> version it looked something like this:</p>
 
-  {% highlight ruby %}
-  task :hello, :first_name, :last_name, :needs => :environment do |t, args|
-    puts "Hello #{first_name} #{last_name}"
-  end
-  {% endhighlight %}
+{% highlight ruby %}
+task :hello, :first_name, :last_name, :needs => :environment do |t, args|
+  puts "Hello #{first_name} #{last_name}"
+end
+{% endhighlight %}
 
-  <p>Running this task in a newer version of Rake shows a deprecation warning:</p>
+<p>Running this task in a newer version of Rake shows a deprecation warning:</p>
 
-  <code>WARNING: 'task :t, arg, :needs =&gt; [deps]' is deprecated. Please use 'task :t, [args] =&gt; [deps]' instead.</code>
+<code>WARNING: 'task :t, arg, :needs =&gt; [deps]' is deprecated. Please use 'task :t, [args] =&gt; [deps]' instead.</code>
 
-  <p>Luckily it’s easy to switch to the <strong>newer</strong> syntax:</p>
+<p>Luckily it’s easy to switch to the <strong>newer</strong> syntax:</p>
 
-  {% highlight ruby %}
-  task :hello, [:first_name, :last_name] => :environment do |t, args|
-    puts "Hello #{first_name} #{last_name}"
-  end
-  {% endhighlight %}
+{% highlight ruby %}
+task :hello, [:first_name, :last_name] => :environment do |t, args|
+  puts "Hello #{first_name} #{last_name}"
+end
+{% endhighlight %}
 
-  <h2>A word of caution</h2>
+<h2>A word of caution</h2>
 
-  <p>I took me some time to figure out why my rake task wouldn’t accept multiple parameters. All I got was the following error:</p>
+<p>I took me some time to figure out why my rake task wouldn’t accept multiple parameters. All I got was the following error:</p>
 
-  <code>Don't know how to build task 'greeter:hello[John,'</code>
+<code>Don't know how to build task 'greeter:hello[John,'</code>
 
-  <p>This, of course, has nothing to do with the new syntax as I thought but the space between my arguments on the command line.</p>
+<p>This, of course, has nothing to do with the new syntax as I thought but the space between my arguments on the command line.</p>
 
-  {% highlight ruby %}
-  rake greeter:hello[John, Doe] # wrong, notice the space
-  rake greeter:hello[John,Doe] # right
-  {% endhighlight %}
+{% highlight ruby %}
+rake greeter:hello[John, Doe] # wrong, notice the space
+rake greeter:hello[John,Doe] # right
+{% endhighlight %}
 
-  <p>Standard UNIX stuff, I know, but still… sneaky.</p>
-</div>
+<p>Standard UNIX stuff, I know, but still… sneaky.</p>

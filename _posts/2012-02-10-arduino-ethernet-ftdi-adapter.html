@@ -6,38 +6,32 @@ updated:         2012-02-29 23:09:39
 cover_image_url: ../../assets/arduino_ethernet_with_ftdi_basic_breakout.png
 ---
 
-<div class="narrow-col">
-  <p>My new <a href="http://arduino.cc/en/Main/ArduinoBoardEthernet" title="Arduino Ethernet product page">Arduino Ethernet</a> board arrived last week and I can't wait to start playing with it. So, how do you program this thing?</p>
+<p>My new <a href="https://docs.arduino.cc/retired/boards/arduino-ethernet-rev3-without-poe" title="Arduino Ethernet product page">Arduino Ethernet</a> board arrived last week and I can't wait to start playing with it. So, how do you program this thing?</p>
 
-  <p>The basic <a href="http://arduino.cc/en/Main/arduinoBoardUno" title="Arduino Uno product page">Arduino Uno</a> board is easy to program. The <a href="http://arduino.cc/en/Guide/HomePage" title="Getting Started with Arduino">Getting Started Guide</a> will get you up to speed. You basically connect the Arduino via an <abbr title="Universal Serial Bus">USB</abbr> cable to upload your programs. The Arduino Ethernet doesn't have an <abbr title="Universal Serial Bus">USB</abbr>-to-serial adapter so, how do you get your programs uploaded?</p>
+<p>The basic <a href="https://arduino.cc/en/Main/arduinoBoardUno" title="Arduino Uno product page">Arduino Uno</a> board is easy to program. The <a href="http://arduino.cc/en/Guide/HomePage" title="Getting Started with Arduino">Getting Started Guide</a> will get you up to speed. You basically connect the Arduino via an <abbr title="Universal Serial Bus">USB</abbr> cable to upload your programs. The Arduino Ethernet doesn't have an <abbr title="Universal Serial Bus">USB</abbr>-to-serial adapter so, how do you get your programs uploaded?</p>
 
-  <h2>Meet the <abbr title="Future Technology Devices International">FTDI</abbr> adapter</h2>
+<h2>Meet the <abbr title="Future Technology Devices International">FTDI</abbr> adapter</h2>
 
-  <p>You'll need an adapter, an <abbr title="Future Technology Devices International">FTDI</abbr> adapter to be precise. They come in different flavors, as a cable or a breakout adapter. I got the <a href="https://www.sparkfun.com/products/9716"><abbr title="Future Technology Devices International">FTDI</abbr> Basic Breakout</a> adapter from Sparkfun.</p>
-</div>
+<p>You'll need an adapter, an <abbr title="Future Technology Devices International">FTDI</abbr> adapter to be precise. They come in different flavors, as a cable or a breakout adapter. I got the <a href="https://www.sparkfun.com/products/9716"><abbr title="Future Technology Devices International">FTDI</abbr> Basic Breakout</a> adapter from Sparkfun.</p>
 
-<figure class="extended-col">
+<figure>
   <img src="../../assets/ftdi_basic_breakout.png" alt="FTDI Basic Breakout" />
   <figcaption>FTDI Basic Breakout adapter from Sparkfun</figcaption>
 </figure>
 
-<div class="narrow-col">
-  <p>The <abbr title="Future Technology Devices International">FTDI</abbr> Basic Breakout adapter will power your Arduino Ethernet when connected but you'll need a driver to be able to upload sketches. I installed the <abbr title="Virtual COM Port">VCP</abbr> driver from <abbr title="Future Technology Devices International">FTDI</abbr>. You can download the latest version from the <a href="https://www.ftdichip.com/Drivers/VCP.htm" title="FTDI VCP driver download page"><abbr title="Future Technology Devices International">FTDI</abbr> website</a>.</p>
+<p>The <abbr title="Future Technology Devices International">FTDI</abbr> Basic Breakout adapter will power your Arduino Ethernet when connected but you'll need a driver to be able to upload sketches. I installed the <abbr title="Virtual COM Port">VCP</abbr> driver from <abbr title="Future Technology Devices International">FTDI</abbr>. You can download the latest version from the <a href="https://www.ftdichip.com/Drivers/VCP.htm" title="FTDI VCP driver download page"><abbr title="Future Technology Devices International">FTDI</abbr> website</a>.</p>
 
-  <p>The website lists a <abbr title="Virtual COM port">VCP</abbr> driver and a D2XX Direct driver. I installed the first one and it seems to work, but I have no idea if one is more suited as the other. You may have to try the other one, I don't know.</p>
+<p>The website lists a <abbr title="Virtual COM port">VCP</abbr> driver and a D2XX Direct driver. I installed the first one and it seems to work, but I have no idea if one is more suited as the other. You may have to try the other one, I don't know.</p>
 
-  <h2>Uploading a sketch</h2>
+<h2>Uploading a sketch</h2>
 
-  <p>Great, you should have everything you need to upload sketches to the Arduino Ethernet. Open the Arduino <a href="http://arduino.cc/en/Guide/Environment" title="Arduino development environment documentation">development environment</a> and write a simple program (or copy paste the <a href="http://www.arduino.cc/en/Tutorial/BlinkingLED" title="Blinking LED sketch, the Hello World of Arduino">blinking <abbr title="Light Emitting Diode">LED</abbr></a> one).</p>
-</div>
+<p>Great, you should have everything you need to upload sketches to the Arduino Ethernet. Open the Arduino <a href="http://arduino.cc/en/Guide/Environment" title="Arduino development environment documentation">development environment</a> and write a simple program (or copy paste the <a href="http://www.arduino.cc/en/Tutorial/BlinkingLED" title="Blinking LED sketch, the Hello World of Arduino">blinking <abbr title="Light Emitting Diode">LED</abbr></a> one).</p>
 
-<figure class="extended-col">
+<figure>
   <img src="../../assets/arduino_ethernet_with_ftdi_basic_breakout.png" alt="Arduino Ethernet with FTDI Basic Breakout" />
   <figcaption>FTDI adapter connected to an Arduino</figcaption>
 </figure>
 
-<div class="narrow-col">
-  <p>Make sure to select the <strong>Arduino Ethernet</strong> board type in the <em>Tools &rarr; Board</em> menu. With the board connected you should see something like <strong>/dev/tty.usbserial-AH00S91D</strong> (the numbers will be different) in the <em>Tools &rarr; Serial Port</em> menu, select the right one. Not sure what to select? Disconnect the board and compare the list to find the right port.</p>
+<p>Make sure to select the <strong>Arduino Ethernet</strong> board type in the <em>Tools &rarr; Board</em> menu. With the board connected you should see something like <strong>/dev/tty.usbserial-AH00S91D</strong> (the numbers will be different) in the <em>Tools &rarr; Serial Port</em> menu, select the right one. Not sure what to select? Disconnect the board and compare the list to find the right port.</p>
 
-  <p>Happy hacking!</p>
-</div>
+<p>Happy hacking!</p>

@@ -15,18 +15,16 @@ items:
   - ["Heckler Camera Shelf", "../assets/heckler.jpg", "https://hecklerdesign.com/products/heckler-camera-shelf-for-monitor-arms?variant=37087252316314" , "€64"]
 ---
 
-<div class="extended-col">
-  <section class="cards">
-    {% for item in page.items %}
-      <a href="{{ item[2] }}" class="card">
-        <div class="badge">{{ item[3] }}</div>
-        <figure>
-          <div class="frame">
-            <img src="{{ item[1] }}" alt=""/>
-          </div>
-          <figcaption>{{ item[0] }}</figcaption>
-        </figure>
-      </a>
-    {% endfor %}
-  </section>
-</div>
+<article class="cards">
+  {% for item in page.items %}
+    <a href="{{ item[2] }}" class="card">
+      <label class="badge">{{ item[3] }}</label>
+      <figure>
+        <div class="frame">
+          <img src="{{ item[1] }}" alt="" />
+        </div>
+        <figcaption>{{ item[0] }}</figcaption>
+      </figure>
+    </a>
+  {% endfor %}
+</article>

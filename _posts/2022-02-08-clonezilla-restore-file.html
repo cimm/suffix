@@ -6,38 +6,36 @@ updated:     2022-02-08 09:00:00
 description: Mount a Clonezilla backup image to restore only a few files or folders.
 ---
 
-<div class="narrow-col">
-  <p><a href="https://clonezilla.org" title="Free and open Source software for disk imaging and cloning">Clonezilla</a>, the disk cloning program, saved my bacon more than once, but so far, I always restored the full image. Like last time, when I locked myself out of my drive by deleting my, euhm… encryption key.</p>
-  <p>This time, I forgot to copy my <em>~/.ssh</em> folder before a clean installation. I could have restored the full image, copied the lost folder, and reinstalled the full <abbr title="Operating System">OS</abbr> again, but surely there must be a way to restore a single file or folder? Of course, there is!</p>
-  <p>All you need is enough disk space (as much as the backup image) some free software, and time.</p>
-  
-  <h2>Windows</h2>
-  
-  <p>The Windows route looked the easiest, so I tried that one first with Fidel Perez-Smith’s <a href="https://github.com/fiddyschmitt/clonezilla-util" title="Mount Clonezilla drive images in Windows">clonezilla-util</a> tool. I connected my backup <abbr title="Universal Serial Bus">USB</abbr> drive and pointed this tool at my most recent backup folder. A few hours later, I was ready to browse the newly mounted L:\ virtual drive to restore my lost folder, or not.</p>
-  <p>It didn’t work. The Windows version only reads NTFS drives of course and my Linux backup was formatted as EXT4. Oops.</p>
-  
-  <h2>Linux</h2>
-  
-  <p>The Linux way. First, we need to convert the Clonezilla backup folder to an image file. For this, we’ll need to install partclone, which can be easily installed from your distro’s repositories. The filename of the partition to restore gives the format for the partclone part of the command: ‘ext4’ in the example below.</p>
-  
-  {% highlight sh %}
-  $ cat backup-folder/nvme0n1p1.ext4-ptcl-img.gz | \
-    gzip -d -c | \
-    partclone.ext4 -r -C --restore_raw_file -s - -o backup.img 
-  {% endhighlight %}
-  
-  <p>Make sure the drive is large enough to store the (temporary) <em>backup.img</em> file. The image can now be mounted as a file system.</p>
-  
-  {% highlight sh %}
-  $ mount -o loop backup.img /mnt
-  {% endhighlight %}
-  
-  <p>Grab the files you need from the <em>/mnt</em> folder and unmount the volume when done. The temporary <em>backup.img</em> can also be removed.</p>
-  
-  {% highlight sh %}
-  $ umount /mnt
-  $ rm backup.img
-  {% endhighlight %}
+<p><a href="https://clonezilla.org" title="Free and open Source software for disk imaging and cloning">Clonezilla</a>, the disk cloning program, saved my bacon more than once, but so far, I always restored the full image. Like last time, when I locked myself out of my drive by deleting my, euhm… encryption key.</p>
+<p>This time, I forgot to copy my <em>~/.ssh</em> folder before a clean installation. I could have restored the full image, copied the lost folder, and reinstalled the full <abbr title="Operating System">OS</abbr> again, but surely there must be a way to restore a single file or folder? Of course, there is!</p>
+<p>All you need is enough disk space (as much as the backup image) some free software, and time.</p>
 
-  <p>Remember kids: backup, backup, backup!</p>
-</div>
+<h2>Windows</h2>
+
+<p>The Windows route looked the easiest, so I tried that one first with Fidel Perez-Smith’s <a href="https://github.com/fiddyschmitt/clonezilla-util" title="Mount Clonezilla drive images in Windows">clonezilla-util</a> tool. I connected my backup <abbr title="Universal Serial Bus">USB</abbr> drive and pointed this tool at my most recent backup folder. A few hours later, I was ready to browse the newly mounted L:\ virtual drive to restore my lost folder, or not.</p>
+<p>It didn’t work. The Windows version only reads NTFS drives of course and my Linux backup was formatted as EXT4. Oops.</p>
+
+<h2>Linux</h2>
+
+<p>The Linux way. First, we need to convert the Clonezilla backup folder to an image file. For this, we’ll need to install partclone, which can be easily installed from your distro’s repositories. The filename of the partition to restore gives the format for the partclone part of the command: ‘ext4’ in the example below.</p>
+
+{% highlight sh %}
+$ cat backup-folder/nvme0n1p1.ext4-ptcl-img.gz | \
+  gzip -d -c | \
+  partclone.ext4 -r -C --restore_raw_file -s - -o backup.img 
+{% endhighlight %}
+
+<p>Make sure the drive is large enough to store the (temporary) <em>backup.img</em> file. The image can now be mounted as a file system.</p>
+
+{% highlight sh %}
+$ mount -o loop backup.img /mnt
+{% endhighlight %}
+
+<p>Grab the files you need from the <em>/mnt</em> folder and unmount the volume when done. The temporary <em>backup.img</em> can also be removed.</p>
+
+{% highlight sh %}
+$ umount /mnt
+$ rm backup.img
+{% endhighlight %}
+
+<p>Remember kids: backup, backup, backup!</p>

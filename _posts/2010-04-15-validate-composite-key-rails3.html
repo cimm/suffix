@@ -5,28 +5,26 @@ date:    2010-04-15 16:29:59
 updated: 2010-09-09 20:58:22
 ---
 
-<div class="narrow-col">
-  <p>Suppose you have a &lsquo;families&rsquo; table in your database with a &lsquo;husband&rsquo; and &lsquo;wife&rsquo; column. You add a a composite key so that the combination husband and wife is unique. You certainly don't want another record with the same husband and wife combination. At the database level your migration could look like this:</p>
+<p>Suppose you have a &lsquo;families&rsquo; table in your database with a &lsquo;husband&rsquo; and &lsquo;wife&rsquo; column. You add a a composite key so that the combination husband and wife is unique. You certainly don't want another record with the same husband and wife combination. At the database level your migration could look like this:</p>
 
-  {% highlight ruby %}
-  add_index :families, [:husband, :wife], :unique => true
-  {% endhighlight %}
+{% highlight ruby %}
+add_index :families, [:husband, :wife], :unique => true
+{% endhighlight %}
 
-  <h2>Validations in Rails 2.x</h2>
+<h2>Validations in Rails 2.x</h2>
 
-  <p>Now you want to add a corresponding validation in your family model. In Rails 2.x we can use a scope:</p>
+<p>Now you want to add a corresponding validation in your family model. In Rails 2.x we can use a scope:</p>
 
-  {% highlight ruby %}
-  validates_uniqueness_of :husband, :scope => :wife
-  {% endhighlight %}
+{% highlight ruby %}
+validates_uniqueness_of :husband, :scope => :wife
+{% endhighlight %}
 
-  <h2>Validations in Rails 3</h2>
+<h2>Validations in Rails 3</h2>
 
-  <p>In Rails 3 this looks slightly different:</p>
+<p>In Rails 3 this looks slightly different:</p>
 
-  {% highlight ruby %}
-  validates :husband, :presence => true, :uniqueness => {:scope => :wife}
-  {% endhighlight %}
+{% highlight ruby %}
+validates :husband, :presence => true, :uniqueness => {:scope => :wife}
+{% endhighlight %}
 
-  <p>I wouldn't have found this without the help of KandadaBoggu and epochwolf on the <a href="http://stackoverflow.com/questions/2533502/rails-3-validate-combined-values" class="ext">stackoverflow</a> forum, thanks guys!</p>
-</div>
+<p>I wouldn't have found this without the help of KandadaBoggu and epochwolf on the <a href="http://stackoverflow.com/questions/2533502/rails-3-validate-combined-values">stackoverflow</a> forum, thanks guys!</p>

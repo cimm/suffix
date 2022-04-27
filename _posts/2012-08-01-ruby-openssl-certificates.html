@@ -6,34 +6,32 @@ updated:   2013-01-18 12:00:46
 proofread: no
 ---
 
-<div class="narrow-col">
-  <p>I recently upgraded to Mountain Lion and reinstalled Ruby 1.9.3 with <abbr title="Ruby Version Manager">RVM</abbr>. Today I needed some <abbr title="Secure Sockets Layer">SSL</abbr> connections to interface with a payment gateway in a Rails application and this error showed up:</p>
+<p>I recently upgraded to Mountain Lion and reinstalled Ruby 1.9.3 with <abbr title="Ruby Version Manager">RVM</abbr>. Today I needed some <abbr title="Secure Sockets Layer">SSL</abbr> connections to interface with a payment gateway in a Rails application and this error showed up:</p>
 
-  <code>SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B: certificate verify failed</code>
+<code>SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B: certificate verify failed</code>
 
-  <p>The OpenSSL library can’t verify the Certificate Authority (CA) the certificate from the responding server is signed against and breaks. Certificates are verified using a <a href="https://en.wikipedia.org/wiki/Root_certificate" title="Root certificate article @ Wikipedia">chain of trust</a>. The certificate should be verified by his parent, which, in his turn should be verified by his parent until you reach a root certificate.</p>
+<p>The OpenSSL library can’t verify the Certificate Authority (CA) the certificate from the responding server is signed against and breaks. Certificates are verified using a <a href="https://en.wikipedia.org/wiki/Root_certificate" title="Root certificate article @ Wikipedia">chain of trust</a>. The certificate should be verified by his parent, which, in his turn should be verified by his parent until you reach a root certificate.</p>
 
-  <h2>SSL::VERIFY_NONE</h2>
+<h2>SSL::VERIFY_NONE</h2>
 
-  <p>A lot of resources on the web seem to take the easy route: not verifying certificates with OpenSSL::SSL::VERIFY_NONE. While this works, it’s insecure. Why use SSL if you don’t intend to use its advantages? Not verifying a certificate means you simply trust the remote server is whom he claims to be, not who he really is. That might be acceptable for your personal website but not for a payment gateway. <span class="h-card"><span class="p-name">James Golick</span> wrote a nice <a href="https://jamesgolick.com/2011/2/15/verify-none..html" title="James Golick vs. VERIFY_NONE" class="u-url">article</a></span> explaining his fight against SSL::VERIFY_NONE.</p>
+<p>A lot of resources on the web seem to take the easy route: not verifying certificates with OpenSSL::SSL::VERIFY_NONE. While this works, it’s insecure. Why use SSL if you don’t intend to use its advantages? Not verifying a certificate means you simply trust the remote server is whom he claims to be, not who he really is. That might be acceptable for your personal website but not for a payment gateway. <span class="h-card"><span class="p-name">James Golick</span> wrote a nice <a href="https://jamesgolick.com/2011/2/15/verify-none..html" title="James Golick vs. VERIFY_NONE" class="u-url">article</a></span> explaining his fight against SSL::VERIFY_NONE.</p>
 
-  <h2>The Certificate Authority (CA) bundle</h2>
+<h2>The Certificate Authority (CA) bundle</h2>
 
-  <p>You’ll need a <abbr title="Certificate Authority">CA</abbr> bundle. The <a href="http://curl.haxx.se/ca/" title="Extracted CA certs from Mozilla">cURL website</a> maintains a version of the Mozilla CA bundle in <abbr title="Privacy-enhanced Electronic Mail">PEM</abbr> format. Grab one of their certificates.</p>
+<p>You’ll need a <abbr title="Certificate Authority">CA</abbr> bundle. The <a href="http://curl.haxx.se/ca/" title="Extracted CA certs from Mozilla">cURL website</a> maintains a version of the Mozilla CA bundle in <abbr title="Privacy-enhanced Electronic Mail">PEM</abbr> format. Grab one of their certificates.</p>
 
-  <p>Once dowloaded you can tell <a href="https://ruby-doc.org/stdlib-1.9.3/libdoc/net/http/rdoc/Net/HTTP.html" title="Net::HTTP in the Ruby Standard Library">Net::HTTP</a> to use this certificate:</p>
+<p>Once dowloaded you can tell <a href="https://ruby-doc.org/stdlib-1.9.3/libdoc/net/http/rdoc/Net/HTTP.html" title="Net::HTTP in the Ruby Standard Library">Net::HTTP</a> to use this certificate:</p>
 
-  {% highlight ruby %}
-  require "net/https"
-  https = Net::HTTP.new("encrypted.google.com", 443)
-  https.use_ssl = true
-  https.ca_file = "path_to_certificate";
-  https.request_get("/")
-  {% endhighlight %}
+{% highlight ruby %}
+require "net/https"
+https = Net::HTTP.new("encrypted.google.com", 443)
+https.use_ssl = true
+https.ca_file = "path_to_certificate";
+https.request_get("/")
+{% endhighlight %}
 
-  <p>Or, my prefered way, you can use an environment variable and not have hardcoded paths:</p>
+<p>Or, my prefered way, you can use an environment variable and not have hardcoded paths:</p>
 
-  <code>export SSL_CERT_FILE="path_to_certificate"</code>
+<code>export SSL_CERT_FILE="path_to_certificate"</code>
 
-  <p>Or, install it in your RVM directory: <a href="https://fredwu.me/blog/2012-08-06-fix-openssl-error-on-mountain-lion-and-rvm/" title="Fix OpenSSL Error on Mountain Lion (and RVM)">Fix OpenSSL Error on Mountain Lion (and RVM)</a>.</p>
-</div>
+<p>Or, install it in your RVM directory: <a href="https://fredwu.me/blog/2012-08-06-fix-openssl-error-on-mountain-lion-and-rvm/" title="Fix OpenSSL Error on Mountain Lion (and RVM)">Fix OpenSSL Error on Mountain Lion (and RVM)</a>.</p>

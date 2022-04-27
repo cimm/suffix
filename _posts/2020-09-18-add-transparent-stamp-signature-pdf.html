@@ -7,79 +7,77 @@ description:     Quickly add a transparent image to a PDF file from the command-
 cover_image_url: ../../assets/stamped-pdf-invoice.jpg
 ---
 
-<div class="narrow-col">
-  <p>I stamp my paid paper invoices with one of those self-inking rubber stamps. It helps to quickly see what invoices are paid so I don’t pay twice and… it’s weirdly satisfying. I miss my rubber stamp in my paperless <abbr title="Portable Document Format">PDF</abbr> office. I needed a <em>digital</em> rubber stamp to stamp PDF invoices!</p>
+<p>I stamp my paid paper invoices with one of those self-inking rubber stamps. It helps to quickly see what invoices are paid so I don’t pay twice and… it’s weirdly satisfying. I miss my rubber stamp in my paperless <abbr title="Portable Document Format">PDF</abbr> office. I needed a <em>digital</em> rubber stamp to stamp PDF invoices!</p>
 
-  <p>The Preview application on macOS lets you <a href="https://support.apple.com/guide/preview/fill-out-and-sign-pdf-forms-prvw35725/mac" title="Fill out and sign PDF forms in Preview on Mac">fill out and sign</a> PDFs. Very convenient to quickly sign a document and send it back. It’s a simple image, not a digital cryptographically secure signature, but I still need to meet someone who asks for a digital signature instead of a picture of my signature. Anyway, I digress. I looked but it’s surprisingly hard to find a great Preview alternative for Ubuntu/Linux.</p>
+<p>The Preview application on macOS lets you <a href="https://support.apple.com/guide/preview/fill-out-and-sign-pdf-forms-prvw35725/mac" title="Fill out and sign PDF forms in Preview on Mac">fill out and sign</a> PDFs. Very convenient to quickly sign a document and send it back. It’s a simple image, not a digital cryptographically secure signature, but I still need to meet someone who asks for a digital signature instead of a picture of my signature. Anyway, I digress. I looked but it’s surprisingly hard to find a great Preview alternative for Ubuntu/Linux.</p>
 
-  <p>A digital rubber stamp? A picture of my signature? What I need is a way to overlay a PDF with a transparent image!</p>
+<p>A digital rubber stamp? A picture of my signature? What I need is a way to overlay a PDF with a transparent image!</p>
 
-  <a href="../../assets/stamped-invoice.pdf" title="Download the final result as PDF">
-    <picture>
-      <source type="image/webp" srcset="../../assets/stamped-pdf-invoice.webp" />
-      <img src="../../assets/stamped-pdf-invoice.jpg" alt="PDF invoice with green PAID stamp in the bottom right corner"/>
-      <figcaption>PDF overlayed with a transparent image</figcaption>
-    </picture>
-  </a>
-
-  <h2>Designing a custom PDF stamp</h2>
-
-  <p>I “designed” my custom stamp template in <a href="https://inkscape.org/" title="A great free and libre vector drawing application">Inkscape</a> and saved it as an A4 PDF file. The stamp needs to be a transparent PDF as both <abbr title="Command-Line Interface">CLI</abbr> tools below can only overlay PDFs with other PDFs. Be aware that most PDF viewers will show the PDF with a white background, even if the background isn’t there. Don’t ask, the world of PDF parsing is <a href="https://filingdb.com/b/pdf-text-extraction">deep and dark</a>.</p>
-
+<a href="../../assets/stamped-invoice.pdf" title="Download the final result as PDF">
   <picture>
-    <img src="../../assets/stamp.svg" alt="" style="width:20%" />
-    <figcaption>Custom stamp as <abbr title="Scalable Vector Graphics">SVG</abbr>, icon from <a href="https://feathericons.com/?query=check-circle">Feather</a></figcaption>
+    <source type="image/webp" srcset="../../assets/stamped-pdf-invoice.webp" />
+    <img src="../../assets/stamped-pdf-invoice.jpg" alt="PDF invoice with green PAID stamp in the bottom right corner" />
+    <figcaption>PDF overlayed with a transparent image</figcaption>
   </picture>
+</a>
 
-  <p>Why A4? By making the canvas of the image the same size as the source document I can choose the size and position of the stamp on the page.</p>
+<h2>Designing a custom PDF stamp</h2>
 
-  <p>The same technique can be used to create a whole collection of stamp templates: a ‘draft’ stamp, a ‘sign here’ stamp, a ‘top secret’ stamp, etc.</p>
+<p>I “designed” my custom stamp template in <a href="https://inkscape.org/" title="A great free and libre vector drawing application">Inkscape</a> and saved it as an A4 PDF file. The stamp needs to be a transparent PDF as both <abbr title="Command-Line Interface">CLI</abbr> tools below can only overlay PDFs with other PDFs. Be aware that most PDF viewers will show the PDF with a white background, even if the background isn’t there. Don’t ask, the world of PDF parsing is <a href="https://filingdb.com/b/pdf-text-extraction">deep and dark</a>.</p>
 
-  <h2>Overlaying a PDF with a transparent image in the CLI</h2>
+<picture>
+  <img src="../../assets/stamp.svg" alt="" style="width:20%" />
+  <figcaption>Custom stamp as <abbr title="Scalable Vector Graphics">SVG</abbr>, icon from <a href="https://feathericons.com/?query=check-circle">Feather</a></figcaption>
+</picture>
 
-  <p>What is the quickest way to stamp an A4 invoice with a digital rubber stamp in the same location? The command-line! Install <a href="http://qpdf.sourceforge.net/files/qpdf-manual.html" title="QPDF Manual">QPDF</a> (available from the Ubuntu 20.04 archives) and stamp the invoice with your newly created digital rubber stamp!</p>
+<p>Why A4? By making the canvas of the image the same size as the source document I can choose the size and position of the stamp on the page.</p>
 
-  {% highlight bash %}
-  $ qpdf invoice.pdf --overlay stamp.pdf -- outvoice.pdf
-  {% endhighlight %}
+<p>The same technique can be used to create a whole collection of stamp templates: a ‘draft’ stamp, a ‘sign here’ stamp, a ‘top secret’ stamp, etc.</p>
 
-  <p>Quick and easy enough? Download the <a href="../../assets/stamped-invoice.pdf" title="Sample PDF invoice with the custom stamp in the bottom right corner">resulting PDF</a> with an example invoice. It even works for PDFs with editable fields but, the editable fields will be on top of the image (in the PDF viewers I tested).</p>
+<h2>Overlaying a PDF with a transparent image in the CLI</h2>
 
-  <p>We could also use PDFtk to achieve the same result. Also available from the Ubuntu archives and you might already have it installed for some other PDF magic.</p>
+<p>What is the quickest way to stamp an A4 invoice with a digital rubber stamp in the same location? The command-line! Install <a href="http://qpdf.sourceforge.net/files/qpdf-manual.html" title="QPDF Manual">QPDF</a> (available from the Ubuntu 20.04 archives) and stamp the invoice with your newly created digital rubber stamp!</p>
 
-  {% highlight bash %}
-  $ pdftk invoice.pdf multistamp stamp.pdf output outvoice.pdf
-  {% endhighlight %}
+{% highlight bash %}
+$ qpdf invoice.pdf --overlay stamp.pdf -- outvoice.pdf
+{% endhighlight %}
 
-  <p>We need the ‘<a href="https://www.pdflabs.com/docs/pdftk-man-page/" title="PDFtk’s man page">multistamp</a>’ and not the ‘stamp’ command here as the later will overlay each page of the input PDF with the first page of the stamp PDF. Meaning each page would have the same overlayed image. I only want to stamp the first page. This can be solved by creating a PDF with the stamp on the first page followed by a lot of blank pages. Hence why the QPDF solution is slightly cleaner.</p>
+<p>Quick and easy enough? Download the <a href="../../assets/stamped-invoice.pdf" title="Sample PDF invoice with the custom stamp in the bottom right corner">resulting PDF</a> with an example invoice. It even works for PDFs with editable fields but, the editable fields will be on top of the image (in the PDF viewers I tested).</p>
 
-  <h2>Adding PDF Keyword Tags</h2>
+<p>We could also use PDFtk to achieve the same result. Also available from the Ubuntu archives and you might already have it installed for some other PDF magic.</p>
 
-  <p>The custom image is a great visual aid but doesn’t help the computer to know if the invoice has been paid. I use <a href="https://exiftool.org/faq.html" title="ExifTool FAQ">ExifTool</a> to add a ‘paid’ keyword to the PDF to easily filter (un)paid invoices.</p>
+{% highlight bash %}
+$ pdftk invoice.pdf multistamp stamp.pdf output outvoice.pdf
+{% endhighlight %}
 
-  {% highlight bash %}
-  $ exiftool -keywords-=paid -keywords+=paid -overwrite_original invoice.pdf
-  {% endhighlight %}
+<p>We need the ‘<a href="https://www.pdflabs.com/docs/pdftk-man-page/" title="PDFtk’s man page">multistamp</a>’ and not the ‘stamp’ command here as the later will overlay each page of the input PDF with the first page of the stamp PDF. Meaning each page would have the same overlayed image. I only want to stamp the first page. This can be solved by creating a PDF with the stamp on the first page followed by a lot of blank pages. Hence why the QPDF solution is slightly cleaner.</p>
 
-  <p>The ‘-=’ removes the keyword if it already exists, the ‘+=’ appends the keyword, this to prevent duplicated keywords. This is all wrapped in a little shell function for convenience.</p>
+<h2>Adding PDF Keyword Tags</h2>
 
-  {% highlight bash %}
-  pay() {
-    input_pdf="$1"
-    qpdf $input_pdf --replace-input --overlay /path/to/stamp.pdf --
-    exiftool -keywords-=paid -keywords+=paid -overwrite_original $input_pdf
-  }
-  {% endhighlight %}
+<p>The custom image is a great visual aid but doesn’t help the computer to know if the invoice has been paid. I use <a href="https://exiftool.org/faq.html" title="ExifTool FAQ">ExifTool</a> to add a ‘paid’ keyword to the PDF to easily filter (un)paid invoices.</p>
 
-  <p>Invoking <kbd>$ pay invoice.pdf</kbd> will now add a visual stamp and ‘paid’ keyword to the PDF.</p>
+{% highlight bash %}
+$ exiftool -keywords-=paid -keywords+=paid -overwrite_original invoice.pdf
+{% endhighlight %}
 
-  <h2>Stamping a PDF in a GUI</h2>
+<p>The ‘-=’ removes the keyword if it already exists, the ‘+=’ appends the keyword, this to prevent duplicated keywords. This is all wrapped in a little shell function for convenience.</p>
 
-  <p>What if you prefer a graphical user interface?</p>
+{% highlight bash %}
+pay() {
+  input_pdf="$1"
+  qpdf $input_pdf --replace-input --overlay /path/to/stamp.pdf --
+  exiftool -keywords-=paid -keywords+=paid -overwrite_original $input_pdf
+}
+{% endhighlight %}
 
-  <p><a href="https://www.libreoffice.org/discover/draw/" title="LibreOffice Draw product page">LibreOffice Draw</a> comes pre-installed with most Linux distros and can edit PDFs. Don’t use the PDF version of the stamp as LibreOffice Draw does add a white background to the backgroundless PDF, defeating the whole purpose. Luckily, an SVG will just work fine. Make sure to check the result as there is the odd case where Draw can’t fully render the PDF.</p>
+<p>Invoking <kbd>$ pay invoice.pdf</kbd> will now add a visual stamp and ‘paid’ keyword to the PDF.</p>
 
-  <p><a href="https://okular.kde.org/" title="Homepage of the Okular PDF reader">Okular</a> is another popular option, it even has a stamp feature! Open the PDF file, choose ‘Tools’ → ‘Review’ and ‘Stamp’ from the newly opened toolbar. Right-click the stamp and choose Properties where you can choose the custom stamp we designed earlier. Note that this feature is experimental and the stamp will not be visible in other PDF viewers!</p>
+<h2>Stamping a PDF in a GUI</h2>
 
-  <p>There is even an <a href="https://helpx.adobe.com/security/products/reader-linux.html" title="Adobe Reader for Linux">Adobe Reader</a> version for Linux! Careful though, the Acrobat Adobe Reader for Linux hasn’t been updated since <time>2013</time>, and given the security nightmare of the Windows and macOS versions I wouldn’t touch and old and unmaintained Adobe Reader, even if it does exist. One can only hope <a href="https://wiki.gnome.org/Apps/Evince" title="The default PDF viewer in GNOME on Ubuntu">Evince</a> will one day be as powerful as Preview on macOS.</p>
-</div>
+<p>What if you prefer a graphical user interface?</p>
+
+<p><a href="https://www.libreoffice.org/discover/draw/" title="LibreOffice Draw product page">LibreOffice Draw</a> comes pre-installed with most Linux distros and can edit PDFs. Don’t use the PDF version of the stamp as LibreOffice Draw does add a white background to the backgroundless PDF, defeating the whole purpose. Luckily, an SVG will just work fine. Make sure to check the result as there is the odd case where Draw can’t fully render the PDF.</p>
+
+<p><a href="https://okular.kde.org/" title="Homepage of the Okular PDF reader">Okular</a> is another popular option, it even has a stamp feature! Open the PDF file, choose ‘Tools’ → ‘Review’ and ‘Stamp’ from the newly opened toolbar. Right-click the stamp and choose Properties where you can choose the custom stamp we designed earlier. Note that this feature is experimental and the stamp will not be visible in other PDF viewers!</p>
+
+<p>There is even an <a href="https://helpx.adobe.com/security/products/reader-linux.html" title="Adobe Reader for Linux">Adobe Reader</a> version for Linux! Careful though, the Acrobat Adobe Reader for Linux hasn’t been updated since <time>2013</time>, and given the security nightmare of the Windows and macOS versions I wouldn’t touch and old and unmaintained Adobe Reader, even if it does exist. One can only hope <a href="https://wiki.gnome.org/Apps/Evince" title="The default PDF viewer in GNOME on Ubuntu">Evince</a> will one day be as powerful as Preview on macOS.</p>

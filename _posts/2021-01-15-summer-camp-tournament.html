@@ -7,20 +7,19 @@ description:     Abusing a website API to give my kids an edge.
 cover_image_url: 
 ---
 
-<div class="narrow-col">
-  <p>Let me introduce you to the “Click Fast” game. Tournaments are played yearly in January and the game is open to parents only. The goal is simple: register your kids for a summer camp, winning is not. The game starts at a predefined time by opening the online registrations to this year’s summer camps. Since places are limited, participating parents have to click fast, really fast. The more popular camps are gone in seconds.</p>
+<p>Let me introduce you to the “Click Fast” game. Tournaments are played yearly in January and the game is open to parents only. The goal is simple: register your kids for a summer camp, winning is not. The game starts at a predefined time by opening the online registrations to this year’s summer camps. Since places are limited, participating parents have to click fast, really fast. The more popular camps are gone in seconds.</p>
 
-  <h2>Common Strategies</h2>
+<h2>Common Strategies</h2>
 
-  <p>One popular strategy to beat other parents is showing up in force. Invite grandparents, neighbors, and friends to hit that register button for your kids. Maybe some are expert mouse clickers, or live a few milliseconds closer to the server? Make sure to brief your attack strategy early: hit camp 392 first, if no places are left go for 443, skip the waiting list.</p>
+<p>One popular strategy to beat other parents is showing up in force. Invite grandparents, neighbors, and friends to hit that register button for your kids. Maybe some are expert mouse clickers, or live a few milliseconds closer to the server? Make sure to brief your attack strategy early: hit camp 392 first, if no places are left go for 443, skip the waiting list.</p>
 
-  <p>You might go for the less popular ones: skip the horseback riding and go for the multisport camp. A viable strategy, not so popular with my kids.</p>
+<p>You might go for the less popular ones: skip the horseback riding and go for the multisport camp. A viable strategy, not so popular with my kids.</p>
 
-  <p>A more successful approach is prebooking the camp so you don’t even have to compete. What?! Wait… I am trying to hit a button with millisecond precision, but others can pre-register?! Even worse, you might be waiting for the registrations to open for a camp that’s already fully booked!</p>
+<p>A more successful approach is prebooking the camp so you don’t even have to compete. What?! Wait… I am trying to hit a button with millisecond precision, but others can pre-register?! Even worse, you might be waiting for the registrations to open for a camp that’s already fully booked!</p>
 
-  <h2>Geeky Parent Strategy</h2>
+<h2>Geeky Parent Strategy</h2>
 
-  <p>Last week, while preparing for this year’s season, I decided to scout the field before the registrations opened. It promised to be a difficult season this year, twice as many participants were expected due to the pandemic. You play this game on a website, you see, and most sites have a listing with camp details. The slowness of this particular one made me suspicious enough to see what’s going on: <strike>zoom, enhance</strike> inspect, element. Turns out the site downloads a 1.5 <abbr title="Megabyte">MB</abbr> <abbr title="JavaScript Object Notation">JSON</abbr> file with the details of each camp. After a bit of poking around the <abbr title="Application Programming Interface">API</abbr> gave way.</p>
+<p>Last week, while preparing for this year’s season, I decided to scout the field before the registrations opened. It promised to be a difficult season this year, twice as many participants were expected due to the pandemic. You play this game on a website, you see, and most sites have a listing with camp details. The slowness of this particular one made me suspicious enough to see what’s going on: <strike>zoom, enhance</strike> inspect, element. Turns out the site downloads a 1.5 <abbr title="Megabyte">MB</abbr> <abbr title="JavaScript Object Notation">JSON</abbr> file with the details of each camp. After a bit of poking around the <abbr title="Application Programming Interface">API</abbr> gave way.</p>
 
 {% highlight json %}
 { "ActivityId": 392, "Quota": 16, "Free": 16, "WaitingListFree": 8 }
@@ -29,13 +28,12 @@ cover_image_url:
 { "ActivityId": 487, "Quota": 6, "Free": 0, "WaitingListFree": 2 }
 {% endhighlight %}
 
-  <p>Camp 487 is of special interest to us, it’s the pony riding camp my daughter set her eyes on. Guess I don’t even need to train my clicking skills for that one. I adapted our strategy with a priority list of camps vetted by our kids, sorted by the chances we would get to book a spot.</p>
+<p>Camp 487 is of special interest to us, it’s the pony riding camp my daughter set her eyes on. Guess I don’t even need to train my clicking skills for that one. I adapted our strategy with a priority list of camps vetted by our kids, sorted by the chances we would get to book a spot.</p>
 
-  <h2>Fairness</h2>
+<h2>Fairness</h2>
 
-  <p>In the end, we managed to book my daughter’s second choice, but only because we didn’t lose time trying to book her first, already sold out one. Sure, the website could be improved to show which camps are sold out. I can only hope if it’s an oversight and not a deliberate choice to hide the pre-registrations.</p>
+<p>In the end, we managed to book my daughter’s second choice, but only because we didn’t lose time trying to book her first, already sold out one. Sure, the website could be improved to show which camps are sold out. I can only hope if it’s an oversight and not a deliberate choice to hide the pre-registrations.</p>
 
-  <p>How would one organize a scarce resource like summer camps fairly? Parents with okay clicking skills loose from parents with a trained mouse button clicking team, who loose from programming savy parents, who loose from pre-registered kids. What if you don’t have a computer at home, or are restricted to a mobile internet connection? Do you never get your kid’s favorite camp?</p>
+<p>How would one organize a scarce resource like summer camps fairly? Parents with okay clicking skills loose from parents with a trained mouse button clicking team, who loose from programming savy parents, who loose from pre-registered kids. What if you don’t have a computer at home, or are restricted to a mobile internet connection? Do you never get your kid’s favorite camp?</p>
 
-  <p>In other words, should I feel bad inspecting the website’s API to give my kids an edge? I wonder.</p>
-</div>
+<p>In other words, should I feel bad inspecting the website’s API to give my kids an edge? I wonder.</p>

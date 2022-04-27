@@ -5,84 +5,82 @@ date:    2008-10-28 18:06:58
 updated: 2008-10-28 18:13:36
 ---
 
-<div class="narrow-col">
-  <p>In one of my <a href="../generated-maps/" title="Generated maps with Ruby on Rails">previous posts</a> I showed how to dynamically generate a map from a set of coordinates in Ruby on Rails (like the map on top of this page). This is nice but still required me to manually update my location each time, not very useable. I have a Dopplr account where I enter all my future trips so it feels stupid to enter the same information again on my own website. We can do better than that.</p>
+<p>In one of my <a href="../generated-maps/" title="Generated maps with Ruby on Rails">previous posts</a> I showed how to dynamically generate a map from a set of coordinates in Ruby on Rails (like the map on top of this page). This is nice but still required me to manually update my location each time, not very useable. I have a Dopplr account where I enter all my future trips so it feels stupid to enter the same information again on my own website. We can do better than that.</p>
 
-  <p>Here is the idea: a script that checks my travel plans on Dopplr for to following day and creates a new map of that location if needed. Also: a perfect excuse to have a look at the Rake build language which I had never used.</p>
+<p>Here is the idea: a script that checks my travel plans on Dopplr for to following day and creates a new map of that location if needed. Also: a perfect excuse to have a look at the Rake build language which I had never used.</p>
 
-  <h2>Dopplr <abbr title="Application Programming Interface">API</abbr></h2>
+<h2>Dopplr <abbr title="Application Programming Interface">API</abbr></h2>
 
-  <p>The Dopplr <abbr title="Application Programming Interface">API</abbr> includes a Ruby client which makes our life easier, download the ‘Improved Ruby Client’ in your <samp>&lt;yourapp&gt;/lib</samp> folder so we can use it later on.</p>
+<p>The Dopplr <abbr title="Application Programming Interface">API</abbr> includes a Ruby client which makes our life easier, download the ‘Improved Ruby Client’ in your <samp>&lt;yourapp&gt;/lib</samp> folder so we can use it later on.</p>
 
-  <h2>Tokens and sessions</h2>
+<h2>Tokens and sessions</h2>
 
-  <p>You will need a session key to use the Dopplr API, this key replaces your username and password (read ‘<a href="https://adactio.com/journal/1357" title="The password anti-pattern @ Adactio">The password anti-pattern</a>’ if you want to know why). Here is how to get one:</p>
+<p>You will need a session key to use the Dopplr API, this key replaces your username and password (read ‘<a href="https://adactio.com/journal/1357" title="The password anti-pattern @ Adactio">The password anti-pattern</a>’ if you want to know why). Here is how to get one:</p>
 
-  <ol>
-    <li>Go to <samp>https://www.dopplr.com/api/AuthSubRequest?scope=http://www.dopplr.com&amp;next=<strong>&lt;your_url&gt;</strong>&amp;session=1</samp>. Replace <samp>&lt;your_url&gt;</samp> with your website's URL.</li>
-    <li>Once approved you will be redirected to your URL with a <samp>token=&lt;token_hash&gt;</samp> parameter, copy the token value.</li>
-    <li>Start your Rails development console to convert the token to a session hash with <samp>./script/console</samp>.</li>
-    <li>Upgrade the token to a session:<br/>
-    <samp>&gt;&gt; d = Dopplr.new<br/>
-    &gt;&gt; d.set_token("<strong>&lt;token_hash&gt;</strong>")<br/>
-    &gt;&gt; d.upgrade_to_session</samp><br/></li>
-    <li>Copy the result - this is your session key - and keep it somewhere safe.</li>
-  </ol>
+<ol>
+  <li>Go to <samp>https://www.dopplr.com/api/AuthSubRequest?scope=http://www.dopplr.com&amp;next=<strong>&lt;your_url&gt;</strong>&amp;session=1</samp>. Replace <samp>&lt;your_url&gt;</samp> with your website's URL.</li>
+  <li>Once approved you will be redirected to your URL with a <samp>token=&lt;token_hash&gt;</samp> parameter, copy the token value.</li>
+  <li>Start your Rails development console to convert the token to a session hash with <samp>./script/console</samp>.</li>
+  <li>Upgrade the token to a session:<br />
+  <samp>&gt;&gt; d = Dopplr.new<br />
+  &gt;&gt; d.set_token("<strong>&lt;token_hash&gt;</strong>")<br />
+  &gt;&gt; d.upgrade_to_session</samp><br /></li>
+  <li>Copy the result - this is your session key - and keep it somewhere safe.</li>
+</ol>
 
-  <h2>Rake task</h2>
+<h2>Rake task</h2>
 
-  <p>I wanted something outside this website that could run automatically, even when the website wasn’t opened. Rake offers you a way to do this: you can build and run scripts independently from the rest of the application while using the same environment as the application.</p>
+<p>I wanted something outside this website that could run automatically, even when the website wasn’t opened. Rake offers you a way to do this: you can build and run scripts independently from the rest of the application while using the same environment as the application.</p>
 
-  <p>Here is a simplified version of the task I created. Copy this and save it in your <samp>&lt;yourapp&gt;/lib/tasks</samp> folder as <samp>map.rake</samp>.</p>
+<p>Here is a simplified version of the task I created. Copy this and save it in your <samp>&lt;yourapp&gt;/lib/tasks</samp> folder as <samp>map.rake</samp>.</p>
 
-  {% highlight ruby %}
-  namespace :map do
-    desc "Overwrites the map with my Dopplr location on a given date"
-    task :date => :environment do
-      c = define_coordinates(ENV['date'])
-      create_map(c['lat'], c['long'], 1200, 100, 0.3, 8)
-    end
+{% highlight ruby %}
+namespace :map do
+  desc "Overwrites the map with my Dopplr location on a given date"
+  task :date => :environment do
+    c = define_coordinates(ENV['date'])
+    create_map(c['lat'], c['long'], 1200, 100, 0.3, 8)
+  end
 
-    desc "Updates the map.png with a map of my current Dopplr location"
-    task :update => :environment do
-      today = Time.now
-      c = define_coordinates(today.strftime("%Y%m%d"))
-      create_map(c['lat'], c['long'], 1200, 100, 0.3, 8)
-    end
+  desc "Updates the map.png with a map of my current Dopplr location"
+  task :update => :environment do
+    today = Time.now
+    c = define_coordinates(today.strftime("%Y%m%d"))
+    create_map(c['lat'], c['long'], 1200, 100, 0.3, 8)
+  end
 
-    # Extract the coordinates from the Dopplr API
-    def define_coordinates(date)
-      d = Dopplr.new
-      d.set_token(<session_key>)
-      loc = d.location_on_date(:date => date)['location']
-      if loc.has_key?('trip')
-          {"lat" => loc['trip']['city']['latitude'], "long" => loc['trip']['city']['longitude']}
-        else
-          {"lat" => loc['home']['latitude'], "long" => loc['home']['longitude']}
-      end
-    end
-
-    # Create a new OpenStreetMap with the given coordinates
-    def create_map(latitude, longitude, width = 500, height = 500, opacity = 1, zoom = 7)
-      [...]
+  # Extract the coordinates from the Dopplr API
+  def define_coordinates(date)
+    d = Dopplr.new
+    d.set_token(<session_key>)
+    loc = d.location_on_date(:date => date)['location']
+    if loc.has_key?('trip')
+        {"lat" => loc['trip']['city']['latitude'], "long" => loc['trip']['city']['longitude']}
+      else
+        {"lat" => loc['home']['latitude'], "long" => loc['home']['longitude']}
     end
   end
-  {% endhighlight %}
 
-  <p>Now, check your taks with <samp>rake -T</samp>. You’ll get an overview of all the Rake tasks for your app and there should be a ‘map:date’ and ‘map:update’ one. This means you can run these scripts interactively now:</p>
+  # Create a new OpenStreetMap with the given coordinates
+  def create_map(latitude, longitude, width = 500, height = 500, opacity = 1, zoom = 7)
+    [...]
+  end
+end
+{% endhighlight %}
 
-  <dl>
-    <dt><samp>rake map:date date=20080101</samp></dt>
-    <dd>Will create/overwrite the map.png file in the /public/image folder with a map of you Dopplr location on <time datetime="2008-01-01">January 1<sup>st</sup>, 2008</time>.</dd>
-    <dt><samp>rake map:update</samp></dt>
-    <dd>Will also create a map but with your current Dopplr location.</dd>
-  </dl>
+<p>Now, check your taks with <samp>rake -T</samp>. You’ll get an overview of all the Rake tasks for your app and there should be a ‘map:date’ and ‘map:update’ one. This means you can run these scripts interactively now:</p>
 
-  <h2>Cron</h2>
+<dl>
+  <dt><samp>rake map:date date=20080101</samp></dt>
+  <dd>Will create/overwrite the map.png file in the /public/image folder with a map of you Dopplr location on <time datetime="2008-01-01">January 1<sup>st</sup>, 2008</time>.</dd>
+  <dt><samp>rake map:update</samp></dt>
+  <dd>Will also create a map but with your current Dopplr location.</dd>
+</dl>
 
-  <p>Almost done. We can now create a new map whenever we want on any given date. Let’s run this script each night at 4 in the morning. Add the following line to your crontab:</p>
+<h2>Cron</h2>
 
-  <p><samp>0 4 * * * cd <strong>&lt;app_path&gt;</strong> &amp;&amp; /usr/local/bin/rake map:update RAILS_ENV=production</samp></p>
+<p>Almost done. We can now create a new map whenever we want on any given date. Let’s run this script each night at 4 in the morning. Add the following line to your crontab:</p>
 
-  <p>That’s it. The script will now look for your current location in your Dopplr account and create a map based on that location.</p>
-</div>
+<p><samp>0 4 * * * cd <strong>&lt;app_path&gt;</strong> &amp;&amp; /usr/local/bin/rake map:update RAILS_ENV=production</samp></p>
+
+<p>That’s it. The script will now look for your current location in your Dopplr account and create a map based on that location.</p>

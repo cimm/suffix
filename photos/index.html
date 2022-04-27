@@ -25,19 +25,17 @@ photo_sets:
   - ["https://www.flickr.com/photos/schoeters/4713993111/", "4713993111_f7c60ddd58_m"]
 ---
 
-<div class="extended-col">
-  <section class="cards">
-    {% for photo in page.photo_sets %}
-      <a href="{{ photo.first }}" title="Open larger version on Flickr" class="card">
-        <figure>
-          <picture class="frame">
-            <source type="image/webp" srcset="../assets/photos/{{ photo.last }}.webp" />
-            <img src="../assets/photos/{{ photo.last }}.jpg" loading="lazy" alt="" />
-          </picture>
-        </figure>
-      </a>
-    {% endfor %}
-  </section>
-</div>
+<section class="cards">
+  {% for photo in page.photo_sets %}
+    <a href="{{ photo.first }}" title="Open larger version on Flickr" class="card">
+      <figure>
+        <picture class="frame">
+          <source type="image/webp" srcset="../assets/photos/{{ photo.last }}.webp" />
+          <img src="../assets/photos/{{ photo.last }}.jpg" loading="lazy" alt="" />
+        </picture>
+      </figure>
+    </a>
+  {% endfor %}
+</section>
 
-<p class="narrow-col">Some photos I took over the years, you can find the full collection on my <a href="https://www.flickr.com/photos/schoeters/">Flickr</a> page.</p>
+<p>Some photos I took over the years, you can find the full collection on my <a href="https://www.flickr.com/photos/schoeters/" rel="me">Flickr</a> page.</p>

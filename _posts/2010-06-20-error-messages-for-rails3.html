@@ -5,33 +5,31 @@ date:    2010-06-20 22:00:29
 updated: 2011-01-26 22:11:58
 ---
 
-<div class="narrow-col">
-  <p>I played with the latest Rails 3 beta release today (version 3.0.0.beta4) and noticed the following depreciation warning:</p>
+<p>I played with the latest Rails 3 beta release today (version 3.0.0.beta4) and noticed the following depreciation warning:</p>
 
-  <samp>DEPRECATION WARNING: form.error_messages was removed from Rails and is now available as a plugin.</samp>
+<samp>DEPRECATION WARNING: form.error_messages was removed from Rails and is now available as a plugin.</samp>
 
-  <p>After Googling around some I found out why. Apparently the old error_messages_for violated the core Rails principles of never dictating the look and feel of an application. Indeed, it includes fixed <abbr title="HyperText Markup Language">HTML</abbr> and copywriting, not good.</p>
+<p>After Googling around some I found out why. Apparently the old error_messages_for violated the core Rails principles of never dictating the look and feel of an application. Indeed, it includes fixed <abbr title="HyperText Markup Language">HTML</abbr> and copywriting, not good.</p>
 
-  <h2>Solution</h2>
+<h2>Solution</h2>
 
-  <p>The Rails core team decided to drop it completely as it's just too easy to write a wrapper for:</p>
+<p>The Rails core team decided to drop it completely as it's just too easy to write a wrapper for:</p>
 
-  {% highlight ruby %}
-  <% if @post.errors.any? %>
-    <ul>
-      <% @post.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
-  <% end %>
-  {% endhighlight %}
-
-  <p>I hope this post saved someone a few minutes.</p>
-
-  <h2>More resources</h2>
-
+{% highlight ruby %}
+<% if @post.errors.any? %>
   <ul>
-    <li>Message by <span class="vcard"><abbr class="fn nickname" title="David Heinemeier Hansson">DHH</abbr></span> concerning the <a href="https://news.ycombinator.com/item?id=1263775" class="ext">removal reasons</a>.</li>
-    <li><a href="https://github.com/rails/dynamic_form" class="ext">Plugin</a> to restore the Rails 2.x behavior... if you really want to.</li>
+    <% @post.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
   </ul>
-</div>
+<% end %>
+{% endhighlight %}
+
+<p>I hope this post saved someone a few minutes.</p>
+
+<h2>More resources</h2>
+
+<ul>
+  <li>Message by <span class="vcard"><abbr class="fn nickname" title="David Heinemeier Hansson">DHH</abbr></span> concerning the <a href="https://news.ycombinator.com/item?id=1263775">removal reasons</a>.</li>
+  <li><a href="https://github.com/rails/dynamic_form">Plugin</a> to restore the Rails 2.x behavior... if you really want to.</li>
+</ul>

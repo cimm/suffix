@@ -9,143 +9,141 @@ description:     Use a unique email per service, like you do for passwords.
 cover_image_url:  ../../assets/anonymous.png
 ---
 
-<picture class="extended-col">
+<picture>
   <source type="image/webp" srcset="../../assets/anonymous.webp" />
   <img src="../../assets/anonymous.png" alt="Anonymous" />
 </picture>
 
-<div class="narrow-col">
-  <p>You already use a <a href="https://ssd.eff.org/module/animated-overview-using-password-managers-stay-safe-online" title="Using Password Managers to Stay Safe Online @ EFF">password manager</a> to keep track of all the unique passwords for each of your online accounts. If one of these services gets breached or a malicious developer steals your password you can be sure they don’t hack all your other online accounts. You do, however, use the same email address. Not as important as your passwords but a breach will still expose the email address. It also means all these websites can keep sending you spam now that they have your email. What if we would use a unique email per online service as we do with passwords?</p>
+<p>You already use a <a href="https://ssd.eff.org/module/animated-overview-using-password-managers-stay-safe-online" title="Using Password Managers to Stay Safe Online @ EFF">password manager</a> to keep track of all the unique passwords for each of your online accounts. If one of these services gets breached or a malicious developer steals your password you can be sure they don’t hack all your other online accounts. You do, however, use the same email address. Not as important as your passwords but a breach will still expose the email address. It also means all these websites can keep sending you spam now that they have your email. What if we would use a unique email per online service as we do with passwords?</p>
 
-  <h2>Beginner</h2>
+<h2>Beginner</h2>
 
-  <p>The email <a href="https://tools.ietf.org/html/rfc2822" title="RFC 2822 Internet Message Format">standard</a> supports the use of a plus sign in an address: <code>john+twitter@example.com</code> will be delivered to <code>john@example.com</code>. Gmail and Outlook support this out of the box, other mail services might do too. No setup required, the part after the plus sign can be anything you want. Use this little trick when signing up for an online account and you have instant unique email addresses! Receive spam on your <code>john+twitter@example.com</code> address? Add a rule in your email client to drop emails to that address. Got a random spam mail on <code>john+twitter@example.com</code>? Twitter might have sold your email address or worse, they got breached.</p>
+<p>The email <a href="https://tools.ietf.org/html/rfc2822" title="RFC 2822 Internet Message Format">standard</a> supports the use of a plus sign in an address: <code>john+twitter@example.com</code> will be delivered to <code>john@example.com</code>. Gmail and Outlook support this out of the box, other mail services might do too. No setup required, the part after the plus sign can be anything you want. Use this little trick when signing up for an online account and you have instant unique email addresses! Receive spam on your <code>john+twitter@example.com</code> address? Add a rule in your email client to drop emails to that address. Got a random spam mail on <code>john+twitter@example.com</code>? Twitter might have sold your email address or worse, they got breached.</p>
 
-  <p>This simple solution has some disadvantages. First, it’s super simple to guess the main address: remove the “+something” part. Bots can see this too, they will be quick to spam the main address. Secondly, not all web applications are created equally and some will refuse the address because they see the plus sign as an invalid character, meaning you would have to use your main address anyway, bummer.</p>
+<p>This simple solution has some disadvantages. First, it’s super simple to guess the main address: remove the “+something” part. Bots can see this too, they will be quick to spam the main address. Secondly, not all web applications are created equally and some will refuse the address because they see the plus sign as an invalid character, meaning you would have to use your main address anyway, bummer.</p>
 
-  <h2>Intermediate</h2>
+<h2>Intermediate</h2>
 
-  <p>What if we create a real unique address per service, not an alias? Say <code>abc@example.com</code> is the address I used for Twitter and <code>efg@example.com</code> for Facebook and I forward both addresses to <code>john@example.com</code>? Now, no one can guess my real address based on the ones I created: there is no link between <code>abc@example.com</code> and <code>john@example.com</code>. Problem? It’s extra work each time you sign up for a new service.</p>
+<p>What if we create a real unique address per service, not an alias? Say <code>abc@example.com</code> is the address I used for Twitter and <code>efg@example.com</code> for Facebook and I forward both addresses to <code>john@example.com</code>? Now, no one can guess my real address based on the ones I created: there is no link between <code>abc@example.com</code> and <code>john@example.com</code>. Problem? It’s extra work each time you sign up for a new service.</p>
 
-  <p>Some services do exactly that, take <a href="https://anonaddy.com/" title="Anonymous Email Forwarding">AnonAddy</a> for example, which allows you to create random <code>something@user.anonaddy.com</code> addresses on the fly. Just make sure you use a custom domain as you don’t want to go update all your accounts if AnonAddy would go bust.</p>
+<p>Some services do exactly that, take <a href="https://anonaddy.com/" title="Anonymous Email Forwarding">AnonAddy</a> for example, which allows you to create random <code>something@user.anonaddy.com</code> addresses on the fly. Just make sure you use a custom domain as you don’t want to go update all your accounts if AnonAddy would go bust.</p>
 
-  <h2>Advanced</h2>
+<h2>Advanced</h2>
 
-  <p>Why not run our own email forwarding service? We can create as many aliases as we want, no snooping on our emails and no 3<sup>rd</sup> party middleman. It does require we run a web server though. Let’s configure a <a href="http://www.postfix.org/" title="Postfix Mail Server">Postfix</a> email forwarder.</p>
+<p>Why not run our own email forwarding service? We can create as many aliases as we want, no snooping on our emails and no 3<sup>rd</sup> party middleman. It does require we run a web server though. Let’s configure a <a href="http://www.postfix.org/" title="Postfix Mail Server">Postfix</a> email forwarder.</p>
 
-  <h3>Postfix</h3>
+<h3>Postfix</h3>
 
-  <p>Start a Linux <abbr title="Virtual Private Server">VPS</abbr> and buy a domain name you like. Say we bought example.com (well, rented, you don’t buy a domain name, you rent and renew it each year). First, update the server and install Postfix.</p>
+<p>Start a Linux <abbr title="Virtual Private Server">VPS</abbr> and buy a domain name you like. Say we bought example.com (well, rented, you don’t buy a domain name, you rent and renew it each year). First, update the server and install Postfix.</p>
 
-  {% highlight bash %}
-  $ sudo apt-get update && sudo apt-get upgrade
-  $ sudo apt install postfix -y
-  $ postconf | grep config_directory
-  {% endhighlight %}
+{% highlight bash %}
+$ sudo apt-get update && sudo apt-get upgrade
+$ sudo apt install postfix -y
+$ postconf | grep config_directory
+{% endhighlight %}
 
-  <p>Which gives you the path to the Postfix config file, probably <code>/etc/postfix/main.cf</code>. Add the following two lines to the config file and replace example.com with your domain (the part that goes after the @ sign of the email address we are going to create).</p>
+<p>Which gives you the path to the Postfix config file, probably <code>/etc/postfix/main.cf</code>. Add the following two lines to the config file and replace example.com with your domain (the part that goes after the @ sign of the email address we are going to create).</p>
 
-  {% highlight bash %}
-  virtual_alias_domains = example.com
-  virtual_alias_maps = hash:/etc/postfix/virtual
-  {% endhighlight %}
+{% highlight bash %}
+virtual_alias_domains = example.com
+virtual_alias_maps = hash:/etc/postfix/virtual
+{% endhighlight %}
 
-  <p>The second line tells Postfix where it can find the aliases. Create the <code>/etc/postfix/virtual</code> file if it doesn’t exist yet and add the first alias. Each line is an alias, it starts with the receiving address and is followed with the address you want to forward to. For example:</p>
+<p>The second line tells Postfix where it can find the aliases. Create the <code>/etc/postfix/virtual</code> file if it doesn’t exist yet and add the first alias. Each line is an alias, it starts with the receiving address and is followed with the address you want to forward to. For example:</p>
 
-  {% highlight bash %}
-  twitter@example.com john@something.com
-  facebook@example.com john@something.com
-  {% endhighlight %}
+{% highlight bash %}
+twitter@example.com john@something.com
+facebook@example.com john@something.com
+{% endhighlight %}
 
-  <p>Each time we add or remove an alias we have to tell Postfix about it and reload the service.</p>
+<p>Each time we add or remove an alias we have to tell Postfix about it and reload the service.</p>
 
-  {% highlight bash %}
-  $ sudo postmap /etc/postfix/virtual
-  $ sudo systemctl reload postfix
-  {% endhighlight %}
+{% highlight bash %}
+$ sudo postmap /etc/postfix/virtual
+$ sudo systemctl reload postfix
+{% endhighlight %}
 
-  <p>Set the <abbr title="Fully Qualified Domain Name">FQDN</abbr> as well:</p>
+<p>Set the <abbr title="Fully Qualified Domain Name">FQDN</abbr> as well:</p>
 
-  {% highlight bash %}$ sudo hostname mail.example.com{% endhighlight %}
+{% highlight bash %}$ sudo hostname mail.example.com{% endhighlight %}
 
-  <h3>Firewall</h3>
+<h3>Firewall</h3>
 
-  <p>You should run a firewall on your server. I am using <a href="https://help.ubuntu.com/community/UFW" title="The Uncomplicated Firewall @ Ubuntu">ufw</a>:</p>
+<p>You should run a firewall on your server. I am using <a href="https://help.ubuntu.com/community/UFW" title="The Uncomplicated Firewall @ Ubuntu">ufw</a>:</p>
 
-  {% highlight bash %}
-  $ sudo ufw allow postfix
-  $ sudo ufw allow ssh
-  $ sudo ufw enable
-  {% endhighlight %}
+{% highlight bash %}
+$ sudo ufw allow postfix
+$ sudo ufw allow ssh
+$ sudo ufw enable
+{% endhighlight %}
 
-  <p>Note, there is more you should do to harden your server but that’s out-of-scope for this tutorial!</p>
+<p>Note, there is more you should do to harden your server but that’s out-of-scope for this tutorial!</p>
 
-  <h3><abbr title="Domain Name System">DNS</abbr></h3>
+<h3><abbr title="Domain Name System">DNS</abbr></h3>
 
-  <p>The internet doesn’t know that our new server is ready to receive emails to <code>twitter@example.com</code> and <code>facebook@example.com</code> yet. You can probably configure the DNS in the same place where you bought your domain name. Add an A-record for the mail subdomain pointing to the <abbr title="Internet Protocol">IP</abbr> of the server (replace 127.0.01 with the <abbr title="Internet Protocol">IP</abbr>-address of your server.</p>
+<p>The internet doesn’t know that our new server is ready to receive emails to <code>twitter@example.com</code> and <code>facebook@example.com</code> yet. You can probably configure the DNS in the same place where you bought your domain name. Add an A-record for the mail subdomain pointing to the <abbr title="Internet Protocol">IP</abbr> of the server (replace 127.0.01 with the <abbr title="Internet Protocol">IP</abbr>-address of your server.</p>
 
-  {% highlight bash %}mail  A  1800 127.0.0.1{% endhighlight %}
+{% highlight bash %}mail  A  1800 127.0.0.1{% endhighlight %}
 
-  <p>Also, add an MX-record pointing to the mail subdomain.</p>
+<p>Also, add an MX-record pointing to the mail subdomain.</p>
 
-  {% highlight bash %}@ MX  1800 10  mail.example.com.{% endhighlight %}
+{% highlight bash %}@ MX  1800 10  mail.example.com.{% endhighlight %}
 
-  <p>Point the <abbr title="Domain Name Pointer">PTR</abbr> record to <code>mail.example.com</code>. This will depend on the company hosting your <abbr title="Virtual Private Server">VPS</abbr>, with <a href="https://m.do.co/c/1ba0e94a6941" title="A VPS hosting service (affiliate link)">Digital Ocean</a> this is the name of the “droplet”.</p>
+<p>Point the <abbr title="Domain Name Pointer">PTR</abbr> record to <code>mail.example.com</code>. This will depend on the company hosting your <abbr title="Virtual Private Server">VPS</abbr>, with <a href="https://m.do.co/c/1ba0e94a6941" title="A VPS hosting service (affiliate link)">Digital Ocean</a> this is the name of the “droplet”.</p>
 
-  <p>Give it a bit of time to propagate and test it. Mails send to <code>twitter@example.com</code> should now be forwarded to <code>john@something.com</code>.</p>
+<p>Give it a bit of time to propagate and test it. Mails send to <code>twitter@example.com</code> should now be forwarded to <code>john@something.com</code>.</p>
 
-  <h3>STARTTLS</h3>
+<h3>STARTTLS</h3>
 
-  <p>At the moment we are receiving and forwarding emails in the clear. If the goal is to improve our privacy we should at least try to encrypt the connection. Luckily we can do this for free thanks to Let’s Encrypt’s <abbr title="Transport Layer Security">TLS</abbr> certificates. Install certbot and request a new certificate.</p>
+<p>At the moment we are receiving and forwarding emails in the clear. If the goal is to improve our privacy we should at least try to encrypt the connection. Luckily we can do this for free thanks to Let’s Encrypt’s <abbr title="Transport Layer Security">TLS</abbr> certificates. Install certbot and request a new certificate.</p>
 
-  {% highlight bash %}
-  $ sudo apt install certbot -y
-  $ sudo certbot-auto certonly --standalone -d mail.example.com
-  {% endhighlight %}
+{% highlight bash %}
+$ sudo apt install certbot -y
+$ sudo certbot-auto certonly --standalone -d mail.example.com
+{% endhighlight %}
 
-  <p>Note that this certificate is only valid for a few months, see the <a href="https://certbot.eff.org/docs/using.html?highlight=hooks#renewing-certificates" title="Renewing certificates @ EFF">certbot documentation</a> on how to set up automatic renewals. Add the following to your Postfix config file: <code>/etc/postfix/main.cf</code>.</p>
+<p>Note that this certificate is only valid for a few months, see the <a href="https://certbot.eff.org/docs/using.html?highlight=hooks#renewing-certificates" title="Renewing certificates @ EFF">certbot documentation</a> on how to set up automatic renewals. Add the following to your Postfix config file: <code>/etc/postfix/main.cf</code>.</p>
 
-  {% highlight bash %}
-  smtp_tls_note_starttls_offer = yes
-  smtp_tls_security_level = may
-  smtpd_helo_required = yes
-  smtpd_helo_restrictions = reject_non_fqdn_helo_hostname,reject_invalid_helo_hostname,reject_unknown_helo_hostname
-  smtpd_tls_cert_file = /etc/letsencrypt/live/mail.example.com/fullchain.pem
-  smtpd_tls_key_file = /etc/letsencrypt/live/mail.example.com/privkey.pem
-  smtpd_tls_received_header = yes
-  smtpd_tls_security_level = may
-  disable_vrfy_command = yes
-  {% endhighlight %}
+{% highlight bash %}
+smtp_tls_note_starttls_offer = yes
+smtp_tls_security_level = may
+smtpd_helo_required = yes
+smtpd_helo_restrictions = reject_non_fqdn_helo_hostname,reject_invalid_helo_hostname,reject_unknown_helo_hostname
+smtpd_tls_cert_file = /etc/letsencrypt/live/mail.example.com/fullchain.pem
+smtpd_tls_key_file = /etc/letsencrypt/live/mail.example.com/privkey.pem
+smtpd_tls_received_header = yes
+smtpd_tls_security_level = may
+disable_vrfy_command = yes
+{% endhighlight %}
 
 <p>The last line is optional. Postfix supports the <abbr title="verify">VRFY</abbr> command which allows anyone to determine if an email account exists, which can help brute force attackers, better disable it. Reload Postfix to enable encrypted email connections.</p>
 
-  {% highlight bash %}$ sudo systemctl reload postfix{% endhighlight %}
+{% highlight bash %}$ sudo systemctl reload postfix{% endhighlight %}
 
-  <h3>Scripting</h3>
+<h3>Scripting</h3>
 
-  <p>Adding a new alias still means logging in to the server, adding a line to a file and reloading Postfix. Not exactly quick. A little scripting can go a long way.</p>
+<p>Adding a new alias still means logging in to the server, adding a line to a file and reloading Postfix. Not exactly quick. A little scripting can go a long way.</p>
 
-  {% highlight bash %}
-  FORWARD_TO=john@something.com
-  DOMAIN=example.com
-  UUID=$(cat /proc/sys/kernel/random/uuid)
-  echo "$UUID@$DOMAIN $FORWARD_TO" >> /etc/postfix/virtual
-  postmap /etc/postfix/virtual
-  systemctl reload postfix
-  echo $UUID@$DOMAIN
-  {% endhighlight %}
+{% highlight bash %}
+FORWARD_TO=john@something.com
+DOMAIN=example.com
+UUID=$(cat /proc/sys/kernel/random/uuid)
+echo "$UUID@$DOMAIN $FORWARD_TO" >> /etc/postfix/virtual
+postmap /etc/postfix/virtual
+systemctl reload postfix
+echo $UUID@$DOMAIN
+{% endhighlight %}
 
-  <p>Save this as <code>newmail</code> in the home dir on the server. You can now easily add aliases from your laptop via <abbr title="Secure Shell">SSH</abbr>.</p>
+<p>Save this as <code>newmail</code> in the home dir on the server. You can now easily add aliases from your laptop via <abbr title="Secure Shell">SSH</abbr>.</p>
 
-  {% highlight bash %}
-  $ ssh user@example.com 'sudo ./newmail'
-  345ab0bf-6144-4f36-97d2-be934df2278a@example.com
-  {% endhighlight %}
+{% highlight bash %}
+$ ssh user@example.com 'sudo ./newmail'
+345ab0bf-6144-4f36-97d2-be934df2278a@example.com
+{% endhighlight %}
 
-  <h2>Resources</h2>
+<h2>Resources</h2>
 
-  <ul>
-    <li>MXToolBox has an <abbr title="Simple Mail Transfer Protocol">SMTP</abbr> <a href="https://mxtoolbox.com/diagnostic.aspx" title="Email Server Test @ MXToolBox">diagnostics tool</a> to test your setup.</li>
-    <li>The Postfix installation is based on the <a href="https://www.binarytides.com/postfix-mail-forwarding-debian/" title="Setup mail forwarding in postfix on Ubuntu or Debian @ BinaryTides">Setup mail forwarding in postfix on Ubuntu or Debian</a> article by <span class="h-card">Silver Moon</span>.</li>
-  </ul>
-</div>
+<ul>
+  <li>MXToolBox has an <abbr title="Simple Mail Transfer Protocol">SMTP</abbr> <a href="https://mxtoolbox.com/diagnostic.aspx" title="Email Server Test @ MXToolBox">diagnostics tool</a> to test your setup.</li>
+  <li>The Postfix installation is based on the <a href="https://www.binarytides.com/postfix-mail-forwarding-debian/" title="Setup mail forwarding in postfix on Ubuntu or Debian @ BinaryTides">Setup mail forwarding in postfix on Ubuntu or Debian</a> article by <span class="h-card">Silver Moon</span>.</li>
+</ul>

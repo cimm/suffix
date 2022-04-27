@@ -11,9 +11,9 @@
     <link rel="stylesheet" href="{% relbase %}/assets/stylesheets/main.css" />
     <link rel="manifest" href="{% relbase %}/manifest.json" />
     <link rel="shortcut icon" href="{% relbase %}/assets/favicon.ico">
-    <link rel="alternate" href="{{ page.url | absolute_url | remove: 'index.html' }}" hreflang="en"/>
-    <link rel="canonical" href="{{ page.url | absolute_url | remove: 'index.html' }}"/>
-    <link href="{% relbase %}/feeds/blog.xml" rel="alternate" title="Suffix's feed" type="application/atom+xml" />
+    <link rel="alternate" href="{{ page.url | absolute_url | remove: 'index.html' }}" hreflang="en" />
+    <link rel="canonical" href="{{ page.url | absolute_url | remove: 'index.html' }}" />
+    <link href="{% relbase %}/feeds/blog.xml" rel="alternate" title="Suffix’s feed" type="application/atom+xml" />
     <meta property="og:image" content="{{ page.cover_image_url | absolute_url }}">
     <meta property="og:title" content="{{ page.title }}" />
     <meta property="og:type" content="website" />
@@ -27,7 +27,7 @@
     <meta name="google-site-verification" content="iucc-gveOZVN1BSKSqUHhY3Gn3pYqZdQl1ZnDRCCVQM" />
   </head>
   <body vocab="http://schema.org/">
-    <header class="narrow-col">
+    <header>
       <nav>
         <ul>
           <li><a href="{% relbase %}/blog/">Blog</a></li>
@@ -41,7 +41,10 @@
     </header>
     {{ content }}
     <footer>
-      <a href="{% relbase %}/policies/">SUFFIX</a>
+      <p>This page is open source. Did you spot a mistake? Ideas for improvements? Contribute via <a href="https://github.com/cimm/suffix/blob/master/{{page.path}}" title="Propose a fix by opening a pull request on Github">Github</a>. Thank you!</p>
+      <h1>
+        <a href="{% relbase %}/policies/" rel="license">SUFFIX</a>
+      </h1>
     </footer>
   </body>
 </html>

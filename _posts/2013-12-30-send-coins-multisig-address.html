@@ -7,119 +7,117 @@ coordinates: 51.296964 4.429939
 proofread:   yes
 ---
 
-<div class="narrow-col">
-  <p>The Bitcoin protocol has built-in support for multisig addresses. A multisig address needs <em>n</em> out of <em>i</em> signatures before the coins can be withdrawn. A good example is an escrow-like service that allows safer payments by holding the buyer's coins in escrow until the terms of the sale are met.</p>
+<p>The Bitcoin protocol has built-in support for multisig addresses. A multisig address needs <em>n</em> out of <em>i</em> signatures before the coins can be withdrawn. A good example is an escrow-like service that allows safer payments by holding the buyer's coins in escrow until the terms of the sale are met.</p>
 
-  <p>Currently, none of the Bitcoin clients support these kinds of addresses via the <abbr title="Graphical User Interface">GUI</abbr>, but it’s fully supported via the <a href="https://bitcoin.org/en/choose-your-wallet" title="Download the Bitcoin Core client">Bitcoin Core</a> (previously named Bitcoin-Qt) client’s <abbr title="Application Programming Interface">API</abbr>.</p>
+<p>Currently, none of the Bitcoin clients support these kinds of addresses via the <abbr title="Graphical User Interface">GUI</abbr>, but it’s fully supported via the <a href="https://bitcoin.org/en/choose-your-wallet" title="Download the Bitcoin Core client">Bitcoin Core</a> (previously named Bitcoin-Qt) client’s <abbr title="Application Programming Interface">API</abbr>.</p>
 
-  <p>You might want to run the Bitcoin Core client in <a href="../getting-started-bitcoin-testnet/">testnet mode</a> to play with fake coins.</p>
+<p>You might want to run the Bitcoin Core client in <a href="../getting-started-bitcoin-testnet/">testnet mode</a> to play with fake coins.</p>
 
-  <p>The example code assumes you have the <a href="https://en.bitcoin.it/wiki/API_reference_%28JSON-RPC%29" title="JSON-RPC API reference">Ruby <abbr title="JavaScript Object Notation">JSON</abbr>-<abbr title="Remote Procedure Call">RPC</abbr> wrapper</a> to make things a little easier.</p>
+<p>The example code assumes you have the <a href="https://en.bitcoin.it/wiki/API_reference_%28JSON-RPC%29" title="JSON-RPC API reference">Ruby <abbr title="JavaScript Object Notation">JSON</abbr>-<abbr title="Remote Procedure Call">RPC</abbr> wrapper</a> to make things a little easier.</p>
 
-  <p>We create a Bitcoin<abbr title="Remote Procedure Call">RPC</abbr> instance which we’ll reuse in our examples.</p>
+<p>We create a Bitcoin<abbr title="Remote Procedure Call">RPC</abbr> instance which we’ll reuse in our examples.</p>
 
-  {% highlight ruby %}
-  rpc = BitcoinRPC.new('http://user:pass@127.0.0.1:8332')
-  {% endhighlight %}
+{% highlight ruby %}
+rpc = BitcoinRPC.new('http://user:pass@127.0.0.1:8332')
+{% endhighlight %}
 
-  <h2>Bits &amp; pieces</h2>
+<h2>Bits &amp; pieces</h2>
 
-  <p>We’ll create an address that needs 2 signatures out of 3 to withdraw the coins, but you can choose whatever combination you desire. Say we have the following 3 addresses:</p>
+<p>We’ll create an address that needs 2 signatures out of 3 to withdraw the coins, but you can choose whatever combination you desire. Say we have the following 3 addresses:</p>
 
-  <ol>
-    <li>Buyer: <code>muYqjrmbDQTGgdJRaFwJiihk8qEionVVm4</code></li>
-    <li>Seller: <code>mrtnMnUBDqdavGdWHuZRBNPRjfLCQMv1tC</code></li>
-    <li>Escrow: <code>mj6zqxdBANVw4cA4MFu4E9dxL44dxGbQmH</code></li>
-  </ol>
+<ol>
+  <li>Buyer: <code>muYqjrmbDQTGgdJRaFwJiihk8qEionVVm4</code></li>
+  <li>Seller: <code>mrtnMnUBDqdavGdWHuZRBNPRjfLCQMv1tC</code></li>
+  <li>Escrow: <code>mj6zqxdBANVw4cA4MFu4E9dxL44dxGbQmH</code></li>
+</ol>
 
-  <h2>Create a multisig address</h2>
+<h2>Create a multisig address</h2>
 
-  <p>Let’s get started by creating a new multisig address. The first parameter defines the number of signatures needed to withdraw the coins (2 in our example):</p>
+<p>Let’s get started by creating a new multisig address. The first parameter defines the number of signatures needed to withdraw the coins (2 in our example):</p>
 
-  {% highlight ruby %}
-  rpc.createmultisig(2, [
-    "muYqjrmbDQTGgdJRaFwJiihk8qEionVVm4",
-    "mrtnMnUBDqdavGdWHuZRBNPRjfLCQMv1tC",
-    "mj6zqxdBANVw4cA4MFu4E9dxL44dxGbQmH"
-  ])
-  {% endhighlight %}
+{% highlight ruby %}
+rpc.createmultisig(2, [
+  "muYqjrmbDQTGgdJRaFwJiihk8qEionVVm4",
+  "mrtnMnUBDqdavGdWHuZRBNPRjfLCQMv1tC",
+  "mj6zqxdBANVw4cA4MFu4E9dxL44dxGbQmH"
+])
+{% endhighlight %}
 
-  <p>This returns a new multisig address:</p>
+<p>This returns a new multisig address:</p>
 
-  {% highlight ruby %}
+{% highlight ruby %}
+{
+  "address" => "2NEgZ6xYqJBNDuEnPQg8rVAUySvmPCqFWfM",
+  "redeemScript" => "52210357f11...e33e917d9b7e52ae"
+}
+{% endhighlight %}
+
+<p>This address will <strong>NOT</strong> be visible on the Bitcoin network as we haven't announced it to the network yet.</p>
+
+<h2>Send funds</h2>
+
+<p>We now need to fiddle with some transactions. Addresses are an abstraction in the Bitcoin protocol, the basic units are transactions. Take a few minutes to <a href="https://bitcoin.stackexchange.com/a/12472" title="&ldquo;In getrawtransaction what is the vout integer in the vin list?&rdquo; @ Bitcoin StackExchange">learn why</a> transactions are so important if you are not up to speed yet and want the following to make sense.</p>
+
+<p>First, find an unspent transaction:</p>
+
+{% highlight ruby %}
+rpc.listunspent
+{% endhighlight %}
+
+<p>It lists all the unspent transactions in your Bitcoin Core client:</p>
+
+{% highlight ruby %}
+[
   {
-    "address" => "2NEgZ6xYqJBNDuEnPQg8rVAUySvmPCqFWfM",
-    "redeemScript" => "52210357f11...e33e917d9b7e52ae"
-  }
-  {% endhighlight %}
+    "txid" => "2d1aa015385...286d958d6d9ee93cdc5821d1f",
+    "vout" => 0,
+    "address" => "mfm1Q7TFDb2bXwr34d6uFjD56FKRfTSr1v",
+    "scriptPubKey" => "76a91402a86...1512694f175888ac",
+    "amount" => 0.00663676,
+    "confirmations" => 573
+  },
+  ...
+] 
+{% endhighlight %}
 
-  <p>This address will <strong>NOT</strong> be visible on the Bitcoin network as we haven't announced it to the network yet.</p>
+<p>I took the first one on the list, but you probably want to mix and match transactions from this list to get to the bitcoin amount you need.</p>
 
-  <h2>Send funds</h2>
+<p>Create a new raw transaction for the multisig address. The <code>vout</code> is the index of the input or output as a transaction can have multiple inputs and outputs:</p>
 
-  <p>We now need to fiddle with some transactions. Addresses are an abstraction in the Bitcoin protocol, the basic units are transactions. Take a few minutes to <a href="https://bitcoin.stackexchange.com/a/12472" title="&ldquo;In getrawtransaction what is the vout integer in the vin list?&rdquo; @ Bitcoin StackExchange">learn why</a> transactions are so important if you are not up to speed yet and want the following to make sense.</p>
+{% highlight ruby %}
+rpc.createrawtransaction(
+  [{
+    "txid" => "2d1aa015385...286d958d6d9ee93cdc5821d1f",
+    "vout" => 0
+  }],
+  { "2NEgZ6xYqJBNDuEnPQg8rVAUySvmPCqFWfM" => 0.006 }
+)
+{% endhighlight %}
 
-  <p>First, find an unspent transaction:</p>
+<p>This returns a long transaction hash:</p>
 
-  {% highlight ruby %}
-  rpc.listunspent
-  {% endhighlight %}
+{% highlight ruby %}
+"01000000011f1d82c5cd93eed9d658d98682cc968c2fe48bee5d2a177ce6e2583815a01a2d0000000000ffffffff01c02709000000000017a914eb24ff395813fd1411c2093394396266d77722ff8700000000"
+{% endhighlight %}
 
-  <p>It lists all the unspent transactions in your Bitcoin Core client:</p>
+<p><strong>DONE</strong> You now have a transaction of 0.006 <abbr title="Bitcoin">BTC</abbr> linked to the multisig address. You’ll need 2 of the 3 signatures to spend these coins.</p>
 
-  {% highlight ruby %}
-  [
-    {
-      "txid" => "2d1aa015385...286d958d6d9ee93cdc5821d1f",
-      "vout" => 0,
-      "address" => "mfm1Q7TFDb2bXwr34d6uFjD56FKRfTSr1v",
-      "scriptPubKey" => "76a91402a86...1512694f175888ac",
-      "amount" => 0.00663676,
-      "confirmations" => 573
-    },
-    ...
-  ] 
-  {% endhighlight %}
+<h2>Announce to the network</h2>
 
-  <p>I took the first one on the list, but you probably want to mix and match transactions from this list to get to the bitcoin amount you need.</p>
+<p>You can optionally announce the transaction to your local Bitcoin node (the Bitcoin Core client) and the network. Send the raw transaction from the previous step:</p>
 
-  <p>Create a new raw transaction for the multisig address. The <code>vout</code> is the index of the input or output as a transaction can have multiple inputs and outputs:</p>
+{% highlight ruby %}
+rpc.sendrawtransaction("01000000011f...722ff8700000000")
+{% endhighlight %}
 
-  {% highlight ruby %}
-  rpc.createrawtransaction(
-    [{
-      "txid" => "2d1aa015385...286d958d6d9ee93cdc5821d1f",
-      "vout" => 0
-    }],
-    { "2NEgZ6xYqJBNDuEnPQg8rVAUySvmPCqFWfM" => 0.006 }
-  )
-  {% endhighlight %}
+<p>Have a look at the Bitcoin Core transactions tab. There should be a new pending transaction waiting for confirmation.</p>
 
-  <p>This returns a long transaction hash:</p>
+<h2>Resources</h2>
 
-  {% highlight ruby %}
-  "01000000011f1d82c5cd93eed9d658d98682cc968c2fe48bee5d2a177ce6e2583815a01a2d0000000000ffffffff01c02709000000000017a914eb24ff395813fd1411c2093394396266d77722ff8700000000"
-  {% endhighlight %}
-
-  <p><strong>DONE</strong> You now have a transaction of 0.006 <abbr title="Bitcoin">BTC</abbr> linked to the multisig address. You’ll need 2 of the 3 signatures to spend these coins.</p>
-
-  <h2>Announce to the network</h2>
-
-  <p>You can optionally announce the transaction to your local Bitcoin node (the Bitcoin Core client) and the network. Send the raw transaction from the previous step:</p>
-
-  {% highlight ruby %}
-  rpc.sendrawtransaction("01000000011f...722ff8700000000")
-  {% endhighlight %}
-
-  <p>Have a look at the Bitcoin Core transactions tab. There should be a new pending transaction waiting for confirmation.</p>
-
-  <h2>Resources</h2>
-
-  <ul>
-    <li>
-      <a href="https://gist.github.com/gavinandresen/3966071" title="TwoOfThree.sh @ GitHubGist">TwoOfThree.sh</a>: the shell script where this post is based upon.
-    </li>
-    <li>
-      <a href="https://bitrated.com" title="Bitrated">Bitrated</a>: implementation of an escrow service with multisig addresses.</li>
-  </ul>
-</div>
+<ul>
+  <li>
+    <a href="https://gist.github.com/gavinandresen/3966071" title="TwoOfThree.sh @ GitHubGist">TwoOfThree.sh</a>: the shell script where this post is based upon.
+  </li>
+  <li>
+    <a href="https://bitrated.com" title="Bitrated">Bitrated</a>: implementation of an escrow service with multisig addresses.</li>
+</ul>

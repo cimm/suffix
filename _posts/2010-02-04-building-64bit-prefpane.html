@@ -5,25 +5,23 @@ date:    2010-02-04 00:06:36
 updated: 2010-02-04 00:15:10
 ---
 
-<div class="narrow-col">
-  <p>The System Preferences application on Mac is universal since Snow Leopard: it can run in 32-bit or 64-bit but not at the same time. That's why you have to restart the application when you want to open an older Preference Pane.</p>
+<p>The System Preferences application on Mac is universal since Snow Leopard: it can run in 32-bit or 64-bit but not at the same time. That's why you have to restart the application when you want to open an older Preference Pane.</p>
 
-  <p>Today I tried to upgrade the <a href="../lazypoken/" title="A poken automounter">LazyPoken</a> prefpane as it was still a 32-bit build and the next Mac OS X will probably no longer support the 32-bit System Preferences application. That turned out to be a little harder as expected.</p>
+<p>Today I tried to upgrade the <a href="../lazypoken/" title="A poken automounter">LazyPoken</a> prefpane as it was still a 32-bit build and the next Mac OS X will probably no longer support the 32-bit System Preferences application. That turned out to be a little harder as expected.</p>
 
-  <h2>Build settings</h2>
+<h2>Build settings</h2>
 
-  <p>First of all you should change your project ARCH flags to tell the gcc compiler it should build for 64-bit. You can do this in Project → Edit Project Settings, choose the Build tab and look for the Architectures or ARCHS parameter. Choose the 64-bit or Universal mode (if you need to support Tiger).</p>
+<p>First of all you should change your project ARCH flags to tell the gcc compiler it should build for 64-bit. You can do this in Project → Edit Project Settings, choose the Build tab and look for the Architectures or ARCHS parameter. Choose the 64-bit or Universal mode (if you need to support Tiger).</p>
 
-  <p>This is not enough however. If you try to build and install your application you’ll notice it’s still running in 32-bit, stubborn prefpane.</p>
+<p>This is not enough however. If you try to build and install your application you’ll notice it’s still running in 32-bit, stubborn prefpane.</p>
 
-  <p>The 64-bit System Preferences application also uses garbage collection and all 64-bit prefpanes need to support this as well. You can enable this in the same build panel under the Objective-C Garbage Collection or GCC_ENABLE_OBJC_GC parameter. Choose the Supported or Required option, again, depending on what you want to support.</p>
+<p>The 64-bit System Preferences application also uses garbage collection and all 64-bit prefpanes need to support this as well. You can enable this in the same build panel under the Objective-C Garbage Collection or GCC_ENABLE_OBJC_GC parameter. Choose the Supported or Required option, again, depending on what you want to support.</p>
 
-  <p>Clean and build your application again, check for warnings and try it out. Looking better now?</p>
+<p>Clean and build your application again, check for warnings and try it out. Looking better now?</p>
 
-  <h2>64-bit gotchas</h2>
+<h2>64-bit gotchas</h2>
 
-  <ul>
-    <li>Sparkle: make sure to include the With Garbage Collection version of Sparkle, you just activated garbage collection remember?</li>
-    <li>Older frameworks: make sure the frameworks your application depends on compile in 64-bit mode. The Developer Tools installed with Xcode include a tool to check your code for possible 64-bit incompatibilities.</li>
-  </ul>
-</div>
+<ul>
+  <li>Sparkle: make sure to include the With Garbage Collection version of Sparkle, you just activated garbage collection remember?</li>
+  <li>Older frameworks: make sure the frameworks your application depends on compile in 64-bit mode. The Developer Tools installed with Xcode include a tool to check your code for possible 64-bit incompatibilities.</li>
+</ul>

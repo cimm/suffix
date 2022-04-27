@@ -7,34 +7,29 @@ description:     Converting videotapes to digital files for viewing, archiving, 
 cover_image_url: ../../assets/vhs-cassettes.jpg
 ---
 
-<picture class="extended-col">
+<picture>
   <source type="image/webp" srcset="../../assets/vhs-cassettes.webp" />
-  <img src="../../assets/vhs-cassettes.jpg" alt="VHS cassettes in a box"/>
+  <img src="../../assets/vhs-cassettes.jpg" alt="VHS cassettes in a box" />
 </picture>
 
-<div class="narrow-col">
-  <p>When I was 10 we finally, after a lot of nagging, got an <a href="https://en.wikipedia.org/wiki/8_mm_video_format" title="9 mm video format @ Wikipedia">8 mm</a> camcorder. My brother and I played for movie directors with our family blockbuster “Alone in this Home”. I am sure you can guess the plot of that one. Time flew by, our trusty Sony camcorder long lost, the Hi8 tapes collecting dust. Since “Two is One, One is None” I always knew I should take copies of the tapes, but without a camcorder, video recorder, or <abbr title="Syndicat des Constructeurs d’Appareils Radiorécepteurs et Téléviseurs">SCART</abbr> cable things were put on the back burner. I don’t need yet another copy in a format I can’t watch. I need a digital version to watch on our iPad ‘television’ to bore my kids for hours and to share with the family.</p>
+<p>When I was 10 we finally, after a lot of nagging, got an <a href="https://en.wikipedia.org/wiki/8_mm_video_format" title="9 mm video format @ Wikipedia">8 mm</a> camcorder. My brother and I played for movie directors with our family blockbuster “Alone in this Home”. I am sure you can guess the plot of that one. Time flew by, our trusty Sony camcorder long lost, the Hi8 tapes collecting dust. Since “Two is One, One is None” I always knew I should take copies of the tapes, but without a camcorder, video recorder, or <abbr title="Syndicat des Constructeurs d’Appareils Radiorécepteurs et Téléviseurs">SCART</abbr> cable things were put on the back burner. I don’t need yet another copy in a format I can’t watch. I need a digital version to watch on our iPad ‘television’ to bore my kids for hours and to share with the family.</p>
 
-  <h2>Belgian Digitalization Services</h2>
+<h2>Belgian Digitalization Services</h2>
 
-  <p>A few months ago <span class="h-card">Michael Lynch</span>’s extensive “<a href="https://mtlynch.io/digitizing-1/" title="Blog posts explaining his journey to digitalize his family videos">My Eight-Year Quest to Digitize 45 Videotapes</a>” posts gave me the mental excuse to not even try to digitalize the videos myself as I was thinking to… but never did. My search changed from finding the perfect 8 mm capture hardware to knowing who to trust with the single copy of my masterpieces. Luckily, meemoo, the Flemish Institute for Archives, has a great <a href="https://knowyourcarrier.com" title="Identify old audiovisual carriers, check if their heritage value, and find digitalization services in Europe">guide</a> on finding the right digitalization service in Belgium. Memorepair is one of them, a video and photo digitalization service by the Belgian National Alzheimer Ligue. Their profit, 30% of the price to digitalize my videos, is used to combat Alzheimer’s. This makes the hefty € 19.80 per tape + storage and postage a little more bearable. All in all, I paid € 245.30 for 10 videotapes (VHS and 8 mm). It took them 37 days to send me a link to the digitalized version with a 90 days download lease. I then used <a href="https://ffmpeg.org/" title="A cross-platform solution to record, convert and stream audio and video via the command line">FFmpeg</a> to cut the tapes, remove duplicates or television recordings, and added the necessary metadata.</p>
+<p>A few months ago <span class="h-card">Michael Lynch</span>’s extensive “<a href="https://mtlynch.io/digitizing-1/" title="Blog posts explaining his journey to digitalize his family videos">My Eight-Year Quest to Digitize 45 Videotapes</a>” posts gave me the mental excuse to not even try to digitalize the videos myself as I was thinking to… but never did. My search changed from finding the perfect 8 mm capture hardware to knowing who to trust with the single copy of my masterpieces. Luckily, meemoo, the Flemish Institute for Archives, has a great <a href="https://knowyourcarrier.com" title="Identify old audiovisual carriers, check if their heritage value, and find digitalization services in Europe">guide</a> on finding the right digitalization service in Belgium. Memorepair is one of them, a video and photo digitalization service by the Belgian National Alzheimer Ligue. Their profit, 30% of the price to digitalize my videos, is used to combat Alzheimer’s. This makes the hefty € 19.80 per tape + storage and postage a little more bearable. All in all, I paid € 245.30 for 10 videotapes (VHS and 8 mm). It took them 37 days to send me a link to the digitalized version with a 90 days download lease. I then used <a href="https://ffmpeg.org/" title="A cross-platform solution to record, convert and stream audio and video via the command line">FFmpeg</a> to cut the tapes, remove duplicates or television recordings, and added the necessary metadata.</p>
 
-  <h2>A Family YouTube</h2>
-  <p>Like Michael, I needed a YouTube without using the actual YouTube to share the videos. A family-friendly, privacy-respecting, non-tracking YouTube.</p>
+<h2>A Family YouTube</h2>
+<p>Like Michael, I needed a YouTube without using the actual YouTube to share the videos. A family-friendly, privacy-respecting, non-tracking YouTube.</p>
 
-  <blockquote cite="https://mtlynch.io/digitizing-2/">“If I were starting over, I would have used a static site generator like Hugo, Jekyll, or Gridsome.” <em>– <a href="https://mtlynch.io/digitizing-2/" title="My Eight-Year Quest to Digitize 45 Videotapes (Part Two)">Michael Lynch</a></em></blockquote>
+<blockquote cite="https://mtlynch.io/digitizing-2/">“If I were starting over, I would have used a static site generator like Hugo, Jekyll, or Gridsome.” <em>– <a href="https://mtlynch.io/digitizing-2/" title="My Eight-Year Quest to Digitize 45 Videotapes (Part Two)">Michael Lynch</a></em></blockquote>
 
-  <p>Not a bad idea indeed. The next part took me longer than I would like to admit but, fast forward a few days, and… project <a href="https://github.com/cimm/vhs/" title="Github source code repository for VHS">VHS</a> was born, a simple static website to host (family) videos! I stored all the videos and cover images in a Backblaze B2 bucket. A <abbr title="JavaScript Object Notation">JSON</abbr> config file contains the title, tags, and description metadata. A little weekly Python script adds a <a href="../signed-urls-backblaze-b2" title="Temporary access to private files in Backblaze B2 with secure links">signed Backblaze URL</a> per video and cover. The static <abbr title="HyperText Markup Language">HTML</abbr> page loads the config and wraps this all in a video album webpage.</p>
-</div>
+<p>Not a bad idea indeed. The next part took me longer than I would like to admit but, fast forward a few days, and… project <a href="https://github.com/cimm/vhs/" title="Github source code repository for VHS">VHS</a> was born, a simple static website to host (family) videos! I stored all the videos and cover images in a Backblaze B2 bucket. A <abbr title="JavaScript Object Notation">JSON</abbr> config file contains the title, tags, and description metadata. A little weekly Python script adds a <a href="../signed-urls-backblaze-b2" title="Temporary access to private files in Backblaze B2 with secure links">signed Backblaze URL</a> per video and cover. The static <abbr title="HyperText Markup Language">HTML</abbr> page loads the config and wraps this all in a video album webpage.</p>
 
-<picture class="extended-col">
+<picture>
   <source type="image/webp" srcset="../../assets/vhs-webpage.webp" />
-  <img src="../../assets/vhs-webpage.png" alt="Video webpage screenshot"/>
+  <img src="../../assets/vhs-webpage.png" alt="Video webpage screenshot" />
 </picture>
 
-<div class="narrow-col">
+<p>My mini-YouTube has been running for 4 months now at an average monthly Backblaze fee of $0.04, or less than a cup of coffee as they say.</p>
 
-  <p>My mini-YouTube has been running for 4 months now at an average monthly Backblaze fee of $0.04, or less than a cup of coffee as they say.</p>
-
-  <p>Later, while working on <a href="https://github.com/cimm/omabox" title="omaBOX an internet connected Raspberry Pi picture frame">another project</a>, I noticed the whole VHS website could probably be loaded from Backblaze, without the need for an extra server. The weekly URLs could be generated from a cronjob on my computer. Room for improvement.</p>
-</div>
+<p>Later, while working on <a href="https://github.com/cimm/omabox" title="omaBOX an internet connected Raspberry Pi picture frame">another project</a>, I noticed the whole VHS website could probably be loaded from Backblaze, without the need for an extra server. The weekly URLs could be generated from a cronjob on my computer. Room for improvement.</p>

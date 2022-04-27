@@ -5,80 +5,78 @@ date:    2010-10-18 21:39:54
 updated: 2010-12-12 00:09:00
 ---
 
-<div class="narrow-col">
-  <p>Earlier today I was trying to get up to speed with Sinatra, DataMapper and RSpec. There is a great <a href="https://web.archive.org/web/20111008183104/http://iamneato.com:80/2009/08/01/rspec-and-sinatra-quick-start" title="RSpec and Sinatra Quick Start">step by step tutorial</a> for Sinatra and RSpec 1 if you need that, but I want to play with the shiny new stuff, so here we go.</p>
+<p>Earlier today I was trying to get up to speed with Sinatra, DataMapper and RSpec. There is a great <a href="https://web.archive.org/web/20111008183104/http://iamneato.com:80/2009/08/01/rspec-and-sinatra-quick-start" title="RSpec and Sinatra Quick Start">step by step tutorial</a> for Sinatra and RSpec 1 if you need that, but I want to play with the shiny new stuff, so here we go.</p>
 
-  <h2>Bundler</h2>
+<h2>Bundler</h2>
 
-  <p>You don't have to use Bundler but it will make your (and your collaborators) gem dependencies so much easier. Start with creating a Gemfile in your project's root folder and add the gems you need.</p>
+<p>You don't have to use Bundler but it will make your (and your collaborators) gem dependencies so much easier. Start with creating a Gemfile in your project's root folder and add the gems you need.</p>
 
-  {% highlight ruby %}
-  source :rubygems
+{% highlight ruby %}
+source :rubygems
 
-  gem "sinatra"
-  gem "dm-sqlite-adapter"
-  gem "datamapper"
+gem "sinatra"
+gem "dm-sqlite-adapter"
+gem "datamapper"
 
-  group :test do
-    gem "rspec"
-    gem "rack-test"
+group :test do
+  gem "rspec"
+  gem "rack-test"
+end
+{% endhighlight %}
+
+<p>Now run <em>bundle install</em> (check the <a href="https://bundler.io/" title="Bundler, dependency management for Ruby">Bundler docs</a> for installation instructions). This will install the gems specified above and create a Gemfile.lock file in the same directory.</p>
+
+<h2>RSpec</h2>
+
+<p>Let's configure RSpec. Create a <em>spec</em> directory in your project's root folder with a <em>spec_helper.rb</em> and <em>myapp_spec.rb</em> file (replace myapp with your app's name). Now, add the following to the <em>spec_helper.rb</em> file:</p>
+
+{% highlight ruby %}
+require File.join(File.dirname(__FILE__), '..', 'myapp.rb')
+
+require 'rubygems'
+require 'sinatra'
+require 'rack/test'
+require 'rspec'
+
+set :environment, :test
+
+Rspec.configure do |config|
+  config.before(:each) { DataMapper.auto_migrate! }
+end
+{% endhighlight %}
+
+<p>The first line requires your Sinatra application (again, rename it with your application). The following lines require the stuff we need to run the tests and after that, we set the environment. The last 3 lines reset the database before each test to make sure our tests don't influence one another.</p>
+
+<p>Let's move on to the <em>myapp_spec.rb</em>:</p>
+
+{% highlight ruby %}
+require File.dirname(__FILE__) + '/spec_helper'
+
+describe 'MyApp' do
+  include Rack::Test::Methods
+
+  def app
+    Sinatra::Application
   end
-  {% endhighlight %}
 
-  <p>Now run <em>bundle install</em> (check the <a href="https://bundler.io/" title="Bundler, dependency management for Ruby">Bundler docs</a> for installation instructions). This will install the gems specified above and create a Gemfile.lock file in the same directory.</p>
-
-  <h2>RSpec</h2>
-
-  <p>Let's configure RSpec. Create a <em>spec</em> directory in your project's root folder with a <em>spec_helper.rb</em> and <em>myapp_spec.rb</em> file (replace myapp with your app's name). Now, add the following to the <em>spec_helper.rb</em> file:</p>
-
-  {% highlight ruby %}
-  require File.join(File.dirname(__FILE__), '..', 'myapp.rb')
-
-  require 'rubygems'
-  require 'sinatra'
-  require 'rack/test'
-  require 'rspec'
-
-  set :environment, :test
-
-  Rspec.configure do |config|
-    config.before(:each) { DataMapper.auto_migrate! }
+  it 'should run a simple test' do
+    get '/'
+    last_response.status.should == 200
   end
-  {% endhighlight %}
+end
+{% endhighlight %}
 
-  <p>The first line requires your Sinatra application (again, rename it with your application). The following lines require the stuff we need to run the tests and after that, we set the environment. The last 3 lines reset the database before each test to make sure our tests don't influence one another.</p>
+<p>This is where your tests go, how these work is out of scope for this tutorial. You can now run the test with <em>RACK_ENV=test rspec .</em> (that's a dot at the end).</p>
 
-  <p>Let's move on to the <em>myapp_spec.rb</em>:</p>
+<h2>Databases</h2>
 
-  {% highlight ruby %}
-  require File.dirname(__FILE__) + '/spec_helper'
+<p>If you don't specify another database it will use the same database for each environment. The data will be cleared each time. You can use the following snippet to use different database configurations per environment. Add this to your main application file.</p>
 
-  describe 'MyApp' do
-    include Rack::Test::Methods
+{% highlight ruby %}
+DataMapper.setup(:default, "postgres://localhost/myapp")
+configure :test do
+  DataMapper.setup(:default, "sqlite::memory:")
+end
+{% endhighlight %}
 
-    def app
-      Sinatra::Application
-    end
-
-    it 'should run a simple test' do
-      get '/'
-      last_response.status.should == 200
-    end
-  end
-  {% endhighlight %}
-
-  <p>This is where your tests go, how these work is out of scope for this tutorial. You can now run the test with <em>RACK_ENV=test rspec .</em> (that's a dot at the end).</p>
-
-  <h2>Databases</h2>
-
-  <p>If you don't specify another database it will use the same database for each environment. The data will be cleared each time. You can use the following snippet to use different database configurations per environment. Add this to your main application file.</p>
-
-  {% highlight ruby %}
-  DataMapper.setup(:default, "postgres://localhost/myapp")
-  configure :test do
-    DataMapper.setup(:default, "sqlite::memory:")
-  end
-  {% endhighlight %}
-
-  <p>That's all, happy testing everyone. :)</p>
-</div>
+<p>That's all, happy testing everyone. :)</p>

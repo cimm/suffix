@@ -80,40 +80,35 @@ books:
   - ["Woman in the Window", "A.J. Finn", 9780008333324, 2]
 ---
 
-<table class="extended-col">
-  <caption>Books</caption>
-  <tbody>
-    <thead>
-      <th scope="col">Title</th>
-      <th scope="col">Author</th>
-      <th scope="col"><abbr title="International Standard Book Number">ISBN</abbr></th>
-      <th scope="col">Rating</th>
-    </thead>
-    {% for book in page.books %}
-      <tr typeof="Book">
-        <td property="name">
-          {% if book[4] %}
-          <span property="review" typeof="Review" resource="#{{ book[0] | slugify }}">
-              <a href="{% relbase %}/blog/{{ book[4] }}/" property="url" title="My {{ book[0] }} book review">{{ book[0] }}</a>
-            </span>
-          {% else %}
-            {{ book[0] }}
-          {% endif %}
-        <td property="author">{{ book[1] }}</td>
-        <td property="isbn">
-          <a href="https://openlibrary.org/search?isbn={{ book[2] }}" property="mainEntityOfPage" title="{{ book[0] }} @ OpenLibrary">{{ book[2] }}</a>
-        </td>
-        <td property="review" typeof="Review">
-          {% if book[3] <= 5 %}
-            <span property="reviewRating" typeof="Rating">
-              <meta property="bestRating" content="5">
-              <meta property="ratingValue" content="{{ book[3] }}">
-              {% for i in (1..book[3]) %}★{% endfor %}
-              {%- for i in (book[3]..4) %}☆{% endfor %}
-            </span>
-          {% endif %}
-        </td>
-      </tr>
-    {% endfor %}
-  </tbody>
-</table>
+{% for book in page.books %}
+  <section typeof="Book" class="list-item">
+
+    <h1 property="name">
+      {% if book[4] %}
+      <span property="review" typeof="Review" resource="#{{ book[0] | slugify }}">
+          <a href="{% relbase %}/blog/{{ book[4] }}/" property="url" title="My {{ book[0] }} book review">{{ book[0] }}</a>
+        </span>
+      {% else %}
+        {{ book[0] }}
+      {% endif %}
+    </h1>
+
+    <p property="author">{{ book[1] }}</p>
+
+    <p property="isbn">
+      <a href="https://openlibrary.org/search?isbn={{ book[2] }}" property="mainEntityOfPage" title="{{ book[0] }} @ OpenLibrary">{{ book[2] }}</a>
+    </p>
+
+    <p property="review" typeof="Review">
+      {% if book[3] <= 5 %}
+        <span property="reviewRating" typeof="Rating">
+          <meta property="bestRating" content="5">
+          <meta property="ratingValue" content="{{ book[3] }}">
+          {% for i in (1..book[3]) %}★{% endfor %}
+          {%- for i in (book[3]..4) %}☆{% endfor %}
+        </span>
+      {% endif %}
+    </p>
+
+  </section>
+{% endfor %}

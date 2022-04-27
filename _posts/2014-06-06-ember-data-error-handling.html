@@ -7,64 +7,62 @@ coordinates: 50.86505 4.70068
 proofread:   no
 ---
 
-<div class="narrow-col">
-  <p>I am building a small <a href="https://emberjs.com/" title="A client side JavaScript framework">Ember</a> app for a friend, it's my first real Ember app and there is still a lot to learn. Showing validation errors when saving an <a href="https://github.com/emberjs/data" title="A data persistence library for Ember">Ember Data</a> model, for example, something that took me far longer as it should have.</p>
+<p>I am building a small <a href="https://emberjs.com/" title="A client side JavaScript framework">Ember</a> app for a friend, it's my first real Ember app and there is still a lot to learn. Showing validation errors when saving an <a href="https://github.com/emberjs/data" title="A data persistence library for Ember">Ember Data</a> model, for example, something that took me far longer as it should have.</p>
 
-  <p>In Ember, you can automagically access validation errors returned by the backend in your templates. <a href="https://emberjs.com/api/data/classes/DS.Errors.html" title="DS.Errors class documentation"><abbr title="Data Store">DS</abbr>.Errors</a> handles everything for you, but, documentation is sparse and every piece has to be just right for it to work.</p>
+<p>In Ember, you can automagically access validation errors returned by the backend in your templates. <a href="https://emberjs.com/api/data/classes/DS.Errors.html" title="DS.Errors class documentation"><abbr title="Data Store">DS</abbr>.Errors</a> handles everything for you, but, documentation is sparse and every piece has to be just right for it to work.</p>
 
-  <h2>Server response</h2>
+<h2>Server response</h2>
 
-  <p>Ember Data expects the server to respond in a certain way. The <abbr title="JavaScript Object Notation">JSON</abbr> response containing the error messages should include a root element with child nodes for each error. The error elements contain arrays with the error messages:</p>
+<p>Ember Data expects the server to respond in a certain way. The <abbr title="JavaScript Object Notation">JSON</abbr> response containing the error messages should include a root element with child nodes for each error. The error elements contain arrays with the error messages:</p>
 
-  {% highlight json %}
-  {
-    "errors": {
-      "email": ["can't be blank"]
-    }
+{% highlight json %}
+{
+  "errors": {
+    "email": ["can't be blank"]
   }
-  {% endhighlight %}
+}
+{% endhighlight %}
 
-  <p>Note that Ruby on Rails does not include the <code>errors</code> root element by default so make sure to add it:</p>
+<p>Note that Ruby on Rails does not include the <code>errors</code> root element by default so make sure to add it:</p>
 
-  {% highlight ruby %}
-  render json: { errors: post.errors }, status: 422
-  {% endhighlight %}
+{% highlight ruby %}
+render json: { errors: post.errors }, status: 422
+{% endhighlight %}
 
-  <p>Set your response <abbr title="Hypertext Transfer Protocol">HTTP</abbr> status code as well. I was responding with a 400 &ldquo;Bad Request&rdquo; but Ember Data only processes the error messages when it sees a 422 &ldquo;Unprocessable Entity&rdquo;, which is the correct status code by the way.</p>
+<p>Set your response <abbr title="Hypertext Transfer Protocol">HTTP</abbr> status code as well. I was responding with a 400 &ldquo;Bad Request&rdquo; but Ember Data only processes the error messages when it sees a 422 &ldquo;Unprocessable Entity&rdquo;, which is the correct status code by the way.</p>
 
-  <h2>ActiveModelAdapter</h2>
+<h2>ActiveModelAdapter</h2>
 
-  <p>I was using the <a href="https://web.archive.org/web/20141004181510/https://emberjs.com/guides/models/the-rest-adapter/" title="RESTAdapter documentation">RESTAdapter</a> which doesn't include the error mapping magic out of the box. Use the <a href="https://emberjs.com/api/data/classes/DS.ActiveModelAdapter.html" title="ActiveModelAdapter documentation">ActiveModelAdapter</a> with the <a href="https://github.com/rails-api/active_model_serializers" title="ActiveModel::Serializer implementation and Rails hooks">ActiveModel::Serializers</a> Ruby gem to make it work seamlessly or add <a href="https://github.com/emberjs/data/blob/bce78d5d5b28fd468b7b4f8346cf51f0326cf54f/packages/ember-data/lib/adapters/rest_adapter.js#L524-L534">this snippet</a> to your adapter definition if you need the RESTAdapter for some reason.</p>
+<p>I was using the <a href="https://web.archive.org/web/20141004181510/https://emberjs.com/guides/models/the-rest-adapter/" title="RESTAdapter documentation">RESTAdapter</a> which doesn't include the error mapping magic out of the box. Use the <a href="https://emberjs.com/api/data/classes/DS.ActiveModelAdapter.html" title="ActiveModelAdapter documentation">ActiveModelAdapter</a> with the <a href="https://github.com/rails-api/active_model_serializers" title="ActiveModel::Serializer implementation and Rails hooks">ActiveModel::Serializers</a> Ruby gem to make it work seamlessly or add <a href="https://github.com/emberjs/data/blob/bce78d5d5b28fd468b7b4f8346cf51f0326cf54f/packages/ember-data/lib/adapters/rest_adapter.js#L524-L534">this snippet</a> to your adapter definition if you need the RESTAdapter for some reason.</p>
 
-  <h2>Saving the model</h2>
+<h2>Saving the model</h2>
 
-  Make sure to handle errors when saving your model:
+Make sure to handle errors when saving your model:
 
-  {% highlight js %}
-  post.save().then(function() {
-    console.log("Post saved.");
-  }, function(response) {
-    console.error("Post not saved!");
-  });
-  {% endhighlight %}
+{% highlight js %}
+post.save().then(function() {
+  console.log("Post saved.");
+}, function(response) {
+  console.error("Post not saved!");
+});
+{% endhighlight %}
 
-  <p>A simple <code>post.save()</code> without promises will throw an error and stop the script execution.</p>
+<p>A simple <code>post.save()</code> without promises will throw an error and stop the script execution.</p>
 
-  <p>
-    <code>Uncaught Error: Assertion Failed: Error: The backend rejected the commit because it was invalid: {...}</code>
-  </p>
+<p>
+  <code>Uncaught Error: Assertion Failed: Error: The backend rejected the commit because it was invalid: {...}</code>
+</p>
 
-  <h2>Template</h2>
+<h2>Template</h2>
 
-  <p>Finally your DS.Error object should contain all the error messages as attributes so you can access them individually.</p>
+<p>Finally your DS.Error object should contain all the error messages as attributes so you can access them individually.</p>
 
-  {% highlight ember %}
-  {% raw %}
-  {{#each error in errors.email}}
-    {{error.message}}
-  {{/each}}
-  {% endraw %}
-  {% endhighlight %}
+{% highlight ember %}
+{% raw %}
+{{#each error in errors.email}}
+  {{error.message}}
+{{/each}}
+{% endraw %}
+{% endhighlight %}
 
-  <p class="vcard">This <a class="url" href="https://marcqualie.com/2014/04/model-errors-in-emberjs" title="Model Errors in EmberJS">post</a> by <span class="fn">Marc Qualie</span> was extremely helpful to get me on the right track, thank you Marc!</p>
-</div>
+<p class="vcard">This <a class="url" href="https://marcqualie.com/2014/04/model-errors-in-emberjs" title="Model Errors in EmberJS">post</a> by <span class="fn">Marc Qualie</span> was extremely helpful to get me on the right track, thank you Marc!</p>

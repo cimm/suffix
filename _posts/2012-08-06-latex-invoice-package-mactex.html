@@ -6,28 +6,26 @@ updated:   2014-01-14 22:53:00
 proofread: yes
 ---
 
-<div class="narrow-col">
-  <p>My invoices are generated from a LaTeX template using the <a href="../../assets/invoice.zip" title="Download the package (mirrored on this domain)">invoice package</a> by <span class="h-card">Oliver Corff</span> (no longer available now). <span class="h-card"><span class="p-name">Paul Asmuth</span> <a class="u-url" href="https://web.archive.org/web/20131215213244/http://paulasmuth.com/blog/latex_invoice/" title="HowTo: Write invoices in LaTeX">wrote</a></span> a little example on how to use the invoice package if you would like to try it out.</p>
+<p>My invoices are generated from a LaTeX template using the <a href="../../assets/invoice.zip" title="Download the package (mirrored on this domain)">invoice package</a> by <span class="h-card">Oliver Corff</span> (no longer available now). <span class="h-card"><span class="p-name">Paul Asmuth</span> <a class="u-url" href="https://web.archive.org/web/20131215213244/http://paulasmuth.com/blog/latex_invoice/" title="HowTo: Write invoices in LaTeX">wrote</a></span> a little example on how to use the invoice package if you would like to try it out.</p>
 
-  <p>After installing OS X Mountain Lion and the most recent distribution of <a href="https://www.tug.org/mactex/" title="Download the MacTex distrubtion">MacTex</a> (<time datetime="2012-06-01">1 July 2012</time>), my invoices wouldn't generate any more. I checked the invoice package in the TeX Live Utility and sure enough, it was installed by default and updated to the latest version the TeX Live Utility could find.</p>
+<p>After installing OS X Mountain Lion and the most recent distribution of <a href="https://www.tug.org/mactex/" title="Download the MacTex distrubtion">MacTex</a> (<time datetime="2012-06-01">1 July 2012</time>), my invoices wouldn't generate any more. I checked the invoice package in the TeX Live Utility and sure enough, it was installed by default and updated to the latest version the TeX Live Utility could find.</p>
 
-  <p>Still, generating an invoice with <em>pdflatex</em> kept producing the following error:</p>
+<p>Still, generating an invoice with <em>pdflatex</em> kept producing the following error:</p>
 
-  <code>! LaTeX Error: Missing \begin{document}.</code>
+<code>! LaTeX Error: Missing \begin{document}.</code>
 
-  <p>Turns out, there is a bug with an invoice dependency trying to load the <em>fp.tex</em> definitions causing the invoice package to produce this strange error:</p>
+<p>Turns out, there is a bug with an invoice dependency trying to load the <em>fp.tex</em> definitions causing the invoice package to produce this strange error:</p>
 
-  <code>l.31 \NeedsTeXFormat{LaTeX2e}[1995/12/01]</code>
+<code>l.31 \NeedsTeXFormat{LaTeX2e}[1995/12/01]</code>
 
-  <h2>RequirePackage</h2>
+<h2>RequirePackage</h2>
 
-  <p>Luckily it’s easy to patch the problem. Have a look at the <em>/usr/local/texlive/2012/texmf-dist/tex/latex/invoice/invoice.sty</em> file and look for the line that requires the <em>fp</em> package in the ‘initialize code’ block, near the beginning of the file:</p>
+<p>Luckily it’s easy to patch the problem. Have a look at the <em>/usr/local/texlive/2012/texmf-dist/tex/latex/invoice/invoice.sty</em> file and look for the line that requires the <em>fp</em> package in the ‘initialize code’ block, near the beginning of the file:</p>
 
-  <code>\input{fp}</code>
+<code>\input{fp}</code>
 
-  <p>And simply replace it with:</p>
+<p>And simply replace it with:</p>
 
-  <code>\RequirePackage{fp}</code>
+<code>\RequirePackage{fp}</code>
 
-  <p>Save the file and try running <em>pdflatex</em> again. Is it fixed now? Thanks to <a class="h-card" href="http://www.texdev.net/" title="Some TeX Developments">Joseph Wright</a> and his <a href="https://tex.stackexchange.com/questions/61113/using-graphicx-with-invoice-results-in-strange-pdf-output" title="Using graphicx with invoice results in strange PDF output">TeX StackExchange answer</a> for solving the issue!</p>
-</div>
+<p>Save the file and try running <em>pdflatex</em> again. Is it fixed now? Thanks to <a class="h-card" href="http://www.texdev.net/" title="Some TeX Developments">Joseph Wright</a> and his <a href="https://tex.stackexchange.com/questions/61113/using-graphicx-with-invoice-results-in-strange-pdf-output" title="Using graphicx with invoice results in strange PDF output">TeX StackExchange answer</a> for solving the issue!</p>

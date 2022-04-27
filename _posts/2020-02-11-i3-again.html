@@ -6,36 +6,33 @@ updated:     2020-02-11 12:00:00
 description: Given the i3 window manager another try after my failed attempt 12 months ago.
 ---
 
-<div class="narrow-col">
-  <p>Last year I <a href="../switching-to-i3/" title="My Switching to i3 blog posts">switched to i3</a>, a tiling window manager. Or so I thought. The day after I returned to work where I have a widescreen standard <abbr title="Dots Per Inch">DPI</abbr> screen (my laptop has an <abbr title="High Density">HDPI</abbr> one). The screen was black and work being work I had other things to do than to configure an external monitor so I opened my <a href="https://www.gnome.org/" title="Default desktop environment on Ubuntu 18.04">GNOME</a> session&hellip; and forgot about i3.</p>
+<p>Last year I <a href="../switching-to-i3/" title="My Switching to i3 blog posts">switched to i3</a>, a tiling window manager. Or so I thought. The day after I returned to work where I have a widescreen standard <abbr title="Dots Per Inch">DPI</abbr> screen (my laptop has an <abbr title="High Density">HDPI</abbr> one). The screen was black and work being work I had other things to do than to configure an external monitor so I opened my <a href="https://www.gnome.org/" title="Default desktop environment on Ubuntu 18.04">GNOME</a> session&hellip; and forgot about i3.</p>
 
-  <p>Fast forward to <a href="https://fosdem.org/2020/" title="The free and open-source conference in Brussels, Belgium">FOSDEM 2020</a>, probably no accident my tiling window interest peaks around this time of the year. A friend is showing off <a href="https://regolith-linux.org/" title="Fully configured i3 configuration, stand-alone or on top of Ubuntu">Regolith</a>. Easy and beautiful, even the media keys have a nice popup showing the change in volume or brightness, just like macOS.</p>
+<p>Fast forward to <a href="https://fosdem.org/2020/" title="The free and open-source conference in Brussels, Belgium">FOSDEM 2020</a>, probably no accident my tiling window interest peaks around this time of the year. A friend is showing off <a href="https://regolith-linux.org/" title="Fully configured i3 configuration, stand-alone or on top of Ubuntu">Regolith</a>. Easy and beautiful, even the media keys have a nice popup showing the change in volume or brightness, just like macOS.</p>
 
-  <p>I did try Regolith the same evening and it looks great but once I started tweaking the config I realized I might as well start from scratch and learn the “real” one. Regolith isn’t always clear where to change its settings: is it i3 or GNOME?</p>
+<p>I did try Regolith the same evening and it looks great but once I started tweaking the config I realized I might as well start from scratch and learn the “real” one. Regolith isn’t always clear where to change its settings: is it i3 or GNOME?</p>
 
-  <p>Time to dust of my old i3 install (which by now was a half configured <a href="https://swaywm.org/" title="An i3 compatible window manager on Wayland">sway</a> setup). This time I made sure it worked on my standard <abbr title="Dots Per Inch">DPI</abbr> screen first and simply close my laptop lid when at work.</p>
+<p>Time to dust of my old i3 install (which by now was a half configured <a href="https://swaywm.org/" title="An i3 compatible window manager on Wayland">sway</a> setup). This time I made sure it worked on my standard <abbr title="Dots Per Inch">DPI</abbr> screen first and simply close my laptop lid when at work.</p>
 
-  <p>Here we are, two weeks in, still rocking i3.</P>
+<p>Here we are, two weeks in, still rocking i3.</P>
 
-  <p>Is it better than GNOME? Not sure yet, I still use my mouse way too often. I haven’t configured my status bar yet and I can’t decide if I need a dedicated “browser” workspace or a “work” one with browser, terminal and Vim on the same workspace. Time will tell.</p>
+<p>Is it better than GNOME? Not sure yet, I still use my mouse way too often. I haven’t configured my status bar yet and I can’t decide if I need a dedicated “browser” workspace or a “work” one with browser, terminal and Vim on the same workspace. Time will tell.</p>
 
-  <h2>Open issues</h2>
+<h2>Open issues</h2>
 
-  <ul>
-    <li>Opening a context menu close to the bottom of the screen hides part of the menu. Annoying.</li>
-    <li>I would still switch to sway (Wayland being the future and all) but it will kill my motivation. Let’s understand how i3 works first.</li>
-    <li>I manually change <code>.Xresources</code> and <code>.config/i3/config</code> each time I switch between the <abbr title="High Density">HDPI</abbr> laptop and external standard <abbr title="Dots Per Inch">DPI</abbr> monitor, I need to script this.</li>
-    <li>My “smart quotes” shortcuts don’t work yet.</li>
-    <li>Assigning windows to workspaces is cool but I want them in the same position, there is probably a way to do this.</li>
-    <li>Firefox rendering is really slow on my <abbr title="High Density">HDPI</abbr> screen, it screams on my external standard <abbr title="Dots Per Inch">DPI</abbr> monitor, why?</li>
-  </ul>
+<ul>
+  <li>Opening a context menu close to the bottom of the screen hides part of the menu. Annoying.</li>
+  <li>I would still switch to sway (Wayland being the future and all) but it will kill my motivation. Let’s understand how i3 works first.</li>
+  <li>I manually change <code>.Xresources</code> and <code>.config/i3/config</code> each time I switch between the <abbr title="High Density">HDPI</abbr> laptop and external standard <abbr title="Dots Per Inch">DPI</abbr> monitor, I need to script this.</li>
+  <li>My “smart quotes” shortcuts don’t work yet.</li>
+  <li>Assigning windows to workspaces is cool but I want them in the same position, there is probably a way to do this.</li>
+  <li>Firefox rendering is really slow on my <abbr title="High Density">HDPI</abbr> screen, it screams on my external standard <abbr title="Dots Per Inch">DPI</abbr> monitor, why?</li>
+</ul>
 
-  <h2>Resources</h2>
+<h2>Resources</h2>
 
-  <ul>
-    <li><a href="https://www.youtube.com/watch?v=j1I63wGcvU4" title="A three-part series on the i3 Window Manager">i3wm: Jump Start</a>, a great three-part video series on getting started with i3 by Code Cast.</li>
-    <li>The i3 <a href="https://i3wm.org/docs/" title="Official documentation for i3">documentation</a> is well written and full of examples.</li>
-    <li>The Regolith <a href="https://github.com/regolith-linux">GitHub repositories</a> are a treasure throve to steal configuration bits.</li>
-  </ul>
-
-</div>
+<ul>
+  <li><a href="https://www.youtube.com/watch?v=j1I63wGcvU4" title="A three-part series on the i3 Window Manager">i3wm: Jump Start</a>, a great three-part video series on getting started with i3 by Code Cast.</li>
+  <li>The i3 <a href="https://i3wm.org/docs/" title="Official documentation for i3">documentation</a> is well written and full of examples.</li>
+  <li>The Regolith <a href="https://github.com/regolith-linux">GitHub repositories</a> are a treasure throve to steal configuration bits.</li>
+</ul>

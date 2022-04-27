@@ -7,36 +7,34 @@ coordinates: 50.86507 4.70069
 proofread:   yes
 ---
 
-<div class="narrow-col">
-  <p>Every Bitcoin <a href="https://en.bitcoin.it/wiki/Address" title="Address @ Bitcoin wiki">address</a> has a public and private key. These matching keys are derived from the address using mathematical operations. You don't need to know the keys of an address for a simple transaction using one of the <a href="http://bitcoin.org/en/choose-your-wallet" title="Choose your Bitcoin wallet">wallets</a>; the keys are used but hidden from the user.</p>
+<p>Every Bitcoin <a href="https://en.bitcoin.it/wiki/Address" title="Address @ Bitcoin wiki">address</a> has a public and private key. These matching keys are derived from the address using mathematical operations. You don't need to know the keys of an address for a simple transaction using one of the <a href="http://bitcoin.org/en/choose-your-wallet" title="Choose your Bitcoin wallet">wallets</a>; the keys are used but hidden from the user.</p>
 
-  <p>Sometimes you might need them, though. Say you want to release the funds in a <a href="https://en.bitcoin.it/wiki/Address#Multi-signature_addresses" title="Multi-signature addresses @ Bitcoin wiki">multisig</a> address, for example, until the popular clients add better support for multisig transactions.</p>
+<p>Sometimes you might need them, though. Say you want to release the funds in a <a href="https://en.bitcoin.it/wiki/Address#Multi-signature_addresses" title="Multi-signature addresses @ Bitcoin wiki">multisig</a> address, for example, until the popular clients add better support for multisig transactions.</p>
 
-  <p>But how do you find the keys associated with an address?</p>
+<p>But how do you find the keys associated with an address?</p>
 
-  <p>Using the Bitcoin Core (previously named Bitcoin-Qt) client, you open the &lsquo;Debug window&rsquo; and switch to the &lsquo;Console&rsquo; tab. Use the prompt to inspect an address:</p>
+<p>Using the Bitcoin Core (previously named Bitcoin-Qt) client, you open the &lsquo;Debug window&rsquo; and switch to the &lsquo;Console&rsquo; tab. Use the prompt to inspect an address:</p>
 
-  {% highlight bash %}
-  validateaddress misCbzYUNyWGci7zzGB4hRJEDatwApdnvH
-  {
-    "isvalid" : true,
-    "address" : "misCbzYUNyWGci7zzGB4hRJEDatwApdnvH",
-    "ismine" : true,
-    "isscript" : false,
-    "pubkey" : "0329e8a14994ec7ce9..42fe42765bd4112",
-    "iscompressed" : true,
-    "account" : ""
-  }
-  {% endhighlight %}
+{% highlight bash %}
+validateaddress misCbzYUNyWGci7zzGB4hRJEDatwApdnvH
+{
+  "isvalid" : true,
+  "address" : "misCbzYUNyWGci7zzGB4hRJEDatwApdnvH",
+  "ismine" : true,
+  "isscript" : false,
+  "pubkey" : "0329e8a14994ec7ce9..42fe42765bd4112",
+  "iscompressed" : true,
+  "account" : ""
+}
+{% endhighlight %}
 
-  <p>This first command (<code>validateaddress</code>) will list some bits of information about the address; one of them is the public key.</p>
+<p>This first command (<code>validateaddress</code>) will list some bits of information about the address; one of them is the public key.</p>
 
-  <p>The second one, <code>dumpprivkey</code>, gives you the private key:</p>
+<p>The second one, <code>dumpprivkey</code>, gives you the private key:</p>
 
-  {% highlight bash %}
-  dumpprivkey misCbzYUNyWGci7zzGB4hRJEDatwApdnvH
-  cTECm13QtyF3WEmQyomkmNEXySYF1f6hMHDUuYS7iaKdV5VMg2rB
-  {% endhighlight %}
+{% highlight bash %}
+dumpprivkey misCbzYUNyWGci7zzGB4hRJEDatwApdnvH
+cTECm13QtyF3WEmQyomkmNEXySYF1f6hMHDUuYS7iaKdV5VMg2rB
+{% endhighlight %}
 
-  <p>Keep this one safe. A private key should be kept, well, private, or you risk losing your coins!</p>
-</div>
+<p>Keep this one safe. A private key should be kept, well, private, or you risk losing your coins!</p>

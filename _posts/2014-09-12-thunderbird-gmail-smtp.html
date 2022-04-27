@@ -8,52 +8,50 @@ description: Debugging e-mail sending issues only to learn my VPN blocked outgoi
 proofread:   yes
 ---
 
-<div class="narrow-col">
-  <p>TL;DR: My <abbr title="Virtual Private Network">VPN</abbr>'s <abbr title="Internet Protocol">IP</abbr> address has been blacklisted by Google, which has prevented Thunderbird from sending e-mails.</p>
+<p><abbr title="Too Long, Didn’t Read">TL;DR</abbr>: My <abbr title="Virtual Private Network">VPN</abbr>'s <abbr title="Internet Protocol">IP</abbr> address has been blacklisted by Google, which has prevented Thunderbird from sending e-mails.</p>
 
-  <p>I switched from Apple Mail to <a href="https://www.mozilla.org/thunderbird/" title="Open-source e-mail client from Mozilla">Mozilla Thunderbird</a> in my efforts to use more open-source software, and also because Apple removed the option to <a href="https://apple.stackexchange.com/a/108674" title="How can Mail.app in Mavericks show a message's plain text alternative?">read your messages in plain text</a> after <abbr title="Operating System">OS</abbr> X <a href="https://en.wikipedia.org/wiki/OS_X_Mavericks" title="OS X Mavericks @ Wikipedia">Mavericks</a>.</p>
+<p>I switched from Apple Mail to <a href="https://www.mozilla.org/thunderbird/" title="Open-source e-mail client from Mozilla">Mozilla Thunderbird</a> in my efforts to use more open-source software, and also because Apple removed the option to <a href="https://apple.stackexchange.com/a/108674" title="How can Mail.app in Mavericks show a message's plain text alternative?">read your messages in plain text</a> after <abbr title="Operating System">OS</abbr> X <a href="https://en.wikipedia.org/wiki/OS_X_Mavericks" title="OS X Mavericks @ Wikipedia">Mavericks</a>.</p>
 
-  <p>Adding a <a href="https://gmail.com" title="Free advertising-supported e-mail service by Google">Gmail</a> account to Thunderbird was easy enough and Thunderbird started syncing my messages with Google straight away. Sending a new message was a different story. Here are the Google <abbr title="Simple Mail Transfer Protocol">SMTP</abbr> server settings for an <abbr title="Secure Sockets Layer">SSL</abbr>/<abbr title="Transport Layer Security">TLS</abbr> connection:</p>
+<p>Adding a <a href="https://gmail.com" title="Free advertising-supported e-mail service by Google">Gmail</a> account to Thunderbird was easy enough and Thunderbird started syncing my messages with Google straight away. Sending a new message was a different story. Here are the Google <abbr title="Simple Mail Transfer Protocol">SMTP</abbr> server settings for an <abbr title="Secure Sockets Layer">SSL</abbr>/<abbr title="Transport Layer Security">TLS</abbr> connection:</p>
 
-  <dl>
-    <dt>Server name</dt>
-    <dd>smtp.googlemail.com</dd>
-  </dl>
-  <dl>
-    <dt>Port</dt>
-    <dd>465</dd>
-  </dl>
-  <dl>
-    <dt>Connection security</dt>
-    <dd><abbr title="Secure Sockets Layer">SSL</abbr>/<abbr title="Transport Layer Security">TLS</abbr></dd>
-  </dl>
-  <dl>
-    <dt>Authentication method</dt>
-    <dd>normal password</dd>
-  </dl>
-  <dl>
-    <dt>User name</dt>
-    <dd>full.email.address@gmail.com</dd>
-  </dl>
+<dl>
+  <dt>Server name</dt>
+  <dd>smtp.googlemail.com</dd>
+</dl>
+<dl>
+  <dt>Port</dt>
+  <dd>465</dd>
+</dl>
+<dl>
+  <dt>Connection security</dt>
+  <dd><abbr title="Secure Sockets Layer">SSL</abbr>/<abbr title="Transport Layer Security">TLS</abbr></dd>
+</dl>
+<dl>
+  <dt>Authentication method</dt>
+  <dd>normal password</dd>
+</dl>
+<dl>
+  <dt>User name</dt>
+  <dd>full.email.address@gmail.com</dd>
+</dl>
 
-  <p>When I clicked send on the e-mail, Thunderbird tried sending it with the following message:</p>
+<p>When I clicked send on the e-mail, Thunderbird tried sending it with the following message:</p>
 
-  <blockquote>Connecting to smtp.googlemail.com</blockquote>
+<blockquote>Connecting to smtp.googlemail.com</blockquote>
 
-  <p>You wait a few seconds and&hellip; timeout:</p>
+<p>You wait a few seconds and&hellip; timeout:</p>
 
-  <blockquote>
-    Sending of message failed.<br />
-    The message could not be sent because the connection to SMTP server smtp.googlemail.com timed out. Try again or contact your network administrator.
-  </blockquote>
+<blockquote>
+  Sending of message failed.<br />
+  The message could not be sent because the connection to SMTP server smtp.googlemail.com timed out. Try again or contact your network administrator.
+</blockquote>
 
-  <p>The internet told me to change the <a href="http://kb.mozillazine.org/Modify_Thunderbird_settings#Change_connection_timeout" title="Change connection timeout @ Mozillazine">connection timeout settings</a>, verify my <a href="https://support.mozilla.org/en-US/kb/thunderbird-and-gmail" title="Thunderbird and Gmail @ Mozilla Support"><abbr title="Simple Mail Transfer Protocol">SMTP</abbr> settings</a>, <a href="http://www.gmailhelp.com/unlocking-googles-gmail-captcha/">unlock my Gmail account</a> with the <abbr title="Completely Automated Public Turing test to tell Computers and Humans Apart">CAPTCHA</abbr> or disable two-factor authentication (I am using <a href="https://support.google.com/accounts/answer/185833" title="Sign in using App Passwords @ Google Support">App passwords</a>). But none of that worked.</p>
+<p>The internet told me to change the <a href="http://kb.mozillazine.org/Modify_Thunderbird_settings#Change_connection_timeout" title="Change connection timeout @ Mozillazine">connection timeout settings</a>, verify my <a href="https://support.mozilla.org/en-US/kb/thunderbird-and-gmail" title="Thunderbird and Gmail @ Mozilla Support"><abbr title="Simple Mail Transfer Protocol">SMTP</abbr> settings</a>, <a href="http://www.gmailhelp.com/unlocking-googles-gmail-captcha/">unlock my Gmail account</a> with the <abbr title="Completely Automated Public Turing test to tell Computers and Humans Apart">CAPTCHA</abbr> or disable two-factor authentication (I am using <a href="https://support.google.com/accounts/answer/185833" title="Sign in using App Passwords @ Google Support">App passwords</a>). But none of that worked.</p>
 
-  <h2>Blacklisted</h2>
+<h2>Blacklisted</h2>
 
-  <p>I found an article about <a href="https://support.google.com/a/answer/27642" title="Email bounces because your IP address is blacklisted @ Google Support"><abbr title="Internet Protocol">IP</abbr> address blacklisting</a> and that finally rang a bell: my <abbr title="Virtual Private Network">VPN</abbr>!</p>
+<p>I found an article about <a href="https://support.google.com/a/answer/27642" title="Email bounces because your IP address is blacklisted @ Google Support"><abbr title="Internet Protocol">IP</abbr> address blacklisting</a> and that finally rang a bell: my <abbr title="Virtual Private Network">VPN</abbr>!</p>
 
-  <p>I run almost all my internet traffic through a <abbr title="Virtual Private Network">VPN</abbr> and didn't think it was related to my Thunderbird Gmail issues but, sure enough, I disabled the <abbr title="Virtual Private Network">VPN</abbr> and there it went, e-mail sent. Guess spammers like my <abbr title="Virtual Private Network">VPN</abbr> provider as well.</p>
+<p>I run almost all my internet traffic through a <abbr title="Virtual Private Network">VPN</abbr> and didn't think it was related to my Thunderbird Gmail issues but, sure enough, I disabled the <abbr title="Virtual Private Network">VPN</abbr> and there it went, e-mail sent. Guess spammers like my <abbr title="Virtual Private Network">VPN</abbr> provider as well.</p>
 
-  <p>Now, I'm not sure why this was never an issue with the Mail app - maybe Apple uses different <abbr title="Simple Mail Transfer Protocol">SMTP</abbr> settings when you configure a Gmail account?</p>
-</div>
+<p>Now, I'm not sure why this was never an issue with the Mail app - maybe Apple uses different <abbr title="Simple Mail Transfer Protocol">SMTP</abbr> settings when you configure a Gmail account?</p>
