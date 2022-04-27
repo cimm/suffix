@@ -1,0 +1,68 @@
+---
+layout:      post
+title:       About RDFa Lite, Microdata, and Microformats
+date:        2022-04-27 09:00:00
+updated:     2022-04-27 09:00:00
+description: Why I am switching from microformats to RDFa Lite.
+---
+
+<p>Webpages are written for humans. As humans, we understand articles in their greater contexts. We understand a recently published piece about the pandemic will be about <abbr title="Corona Virus Disease">COVID</abbr>-19, or an article about the newly <a href="https://www.politico.eu/article/macron-re-elected-for-second-term-as-french-president-projection/" title="Macron reelected but Le Pen’s big score shows France increasingly divided @ Politico">elected</a> <span typeof="Person"><span property="jobTitle">president</span> of <span property="nationality">France</span> will be about <span property="name">Emmanuel Macron</span></span>, even if it doesn’t mention these names. This is harder for computers. Humans understand a piece about a pandemic, or the French elections published in <time>2016</time> in a different context. How do we explain to computers these differences, how does a computer understand <em>what</em> a webpage is about? This is the <a href="https://www.w3.org/standards/semanticweb/" title="Semantic Web @ W3C">semantic web</a> at its core: making the internet machine-readable.</p>
+
+<p>There are different ways to do this. <abbr title="Artificail Intelligence">AI</abbr> and <abbr title="Machine Learning">ML</abbr> play an important role nowadays. These are top-down approaches: they try to make sense of unstructured data. The semantic web is the opposite, bottom-up, adding structure to our own data so computers can understand it more easily. <a href="https://rdfa.info/"><abbr title="Resource Description Framework in Attributes">RDFa</abbr></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Microdata" title="Microdata @ MDN">microdata</a>, and <a href="https://microformats.org/wiki/about" title="Microformats wiki">microformats</a> are ways to do this.</p>
+
+<h2>Different Formats, Same Goal</h2>
+
+<p>In <time>2006</time> I started <a href="../microformats-book/" title="My Microformats book review">sprinkling</a> microformats all over this blog. Microformats gained adoption and when version 2 was published I updated my blog to use the new vocabulary. Meanwhile — over at work — I started playing with microdata, a very similar idea. Microdata is more verbose but has a more extensive <a href="https://schema.org" title="Structured data schema for to web @ Schema.org">vocabulary</a>. Both formats can structure data about a person, but there is no way to indicate a FAQ in microformats, to name one example.</p>
+
+{% highlight html %}
+<p class="h-card">
+  <a class="p-name u-url" href="https://example.com">
+    Jane Doe
+  </a>
+</p>
+{% endhighlight %}
+<p><em>↑ Example 1: structured data about a person in microformats.</em></p>
+
+{% highlight html %}
+<section itemscope itemtype="https://schema.org/FAQPage">
+  <article itemprop='mainEntity' itemscope itemtype="https://schema.org/Question">
+    <h1 itemprop="name">Who directed the 1972 film “The Godfather”?</h1>
+    <span itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+      <p itemprop="text">
+        Francis F. Coppola co-wrote the screenplay with Mario Puzo, based on Puzo’s novel.
+      </p>
+    </span>
+  </article>
+</section>
+{% endhighlight %}
+<p><em>↑ Example 2: structured data about an FAQ in microdata.</em></p>
+
+<p>The 3<sup>rd</sup> one, RDFa, is again similar: a way to augment <abbr title="Hypertext Markup Langauge">HTML</abbr> with machine-readable hints for what the copy is about. It can even use the same vocabulary as microdata but is more extensible as it can easily use different or even multiple vocabularies in the same document. While microdata is limited to HTML documents, RDFa can be used in <abbr title="Extensible Markup Language">XML</abbr> variants like <abbr title="Scalable Vector Graphics">SVG</abbr> and Atom. RDFa can be more complex, but there is a simplified version: RDFa Lite, which seems to be just fine for a website like mine.</p>
+
+{% highlight html %}
+<section typeof="Book">
+  <h1 property="name">1984</h1>
+  <p property="author">George Orwell</p>
+  <p property="isbn">
+    <a href="https://openlibrary.org/search?isbn=9780140009729" property="mainEntityOfPage">
+      9780140009729
+    </a>
+  </p>
+  <p property="review" typeof="Review">
+    <span property="reviewRating" typeof="Rating">
+      <meta property="bestRating" content="5">
+      <meta property="ratingValue" content="5">
+      ★★★★★
+    </span>
+  </p>
+</section>
+{% endhighlight %}
+<p><em>↑ Example 3: Book entry from my reading list in RDFa Lite.</em></p>
+
+<h2>What To Choose?</h2>
+
+<p>So, what’s one to use: Microformats, microdata, or RDFa Lite? To add to the complexity, there is also <a href="https://json-ld.org/" title="JSON for Linked Data"><abbr title="JavaScript Object Notation for Linked Data">JSON-LD</abbr></a> which I haven’t even looked at yet.</p>
+
+<p>While I initially liked the “you simply add special <abbr title="Cascading Style Sheets">CSS</abbr> class names” idea from microformats, I now prefer the more explicit microdata or RDFa attributes. It’s too easy to accidentally remove a class name in a larger project with multiple developers, the attributes at least indicate they have a special purpose. Micorformats are more limited in scope and there is this nagging feeling its glory days are over. Microdata and RDFa Lite seem similar, but I can see how investing time to learn RDF might be powerful in the long run, since it can be used more broadly. Then there is this bit where microdata was <a href="https://www.w3.org/standards/history/microdata" title="Microdata publication history @ W3C">retired</a> until it <a href="https://html.spec.whatwg.org/#microdata" title="Microdata Living Standard @ whatwg">wasn’t</a>? Lastly, this blog has always been a place to experiment and learn about different web technologies and RDFa is an excuse to do so.</p>
+
+<p>That’s why I am slowly moving my blog from microformats to RDFa Lite, starting with my <a href="../reading" title="Books I’ve read">reading</a> list as a first exercise.</p>
