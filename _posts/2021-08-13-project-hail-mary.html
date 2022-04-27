@@ -7,26 +7,38 @@ description:     Book review of Andy Weir’s latest novel.
 cover_image_url: ../../assets/project-hail-mary.jpg
 ---
 
-<figure>
-  <picture>
-    <source type="image/webp" srcset="../../assets/project-hail-mary.webp" />
-    <img src="../../assets/project-hail-mary.jpg" alt="Project Hail Mary by Andy Weir book cover" />
-  </picture>
-  <figcaption>Copyright <a href="https://www.andyweirauthor.com/books/project-hail-mary-hc">Penguin Random House</a></figcaption>
-</figure>
+<div typeof="Book" resource="#project-hail-mary">
+  <link property="bookFormat" href="https://schema.org/EBook" />
+  <figure>
+    <picture>
+      <source type="image/webp" srcset="../../assets/project-hail-mary.webp" />
+      <img src="../../assets/project-hail-mary.jpg" property="image" alt="Project Hail Mary by Andy Weir book cover" />
+    </picture>
+    <figcaption>
+      Copyright <a href="https://www.andyweirauthor.com/books/project-hail-mary-hc" property="mainEntityOfPage">Penguin Random House</a>
+    </figcaption>
+  </figure>
 
-<div class="h-review">
-  <div class="e-content">
-    <p>When I learned (thanks to <a href="https://joren.gent/2021/07/22/project-hail-mary.html" title="Project Hail Mary review by Joren (in Dutch)">Joren</a>’s tip) of <span class="h-card p-author">Andy Weir</span>’s latest novel I dusted off my Kindle. Another space saga by the author of The Martian? This must be good, and boy did it deliver! Another masterpiece for science fiction fans.</p>
+  <div property="review" typeof="Review">
+    <div property="reviewBody">
+      <p>When I learned (thanks to <a href="https://joren.gent/2021/07/22/project-hail-mary.html" title="Project Hail Mary review by Joren (in Dutch)">Joren</a>’s tip) of <span property="author" typeof="Person" resource="#andy-weir" about="#project-hail-mary"><span property="name" about="#andy-weir">Andy Weir</span></span>’s latest novel (<abbr title="International Standard Book Number">ISBN</abbr> <span property="isbn" about="#project-hail-mary">9780593395561</span>) I dusted off my Kindle. Another space saga by the author of The Martian? This must be good, and boy did it deliver! Another masterpiece for science fiction fans.</p>
 
-    <p>I didn’t even read the back cover before jumping in. A good decision since the protagonist doesn’t know anything either. It was nice to discover the setting as the story developed. Too bad about the two drawings at the beginning of the book though, they give away a little too much. Anyway, no spoilers!</p>
+      <p>I didn’t even read the back cover before jumping in. A good decision since the protagonist doesn’t know anything either. It was nice to discover the setting as the story developed. Too bad about the two drawings at the beginning of the book though, they give away a little too much. Anyway, no spoilers!</p>
 
-    <p>At the outset, The Martian and <span class="p-item">Project Hail Mary</span>’s premises are similar: a sole space traveler. Same for the hard science we know and love from The Martian. But that’s where the comparison ends. Project Hail Mary is more than a rehashed The Martian. The science is still there but it’s more a story about empathy with a science-heavy background. The interaction between the main two protagonists feels genuine, even emotional at times.</p>
+      <p>At the outset, The Martian and <span property="name" about="#project-hail-mary">Project Hail Mary</span>’s premises are similar: a sole space traveler. Same for the hard science we know and love from The Martian. But that’s where the comparison ends. Project Hail Mary is more than a rehashed The Martian. The science is still there but it’s more a story about empathy with a science-heavy background. The interaction between the main two protagonists feels genuine, even emotional at times.</p>
 
-    <p>I read Project Hail Mary as an homage to the scientific method. The protagonist is constantly using trial and error to find solutions to the many problems that come up during the trip. He makes mistakes and needs to adjust, he is not an infallible superhuman, which makes the character relatable. Though at times his ready knowledge feels exaggerated.</p>
+      <p>I read Project Hail Mary as an homage to the scientific method. The protagonist is constantly using trial and error to find solutions to the many problems that come up during the trip. He makes mistakes and needs to adjust, he is not an infallible superhuman, which makes the character relatable. Though at times his ready knowledge feels exaggerated.</p>
 
-    <p>Like The Martian, Project Hail Mary is situated in the near future (there is even talk of SpaceX at some point). It’s still science fiction but most of it could be real if humanity puts its mind to it, just like The Martian, though Project Hail Mary is a bit more out there, a bit more fictitious.</p>
+      <p>Like The Martian, Project Hail Mary is situated in the near future (there is even talk of SpaceX at some point). It’s still <span property="genre" about="#project-hail-mary">science fiction</span> but most of it could be real if humanity puts its mind to it, just like The Martian, though Project Hail Mary is a bit more out there, a bit more fictitious.</p>
 
-    <p>An enjoyable read that was hard to put down. <span class="p-rating" value="4">Recommended</span>!</p>
+      <p>
+        An enjoyable read that was hard to put down.
+        <span property="reviewRating" typeof="Rating">
+          <meta property="bestRating" content="5" />
+          <meta property="ratingValue" content="4" />
+          Recommended
+        </span>!
+      </p>
+    </div>
   </div>
 </div>
