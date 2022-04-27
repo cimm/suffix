@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>{{ page.title }} - {{ site.name }}</title>
     <link rel="preload" href="{% relbase %}/assets/stylesheets/main.css" as="style" />
     <link rel="preload" href="{% relbase %}/assets/gentium-webfont.woff" as="font" type="font/woff" />
@@ -10,17 +10,17 @@
     <link rel="preload" href="{% relbase %}/assets/oswald-webfont.woff2" as="font" type="font/woff2" />
     <link rel="stylesheet" href="{% relbase %}/assets/stylesheets/main.css" />
     <link rel="manifest" href="{% relbase %}/manifest.json" />
-    <link rel="shortcut icon" href="{% relbase %}/assets/favicon.ico">
+    <link rel="shortcut icon" href="{% relbase %}/assets/favicon.ico" />
     <link rel="alternate" href="{{ page.url | absolute_url | remove: 'index.html' }}" hreflang="en" />
     <link rel="canonical" href="{{ page.url | absolute_url | remove: 'index.html' }}" />
     <link href="{% relbase %}/feeds/blog.xml" rel="alternate" title="Suffix’s feed" type="application/atom+xml" />
-    <meta property="og:image" content="{{ page.cover_image_url | absolute_url }}">
+    <meta property="og:image" content="{{ page.cover_image_url | absolute_url }}" />
     <meta property="og:title" content="{{ page.title }}" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="{{ page.url | absolute_url | remove: 'index.html' }}" />
     <meta property="og:site_name" content="{{ site.name }}" />
     <meta property="og:description" content="{{ page.description }}" />
-    <meta name="description" content="{{ page.description }}">
+    <meta name="description" content="{{ page.description }}" />
     <meta name="theme-color" content="#333" />
     <meta name="msapplication-navbutton-color" content="#333" />
     <meta name="viewport" content="width=device-width" />
