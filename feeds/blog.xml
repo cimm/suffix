@@ -2,8 +2,9 @@
 layout: null
 ---
 <?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="pretty-feed.xsl" type="text/xsl"?>
 <feed xmlns:georss="http://www.georss.org/georss" xmlns="http://www.w3.org/2005/Atom" xml:lang="en-US">
-  <link href="{{ 'blog' | absolute_url }}" type="text/html" rel="alternate" />
+  <link href="{{ 'blog' | absolute_url }}" type="text/html" />
   <link href="{{ page.url | absolute_url }}" type="application/atom+xml" rel="self" />
   <updated>{{ site.time | date_to_xmlschema }}</updated>
   <id>{{ page.url | absolute_url }}</id>
