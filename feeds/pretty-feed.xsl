@@ -16,11 +16,11 @@ layout: null
         <link rel="stylesheet" href="{% relbase %}/assets/stylesheets/atom.css" />
       </head>
       <body>
-        <nav>
+        <header>
           <p>
             <strong>This is a web feed,</strong> also known as an RSS or Atom feed. <strong>Subscribe</strong> by copying the URL from the address bar into your newsreader. <a href="https://aboutfeeds.com">What is a feed?</a>
           </p>
-        </nav>
+        </header>
         <article>
           <header>
             <h1><xsl:value-of select="atom:feed/atom:title"/></h1>

@@ -1,0 +1,65 @@
+---
+---
+
+body {
+  background-color: white;
+  color: #24292e;
+  font-family: system-ui;
+  line-height: 1.5;
+}
+
+a {
+  color: #0366d6;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+body > header:first-child,
+article {
+  display: block;
+  margin: 1rem auto;
+  max-width: 40rem;
+  padding: 1rem;
+}
+
+body > header:first-child {
+  background-color: #fff5b1;
+}
+
+p {
+  margin: 0;
+}
+
+h1,
+h2 {
+  font-weight: 600;
+  line-height: 1.25em;
+  margin-bottom: 1rem;
+  margin-top: 0;
+}
+
+h1 {
+  font-size: 2em;
+  padding-bottom: .3em;
+}
+
+h2 {
+  font-size: 1.25em;
+  margin-bottom: 0;
+}
+
+header {
+  padding-bottom: 2rem;
+  padding-top: 2rem;
+}
+
+section {
+  padding-bottom: 2rem;
+}
+
+time {
+  color: silver;
+}
