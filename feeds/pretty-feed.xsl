@@ -1,3 +1,6 @@
+---
+layout: null
+---
 <?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet
     version="3.0"
@@ -10,7 +13,7 @@
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <title><xsl:value-of select="atom:feed/atom:title"/></title>
-        <style type="text/css">*{box-sizing:border-box}body{background-color:#fff;color:#24292e;font-family:system-ui;line-height:1.5}a{color:#0366d6;text-decoration:none}a:hover{text-decoration:underline}nav,article{max-width:40rem;margin:1rem auto;padding:1rem;display:block;}nav{background-color:#fff5b1;}p{margin:0}h1,h2{margin-top:0;margin-bottom:1rem;font-weight:600;line-height:1.25}h1{padding-bottom:.3em;font-size:2em}h1 svg{padding-right:.25rem;vertical-align:text-bottom;width:1.2em;height:1.2em}h2{font-size:1.25em;margin-bottom:0}header{padding-top:2rem;padding-bottom:2rem}section{padding-bottom:2rem}muted{color:#586069}</style>
+        <link rel="stylesheet" href="{% relbase %}/assets/stylesheets/atom.css" />
       </head>
       <body>
         <nav>
