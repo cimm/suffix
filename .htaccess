@@ -3,6 +3,7 @@ Options +FollowSymLinks
 
 Header set Content-Security-Policy "default-src 'self'"
 Header set Permissions-Policy "geolocation=(), midi=(), notifications=(), push=(), sync-xhr=(), microphone=(), camera=(), magnetometer=(), gyroscope=(), speaker=(), vibrate=(), fullscreen=(), payment=()"
+Header set Strict-Transport-Security "max-age=31536000"
 Header set Referrer-Policy "no-referrer"
 Header set Permissions-Policy "interest-cohort=()"
 Header set X-Content-Type-Options "nosniff"
