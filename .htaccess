@@ -1,7 +1,7 @@
 RewriteEngine On
 Options +FollowSymLinks
 
-Header set Content-Security-Policy "default-src 'self'; img-src 'self' *.staticflickr.com"
+Header set Content-Security-Policy "default-src 'self'"
 Header set Permissions-Policy "geolocation=(), midi=(), notifications=(), push=(), sync-xhr=(), microphone=(), camera=(), magnetometer=(), gyroscope=(), speaker=(), vibrate=(), fullscreen=(), payment=()"
 Header set Referrer-Policy "no-referrer"
 Header set Permissions-Policy "interest-cohort=()"
