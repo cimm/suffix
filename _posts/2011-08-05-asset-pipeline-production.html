@@ -1,21 +1,22 @@
 ---
-layout:  post
-title:   Rails 3.1 asset pipeline in production
-date:    2011-08-05 16:29:34
-updated: 2011-10-03 08:24:50
+layout:      post
+title:       Rails 3.1 asset pipeline in production
+date:        2011-08-05 16:29:34
+updated:     2011-10-03 08:24:50
+description: Compress assets during Rake deploy.
 ---
 
-<p>The asset pipeline is probably one of the biggest additions in the upcoming 3.1 release of Ruby on Rails. It's a framework to minify and compress JavaScript and <abbr title="Cascading Style Sheets">CSS</abbr> code. The asset pipeline pre-minifies and pre-compresses all your JavaScript code in a single file, the same goes for your stylesheets. This results in smaller files and fewer HTTP requests, meaning faster applications!</p>
+<p>The asset pipeline is probably one of the biggest additions in the upcoming 3.1 release of Ruby on Rails. It’s a framework to minify and compress JavaScript and <abbr title="Cascading Style Sheets">CSS</abbr> code. The asset pipeline pre-minifies and pre-compresses all your JavaScript code in a single file, the same goes for your stylesheets. This results in smaller files and fewer <abbr title="Hpertext Transfer Protocol">HTTP</abbr> requests, meaning faster applications!</p>
 
-<p>The asset pipeline is enabled by default but will look a little strange if you are migrating from an older version of Ruby on Rails. Let's have a quick look.</p>
+<p>The asset pipeline is enabled by default but will look a little strange if you are migrating from an older version of Ruby on Rails. Let’s have a quick look.</p>
 
 <h2>Development</h2>
 
-<p>You should have seen the /app/assets directory in your new Rails 3.1 app, this is where all the magic happens. All JavaScript, CSS, and image files which would previously go to /public now go to /app/assets/javascripts, /app/assets/stylesheets, and the /app/assets/images folders. Point your browser to localhost:3000, inspect the source and you'll see Rails concats all the JavaScript and <abbr title="Cascading Style Sheets">CSS</abbr> in two single files. Off course you can turn this off for debugging if you want.</p>
+<p>You should have seen the /app/assets directory in your new Rails 3.1 app, this is where all the magic happens. All JavaScript, CSS, and image files which would previously go to /public now go to /app/assets/javascripts, /app/assets/stylesheets, and the /app/assets/images folders. Point your browser to localhost:3000, inspect the source and you’ll see Rails concats all the JavaScript and CSS in two single files. Off course you can turn this off for debugging if you want.</p>
 
 <h2>Production</h2>
 
-<p>There are a few more steps involved to make this work in production. Wouldn't it be nice to <strong>pre-compress</strong> the assets for production to save some precious processor time? Let's compress the assets right after our Capistrano deployment:</p>
+<p>There are a few more steps involved to make this work in production. Wouldn’t it be nice to <strong>pre-compress</strong> the assets for production to save some precious processor time? Let’s compress the assets right after our Capistrano deployment:</p>
 
 {% highlight ruby %}
 after "deploy:update_code", "deploy:precompile_assets"
@@ -27,17 +28,17 @@ task :precompile_assets do
 end
 {% endhighlight %}
 
-<p>After deploying your code to production you should see a new /public/assets folder with your compressed files (an <abbr title="Message Digest Algorithm 5">MD5</abbr> hash has been added to the filenames). The hash makes it possible for browsers to cache the files indefinitely. As long as the filename is the same there is no need to fetch the file again after it has been downloaded. Change your code and deploy again and you'll see the hashes have changed.</p>
+<p>After deploying your code to production you should see a new /public/assets folder with your compressed files (an <abbr title="Message Digest Algorithm 5">MD5</abbr> hash has been added to the filenames). The hash makes it possible for browsers to cache the files indefinitely. As long as the filename is the same there is no need to fetch the file again after it has been downloaded. Change your code and deploy again and you’ll see the hashes have changed.</p>
 
-<p>So far so good but you may have noticed all the <strong>images</strong> referenced in the stylesheets are gone. Well, the image filenames now include the <abbr title="Message Digest Algorithm 5">MD5</abbr> hash so the browser is looking for logo.png and doesn't find anything. Instead, it should look for something like logo-d41d8cd98f00b204e9800998ecf8427e.png. Let's make our <abbr title="Cascading Style Sheet">CSS</abbr> a bit more dynamic.</p>
+<p>So far so good but you may have noticed all the <strong>images</strong> referenced in the stylesheets are gone. Well, the image filenames now include the MD5 hash so the browser is looking for logo.png and doesn’t find anything. Instead, it should look for something like logo-d41d8cd98f00b204e9800998ecf8427e.png. Let’s make our CSS a bit more dynamic.</p>
 
-<p>First rename all your /assets/stylesheets <abbr title="Cascading Style Sheet">CSS</abbr> files to something <abbr title="Embedded Ruby">ERB</abbr> will understand: e.g. default.css.erb. This allows us to use <abbr title="Embedded Ruby">ERB</abbr> in the stylesheets. Now change all the image references to:</p>
+<p>First rename all your /assets/stylesheets CSS files to something <abbr title="Embedded Ruby">ERB</abbr> will understand: e.g. default.css.erb. This allows us to use ERB in the stylesheets. Now change all the image references to:</p>
 
 {% highlight ruby %}
 <%= asset_path 'logo.png' %>
 {% endhighlight %}
 
-<p>Deploy your application again and you should be good to go. All image references in your stylesheets have been replaced by their &lsquo;hashed&rsquo; version.</p>
+<p>Deploy your application again and you should be good to go. All image references in your stylesheets have been replaced by their “hashed” version.</p>
 
 <h2>Read more</h2>
 

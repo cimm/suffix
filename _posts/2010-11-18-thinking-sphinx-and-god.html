@@ -1,8 +1,9 @@
 ---
-layout:  post
-title:   Thinking Sphinx and God
-date:    2010-11-18 22:14:33
-updated: 2010-12-12 00:09:07
+layout:      post
+title:       Thinking Sphinx and God
+date:        2010-11-18 22:14:33
+updated:     2010-12-12 00:09:07
+description: Using the Ruby God gem to monitor a Sphinx search deamon.
 ---
 
 <p>We recently configured <a href="http://godrb.com/">God</a> to monitor our Sphinx search daemon. The application heavily depends on it and it’s the main reason the app is down from time to time. The problem is that God tries to restart Sphinx when it’s rebuilding the indexes (and thus not running). Let’s look at how Sphinx and God can play nicely together.</p>

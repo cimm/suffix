@@ -1,8 +1,9 @@
 ---
-layout:  post
-title:   Rake and multiple arguments
-date:    2011-10-03 08:25:36
-updated: 2011-11-24 22:50:52
+layout:      post
+title:       Rake and multiple arguments
+date:        2011-10-03 08:25:36
+updated:     2011-11-24 22:50:52
+description: Beware of spaces when passing Rake arguments.
 ---
 
 <p>Rake has a new syntax for passing arguments. In the <strong>old</strong> version it looked something like this:</p>
@@ -17,7 +18,7 @@ end
 
 <code>WARNING: 'task :t, arg, :needs =&gt; [deps]' is deprecated. Please use 'task :t, [args] =&gt; [deps]' instead.</code>
 
-<p>Luckily it’s easy to switch to the <strong>newer</strong> syntax:</p>
+<p>Luckily it’s easy to switch to the newer syntax:</p>
 
 {% highlight ruby %}
 task :hello, [:first_name, :last_name] => :environment do |t, args|
