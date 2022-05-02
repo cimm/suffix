@@ -1,30 +1,26 @@
 ---
 layout:      post
-title:       "Getting started: Bitcoin testnet"
+title:       The Bitcoin testnet
 date:        2013-12-23 11:42:00
-updated:     2014-01-14 22:35:00
-coordinates: 50.86505 4.70068
-proofread:   yes
+updated:     2022-05-02 12:00:00
+description: Getting started with the Bitcoin testnet.
 ---
 
-<p>Are you a developer working on a <a href="http://www.bitcoin.org" title="Bitcoin, open source P2P money">Bitcoin</a> project or are you a power user discovering the more <a href="https://www.youtube.com/watch?v=mD4L7xDNCmA" title="The future of Bitcoin: new applications and rebuilding the banking system talk by Mike Hearn">advanced Bitcoin features</a>? This post explains how to get started with the Bitcoin <a href="https://en.bitcoin.it/wiki/Testnet" title="What is this Bitcoin testnet you speak of?">testnet</a> so you can play without using your real, hard-earned coins.</p>
+<p>Are you a Bitcoin power user discovering its more <a href="https://www.youtube.com/watch?v=mD4L7xDNCmA" title="The future of Bitcoin: new applications and rebuilding the banking system talk by Mike Hearn">advanced features</a>?
 
-<p>None of the Bitcoin client applications implement all of those features, (yet) so you'll have to use the Bitcoin <abbr title="Remote Procedure Call">RPC</abbr> interface from the command line.</p>
+<p>Lets see how to get started with the Bitcoin <a href="https://en.bitcoin.it/wiki/Testnet" title="What is this Bitcoin testnet you speak of?">testnet</a>. A toy blockchain to learn and play without losing your real, hard-earned coins. None of the Bitcoin client applications implement all those features yet, you will have to use the Bitcoin <abbr title="Remote Procedure Call">RPC</abbr> interface from the command line.</p>
 
 <h2>Install</h2>
 
-<p><a href="http://bitcoin.org/en/download" title="Download Bitcoin Core">Download</a> and install the Bitcoin Core client (previously named Bitcoin-Qt). You can, but don't have to, start the application. It will start downloading the huge, real blockchain, which you don't need for testing.</p>
+<p><a href="http://bitcoin.org/en/download" title="Download Bitcoin Core">Download</a> and install the Bitcoin Core client (previously called Bitcoin-Qt). You can, but do not have to, start the application. It will start downloading the huge, real blockchain, which is not needed for the testnet.</p>
 
 <h2>Configure</h2>
 
 <ol>
-  <li>Find the Bitcoin Core <a href="https://en.bitcoin.it/wiki/Data_directory" title="Bitcoin Core data directories for each OS">data directory</a> for your system.</li>
+  <li>Find the Bitcoin Core <a href="https://en.bitcoin.it/wiki/Data_directory" title="Bitcoin Core data directories for each OS">data directory</a> for your operating system.</li>
+  <li>Create this directory if it does not exist yet (it will when you ran the client earlier).</li>
   <li>
-    <p>Create this directory if it doesn't exist yet (should be there from when you ran the client before). On Mac OS X for example:</p>
-    <p><code>mkdir ~/Library/Application\ Support/Bitcoin/</code></p>
-  </li>
-  <li>
-    Create a <code><a href="https://en.bitcoin.it/wiki/Running_Bitcoin#Bitcoin.conf_Configuration_File" title="Configuration file options">bitcoin.conf</a></code> configuration file in that directory. A minimal example might look like:
+    Create a <code><a href="https://en.bitcoin.it/wiki/Running_Bitcoin#Bitcoin.conf_Configuration_File" title="Configuration file options">bitcoin.conf</a></code> configuration file in the directory. A minimal example might look like:
 
 {% highlight ini %}
 testnet=1
@@ -39,15 +35,11 @@ rpcport=8332
 
 <h2>Run</h2>
 
-<p>Start the Bitcoin Core client. The application icon should be green instead of orange. The green icon indicates it's running in testnet mode. The client will start downloading the testnet blockchain and this will take a while.</p>
-
-<p>While you wait for the testnet blockchain to download, you can grab some testnet coins. Find a Bitcoin testnet faucet and send yourself some coins (you can find an address in the Bitcoin Core client).</p>
-
-<p>The coins will only show up in the Bitcoin Core client application when the blockchain download has caught up, so wait for it to finish.</p>
+<p>Start the Bitcoin Core client. The application icon should be green instead of orange. The green icon indicates it is running in testnet mode. This time the Bitcoin client will download the testnet blockchain. While you wait for the testnet blockchain to download, you can grab some testnet coins. Find a Bitcoin testnet faucet and send yourself some coins (find an address in the Bitcoin Core client). The coins will only show up in the Bitcoin Core client application when the blockchain download has caught up, so wait for it to finish.</p>
 
 <h2>Play</h2>
 
-<p>Time to try it out. Here is a simple cURL command to ask the Bitcoin daemon for some general info using a JSON <abbr title="Remote Procedure Call">RPC</abbr>:</p>
+<p>Time to try it out. Here is a simple cURL command to ask the Bitcoin daemon for some general info using a <abbr title="JavaScript Object Notation">JSON</abbr> <abbr title="Remote Procedure Call">RPC</abbr>:</p>
 
 {% highlight bash %}
 curl --user Ulysseys \
