@@ -4,30 +4,31 @@ layout: null
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet href="{% relbase %}/feeds/pretty-feed.xsl" type="text/xsl"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-US">
-  <link href="{{ 'blog' | absolute_url }}" type="text/html" />
-  <link href="{{ page.url | absolute_url }}" type="application/atom+xml" rel="self" />
-  <updated>{{ site.time | date_to_xmlschema }}</updated>
   <id>{{ page.url | absolute_url }}</id>
   <title>{{ site.name }}</title>
+  <updated>{{ site.time | date_to_xmlschema }}</updated>
   <author>
     <name>{{ site.author }}</name>
   </author>
-  {% for post in site.posts %}
-    {% unless post.link %}
-      <entry>
-        <id>{{ post | absolute_url | remove: 'index.html' }}</id>
-        <title>{{ post.title }}</title>
-        <link href="{{ post | absolute_url | remove: 'index.html' }}" />
-        <link rel="alternate" type="text/html" href="{{ post | absolute_url | remove: 'index.html' }}" />
-        <updated>{{ post.updated | date_to_xmlschema }}</updated>
-        <published>{{ post.date | date_to_xmlschema }}</published>
-        <content type="html" xml:base="{{ post | absolute_url | remove: 'index.html' }}">
-          {{ post.content | xml_escape }}
-        </content>
-        <author>
-          <name>{{ site.author }}</name>
-        </author>
-      </entry>
-    {% endunless %}
+  <link href="{{ page.url | absolute_url }}" type="application/atom+xml" rel="self" />
+  <link href="{{ 'blog' | absolute_url }}" type="text/html" />
+  {% for post in site.posts limit: 10 %}
+    <entry>
+      <id>{{ post | absolute_url | remove: 'index.html' }}</id>
+      <title type="text">{{ post.title }}</title>
+      <link href="{{ post | absolute_url | remove: 'index.html' }}" />
+      <link rel="alternate" type="text/html" href="{{ post | absolute_url | remove: 'index.html' }}" />
+      <published>{{ post.date | date_to_xmlschema }}</published>
+      <updated>{{ post.updated | date_to_xmlschema }}</updated>
+      {% if post.description %}
+        <summary type="text">{{ post.description }}</summary>
+      {% endif %}
+      <content type="html" xml:base="{{ post | absolute_url | remove: 'index.html' }}">
+        {{ post.content | xml_escape }}
+      </content>
+      <author>
+        <name>{{ site.author }}</name>
+      </author>
+    </entry>
   {% endfor %}
 </feed>
