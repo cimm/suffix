@@ -1,15 +1,16 @@
 ---
-layout:  post
-title:   Form submit in a Rails functional test
-date:    2010-06-27 01:22:05
-updated: 2010-09-23 21:57:08
+layout:       post
+title:        Form submit in a Rails functional test
+date:         2010-06-27 01:00:00
+updated:      2022-05-05 17:00:00
+description: Getting started with functional tests in Ruby on Rails.
 ---
 
-<p>I’m new to testing and documentation for the built-in Rails testing seems scarce so I'll write down what I learn in the process&hellip; there may be &mdash; and probably are &mdash; better ways to do this.</p>
+<p>I’m new to testing and documentation for the built-in Rails testing seems scarce so I’ll write down what I learn in the process.</p>
 
 <h2>Submitting a form in a test</h2>
 
-<p>In a functional test you test the controller. A controller is responsible for the incoming requests and the response with a rendered view. If you want to test the creation of an object you'll need a way to fill the form and send the data to the controller.</p>
+<p>In a functional test you test the controller. A controller is responsible for the incoming requests and the response with a rendered view. If you want to test the creation of an object you’ll need a way to fill the form and send the data to the controller.</p>
 
 <p>Imagine the following functional test to create new articles for our blog (example in Rails 3):</p>
 
@@ -27,9 +28,9 @@ class ArticlesControllerTest < ActionController::TestCase
 end
 {% endhighlight %}
 
-<p>As this test is in the articles_controller_test.rb file Rails knows to call the article create action with a POST request. The controller will handle the request and will (normally) render or redirect to a new page with a flash message, this we can test.</p>
+<p>As this test is in the articles_controller_test.rb file Rails knows to call the article create action with a POST request. The controller will handle the request and will render or redirect to a new page with a flash message, this we can test.</p>
 
-<p>The first line is key here. It sends the parameters in the form (well, the ones you choose) to the controller. The second line assigns the article instance variable. The next lines are some assertions I added to test if the request succeeded, add at will.</p>
+<p>The first line is key here. It sends the parameters in the form to the controller. The second line assigns the article instance variable. The next lines are some assertions I added to test if the request succeeded, add at will.</p>
 
 <h2>More resources</h2>
 

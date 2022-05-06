@@ -1,34 +1,35 @@
 ---
-layout:  post
-title:   Google Social Graph in RoR
-date:    2008-03-03 00:07:00
-updated: 2008-05-20 10:45:44
+layout:      post
+title:       Google Social Graph
+date:        2008-03-03 00:00:00
+updated:     2022-05-13 15:00:00
+description: Building a social graph with Ruby on Rails Google’s Social Graph API.
 ---
 
-<p>Have a look at my social graph in the sidebar on the <a href="../../about" title="About Suffix">about</a> page. It shows a bunch of links to websites elsewhere on the web that are loosely related to me (eg. my LinkedIn profile or Flickr photos) or my “friends”. These links are automatically collected based on <a href="https://gmpg.org/xfn/" title="XHTML Friends Network">XFN</a> and <abbr title="Friend of a Friend">FOAF</abbr> data with the Google Social Graph <abbr title="Application Programming Interface">API</abbr>.</p>
+<p>Check the social graph in the sidebar on the <a href="../../about" title="About Suffix">about</a> page (the website has been redesigned and the sidebar has been removed now). It shows a bunch of links to websites elsewhere that are loosely related to me, my LinkedIn profile or Flickr photos for example, or websites of friends. These links are automatically collected based on <a href="https://gmpg.org/xfn/" title="XHTML Friends Network">XFN</a> and <abbr title="Friend of a Friend">FOAF</abbr> data via the Google Social Graph <abbr title="Application Programming Interface">API</abbr>.</p>
 
-<h2>What?</h2>
+<h2>A Social Graph</h2>
 
-<p>A <a href="https://en.wikipedia.org/wiki/Social_graph" title="Social graph on Wikipedia">social graph</a> consists of who an individual is connected to based on the type of connections. In the internet world people use XFN and FOAF to describe their connections with other peoples websites. These websites can be other websites of myself (such as my Flickr photo page) or a website of a friend of mine.</p>
+<p>A <a href="https://en.wikipedia.org/wiki/Social_graph" title="Social graph on Wikipedia">social graph</a> consists of who and how an individual is connected to. In the internet world people use XFN and FOAF to describe their connections with other people’s websites. These websites can be my other websites (such as my Flickr photo page) or a website of a friend of mine.</p>
 
 {% highlight html %}
 <a href="http://fousa.be" rel="friend met">Jelle</a>
 <a href="https://flickr.com/photos/schoeters" rel="me">My photos</a>
 {% endhighlight %}
 
-<p>The previous 2 XFN examples describe my connections with <a class="h-card" href="http://www.fousa.be" rel="friend met">Jelle Vandebeeck</a>’s website, a friend of mine, and my Flickr photo page. Now, I’m not the only one using this, thousands of links (blogs, LinkedIn profiles, Twitter profiles, etc.) have been marked up in this way. Wouldn’t it be nice when we could visualize all these online connections?</p>
+<p>The XFN examples above describe my connection to <a class="h-card" href="http://www.fousa.be" rel="friend met">Jelle Vandebeeck</a>’s website, a friend of mine, and my Flickr photo page. Now, I’m not the only one using this, thousands of links (blogs, LinkedIn profiles, Twitter profiles, etc.) have been marked up in this way. What if we could visualize all these online connections?</p>
 
-<p>Google recently released their <a href="https://web.archive.org/web/20120128111928/http://code.google.com/apis/socialgraph/" title="Google Social Graph API">Social Graph API</a> which crawls the Google index for all XFN and FOAF enabled links based on a list of URL’s. This returns a <abbr title="JavaScript Object Notation">JSON</abbr> response with all these links and the connection types associated with it. As the API is using the Google index you have access to a huge amount of data in a very fast way. On the  downside the correctness of the data depends on the freshness of the Google index. Today my Twitter profile link still shows up in the results even though I removed my account a few months ago and the links in my previous blog post aren’t found yet.</p>
+<p>Google released the <a href="https://web.archive.org/web/20120128111928/http://code.google.com/apis/socialgraph/" title="Google Social Graph API">Social Graph API</a> which crawls their index for all XFN and FOAF enabled links. Their API returns a <abbr title="JavaScript Object Notation">JSON</abbr> response with all these links and the connection types associated with it. Since it uses the Google index you have fast access to massive amounts of data. The correctness of the data depends on the freshness of the Google index of course. My Twitter profile link still shows up in the results even though I removed my account a few months ago and the links in my earlier blog post aren’t included yet.</p>
 
-<h2>Ruby on Rails implementation</h2>
+<h2>Ruby on Rails Implementation</h2>
 
-<p>Let’s have a look at the Ruby on Rails code to build our own social graph. First you’ll need the JSON gem to parse the response from Google (the may be different in Rails 2.x, I didn’t check).</p>
+<p>How do we build our own social graph in Ruby on Rails? You’ll need the JSON gem to parse the Google response (might be included in Rails 2, not sure).</p>
 
 {% highlight html %}
 gem install json
 {% endhighlight %}
 
-<p>Great, now lets ask Google for our social graph. I built an array with all the pages on this blog but for the sake of the example I will use a static array with some sample links.</p>
+<p>Next, we ask Google for our social graph. This builds an array with all the pages on a webpage.</p>
 
 {% highlight ruby %}
 require 'open-uri'
@@ -48,22 +49,22 @@ end
 graph.uniq!
 {% endhighlight %}
 
-<p>At the end we remove the duplicate URL’s and there you have it, an array with all you XFN and FOAF friends linking to the given URL’s. You can play around with the 3 parameters at the end of the Google URL:</p>
+<p>We remove the duplicates at the end and there you have it, an array with all your XFN and FOAF friends linking to the given URLs. You can play with the 3 parameters at the end of the Google URL:</p>
 
 <table summary="List of possible URL parameters and their values">
   <tr>
     <th>fme</th>
     <td>true, false, 1 or 0</td>
-    <td>Follow the ‘me’ links found on the given URL’s.</td>
+    <td>Follow the ‘me’ links found on the given URL.</td>
   </tr>
   <tr>
     <th>edi</th>
     <td>true, false, 1 or 0</td>
-    <td>Return a list with pages linking <strong>to</strong> the given URL’s.</td>
+    <td>Return a list with pages linking to the given URL.</td>
   </tr>
   <tr>
     <th>edo</th>
     <td>true, false, 1 or 0</td>
-    <td>Return a list with pages linked <strong>from</strong> the given URL’s.</td>
+    <td>Return a list with pages linked from the given URL.</td>
   </tr>
 </table>

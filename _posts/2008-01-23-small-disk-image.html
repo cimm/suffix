@@ -1,21 +1,22 @@
 ---
-layout:  post
-title:   Create a small disk image
-date:    2008-01-23 22:26:52
-updated: 2008-01-23 22:29:51
+layout:      post
+title:       Small disk images
+date:        2008-01-23 22:00:00
+updated:     2022-05-13 21:00:00
+description: Create even smaller Mac OS X disk images via the command line.
 ---
 
-<p>I needed a small disk image (a .dmg file) for the Lightroom <a href="../lightroom-iphoto-export/" title="Lightroom to iPhoto export">export plugin</a> I wrote earlier but for some reason the built-in “Disk Utility” program in Mac OS X Leopard does not allow you to create a disk image smaller than 10 <abbr title="megabyte">MB</abbr>. Sure, you can select a custom size but the tool changes it back to a minimum of 10 MB with the following message:</p>
+<p>I needed a small disk image (a .dmg file) for the Lightroom <a href="../lightroom-iphoto-export/" title="Lightroom to iPhoto export">export plugin</a> I wrote earlier but for some reason the built-in “Disk Utility” program in Mac OS X Leopard doesn’t allow me to create a disk image smaller than 10 <abbr title="megabyte">MB</abbr>. Sure, you can select a custom size, but the tool changes it back to a minimum of 10 MB with the following message:</p>
 
 <blockquote>The image size was changed to 10 MB because that is the minimum image size.</blockquote>
 
-<p>I have no idea why it says that because you <strong>can</strong> make smaller disk images, just not via the Disk Utility program. Fire up “Terminal” and see for yourself. The following command creates a disk image in HFS+ format with a size of only 600 <abbr title="kilobyte">KB</abbr>:</p>
+<p>I have no idea why it says that because you can make smaller disk images, just not via the Disk Utility program. Fire up “Terminal” and see for yourself. The following command creates a disk image in HFS+ format with a size of only 600 <abbr title="kilobyte">KB</abbr>:</p>
 
 {% highlight bash %}
 hdiutil create -size 600k myImage.dmg -srcfolder myFolder/ -fs HFS+
 {% endhighlight %}
 
-<p>The size can be specified with <samp>-size &lt; ?? | ??b | ??k | ??m | ??g | ??t | ??p | ??e &gt;</samp> but the minimum disk image size with this method is still 512 KB. I don’t understand this minimum size as the created disk image is only as large as the data it contains. When I use this method to create a disk image with an empty folder the resulting image is only 10 KB, not 600 KB as specified in with the “-size” option.</p>
+<p>The size can be specified with <samp>-size &lt; ?? | ??b | ??k | ??m | ??g | ??t | ??p | ??e &gt;</samp> but the smallest disk image size with this method is still 512 KB. I don’t understand this minimum size as the created disk image is only as large as the data it holds. When I use this method to create a disk image with an empty folder the resulting image is only 10 KB, not 600 KB as specified in with the “-size” option.</p>
 
 <h2>Other hdiutil uses</h2>
 

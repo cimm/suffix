@@ -1,15 +1,16 @@
 ---
-layout:  post
-title:   Installing ImageMagick &amp; RMagick for Ruby on Rails
-date:    2007-10-17 00:05:30
-updated: 2010-09-12 10:48:23
+layout:      post
+title:       Installing ImageMagick &amp; RMagick for Ruby on Rails
+date:        2007-10-17 00:00:00
+updated:     2022-05-13 22:00:00
+description: Getting up and running with RMagick on Mac OS X.
 ---
 
-<p class="h-card"><strong>Update:</strong> Check out this great <a href="https://web.archive.org/web/20100709123044/http://onrails.org/articles/2009/09/04/rmagick-from-source-on-snow-leopard/" title="RMagick (from source) on Snow Leopard">installation script</a> by <span class="p-name">Solomon White</span> if you are running Snow Leopard. It worked perfect here.</p>
+<p class="h-card"><strong>Update:</strong> Check this <a href="https://web.archive.org/web/20100709123044/http://onrails.org/articles/2009/09/04/rmagick-from-source-on-snow-leopard/" title="RMagick (from source) on Snow Leopard">installation script</a> by <span class="p-name">Solomon White</span> if you are running Snow Leopard. It worked perfectly.</p>
 
-<p><a href="http://www.imagemagick.org/" title="ImageMagic: Convert, edit and compose images">ImageMagick</a> is a command line utility to convert, edit and compose images that is typically used in combination with a programming language. The Ruby interface is called <a href="https://rmagick.github.io/" title="Graphics Processing for Ruby and Ruby on Rails">RMagick</a>. The RMagick interface makes image editing in Ruby painless, if you get it installed that is. <a href="https://en.wikipedia.org/wiki/GraphicsMagick" title="GraphicsMagick image processing system">GraphicsMagick</a> is another image editor that can be used in combination with RMagick but I didn’t look into that.</p>
+<p><a href="http://www.imagemagick.org/" title="ImageMagic: Convert, edit and compose images">ImageMagick</a> is a command line utility to convert, edit and compose images that is typically used in combination with a programming language. The Ruby interface is called <a href="https://rmagick.github.io/" title="Graphics Processing for Ruby and Ruby on Rails">RMagick</a>. The RMagick interface makes image editing in Ruby painless, if you get it installed that is. <a href="https://en.wikipedia.org/wiki/GraphicsMagick" title="GraphicsMagick image processing system">GraphicsMagick</a> is another image editor that can be used in combination with RMagick but I didn’t investigate.</p>
 
-<p>There are numerous ways to get ImageMagick and RMagic installed on Mac OS X and I don’t even remember all the different ways I tried but the following method seems to work. MacPorts may install versions of the software that are out-of-date, so check this first if that’s an important issue for you.</p>
+<p>There are numerous ways to get ImageMagick and RMagick installed on Mac OS X and, I don’t even remember all the different ways I tried but the following method seems to work. MacPorts may install versions of the software that are out-of-date, so check this first if that’s critical for you.</p>
 
 <h2>MacPorts</h2>
 
@@ -31,14 +32,14 @@ sudo /opt/local/bin/port install rb-rmagick
 
 <h2>Gem</h2>
 
-<p>Next we’ll need the RMagick gem as well. <strong>Note:</strong> Installing the RMagick gem worked find on my old <abbr title="PowerPC">PPC</abbr> Mac but didn’t work on the newer i386 (Intel) as the RMagick gem is built with the PPC headers. To install the gem set your ARCHFLAGS to i386 first. Here is how:</p>
+<p>Next, we’ll need the RMagick gem as well. Installing the RMagick gem worked fine on my old <abbr title="PowerPC">PPC</abbr> Mac but didn’t work on the newer i386 (Intel) as the RMagick gem is built with the PPC headers. To install the gem set your ARCHFLAGS to i386 first. Here is how:</p>
 
 {% highlight bash %}
 export ARCHFLAGS='-arch i386'
 gem install rmagick
 {% endhighlight %}
 
-<p>As my firend <span class="h-card">Jelle Vandebeek</span> points out you may want to add the local bin folder to your PATH. This will make it easier to run RMagick stuff that's installed in that directory without the need to specify the whole path each time. Add the following line to your .bash_login file and restart Terminal.</p>
+<p>As my friend <span class="h-card">Jelle Vandebeek</span> points out you may want to add the local bin folder to your PATH. This will make it easier to run RMagick stuff that's installed in that directory without the need to specify the whole path each time. Add the following line to your .bash_login file and restart Terminal.</p>
 
 {% highlight bash %}
 vi ~/.bash_login
@@ -47,7 +48,7 @@ export PATH="/opt/local/bin/:$PATH"
 
 <h2>Sample conversion</h2>
 
-<p>Once this is done we can run a quick Ruby script to check if the installation went smoothly. Create the following create_thumb.rb script:</p>
+<p>Once this is done, we can run a quick Ruby script to check if the installation went smoothly. Create the following create_thumb.rb script:</p>
 
 {% highlight ruby %}
 #!/usr/bin/env ruby

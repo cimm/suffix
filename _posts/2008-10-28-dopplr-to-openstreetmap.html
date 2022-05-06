@@ -1,17 +1,18 @@
 ---
-layout:  post
-title:   From Dopplr to OpenStreetMap
-date:    2008-10-28 18:06:58
-updated: 2008-10-28 18:13:36
+layout:      post
+title:       From Dopplr to OpenStreetMap
+date:        2008-10-28 18:00:00
+updated:     2022-05-06 13:00:00
+description: Generate an image of a map based on your current Dopplr location with Ruby.
 ---
 
-<p>In one of my <a href="../generated-maps/" title="Generated maps with Ruby on Rails">previous posts</a> I showed how to dynamically generate a map from a set of coordinates in Ruby on Rails (like the map on top of this page). This is nice but still required me to manually update my location each time, not very useable. I have a Dopplr account where I enter all my future trips so it feels stupid to enter the same information again on my own website. We can do better than that.</p>
+<p>In one of my <a href="../generated-maps/" title="Generated maps with Ruby on Rails">earlier posts</a> I explained how to dynamically generate a map from a set of coordinates in Ruby on Rails (there used to be a dynamic map in a previous design of this site). This still requires me to manually update my location, not very useable. I have a Dopplr account where I enter all my future trips. I could simply get my location from them.</p>
 
-<p>Here is the idea: a script that checks my travel plans on Dopplr for to following day and creates a new map of that location if needed. Also: a perfect excuse to have a look at the Rake build language which I had never used.</p>
+<p>A script that checks my travel plans on Dopplr for the following day and creates a new map of that location if needed. Also: a perfect excuse to have a look at the Rake build language which I had never used.</p>
 
 <h2>Dopplr <abbr title="Application Programming Interface">API</abbr></h2>
 
-<p>The Dopplr <abbr title="Application Programming Interface">API</abbr> includes a Ruby client which makes our life easier, download the ‘Improved Ruby Client’ in your <samp>&lt;yourapp&gt;/lib</samp> folder so we can use it later on.</p>
+<p>The Dopplr API includes a Ruby client which makes our life easier, download the ‘Improved Ruby Client’ in your <samp>&lt;yourapp&gt;/lib</samp> folder so we can use it later.</p>
 
 <h2>Tokens and sessions</h2>
 
@@ -25,12 +26,12 @@ updated: 2008-10-28 18:13:36
   <samp>&gt;&gt; d = Dopplr.new<br />
   &gt;&gt; d.set_token("<strong>&lt;token_hash&gt;</strong>")<br />
   &gt;&gt; d.upgrade_to_session</samp><br /></li>
-  <li>Copy the result - this is your session key - and keep it somewhere safe.</li>
+  <li>Copy the result—this is your session key—and keep it somewhere safe.</li>
 </ol>
 
 <h2>Rake task</h2>
 
-<p>I wanted something outside this website that could run automatically, even when the website wasn’t opened. Rake offers you a way to do this: you can build and run scripts independently from the rest of the application while using the same environment as the application.</p>
+<p>I wanted something outside this website that could run automatically, even when the website wasn’t open. Rake offers you a way to do this: you can build and run scripts independently from the rest of the application while using the same environment as the application.</p>
 
 <p>Here is a simplified version of the task I created. Copy this and save it in your <samp>&lt;yourapp&gt;/lib/tasks</samp> folder as <samp>map.rake</samp>.</p>
 
@@ -81,6 +82,6 @@ end
 
 <p>Almost done. We can now create a new map whenever we want on any given date. Let’s run this script each night at 4 in the morning. Add the following line to your crontab:</p>
 
-<p><samp>0 4 * * * cd <strong>&lt;app_path&gt;</strong> &amp;&amp; /usr/local/bin/rake map:update RAILS_ENV=production</samp></p>
+<p><samp>0 4 * * * cd <strong>&lt;app_path&gt;</strong> && /usr/local/bin/rake map:update RAILS_ENV=production</samp></p>
 
-<p>That’s it. The script will now look for your current location in your Dopplr account and create a map based on that location.</p>
+<p>The script will now look for your current location in your Dopplr account and create a map based on that location.</p>

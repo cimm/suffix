@@ -1,29 +1,28 @@
 ---
-layout:  post
-title:   Shuffle an array in Ruby
-date:    2010-04-08 09:49:48
-updated: 2011-02-02 19:47:32
+layout:      post
+title:       Shuffle an array in Ruby
+date:        2010-04-08 09:00:00
+updated:     2022-05-06 10:00:00
+description: A quick look at the ‘shuffle’, ‘rand’ and ‘sample’ array methods in Ruby.
 ---
 
-<p>I needed to randomly sort the elements in an array in the Ruby on Rails project I'm working on.</p>
-
-<p>Turns out these things are just way too easy in Ruby:</p>
+<p>I needed to randomly sort the elements in a Ruby on Rails array for a project I’m working on. Turns out these things are just way too easy in Ruby:</p>
 
 {% highlight ruby %}
 [1, 2, 3].shuffle
 >> [3, 1, 2]
 {% endhighlight %}
 
-<p>Credits to <span class="vcard"><a class="url fn" href="https://web.archive.org/web/20161014104534/http://www.tomklaasen.net/">Tom Klaasen</a></span> for improving the more complex snippet I found before.</p>
+<p>Credits to <span class="vcard"><a class="url fn" href="https://web.archive.org/web/20161014104534/http://www.tomklaasen.net/">Tom Klaasen</a></span> to improve the more complex snippet I had earlier.</p>
 
-<p>Or you can use the rand method when you only need one single element and don't need to shuffle the whole array in Ruby 1.8:</p>
+<p>There is also a ‘rand’ method when you only need a single element and don’t need to shuffle the whole array in Ruby 1.8.</p>
 
 {% highlight ruby %}
 [1, 2, 3].rand
 >> 3
 {% endhighlight %}
 
-<p>And for Ruby 1.9:</p>
+<p>Or in Ruby 1.9.</p>
 
 {% highlight ruby %}
 [1, 2, 3].sample

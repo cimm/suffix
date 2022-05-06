@@ -1,8 +1,9 @@
 ---
 layout:          post
 title:           Lightroom to iPhoto export
-date:            2007-12-19 15:32:49
-updated:         2011-02-12 17:09:20
+date:            2007-12-19 15:00:00
+updated:         2022-05-11 21:00:00
+description:     An Adobe Lightroom to iPhone export plugin for Mac OS X.
 cover_image_url: ../../assets/lightroom.gif
 ---
 
@@ -12,7 +13,7 @@ cover_image_url: ../../assets/lightroom.gif
 
 <p>The Lightroom to iPhoto plugin exports the selected photos from Adobe Lightroom to iPhoto and creates an album with the exported photos if needed.</p>
 
-<p>Why would one like to duplicate photos from Lightroom in iPhoto? Well, Lightroom is my main photo repository but I miss the tight integration with Mac OS X like iPhoto has. iPhoto makes it easy to browse your photo library from different applications (like Finder and Mail) or export the photos to external devices (like the iPhone or iPod), Ligthroom doesn't.</p>
+<p>Why would one like to duplicate photos from Lightroom in iPhoto? Well, Lightroom is my main photo repository, but I miss the tight integration with Mac OS X like iPhoto has. iPhoto makes it easy to browse your photo library from different applications (like Finder and Mail) or export the photos to external devices (like the iPhone or iPod), Lightroom doesn't.</p>
 
 <p>The plugin was tested with Adobe Photoshop Lightroom 1.3.1 and iPhoto ’08 7.1.1, other versions may work but I didn’t check.</p>
 
@@ -41,13 +42,13 @@ cover_image_url: ../../assets/lightroom.gif
 
 <h2>Uninstalling</h2>
 
-<p>To uninstall the plugin you just need to delete it from the “Modules” folder or move it to where Lightroom won’t find it.</p>
+<p>Simply delete it from the “Modules” folder to uninstall.</p>
 
 <h2>For developers</h2>
 
-<p>All Adobe Lightroom plugins are written in <a href="http://www.lua.org/" title="A light-weight, embeddable scripting language">Lua</a>. It’s not possible to address the iPhoto API directly from Lua as the API is only available for AppleScript. The plugin exports the photos to a temporary location with Lua and triggers an AppleScript that imports the photos in iPhoto. The workaround is ugly for various reasons (an intermediate file is used for the Lua - AppleScript communication, the user sees the AppleScript popping up when exporting, etc.) so if anyone knows a decent Lua to AppleScript bridge it would be nice to know.</p>
+<p>All Adobe Lightroom plugins are written in <a href="https://www.lua.org/" title="A light-weight, embeddable scripting language">Lua</a>. It’s not possible to address the iPhoto API directly from Lua as the API is only available for AppleScript. The plugin exports the photos to a temporary location with Lua and triggers an AppleScript that imports the photos in iPhoto. The workaround is ugly for several reasons (an intermediate file is used for the Lua - AppleScript communication, the user sees the AppleScript popping up when exporting, etc.) so if anyone knows a decent Lua to AppleScript bridge it would be nice to know.</p>
 
-<p>It’s also the very first time I used Lua so feel free to optimize the code where needed. I’m planning to add the following when I can:</p>
+<p>It’s also the very first time I used Lua so feel free to perferc the code where needed. I’m planning to add the following when I can:</p>
 
 <ul>
   <li>Get rid of the Lua to AppleScript overhead.</li>
@@ -63,6 +64,4 @@ cover_image_url: ../../assets/lightroom.gif
 
 <p>You can fork the source code from the <a href="https://github.com/cimm/iphotoexportservice" rel="me" title="Github repository for iPhotoExportService plugin">Github repository</a>.</p>
 
-<p><strong>Update 1:</strong> I haven’t tested it myself but it should work in Lightroom 2.</p>
-
-<p><strong>Update 2:</strong> The download link has been updated with the new version which is Lightroom 3.x and iPhoto ’11 (9.x) compatible.</p>
+<p>Update: The download link has been updated with the latest version which is Lightroom 3.x and iPhoto ’11 (9.x) compatible.</p>

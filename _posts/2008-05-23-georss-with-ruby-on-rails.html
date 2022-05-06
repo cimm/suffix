@@ -1,27 +1,28 @@
 ---
-layout:  post
-title:   GeoRSS with Ruby on Rails
-date:    2008-05-23 17:00:46
-updated: 2008-05-23 18:25:04
+layout:      post
+title:       GeoRSS with Ruby on Rails
+date:        2008-05-23 17:00:00
+updated:     2022-05-13 13:00:00
+description: Adding GPS coordinates to an RSS feed.
 ---
 
-<p>I keep the latitude and longitude for each of these blog post (as you can see in the right hand column). My blog’s <abbr title="Really Simple Syndication">RSS</abbr> feed is generated from my posts table. Until now it was a plain simple RSS feed but why not combine the 2 and enhance my RSS feed with the coordinates? They are there anyway and GeoRSS is widely adopted these days.</p>
+<p>I keep the latitude and longitude for each of my posts. My blog’s <abbr title="Really Simple Syndication">RSS</abbr> feed is generated from the list of posts. Until now it was a plain simple RSS feed but why not enhance the RSS feed with the post’s coordinates? They are there anyway and GeoRSS is widely adopted these days.</p>
 
 <h2>What is GeoRSS?</h2>
 
-<p><a href="http://georss.org" title="Geographically Encoded Objects for RSS feeds">GeoRSS</a> is a way to encode location information in RSS feeds. This can be as simple as adding one small <abbr title="Extensible Markup Language">XML</abbr> element to your existing feed. GeoRSS feeds are designed to be consumed by geographic software such as map generators and by doing so your feed can be used in new and different ways: pinpointing on a may, finding other posts close to this one, etc.</p>
+<p><a href="http://georss.org" title="Geographically Encoded Objects for RSS feeds">GeoRSS</a> is a way to encode location information in RSS feeds. This can be as simple as adding one small <abbr title="Extensible Markup Language">XML</abbr> element to your existing feed. GeoRSS feeds are designed to be consumed by geographic software such as map generators and by doing so your feed can be used in new and diverse ways: pinpointing on a map, finding other posts close to this one, etc.</p>
 
 <h2>What we need</h2>
 
-<p class="h-card">Generating the actual RSS feed is not in the scope of this article, we'll only add location awareness to our existing feed. Please head over to <span class="p-name">Larry Myers</span>’ <a href="https://web.archive.org/web/20080521213118/http://myersds.com:80/notebook/2006/05/11/how_to_generate_rss_feeds_with_rails" title="How To Generate RSS Feeds with Rails" class="u-url">How To Generate RSS Feeds with Rails</a> article if you don’t generate your feed yet.</p>
+<p class="h-card">Generating the feed is out of scope, but we’ll add location awareness to our existing feed. See <span class="p-name">Larry Myers</span>’ <a href="https://web.archive.org/web/20080521213118/http://myersds.com:80/notebook/2006/05/11/how_to_generate_rss_feeds_with_rails" title="How To Generate RSS Feeds with Rails" class="u-url">How To Generate RSS Feeds with Rails</a> article to get started.</p>
 
-<p>We’ll need to add one small XML element to each item in our feed with the latitude and longitude for the post:</p>
+<p>We’ll need to add a single XML element to each item of the feed with the latitude and longitude coordinates for each post.</p>
 
 {% highlight xml %}
-<georss:point>50.8668 4.69714</georss:point>
+<georss:point>50.8803605 4.7004394</georss:point>
 {% endhighlight %}
 
-<p>In Ruby on Rails this looks like the following (where latitude and longitude are 2 fields in our posts table). The syntax looks a little strange as we need a way to add the ‘georss:point’ element and Ruby doesn’t like the colon in there (it indicates a <a href="https://ruby-doc.org/core-2.2.0/Symbol.html" title="Symbol class definition">symbol</a>).</p>
+<p>In Ruby on Rails the syntax looks a little strange as we need a way to add the ‘georss:point’ XML element and Ruby doesn’t like the colon in there (see Ruby <a href="https://ruby-doc.org/core-2.2.0/Symbol.html" title="Symbol class definition">symbols</a>).</p>
 
 {% highlight ruby %}
 xml.georss :point do
@@ -29,7 +30,7 @@ xml.georss :point do
 end
 {% endhighlight %}
 
-<p>Great, now we only need to add the GeoRSS namespace at the top of our feed to tell the feed parsers what we mean.</p>
+<p>Next, we add the GeoRSS namespace to the top of the feed to tell the feed parsers what we mean.</p>
 
 {% highlight ruby %}
 xml.rss (:version => "2.0", "xmlns:georss" => "http://www.georss.org/georss")
@@ -37,7 +38,7 @@ xml.rss (:version => "2.0", "xmlns:georss" => "http://www.georss.org/georss")
 
 <h2>My location aware RSS feed</h2>
 
-<p>The full view template should now resembles something like this:</p>
+<p>The full view template should now resemble the following:</p>
 
 {% highlight ruby %}
 xml.instruct! :xml, :version=>"2.0"
@@ -64,4 +65,4 @@ xml.rss (:version => "2.0", "xmlns:georss" => "http://www.georss.org/georss") {
 }
 {% endhighlight %}
 
-<p>That’s it. Not too exciting at first but try your RSS feed <abbr title="Uniform Resource Locator">URL</abbr> in Google Maps and see how easy it is to pinpoint each location on a map.</p>
+<p>That’s it. Not too exciting at first but enter your RSS feed <abbr title="Uniform Resource Locator">URL</abbr> in Google Maps and see how easy it is to mark each post on a map!</p>

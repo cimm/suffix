@@ -1,11 +1,12 @@
 ---
-layout:  post
-title:   Drupal multi-site without subdomains
-date:    2008-10-14 09:30:14
-updated: 2009-01-28 16:55:55
+layout:      post
+title:       Drupal multi-site without subdomains
+date:        2008-10-14 09:00:00
+updated:     2022-05-09 15:00:00
+description: Setting up a multi-tenant Drupal using subdirectories instead of subdomains.
 ---
 
-<p><a href="https://www.drupal.org/" title="Official Drupal website">Drupal</a> supports multi-sites, this means you can install Drupal once and use it for multiple websites (also known as single codebase). This kind of setup will make it easier to maintain your Drupal installation or when you want to upgrade to a newer version as you only need to maintain one codebase. The most common setup seems the subdomain aproach: each website uses its own subdomain. Suppose you want websites for different projects. The layouts and requirements may be different but they will all run on Drupal. The URL’s will look like this:</p>
+<p><a href="https://www.drupal.org/" title="Official Drupal website">Drupal</a> supports multi-sites, this means you can install Drupal once and use it for multiple websites (also known as single codebase). This kind of setup will make it easier to maintain your Drupal installation or when you want to upgrade to a newer version as you are only supporting a single codebase. The most common setup is the subdomain approach: each website has its own subdomain. Suppose you want websites for different projects. The layouts and requirements may be different, but they will all run on Drupal. The URL’s will look like this:</p>
 
 <samp>http://project1.example.com<br />http://project2.example.com</samp>
 
@@ -13,7 +14,7 @@ updated: 2009-01-28 16:55:55
 
 <samp>http://www.example.com/project1<br />http://www.example.com/project2</samp>
 
-<p>It’s a little harder (really only a little) to find how to get this done, let’s have a look.</p>
+<p>It’s a little harder to find how to get this done, let’s have a look.</p>
 
 <h2>Install Drupal</h2>
 
@@ -28,7 +29,7 @@ updated: 2009-01-28 16:55:55
 <h2>Add another instance</h2>
 
 <ol>
-  <li>Create a second database and call it ‘<samp>project2</samp>’. You can use the same user as for the first database but it’s obvious that this would be a very bad choice for security reasons.</li>
+  <li>Create a second database and call it ‘<samp>project2</samp>’. You can use the same user as for the first database but it’s obvious that this would be a bad choice for security reasons.</li>
   <li>Make a copy of the database for the second project (add the -u and -p parameters twice if needed).<br />
   <samp>mysqldump --opt project1 | mysql -h localhost project2</samp></li>
   <li>Now create the folder structure in your <samp>&lt;docroot&gt;/sites</samp> directory as explained on the <a href="https://www.drupal.org/node/53705" title="Setup of /sites directory for multi-site">Drupal website</a>. Be careful not to call the directories ‘example1.com’ and ‘example2.com’ as explained in the document but:<br />

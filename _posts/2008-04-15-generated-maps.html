@@ -1,36 +1,35 @@
 ---
-layout:  post
-title:   Generated maps with Ruby on Rails
-date:    2008-04-15 18:14:57
-updated: 2010-09-23 21:48:21
+layout:      post
+title:       Generated maps with Ruby on Rails
+date:        2008-04-15 18:00:00
+updated:     2022-05-12 13:00:00
+description: Generating an image of a map with my current location.
 ---
 
-<p>It’s all about the map in this sites header today. The header background shows a dynamically generated map of the coordinates shown in the right top corner, or my last recorded place. I can select my current location (latitude and longitude) and the header background map is updated accordingly. So how exactly does this work?!</p>
+<p>This post is all about the map in this site’s header (the design has since been updated). The header background shows a dynamically generated map of the coordinates shown in the right top corner, or my last recorded place. I can select my current location (latitude and longitude) and the header background map updates accordingly. How does this work?</p>
 
 <h2>No Google or Yahoo! maps?</h2>
 
-<p>I integrated Yahoo! Maps first. The Yahoo! Maps look nice, the <abbr title="Application Programming Interface">API</abbr> is easy to use and well documented but the problem is that you are only allowed to play with these maps within limits placed on you by the APIs terms and conditions. Below are some extracts from the Yahoo! Maps API Terms of Use:</p>
+<p>I integrated Yahoo! Maps first. Their maps look nice, the <abbr title="Application Programming Interface">API</abbr> is easy to use and well documented, but you are only allowed to play within the limits of the API’s terms and conditions. Example from the Yahoo! Maps API Terms of Use:</p>
 
 <ul>
-  <li>You understand and agree that you must retain the attribution text and links contained within all Yahoo! Maps and Yahoo! Map images without alteration.</li>
-  <li>Your will not store or allow end users to store map imagery, map data or geocoded location information from the Yahoo! Maps APIs for any future use.</li>
+  <li>You understand and agree that you must keep the attribution text and links contained within all Yahoo! Maps and Yahoo! Map images without alteration.</li>
+  <li>You will not store or allow end users to store map imagery, map data or geocoded location information from the Yahoo! Maps APIs for any future use.</li>
 </ul>
 
-<p>I would break these terms as I convert the original image to a grayscale version and store the map on the server for performance reasons so the Yahoo! Maps are out of the question. Google or Yahoo! Maps are great for out of the box functionalities but if you want more freedom you will probably have to look elsewhere (or pay for licenses if possible).</p>
+<p>I would break these terms as I convert the original image to a grayscale version and store the map on the server for performance reasons. Yahoo! Maps are out. Google or Yahoo! Maps are great for a quick map, but if you want more freedom, you will probably have to look elsewhere (or pay for a license).</p>
 
 <h2>OpenStreetMap</h2>
 
-<p>Luckily for us there are other solutions: <a href="https://www.openstreetmap.org/">OpenStreetMap</a> for example. OpenStreetMap is a “wiki style” editable map, made by people like you and me. The content is available under the Creative Commons Attribution-ShareAlike 2.0 license which means anyone can use (and remix) the data as long as you share it with a similar license.</p>
+<p>Luckily for us there are other solutions: <a href="https://www.openstreetmap.org/">OpenStreetMap</a> for example. OpenStreetMap is a “wiki style” editable map, made by people like you and me. The content is available under the Creative Commons Attribution-ShareAlike 2.0 license which means anyone can use (and remix) the data if you share it with a similar license.</p>
 
-<p>This ‘Wikipedia-like’ approach has some drawbacks as well: the map is incomplete and the data is not 100% reliable. On the other side you can correct or complete the map where needed. This may or may not be important for your project but I only needed a nice background image for this website so a general overview of the area is more than sufficient.</p>
+<p>This ‘Wikipedia-like’ approach has some drawbacks as well: the map is incomplete, and the data is not 100% reliable. On the other hand, you can correct or complete the map where needed. This may or may not be important for your project, but I only need a nice background image for this website, so a general overview of the area is more than sufficient.</p>
 
 <p>OpenStreetMap has a RESTfull way to build a map image with a given latitude, longitude, zoom level and image size:</p>
 
 <samp>http://tah.openstreetmap.org/MapOf?lat=&lt;lat&gt;&amp;long=&lt;long&gt;&amp;z=&lt;zoom&gt;&amp;w=&lt;width&gt;&amp;h=&lt;height&gt;&amp;skip_attr=1</samp>
 
-<p>The <code>skip_attr</code> defines if you want to include an <abbr title="OpenStreetMap">OSM</abbr> attirbution image in your map or not.</p>
-
-<h2>Start coding</h2>
+<p>The <code>skip_attr</code> defines if you want to include an <abbr title="OpenStreetMap">OSM</abbr> attribution image in your map or not.</p>
 
 <p>The process flow:</p>
 
@@ -42,7 +41,7 @@ updated: 2010-09-23 21:48:21
 </ol>
 
 <figure>
-  <img src="../../assets/map_flow.gif" alt="Map flow" />
+  <img src="../../assets/map_flow.png" alt="Flow chart with steps to produce the image" />
 </figure>
 
 <p>We’ll use <a href="https://rmagick.github.io/" title="Graphics Processing for Ruby and Ruby on Rails">RMagick</a> and Ruby on Rails to convert the downloaded image to something else so make sure you have this installed first.</p>
@@ -71,5 +70,5 @@ end
 <h2>More resources</h2>
 
 <ul>
-  <li><a href="https://alistapart.com/article/takecontrolofyourmaps/" title="Take Control of Your Maps">Take Control of Your Maps</a> explains how to build you own map stack.</li>
+  <li><a href="https://alistapart.com/article/takecontrolofyourmaps/" title="Take Control of Your Maps">Take Control of Your Maps</a> explains how to build your own map stack.</li>
 </ul>
