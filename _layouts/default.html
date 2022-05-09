@@ -13,7 +13,7 @@
     <link rel="shortcut icon" href="{% relbase %}/assets/favicon.ico" />
     <link rel="alternate" href="{{ page.url | absolute_url | remove: 'index.html' }}" hreflang="en" />
     <link rel="canonical" href="{{ page.url | absolute_url | remove: 'index.html' }}" />
-    <link href="{% relbase %}/feeds/blog.xml" rel="alternate" title="Suffix’s feed" type="application/atom+xml" />
+    <link href="{% relbase %}/feeds/blog.xml" rel="alternate" title="Suffix’s web feed" type="application/atom+xml" />
     <meta property="og:image" content="{{ page.cover_image_url | absolute_url }}" />
     <meta property="og:title" content="{{ page.title }}" />
     <meta property="og:type" content="website" />
@@ -35,7 +35,7 @@
           <li><a href="{% relbase %}/photos/">Photos</a></li>
           <li><a href="{% relbase %}/lego/">LEGO</a></li>
           <li><a href="{% relbase %}/about/" rel="author">About</a></li>
-          <li><a href="{% relbase %}/feeds/blog.xml">RSS</a></li>
+          <li><a href="{% relbase %}/feeds/blog.xml" type="application/atom+xml" title="Suffix’s web feed" href="/feed.atom">RSS</a></li>
         </ul>
       </nav>
     </header>
