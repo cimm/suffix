@@ -8,7 +8,7 @@ description: Personal blog for posting my ramblings, mostly about programming.
   <section typeof="BlogPosting" class="list-item">
     <time datetime="{{ post.date | date_to_xmlschema }}" property="datePublished">{{ post.date | date: "%B %Y" }}</time>
     <h1>
-      <a href="{{ post.slug }}/" property="url">
+      <a href="{{ post.slug }}/" title="{{ post.description }}" property="url">
         <span property="headline">{{ post.title }}</span>
       </a>
     </h1>
