@@ -1,0 +1,22 @@
+---
+layout:      post
+title:       GNOME extensions form the distro’s package manager
+date:        2022-05-23 08:00:00
+updated:     2022-05-23 08:00:00
+description: Installing GNOME extensions via Fedora’s ‘dnf’ instead of Firefox
+---
+
+<p>I always installed GNOME extensions via Firefox. You first install the GNOME shell integration <a href="https://addons.mozilla.org/en-US/firefox/addon/gnome-shell-integration/" title="GNOME Shell Integration addon @ Firefox">Firefox addon</a> after which extensions can be installed from the <a href="https://extensions.gnome.org">GNOME Extensions</a> website. This always felt like an atypical way to install Linux software. <abbr title="Today I Learned">TIL</abbr> GNOME extensions can also be installed via the system’s package manager!</p>
+
+<h2>Fedora</h2>
+
+<p>GNOME extensions can be installed via the package manager and are activated via the accompanying ‘gnome-extensions-app’.</p>
+
+{% highlight bash %}
+dnf install gnome-extensions-app
+dnf install gnome-shell-extension-appindicator
+{% endhighlight %}
+
+<p>Open the GNOME “Extensions” application to enable or disable installed extensions.</p>
+
+<p>If I had read the notification at the top of the GNOME extensions website more carefully, I would have known this years ago. Oops.</p>
