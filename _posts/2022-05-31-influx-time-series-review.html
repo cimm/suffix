@@ -2,8 +2,8 @@
 layout:      post
 title:       Influx Time Series
 date:        2022-05-31 12:00:00
-updated:     2022-05-31 12:00:00
-description: Getting my feed wet with InfluxDB and Telegraf.
+updated:     2022-05-31 21:00:00
+description: Building beautiful dashboards with InfluxDB and Telegraf.
 ---
 
 <figure>
@@ -11,19 +11,20 @@ description: Getting my feed wet with InfluxDB and Telegraf.
     <source type="image/webp" srcset="../../assets/influxdb.webp" />
     <img src="../../assets/influxdb.jpg" property="thumbnailUrl" alt="An InfluxDB dashboard with graphs gauges" />
   </picture>
+  <figcaption>↑ InfluxDB dashboard with my CO2Mini readings.</figcaption>
 </figure>
 
-<p>I have always been fascinated by dashboards. I used to run a <a href="https://dashingdemo.herokuapp.com/sample">Dashing</a> dashboard at one of my earlier jobs and the animated colorful tiles made our application that little more tangible.</p>
+<p>I have always been fascinated by dashboards. I used to run a <a href="https://dashingdemo.herokuapp.com/sample" title="A dashboard framework by Shopify written in Ruby">Dashing</a> dashboard at one of my earlier jobs and the animated colorful tiles made our application that little more tangible.</p>
 
-<p><a href="https://github.com/influxdata/influxdb">InfluxDB</a>, an open-source time series database and dashboard, has nice screenshots so I have been wanting to try kick its tires. Given I already know how to read the CO<sub>2</sub> concentration and temperature from my cheap CO<sub>2</sub> monitor I finally took the time to combine the two in a colorful dashboard.</p>
+<p><a href="https://github.com/influxdata/influxdb" title="A datastore for metrics, events, and real-time analytics">InfluxDB</a>, an open-source time series database and dashboard. The screenshots look nice so I have been wanting to kick its tires. I already read the CO<sub>2</sub> concentration and temperature from my cheap CO<sub>2</sub> monitor so I combined the two in the colorful dashboard shown above.</p>
 
-<p>InfluxDB is the database and dashboard part. It keeps the data in so called ‘buckets’ with a configurable retention policy and has a webUI to easily build beautiful dashboards. New metrics can be stored in InfluxDB via a <abbr title="Hypertext Transfer Protocol">HTTP</abbr> <abbr title="Application Programming Interface">API</abbr>, but the default seems to be via Telegraf, a single no-dependency binary to collect, filter and send metrics to InfluxDB. The lightweight Telegraf agent can easily be installed on the systems you want to collect metrics from.</p>
+<p>InfluxDB is the database and dashboard part. It keeps the data in so called ‘buckets’ with a configurable retention policy and has a webUI to easily build beautiful dashboards. New metrics can be stored in InfluxDB via a <abbr title="Hypertext Transfer Protocol">HTTP</abbr> <abbr title="Application Programming Interface">API</abbr>, but the default seems to be via <a href="https://www.influxdata.com/time-series-platform/telegraf/" title="Metric collection agent for InfluxDB">Telegraf</a>, a single no-dependency binary to collect, filter and send metrics to InfluxDB. The lightweight Telegraf agent is installed on the systems you want to collect metrics from.</p>
 
 <p>I installed NixOS 21.11 with InfluxDB 2.0.8 on an old laptop as a quick test. Disclaimer: all the cool kids are playing with NixOS and this was my first experience with both NixOS and InfluxDB so take the following with a grain of salt.</p>
 
 <h2>InfluxDB</h2>
 
-<p>This could not have been easier. Simply add the ‘influxdb2’ package, enable the service and (optionally) open port 8086 and rebuild NixOS.</p>
+<p>This could not have been easier. Add the ‘influxdb2’ package, enable the service and (optionally) open port 8086.</p>
 
 {% highlight nix %}
 environment.systemPackages = with pkgs; [
@@ -34,12 +35,12 @@ networking.firewall.allowedTCPPorts = [ 8086 ];
 {% endhighlight %}
 <p><em>↑ Adding InfluxDB to NixOS’ configuration.conf</em></p>
 
-<p>A quick ‘nixos-rebuild switch’ and we are good to go. InfluxDB can be configured via the webUI at localhost:8086 (replace ‘localhost’ with the IP address if not on the same machine). Create a new user, organization and a first bucket to store metrics. I added a ‘test’ bucket with a retention policy of a few days and a ‘home’ one with a longer retention policy to store sensor data from around the house.</p>
+<p>A quick ‘nixos-rebuild switch’ and we are good to go. InfluxDB can be configured via the webUI at localhost:8086 (replace ‘localhost’ with the IP address if not on the same machine). Create a new user, organization and a first bucket to store metrics in. I have a ‘test’ bucket with a retention policy of a few days and a ‘home’ one with a longer retention to store sensor data from around the house.</p>
 
-<p>Metrics can be sent to InfluxDB via the HTTP API and a token. The token can be generated via the InfluxDB webUI under the Tokens tab in the Data section.</p>
+<p>Metrics can be sent to InfluxDB via the HTTP API and a token. The token can be generated via the InfluxDB webUI under the ‘Tokens’ tab in the ‘Data’ section.</p>
 
 {% highlight bash %}
-curl --request POST localhost:8086/api/v2/write?org=ORGANIZATION&bucket=BUCKET&precision=s \
+curl --request POST localhost:8086/api/v2/write?org=ORG&bucket=BUCKET&precision=s \
      --header "Authorization: Token TOKEN" \
      --header "Content-Type: text/plain; charset=utf-8" \
      --header "Accept: application/json" \
@@ -59,9 +60,9 @@ Tamb	21.1625
 …
 {% endhighlight %}
 
-<p>co2mon updates the CntR and Tamb files in the specified directory with the latest readings. Using the exec Telegraf <a href="https://docs.influxdata.com/telegraf/v1.20/plugins/">plugin</a> we can read these values and hand them off to InfluxDB. Telegraf can read its configuration from the InfluxDB instance so all Telegraf’s agents can centrally configured, cool!</p>
+<p>co2mon updates the CntR and Tamb files in the specified directory with the latest readings. Using the ‘exec’ Telegraf <a href="https://docs.influxdata.com/telegraf/v1.20/plugins/">plugin</a> we can read these values and hand them off to InfluxDB. Telegraf can read its configuration from the InfluxDB instance so all Telegraf’s agents are centrally configured, cool!</p>
 
-<p>Create a new Telegraf configuration via the Telegraf tab in the Data section of the webUI.</p>
+<p>Create a new Telegraf configuration via the ‘Telegraf’ tab in the ‘Data’ section of the InfluxDB webUI.</p>
 
 {% highlight toml %}
 [[outputs.influxdb_v2]]	
@@ -81,7 +82,7 @@ Tamb	21.1625
   data_type = "float"
 {% endhighlight %}
 
-<p>On the client (the machine the CO<sub>2</sub> monitor is connected to) I start the Telegraf agent with the remote configuration.</p>
+<p>On the client (the machine the CO<sub>2</sub> monitor is connected to) I start the Telegraf agent with this remote configuration.</p>
 
 {% highlight bash %}
 export INFLUX_TOKEN=TOKEN
@@ -94,10 +95,10 @@ telegraf --config http://localhost:8086/api/v2/telgrafs/097240ebe8df7215
 
 <p>I wish there was a way to add markers to the graphs. A horizontal line for a maximum value (dangerous levels of CO<sub>2</sub> for example) or a horizontal one to mark events (e.g., opened a window at 12:32). Maybe combined with the alerting system that’s already included? It feels weird that critical alerts don’t show up on the dashboards.</p>
 
-<p>The alerting system itself is basic as well. Slack, Pagerduty and HTTP endpoints come out-of-the-box, but I expected more powerful features here.</p>
+<p>The alerting system itself is too basic as well. Slack, Pagerduty and HTTP endpoints come out-of-the-box, but I expected more powerful features here.</p>
 
-<p>Setting up new and beautiful graphs, gauges, heatmaps, etc. is easy via the webUI. I did run in some smaller bugs though (the gauge’s “optional suffix” setting for example freezes the dashboard) or adding a second moving average query to my graph would show weird extra lines but nothing that can’t be fixed in a newer release.</p>
+<p>Setting up new and beautiful graphs, gauges, heatmaps, etc. is easy via the webUI. I did run in some smaller bugs though (the gauge’s “optional suffix” setting for example freezes the dashboard) or adding a second moving average query to my graph would show weird extra lines. Nothing that can’t be fixed in a patch release.</p>
 
-<p>I would like visualizations for a fixed timeframe. A heatmap of all days combined for example showing me CO<sub>2</sub> levels are consistently higher than average around 11AM for example, but I did not find a way to create such a visualization, only for the “past x seconds/minutes/hours”. I am not sure if that’s currently possible.</p>
+<p>I would like visualizations for a fixed timeframe. A heatmap of all days combined to name one. Showing CO<sub>2</sub> levels are consistently higher than average around 11AM for example. I didn’t find a way to create such visualizations, only the “past x seconds/minutes/hours” ones. I am not sure if that’s currently possible.</p>
 
-<p>In short: InfluxDB’s data collection, and visualizations are top notch, all without having to write a single line of code! The alerting/insight part could be improved upon.</p>
+<p>To end: InfluxDB’s data collection and visualizations are top notch, all without having to write a single line of code! The alerting/insight part could be improved upon.</p>
