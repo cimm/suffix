@@ -6,3 +6,4 @@ _config.yml
 assets/lego/*.jpg
 assets/lego/*.webp
 .jekyll-cache
+.ruby-version
