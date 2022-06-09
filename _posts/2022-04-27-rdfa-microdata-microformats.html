@@ -22,7 +22,7 @@ rdfa:        true
   </a>
 </p>
 {% endhighlight %}
-<p><em>↑ Example 1: structured data about a person in microformats.</em></p>
+<figcaption class="highlight">↑ Example 1: Structured data about a person in microformats.</figcaption>
 
 {% highlight html %}
 <section itemscope itemtype="https://schema.org/FAQPage">
@@ -30,13 +30,13 @@ rdfa:        true
     <h1 itemprop="name">Who directed the 1972 film “The Godfather”?</h1>
     <span itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
       <p itemprop="text">
-        Francis F. Coppola co-wrote the screenplay with Mario Puzo, based on Puzo’s novel.
+        Francis Coppola co-wrote the screenplay with Mario Puzo, based on Puzo’s novel.
       </p>
     </span>
   </article>
 </section>
 {% endhighlight %}
-<p><em>↑ Example 2: structured data about an FAQ in microdata.</em></p>
+<figcaption class="highlight">↑ Example 2: Structured data about an FAQ in microdata.</figcaption>
 
 <p>The 3<sup>rd</sup> one, RDFa, is again similar: a way to augment <abbr title="Hypertext Markup Langauge">HTML</abbr> with machine-readable hints for what the copy is about. It can even use the same vocabulary as microdata but is more extensible as it can easily use different or even multiple vocabularies in the same document. While microdata is limited to HTML documents, RDFa can be used in <abbr title="Extensible Markup Language">XML</abbr> variants like <abbr title="Scalable Vector Graphics">SVG</abbr> and Atom. RDFa can be more complex, but there is a simplified version: RDFa Lite, which seems to be just fine for a website like mine.</p>
 
@@ -58,7 +58,7 @@ rdfa:        true
   </p>
 </section>
 {% endhighlight %}
-<p><em>↑ Example 3: Book entry from my reading list in RDFa Lite.</em></p>
+<figcaption class="highlight">↑ Example 3: Book entry from my <a href="{{ 'reading' | absolute_url }}">reading list</a> in RDFa Lite.</figcaption>
 
 <h2>What To Choose?</h2>
 

@@ -46,13 +46,14 @@ buildGoModule rec {
   };
 }
 {% endhighlight %}
+<figcaption class="highlight">↑ Example default.nix for the bluewalker package.</figcaption>
 
 <p>The configuration includes two <abbr title="Secure Hash Algorithm">SHA</abbr>-256 hashes, which was the most cryptic part at first. Nix will calculate the hash of the downloaded source to make sure it matches what I had while packaging, a security measure. Both hashes need to be calculated and added to the config.</p>
 
 <p>The first, the one in the ‘fetchFromGitLab’ section, is the most complex. To calculate this hash, I downloaded the source code in a temporary folder, making sure to use the exact version with the git tag. I removed the ‘.git’ folder and used the ‘nix hash-path’ command to calculate the hash. I then added the resulting hash to the default.nix configuration.</p>
 
 {% highlight bash %}
-git clone --depth 1 --branch "v0.3.0" https://gitlab.com/jtaimisto/bluewalker.git /tmp/bluewalker
+git clone --branch "v0.3.0" https://gitlab.com/jtaimisto/bluewalker.git /tmp/bluewalker
 rm -r /tmp/bluewalker/.git
 nix hash-path /tmp/bluewalker
 {% endhighlight %}

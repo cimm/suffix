@@ -22,7 +22,8 @@ description: Setting up Strict Transport Security in Ruby on Rails 4.
 before_action :force_ssl, if: -> { Rails.env.production? }
 
 def force_ssl
-  response.headers['Strict-Transport-Security'] = 'max-age=2678400; includeSubDomains' # 31 days
+  response.headers['Strict-Transport-Security'] = 'max-age=2678400; includeSubDomains'
+  # 31 days
 end
 {% endhighlight %}
 

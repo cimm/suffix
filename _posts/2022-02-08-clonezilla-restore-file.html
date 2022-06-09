@@ -21,24 +21,24 @@ rdfa:        true
 
   <p>The Linux way. First, we need to convert the Clonezilla backup folder to an image file. For this, we’ll need to install partclone, which can be easily installed from your distro’s repositories. The filename of the partition to restore gives the format for the partclone part of the command: ‘ext4’ in the example below.</p>
 
-  {% highlight sh %}
-  $ cat backup-folder/nvme0n1p1.ext4-ptcl-img.gz | \
-    gzip -d -c | \
-    partclone.ext4 -r -C --restore_raw_file -s - -o backup.img
-  {% endhighlight %}
+{% highlight sh %}
+$ cat backup-folder/nvme0n1p1.ext4-ptcl-img.gz | \
+  gzip -d -c | \
+  partclone.ext4 -r -C --restore_raw_file -s - -o backup.img
+{% endhighlight %}
 
   <p>Make sure the drive is large enough to store the (temporary) <em>backup.img</em> file. The image can now be mounted as a file system.</p>
 
-  {% highlight sh %}
-  $ mount -o loop backup.img /mnt
-  {% endhighlight %}
+{% highlight sh %}
+$ mount -o loop backup.img /mnt
+{% endhighlight %}
 
   <p>Grab the files you need from the <em>/mnt</em> folder and unmount the volume when done. The temporary <em>backup.img</em> can also be removed.</p>
 
-  {% highlight sh %}
-  $ umount /mnt
-  $ rm backup.img
-  {% endhighlight %}
+{% highlight sh %}
+$ umount /mnt
+$ rm backup.img
+{% endhighlight %}
 
   <p>Remember kids: backup, backup, backup!</p>
 </div>

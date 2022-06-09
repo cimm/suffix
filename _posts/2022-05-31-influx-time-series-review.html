@@ -33,7 +33,7 @@ environment.systemPackages = with pkgs; [
 services.influxdb2.enable = true;
 networking.firewall.allowedTCPPorts = [ 8086 ];
 {% endhighlight %}
-<p><em>↑ Adding InfluxDB to NixOS’ configuration.conf</em></p>
+<figcaption class="highlight">↑ Adding InfluxDB to NixOS’ configuration.conf</figcaption>
 
 <p>A quick ‘nixos-rebuild switch’ and we are good to go. InfluxDB can be configured via the webUI at localhost:8086 (replace ‘localhost’ with the IP address if not on the same machine). Create a new user, organization and a first bucket to store metrics in. I have a ‘test’ bucket with a retention policy of a few days and a ‘home’ one with a longer retention to store sensor data from around the house.</p>
 

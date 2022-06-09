@@ -16,9 +16,11 @@ description: Using pdfsandwich to OCR PDFs from the command-line.
 
 <p>It’s important to specify the language of the document as it greatly improves the text recognition. Run pdfsandwich with the <kbd>-list_langs</kbd> flag to list the available language codes (see the <a href="https://tesseract-ocr.github.io/tessdoc/Home.html" title="Installing extra language packs for Tesseract">Tesseract documentation</a> to install extra languages). These 3 letter language codes can be passed to pdfsandwich to improve the text parsing, even multiple languages in the same document.</p>
 
-<p><kbd>$ pdfsandwich -lang eng+nld document.pdf</kbd></p>
+{% highlight bash %}
+$ pdfsandwich -lang eng+nld document.pdf
+{% endhighlight %}
 
-<p>The result will be stored in a new ‘document_ocr.pdf’ file (can be changed by passing the <kbd>-o</kbd> flag). The <kbd>-rgb</kbd> flag preserves color (careful though, the documentation mentions it could cause problems with some color spaces). The <kbd>-rgb</kbd> option would sometimes create white boxes in the resulting PDF. I solved this by normalizing the image with a simple <kbd>-coo "-normalize"</kbd> flag.</p>
+<p>The result will be stored in a new ‘document_ocr.pdf’ file (can be changed by passing the <kbd>-o</kbd> flag). The <kbd>-rgb</kbd> flag preserves color (careful though, the documentation mentions it could cause problems with some color spaces). The <kbd>-rgb</kbd> option would sometimes create white boxes in the resulting PDF. I solved this by normalizing the image with a simple <kbd>-coo "-normalize"</kbd> flag.</p>
 
 <p>Happy <kbd>CTRL+f</kbd>’ing! You now have a machine readable PDF.</p>
 
