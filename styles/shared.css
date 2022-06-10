@@ -1,0 +1,133 @@
+@media only screen and (max-width: 767px) {
+  body {
+    padding: 0 .5em;
+  }
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  line-height: 1.5em;
+  margin: 0 auto;
+  max-width: 670px;
+}
+
+a {
+  color: var(--color-accent);
+}
+a:visited {
+  color: var(--color-accent-alt);
+}
+
+abbr[title] {
+  cursor: help;
+}
+
+dt {
+  margin: .5em 0;
+}
+
+blockquote, dd {
+  border-left: 3px solid var(--color-accent);
+  color: var(--color-accent);
+  margin-left: 0;
+  padding-left: .8em;
+}
+
+kbd {
+  background-color: var(--color-box-background);
+  border-radius: .4em;
+  border: 1px solid var(--color-box-border);
+  padding: .3em .4em;
+}
+
+figure,
+picture {
+  display: block;
+  margin: 0;
+  text-align: center;
+}
+
+figure img,
+picture img {
+  max-width: 100%;
+}
+
+figcaption {
+  color: var(--color-muted);
+}
+
+hr {
+  border-width: 0;
+  border-top: 1px solid var(--color-box-border);
+}
+
+time[property="datePublished"] {
+  color: var(--color-muted);
+}
+
+img:not([src*=".svg"]) {
+  filter: var(--image-filter);
+}
+
+.alert {
+  font-size: 1em;
+  margin: 1em 0;
+}
+.alert p {
+  background-color: var(--color-alert-background);
+  box-decoration-break: clone;
+  color: var(--color-alert-foreground);
+  display: inline;
+  padding: .3em;
+}
+
+/* Header */
+
+header {
+  text-align: center;
+}
+
+nav li {
+  display: inline;
+  margin-right: 1em;
+}
+
+nav li:last-child {
+  margin-right: 0;
+}
+
+header h1 {
+  font-size: 2em;
+  line-height: 1.2em;
+}
+
+/* Footer */
+
+footer {
+  color: var(--color-muted);
+}
+
+footer ul {
+  text-align: right;
+}
+footer li {
+  display: inline;
+  margin-left: 1em;
+}
+
+/* Icons */
+
+svg.rss {
+  stroke: var(--color-foreground);
+}
+
+svg.rss-accent {
+  stroke: var(--color-accent);
+}
+
+svg.github {
+  vertical-align: bottom;
+  stroke: var(--color-muted);
+}

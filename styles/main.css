@@ -1,0 +1,34 @@
+@import "shared.css";
+@import "blog.css";
+@import "post.css";
+@import "cards.css";
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-accent-alt: #551a8b; /* visited link */
+    --color-accent: #0367d8; /* links */
+    --color-alert-foreground: #ff6577;
+    --color-alert-background: #fff0f2;
+    --color-background: white;
+    --color-box-background: #f7f7f7;
+    --color-box-border: #d4d4d4; /* code highlight */
+    --color-foreground: #00004d;
+    --color-muted: #6e6e6e;
+    --image-filter: grayscale(0%) brightness(100%);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-accent-alt: #0360c9;
+    --color-accent: #81baff;
+    --color-alert-foreground: #ff6577;
+    --color-alert-background: #322226;
+    --color-background: #2e3440;
+    --color-box-background: #373f4d;
+    --color-box-border: #20242d;
+    --color-foreground: #eaeaea;
+    --color-muted: #96969c;
+    --image-filter: grayscale(60%) brightness(85%);
+  }
+}

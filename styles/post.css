@@ -1,0 +1,15 @@
+figure.highlight {
+  background-color: var(--color-box-background);
+  border-radius: .4em;
+  border: 1px solid var(--color-box-border);
+  margin-left: 0;
+  margin-right: 0;
+  overflow-x: auto;
+  padding: 0 1em;
+  text-align: left;
+}
+
+figcaption.highlight {
+  margin-top: 0em;
+}
+

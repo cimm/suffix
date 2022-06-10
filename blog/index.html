@@ -1,17 +1,26 @@
 ---
-layout: default
-title: Blog
+layout:      default
+title:       Blog
 description: Personal blog for posting my ramblings, mostly about programming.
 ---
 
 {% for post in site.posts %}
-  <section typeof="BlogPosting" class="list-item">
-    <time datetime="{{ post.date | date_to_xmlschema }}" property="datePublished">{{ post.date | date: "%B %Y" }}</time>
-    <h1>
+  {% assign cursor = post.date | date: "%Y" %}
+
+  {% if cursor != prev_cursor %}
+    <h2>
+      <time datetime="{{ cursor }}">↙ {{ cursor }}</time>
+    </h2>
+  {% endif %}
+
+  <section typeof="BlogPosting">
+    <h3>
       <a href="{{ post.slug }}/" title="{{ post.description }}" property="url">
         <span property="headline">{{ post.title }}</span>
       </a>
-    </h1>
+    </h3>
     <p property="abstract">{{ post.description }}</p>
   </section>
+
+  {% assign prev_cursor = cursor %}
 {% endfor %}

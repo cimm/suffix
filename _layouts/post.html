@@ -2,13 +2,15 @@
 layout: default
 ---
 
-<article typeof="BlogPosting" class="post">
+<article typeof="BlogPosting">
   <header>
     <h1 property="headline">{{ page.title }}</h1>
-    {% if page.description %}
-      <p><em property="abstract">{{ page.description }}</em></p>
-    {% endif %}
     <time datetime="{{ page.date | date_to_xmlschema }}" property="datePublished">{{ page.date | date_to_long_string }}</time>
+    {% if page.description %}
+      <p>
+        <em property="abstract">{{ page.description }}</em>
+      </p>
+    {% endif %}
   </header>
 
   <section property="articleBody">

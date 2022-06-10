@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <title>{{ page.title }} - {{ site.name }}</title>
-    <link rel="preload" href="{% relbase %}/assets/stylesheets/main.css" as="style" />
-    <link rel="stylesheet" href="{% relbase %}/assets/stylesheets/main.css" />
+    <link rel="preload" href="{% relbase %}/styles/main.css" as="style" />
+    <link rel="stylesheet" href="{% relbase %}/styles/main.css" />
     <link rel="manifest" href="{% relbase %}/manifest.json" />
     <link rel="shortcut icon" href="{% relbase %}/assets/favicon.ico" />
     <link rel="alternate" href="{{ page.url | absolute_url | remove: 'index.html' }}" hreflang="en" />
@@ -24,23 +24,42 @@
   </head>
   <body vocab="http://schema.org/">
     <header>
+      <h1>
+	Suffix
+        <a href="{% relbase %}/feeds/blog.xml" type="application/atom+xml" title="Suffix’s web feed" href="/feed.atom">
+          <svg xmlns="http://www.w3.org/2000/svg" class="rss-accent" width="22" height="22" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg>
+        </a>
+      </h1>
       <nav>
         <ul>
-          <li><a href="{% relbase %}/blog/">Blog</a></li>
-          <li><a href="{% relbase %}/reading/">Reading</a></li>
-          <li><a href="{% relbase %}/photos/">Photos</a></li>
-          <li><a href="{% relbase %}/lego/">LEGO</a></li>
-          <li><a href="{% relbase %}/about/" rel="author">About</a></li>
-          <li><a href="{% relbase %}/feeds/blog.xml" type="application/atom+xml" title="Suffix’s web feed" href="/feed.atom">RSS</a></li>
+          <li>
+            {% if page.url != '/blog/' %}<a href="{% relbase %}/blog/">Blog</a>{% else %}Blog{% endif %}
+	  </li>
+          <li>
+            {% if page.url != '/reading/' %}<a href="{% relbase %}/reading/">Reading</a>{% else %}Reading{% endif %}
+	  </li>
+          <li>
+            {% if page.url != '/photos/' %}<a href="{% relbase %}/photos/">Photos</a>{% else %}Photos{% endif %}
+	  </li>
+          <li>
+            {% if page.url != '/lego/' %}<a href="{% relbase %}/lego/">LEGO</a>{% else %}LEGO{% endif %}
+	  </li>
+          <li>
+            {% if page.url != '/about/' %}<a href="{% relbase %}/about/" rel="author">About</a>{% else %}About{% endif %}
+	  </li>
         </ul>
       </nav>
     </header>
     {{ content }}
     <footer>
-      <p>This page is open source. Did you spot a mistake? Ideas for improvements? Contribute via <a href="https://github.com/cimm/suffix/blob/master/{{page.path}}" title="Propose a fix by opening a pull request on Github">Github</a>. Thank you!</p>
-      <h1>
-        <a href="{% relbase %}/policies/" rel="license">SUFFIX</a>
-      </h1>
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" class="github" width="24" height="24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+        Did you spot a mistake? Ideas for improvements? Edit this page on <a href="https://github.com/cimm/suffix/blob/master/{{page.path}}" title="Propose a fix by opening a pull request on Github">github</a>.
+      </p>
+      <ul>
+        <li><a href="{% relbase %}/feeds/blog.xml" type="application/atom+xml" title="Suffix’s web feed" href="/feed.atom">rss</a></li>
+        <li><a href="{% relbase %}/legal/" rel="license">legal</a></li>
+      </ul>
     </footer>
   </body>
 </html>

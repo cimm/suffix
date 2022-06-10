@@ -25,6 +25,8 @@ photo_sets:
   - ["https://www.flickr.com/photos/schoeters/4713993111/", "4713993111_f7c60ddd58_m"]
 ---
 
+<p>Some photos I took over the years, you can find the full collection on my <a href="https://www.flickr.com/photos/schoeters/" rel="me">flickr</a> page.</p>
+
 <section class="cards">
   {% for photo in page.photo_sets %}
     <a href="{{ photo.first }}" title="Open larger version on Flickr" class="card">
@@ -37,5 +39,3 @@ photo_sets:
     </a>
   {% endfor %}
 </section>
-
-<p>Some photos I took over the years, you can find the full collection on my <a href="https://www.flickr.com/photos/schoeters/" rel="me">Flickr</a> page.</p>

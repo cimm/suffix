@@ -2,7 +2,7 @@
 layout: null
 ---
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet href="{% relbase %}/feeds/pretty-feed.xsl" type="text/xsl"?>
+<?xml-stylesheet href="{% relbase %}/styles/feed.xsl" type="text/xsl"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-US">
   <id>{{ page.url | absolute_url }}</id>
   <title>{{ site.name }}</title>

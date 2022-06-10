@@ -13,26 +13,33 @@ layout: null
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <title><xsl:value-of select="atom:feed/atom:title"/></title>
-        <link rel="stylesheet" href="{% relbase %}/assets/stylesheets/atom.css" />
+        <link rel="stylesheet" href="{% relbase %}/styles/main.css" />
       </head>
       <body>
-        <header>
+        <div class="alert">
           <p>
             <strong>This is a web feed,</strong> also known as an RSS or Atom feed. <strong>Subscribe</strong> by copying the URL from the address bar into your newsreader. <a href="https://aboutfeeds.com">What is a feed?</a>
           </p>
-        </header>
+        </div>
         <article>
           <header>
-            <h1><xsl:value-of select="atom:feed/atom:title"/></h1>
-            <p><xsl:value-of select="atom:feed/atom:description"/></p>
-            <p>This preview only shows titles, but the actual feed contains the full content.</p>
-            <a>
-              <xsl:attribute name="href">
-                <xsl:value-of select="/atom:feed/atom:link[not(@rel)]/@href"/>
-              </xsl:attribute>
-              Visit website →
-            </a>
+            <h1>
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" class="rss" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg>
+	      Web Feed Preview
+            </h1>
           </header>
+          <h2><xsl:value-of select="atom:feed/atom:title"/></h2>
+	  <hr/>
+          <p><xsl:value-of select="atom:feed/atom:description"/></p>
+          <p>This preview only shows titles, but the actual feed contains the full content.</p>
+          <a>
+            <xsl:attribute name="href">
+              <xsl:value-of select="/atom:feed/atom:link[not(@rel)]/@href"/>
+            </xsl:attribute>
+            Visit website →
+          </a>
+          <h2>Most Recent Articles</h2>
+          <hr/>
           <xsl:apply-templates select="atom:feed/atom:entry" />
         </article>
       </body>
@@ -40,16 +47,16 @@ layout: null
   </xsl:template>
   <xsl:template match="atom:feed/atom:entry">
     <section>
-      <h2>
+      <h3>
         <a>
           <xsl:attribute name="href">
             <xsl:value-of select="atom:link/@href"/>
           </xsl:attribute>
           <xsl:value-of select="atom:title"/>
         </a>
-      </h2>
+      </h3>
       <small>
-        <time><xsl:value-of select="atom:updated" /></time>
+        <time property="datePublished"><xsl:value-of select="atom:updated" /></time>
       </small>
     </section>
   </xsl:template>
