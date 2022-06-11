@@ -13,3 +13,6 @@ figcaption.highlight {
   margin-top: 0em;
 }
 
+.oldColor { /* see 2022-06-10-higher-contrast-design post */
+  color: #5e81ac
+}
