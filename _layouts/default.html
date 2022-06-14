@@ -6,7 +6,9 @@
     <link rel="preload" href="{% relbase %}/styles/main.css" as="style" />
     <link rel="stylesheet" href="{% relbase %}/styles/shared.css" />
     <link rel="stylesheet" href="{% relbase %}/styles/blog.css" />
-    <link rel="stylesheet" href="{% relbase %}/styles/post.css" />
+    {% if page.layout == 'post' %}
+      <link rel="stylesheet" href="{% relbase %}/styles/post.css" />
+    {% endif %}
     <link rel="stylesheet" href="{% relbase %}/styles/cards.css" />
     <link rel="stylesheet" href="{% relbase %}/styles/main.css" />
     <link rel="manifest" href="{% relbase %}/manifest.json" />
