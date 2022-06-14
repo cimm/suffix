@@ -1,8 +1,3 @@
-@import "shared.css";
-@import "blog.css";
-@import "post.css";
-@import "cards.css";
-
 @media (prefers-color-scheme: light) {
   :root {
     --color-accent-alt: #551a8b; /* visited link */
