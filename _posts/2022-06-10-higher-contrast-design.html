@@ -15,18 +15,18 @@ description: A simpler website design.
 <ul>
   <li>The new color will be the most obvious. The primary text color changed from <span class="oldColor">■ #5e81ac</span> to ■ #00004d, a darker shade of blue. The lighter blue lacked contrast and might have been hard to read for some.</li>
   <li>The font changed to <abbr title="Cascading StyleSheets">CSS</abbr>’s <a href="https://caniuse.com/?search=system-ui">system-ui</a>, which takes glyphs from the default user interface font on each platform. I suppose <abbr title="Operating System">OS</abbr> designers know best what fonts are the most readable. This change is what triggered this redesign. No more custom fonts. Less stuff to download = faster loading and improved integration with the OS.</li>
-  <li>The <a href="{% relbase %}/feeds/blog.xml"><abbr title="Realy Simple Syndication">RSS</abbr> feed</a> now uses the same CSS stylesheet as the rest of the site. I lazily copied a stylesheet <a href="https://github.com/nhoizey/nicolas-hoizey.com/blob/main/src/assets/pretty-atom-feed-v3.xsl" title="Stylesheet for an Atom feeds">from github</a> earlier with a different feel. Using the same styles makes the feed more in line with the rest of the site. The feed also got its very own RSS icon in the header, as well as a link in the footer (for people like myself who use the browser’s search to quickly find keywords).</li>
+  <li>The <a href="{% relbase %}/feeds/blog.xml"><abbr title="Realy Simple Syndication">RSS</abbr> feed</a> now uses the same CSS stylesheet as the rest of the site. I lazily copied a stylesheet <a href="https://github.com/nhoizey/nicolas-hoizey.com/blob/main/src/assets/pretty-atom-feed-v3.xsl" title="Stylesheet for an Atom feeds">from github</a> earlier with a different feel. Using the same styles makes the feed more in line with the rest of the site. The feed got its own RSS icon in the header and a link in the footer (for people like myself who use the browser’s built-in search).</li>
   <li>I brought back the ‘:visited’ link color from the 90ies! It doesn’t look as nice, but it sure is handy to know what pages you visited before. I should never have removed it.</li>
   <li>Code blocks now have a background and border, visually separating them from the rest of the content.</li>
-  <li>The dark theme got a little love. I was never satisfied with the dark version, and even now it doesn’t sit as well as the light one, it’s not easy to design a good dark theme. Anyway, the code blocks now have a dark theme as well, the lack of one previously stood out like a sore thumb. Images are also toned down and darkened in CSS for the dark version.</li>
-  <li>The RSS and github icon are now inlined <abbr title="Scalable Vector Graphics">SVG</abbr>’s, meaning I can easily change their color to match the theme in CSS.</li>
+  <li>The dark theme got a little love. I was never satisfied with the dark version, and even now it doesn’t sit as well as the light one, it’s not easy to design a good dark theme. The code blocks have a dark theme as well, the lack of one stood out like a sore thumb. Images are toned down and darkened in CSS for the dark version.</li>
+  <li>The RSS and github icon are now inline <abbr title="Scalable Vector Graphics">SVG</abbr>’s, meaning I can change their color to match the theme in CSS.</li>
 </ul>
 
 <h2>Content changes</h2>
 
 <ul>
-  <li>I moved the title of the website to the top, not sure why I thought it was clever to hide the title in the footer. The subheadings are now left instead of center aligned.</li>
-  <li>Articles on the <a href="{% relbase %}/blog/" title="Homepage">index page</a> are now grouped per year. This makes it easier to find my more recent posts, given my low publishing frequency.</li>
+  <li>I moved the title of the website to the top, not sure why I thought it was clever to hide the title in the footer. The subheadings are left instead of center aligned.</li>
+  <li>Articles on the <a href="{% relbase %}/blog/" title="Homepage">index page</a> are grouped per year. This makes it easier to find my more recent posts, given my low publishing frequency.</li>
   <li>The current page is no longer linked in the top navigation bar, as it should be.</li>
   <li>Renamed the ‘/policies’ page to ‘/legal’. I hope this does make sense?</li>
 </ul>
@@ -34,8 +34,8 @@ description: A simpler website design.
 <h2>Technical changes</h2>
 
 <ul>
-  <li>I dropped <a href="https://sass-lang.com/" title="A powerful CSS extension"><abbr title="Syntactically Awesome Style Sheets">Sass</abbr></a> in favor of plain old CSS. CSS supports variables now, so the only difference between the light and the dark theme are a few variables.</li>
-  <li>I never configured Apache to serve my website over <abbr title="HyperText Transfer Protocol">HTTP</abbr>/2, oops! A single line config change later and it’s fixed.</li>
+  <li>I dropped <a href="https://sass-lang.com/" title="A powerful CSS extension"><abbr title="Syntactically Awesome Style Sheets">Sass</abbr></a> in favor of plain old CSS. CSS supports variables, so the only difference between the light and the dark theme are a few variables.</li>
+  <li>I did not configure Apache to serve my website over <abbr title="HyperText Transfer Protocol">HTTP</abbr>/2, oops! A single line config change later, and it’s fixed.</li>
 </ul>
 
-<p>The <a href="{% relbase %}/blog/" title="This blog’s index page">homepage</a> of the old design clocked in at 199 <abbr title="KiloByte">KB</abbr> in total, the new one at 64 KB, an improvement of almost 103%. In short: back to basics. A lighter, simpler, more readable design. What do you think?</p>
+<p>The <a href="{% relbase %}/blog/" title="This blog’s index page">homepage</a> of the old design clocked in at 199 <abbr title="KiloByte">KB</abbr> in total, the new one at 64 KB, an improvement of 103%. In short: back to basics. A lighter, simpler, more readable design. What do you think?</p>
