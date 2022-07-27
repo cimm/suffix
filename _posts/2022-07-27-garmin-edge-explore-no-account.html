@@ -1,0 +1,39 @@
+---
+layout:          post
+title:           Garmin Bike GPS Without Account
+date:            2022-07-27 15:00:00
+updated:         2022-07-27 15:00:00
+cover_image_url: ../../assets/garmin-edge-explore.jpg
+description:     Uploading tracks and downloading activities without Garmin account.
+rdfa:            true
+---
+
+<figure>
+  <picture>
+    <source type="image/webp" srcset="../../assets/garmin-edge-explore.webp" />
+    <img src="../../assets/garmin-edge-explore.jpg" property="thumbnailUrl" alt="Garmin Edge Explore bike GPS" />
+  </picture>
+</figure>
+
+<p typeof="Product">The standard way to add tracks to a Garmin bike <abbr title="Global Positioning System">GPS</abbr> is through <a href="https://connect.garmin.com" title="Online platform for tracking, analyzing and sharing health and fitness activities from Garmin devices">Garmin Connect</a>, a website with a mobile app. This requires an online account and a phone with Bluetooth to work. A family member with a <a href="https://www.garmin.com/en-US/p/611996" property="url"><span property="name">Garmin Edge Explore</span></a> was confused by this, and I didn’t feel comfortable uploading their GPS data to Garmin.</p>
+
+<p>A simpler solution exists. You don’t need an online account or a phone to upload routes or download activities from the device. It’s easier and fully local, even though you lose some features like phone notifications on the device.</p>
+
+<h2>Finding a Route</h2>
+
+<p>You need a route that you want to ride. Route descriptions come as <abbr title="GPS Exchange">GPX</abbr>, <abbr title="Training Center XML">TCX</abbr> or <abbr title="Flexible and Interoperable Data Transfer">FIT</abbr> files (there are others, but these are the ones I tried). Routes can be downloaded from different websites (such as <a href="https://www.routeyou.com/" title="Discover routes">RouteYou</a> or <a href="https://www.komoot.com/" title="Find ready-built cycle routes">Komoot</a>), or they can be created (via <a href="https://maps.openrouteservice.org" title="Route navigation with GPX export">OpenRouteService</a>, <a href="https://brouter.de/brouter-web" title="Create GPX files via BRouter-Web">BRouter</a>, or <a href="https://www.fietsnet.be" title="Cycle routes via ‘knooppunten’ in Belgium and the Netherlands">Fietsnet</a>). The result is a GPX (or sometimes TCX) file with the description of the route.</p>
+
+<h2>Riding a Route</h2>
+
+<p>Connect the Garmin to your computer via <abbr title="Universal Serial Bus">USB</abbr>. It appears as a USB drive. Copy the route file to the ‘Garmin/NewFiles’ folder and eject the device from the computer. When ejected, a ‘Loading courses and locations’ message is shown. From the main menu on the Garmin, choose ‘Courses → Saved Courses’ and open the uploaded route. Tap ‘Ride’ and enjoy the trip!</p>
+
+<h2>Activities</h2>
+
+<p>You can download your trips when you are done. Connect the Garmin again and open the ‘Garmin/Activities’ folder, where each of your trips is saved as a FIT file. Use an application like <a href="https://www.gpxsee.org/" title="GPS log file viewer and analyzer">GPXSee</a> to look at the trip.</p>
+
+<h2>Useful Tools</h2>
+
+<ul>
+  <li><a href="https://www.gpsvisualizer.com/" title="Swiss army knife for geographic data">GPS Visualizer</a> is an online tool for exploring geographic data: generate maps, convert between formats, etc.</li>
+  <li><a href="https://fit-route.pyrites.org.uk/" title="Browser based conversion from GPX to FIT">FIT Route Converter</a> converts a GPX file into a FIT file in the browser.</li>
+</ul>
