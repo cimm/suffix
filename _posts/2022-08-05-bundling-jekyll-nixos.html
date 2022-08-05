@@ -1,0 +1,55 @@
+---
+layout:          post
+title:           Jekyll Development Environment on Nix
+date:            2022-08-04 22:00:00
+updated:         2022-08-04 22:00:00
+description:     An isolated and reproducible Ruby development environment for my website.
+---
+
+<p>While playing with Nix, I found the ‘<a href="https://nixos.org/manual/nix/unstable/command-ref/nix-shell.html" title="An interactive shell based on a Nix expression">nix-shell</a>’ command. I think of it as a lightweight container. Specify the dependencies, and Nix builds a sandboxed ephemeral environment. Exit the shell and everything is gone. It's a great way to keep my projects clean and reproducible: one project’s tools can’t pollute another.</p>
+
+<p>I needed a small project to get my hands dirty. This website is an easy one to start with. It’s <a href="https://github.com/cimm/suffix/" title="Github repo for this website">built</a> with Jekyll, so it needs Ruby, two gems and ImageMagick (to convert some <a href="https://github.com/cimm/suffix/blob/master/_plugins/rebrickable_tag.rb" title="Resizes images and creates a webp version">images</a>).</p>
+
+<p>Nix built-in Bundler environment makes this easy. Start with a ‘default.nix’ file in the root of the project.</p>
+
+{% highlight nix %}
+with (import <nixpkgs> {});
+let env = bundlerEnv {
+  name = "suffix";
+  ruby = ruby;
+  gemfile = ./Gemfile;
+  lockfile = ./Gemfile.lock;
+  gemset = ./gemset.nix;
+}
+{% endhighlight %}
+<figcaption class="highlight">↑ default.nix <small>(part 1)</small></figcaption>
+
+<p>This should be self-explanatory, except for the ‘gemset.nix’ part. This file is a ‘Gemfile.lock’ but with checksums for each gem as Nix requires. To create it, use the Bundix tool:</p>
+
+{% highlight bash %}
+nix-shell -p bundix --run bundix
+{% endhighlight %}
+
+<p>Next, add the dependencies and optionally a ‘shellHook’ to start the Jekyll server. I added <a href="https://search.nixos.org/packages?query=imagemagic" title="Package names can be found via search.nixos">ImageMagick</a> as an example for other dependencies that might be needed.</p>
+
+{% highlight nix %}
+in stdenv.mkDerivation {
+  name = "suffix"
+  buildInputs = [bundler ruby imagemagick];
+  shellHook = ''
+    exec ${env}/bin/jekyll serve
+  ''
+}
+{% endhighlight %}
+<figcaption class="highlight">↑ default.nix <small>(part 2)</small></figcaption>
+
+<p>Tadaa! A full reproducible auto cleaning Jekyll development environment on any Nix system from a single command: simply run ‘nix-shell’ from the root.</p>
+
+<p>A project can have multiple .nix configs: a ‘tests.nix’ for example with different databases or Ruby versions.</p>
+
+<h2>More Resources</h2>
+
+<ul>
+  <li><a href="https://shopify.engineering/what-is-nix" title="What Is Nix @ Shopify Engineering">What Is Nix</a>, an introduction to the Nix stroe, derivations, sandboxing, and the Nix language by Shopify Engineering.</li>
+  <li>The <a href="https://www.youtube.com/playlist?list=PLRGI9KQ3_HP_OFRG6R-p4iFgMSK1t5BHs" title="Nixology on YouTube">Nixology</a> screencasts on how to replace Homebrew with Nix.</li>
+</ul>
