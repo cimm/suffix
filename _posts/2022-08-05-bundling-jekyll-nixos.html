@@ -22,7 +22,7 @@ let env = bundlerEnv {
   gemset = ./gemset.nix;
 }
 {% endhighlight %}
-<figcaption class="highlight">↑ default.nix <small>(part 1)</small></figcaption>
+<figcaption class="highlight">↑ <a href="https://github.com/cimm/suffix/blob/master/default.nix" title="Final version on Github">default.nix</a> <small>(part 1)</small></figcaption>
 
 <p>This should be self-explanatory, except for the ‘gemset.nix’ part. This file is a ‘Gemfile.lock’ but with checksums for each gem as Nix requires. To create it, use the Bundix tool:</p>
 
@@ -41,7 +41,7 @@ in stdenv.mkDerivation {
   ''
 }
 {% endhighlight %}
-<figcaption class="highlight">↑ default.nix <small>(part 2)</small></figcaption>
+<figcaption class="highlight">↑ <a href="https://github.com/cimm/suffix/blob/master/default.nix" title="Final version on Github">default.nix</a> <small>(part 2)</small></figcaption>
 
 <p>Tadaa! A full reproducible auto cleaning Jekyll development environment on any Nix system from a single command: simply run ‘nix-shell’ from the root.</p>
 
@@ -50,6 +50,6 @@ in stdenv.mkDerivation {
 <h2>More Resources</h2>
 
 <ul>
-  <li><a href="https://shopify.engineering/what-is-nix" title="What Is Nix @ Shopify Engineering">What Is Nix</a>, an introduction to the Nix stroe, derivations, sandboxing, and the Nix language by Shopify Engineering.</li>
+  <li><a href="https://shopify.engineering/what-is-nix" title="What Is Nix @ Shopify Engineering">What Is Nix</a>, an introduction to the Nix store, derivations, sandboxing, and the Nix language by Shopify Engineering.</li>
   <li>The <a href="https://www.youtube.com/playlist?list=PLRGI9KQ3_HP_OFRG6R-p4iFgMSK1t5BHs" title="Nixology on YouTube">Nixology</a> screencasts on how to replace Homebrew with Nix.</li>
 </ul>
