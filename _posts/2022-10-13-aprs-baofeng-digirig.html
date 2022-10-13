@@ -1,0 +1,94 @@
+---
+layout:          post
+title:           Receiving APRS packets with a Baofeng radio
+date:            2022-10-13 10:00:00
+updated:         2022-10-13 10:00:00
+cover_image_url: ../../assets/garmin-edge-explore.jpg
+description:     Receiving APRS data with a Baofeng UV-5R, a Digirig and Linux.
+---
+
+<figure>
+  <picture>
+    <source type="image/webp" srcset="../../assets/aprs-setup.webp" />
+    <img src="../../assets/aprs-setup.jpg" property="thumbnailUrl" alt="APRS setup with Baofeng and Digirig" />
+  </picture>
+</figure>
+
+<p><abbr title="Automatic Packet Reporting System">APRS</abbr> is a distributed digital communication system used by radio amateurs. It can be used to send your position, share telemetry (a weather station for example), and even send text messages to other <abbr title="Slang for amateur radio operator">ham</abbr>s. Some APRS stations are connected to the internet (called digipeaters), meaning you can track APRS data without the need of a radio (visit <a href="https://aprs.fi/#!mt=osm">aprs.fi</a> to get an idea). Some transceivers have APRS built-in, like the <a href="https://www.yaesu.com/indexVS.cfm?cmd=DisplayProducts&encProdID=8FA58F426C671235EA5791EE6814FF48" title="Yeasu FT5DR product page">Yaesu FT5DR</a>, but most entry level radios, like the <a href="https://baofengtech.com/product/uv-5r/" title="Baofeng UV-5R product page">Baofeng UV-5R</a>, do not.</p>
+
+<p>I don’t own a fancy APRS capable radio so I need a cheaper way to play with APRS: a computer, a Baofeng (€50) and a <a href="https://digirig.net/product/digirig-mobile/" title="Digirig Mobile product page">Digirig</a> ($50).</p>
+
+<h2>Receiving APRS data</h2>
+
+<h3>Baofeng UV-5R</h3>
+
+<p>Let’s start with the radio. Turn off squelch (SQL) in the Baofeng menu. We want to forward all incoming audio to the computer and squelch might block weaker signals. Also turn off dual watch (called ‘TDR’ in the Baofeng menu) since an incoming signal on the other channel could interrupt the APRS packet if both arrive at the same time. Set the Baofeng to listen to 144.8 MHz for Europe (or find the <a href="https://en.wikipedia.org/wiki/Automatic_Packet_Reporting_System#Technical_information" title="Worldwide frequency list in the APRS article on Wikipedia">APRS frequency</a> for your region). Turn the volume of the radio halfway, we will fine tune this later.</p>
+
+<h3>Digirig</h3>
+
+<p>Connect the black Baofeng cable (the green one is for programming the radio) that came with the Digirig with the radio and the audio port on the Digirig. Make sure the Baofeng connection is snug. Connect the <abbr title="Universal Serial Bus">USB</abbr>-C cable to the other side of the Digirig and the computer.</p>
+
+<h3>Computer</h3>
+
+<p>After connecting the Digirig to the computer, check which number was assigned to the Digirig’s sound card with <kbd>arecord --list-devices</kbd>. In the example below “card 0” is my internal sound card (ignore this one) and the Digirig is “card 1” (the one with “USB <abbr title="Plug and Play">PnP</abbr> Sound Device”).</p>
+
+{% highlight bash %}
+$ arecord --list-devices
+**** List of CAPTURE Hardware Devices ****
+card 0: PCH [HDA Intel PCH], device 0: ALC3246 Analog [ALC3246 Analog]
+  Subdevices: 1/1
+  Subdevice #0: subdevice #0
+card 1: Device [USB PnP Sound Device], device 0: USB Audio [USB Audio]
+  Subdevices: 1/1
+  Subdevice #0: subdevice #0
+{% endhighlight %}
+<figcaption class="highlight">↑ The Digirig is “card 1” here</figcaption>
+
+<p>Turn the microphone input of the Digirig on via <kbd>amixer</kbd>, we don’t want to mute the incoming audio (you can also use <kbd>alsamixer</kbd> if you prefer a <abbr title="Terminal User Interface">TUI</abbr>). The card number should match with the number you found above.</p>
+
+<p>I don’t know about the automatic gain control, and am not sure what this does.</p>
+
+{% highlight bash %}
+$ amixer --card 1 set 'Speaker' unmute
+$ amixer --card 1 set 'Speaker' 100%
+$ amixer --card 1 set 'Mic' unmute
+$ amixer --card 1 set 'Mic' 100%
+$ amixer --card 1 set 'Auto Gain Control' mute
+{% endhighlight %}
+<figcaption class="highlight">↑ Set the Digirig speaker and microphone to max and mute the automatic gain control</figcaption>
+
+<p>Install <a href="https://github.com/wb2osz/direwolf" title="A software AX.25 packet encoder and decoder">Dire Wolf</a> and edit the configuration file (copy the example config from ‘/etc/direwolf.conf’ to the home directory). In the config file, look for and uncomment the line with ‘ADEVICE’ (line 77) and make sure it matches the card number from above.</p>
+
+{% highlight bash %}
+ADEVICE  plughw:1,0
+{% endhighlight %}
+<figcaption class="highlight">↑ ~/direwolf.config at line 77</figcaption>
+
+<p>Start Dire Wolf. The <kbd>-t</kbd> flag disables the Dire Wolf colors since it turns my black terminal white but that’s optional.</p>
+
+{% highlight bash %}
+$ direwolf -t 0
+Dire Wolf version 1.6
+Includes optional support for:  gpsd hamlib cm108-ptt
+
+Reading config file direwolf.conf
+Audio device for both receive and transmit: plughw:1,0  (channel 0)
+Channel 0: 1200 baud, AFSK 1200 & 2200 Hz, E+, 44100 sample rate.
+Note: PTT not configured for channel 0. (Ignore this if using VOX.)
+Ready to accept AGW client application 0 on port 8000 ...
+Ready to accept KISS TCP client application 0 on port 8001 ...
+
+ON6SX audio level = 198(133/124)   [NONE]   _|||||___
+Audio input level is too high.  Reduce so most stations are around 50.
+[0.3] ON6SX>APMI06,WIDE2-2:@132016z5054.40N/00437.53E-WX3in1Plus2.0 U=12.4V,T=21.6C/70.8F
+Position with time, House, SQ3PLX http://microsat.com.pl/
+N 50 54.4000, E 004 37.5300
+WX3in1Plus2.0 U=12.4V,T=21.6C/70.8F
+{% endhighlight %}
+<figcaption class="highlight">↑ Dire Wolf captured a first packet from <a href="https://www.qrz.com/db/ON6SX" title="ON6SX’s profile on QRZ.com">ON6SX</a> while the Baofeng volume is set too loud</figcaption>
+
+<p>Dire Wolf will now listen for APRS packets and decode them as they come in. Note that there won’t be any audible sound since the audio is piped directly to the computer. If you don’t see packets come in from time to time you might be in a region with low APRS activity, check the <a href="https://aprs.fi/#!mt=osm">aprs.fi</a> website to make sure.</p>
+
+<p>Note the warning about the audio level in the APRS packet above. This means the volume knob on the Baofeng is set too loud, turn it down a notch so the first number (198 in the example) is around 50 to make it easier for Dire Wolf to decode the packets.</p>
+
+<p><a href="https://hamradioprep.com/what-does-73-mean/" title="Meaning of 73">73</a> de ON3CIM</p>
