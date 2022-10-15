@@ -1,10 +1,10 @@
 ---
 layout:          post
-title:           Receiving APRS packets with a Baofeng radio
-date:            2022-10-13 10:00:00
-updated:         2022-10-13 10:00:00
+title:           Receiving APRS Packets with a Baofeng Radio
+date:            2022-10-13 20:00:00
+updated:         2022-10-15 10:00:00
 cover_image_url: ../../assets/garmin-edge-explore.jpg
-description:     Receiving APRS data with a Baofeng UV-5R, a Digirig and Linux.
+description:     Receiving APRS and running an IGate with a Baofeng UV-5R, a Digirig and Linux.
 ---
 
 <figure>
@@ -14,9 +14,9 @@ description:     Receiving APRS data with a Baofeng UV-5R, a Digirig and Linux.
   </picture>
 </figure>
 
-<p><abbr title="Automatic Packet Reporting System">APRS</abbr> is a distributed digital communication system used by radio amateurs. It can be used to send your position, share telemetry (a weather station for example), and even send text messages to other <abbr title="Slang for amateur radio operator">ham</abbr>s. Some APRS stations are connected to the internet (called digipeaters), meaning you can track APRS data without the need of a radio (visit <a href="https://aprs.fi/#!mt=osm">aprs.fi</a> to get an idea). Some transceivers have APRS built-in, like the <a href="https://www.yaesu.com/indexVS.cfm?cmd=DisplayProducts&encProdID=8FA58F426C671235EA5791EE6814FF48" title="Yeasu FT5DR product page">Yaesu FT5DR</a>, but most entry level radios, like the <a href="https://baofengtech.com/product/uv-5r/" title="Baofeng UV-5R product page">Baofeng UV-5R</a>, do not.</p>
+<p><abbr title="Automatic Packet Reporting System">APRS</abbr> is a distributed digital communication system used by radio amateurs. It can be used to send your position, share telemetry (a weather station for example), and even send text messages to other <abbr title="Slang for amateur radio operator">ham</abbr>s. Some APRS stations are connected to the internet (called an IGate), meaning you can track APRS data without the need of a radio (visit <a href="https://aprs.fi/#!mt=osm">aprs.fi</a> to get an idea). Some transceivers have APRS built-in, like the <a href="https://www.yaesu.com/indexVS.cfm?cmd=DisplayProducts&encProdID=8FA58F426C671235EA5791EE6814FF48" title="Yeasu FT5DR product page">Yaesu FT5DR</a>, but most entry level radios, like the <a href="https://baofengtech.com/product/uv-5r/" title="Baofeng UV-5R product page">Baofeng UV-5R</a>, do not.</p>
 
-<p>I don’t own a fancy APRS capable radio so I need a cheaper way to play with APRS: a computer, a Baofeng (€50) and a <a href="https://digirig.net/product/digirig-mobile/" title="Digirig Mobile product page">Digirig</a> ($50).</p>
+<p>I don’t own a fancy APRS capable radio, so I need a cheaper way to play with APRS: a computer, a Baofeng (€50) and a <a href="https://digirig.net/product/digirig-mobile/" title="Digirig Mobile product page">Digirig</a> ($50).</p>
 
 <h2>Receiving APRS data</h2>
 
@@ -44,9 +44,9 @@ card 1: Device [USB PnP Sound Device], device 0: USB Audio [USB Audio]
 {% endhighlight %}
 <figcaption class="highlight">↑ The Digirig is “card 1” here</figcaption>
 
-<p>Turn the microphone input of the Digirig on via <kbd>amixer</kbd>, we don’t want to mute the incoming audio (you can also use <kbd>alsamixer</kbd> if you prefer a <abbr title="Terminal User Interface">TUI</abbr>). The card number should match with the number you found above.</p>
+<p>Turn the microphone input of the Digirig on via <kbd>amixer</kbd>, we don’t want to mute the incoming audio (you can also use <kbd>alsamixer</kbd> if you prefer a <abbr title="Terminal User Interface">TUI</abbr>). The card number should match the number you found above.</p>
 
-<p>I don’t know about the automatic gain control, and am not sure what this does.</p>
+<p>I don’t know about automatic gain control and am not sure what this does.</p>
 
 {% highlight bash %}
 $ amixer --card 1 set 'Speaker' unmute
@@ -90,5 +90,73 @@ WX3in1Plus2.0 U=12.4V,T=21.6C/70.8F
 <p>Dire Wolf will now listen for APRS packets and decode them as they come in. Note that there won’t be any audible sound since the audio is piped directly to the computer. If you don’t see packets come in from time to time you might be in a region with low APRS activity, check the <a href="https://aprs.fi/#!mt=osm">aprs.fi</a> website to make sure.</p>
 
 <p>Note the warning about the audio level in the APRS packet above. This means the volume knob on the Baofeng is set too loud, turn it down a notch so the first number (198 in the example) is around 50 to make it easier for Dire Wolf to decode the packets.</p>
+
+<h2>Forwarding APRS data to the internet</h2>
+
+<p>Now that we can receive packets on a computer, we can also forward the packets to the internet. This turns our little listening station into an <a href="https://www.aprs-is.net/IGating.aspx"><abbr title="Internet Gateway">IGate</abbr></a>.</p>
+
+<p>Back to the Dire Wolf configuration file. Find the “INTERNET GATEWAY” section starting around line 337 and modify the following two lines:</p>
+
+<ul>
+<li><kbd>IGSERVER</kbd> (line 350). Replace the server with the one for your region: e.g. ‘euro.aprs2.net’ for the European server.</li>
+<li><kbd>IGLOGIN</kbd> (line 355). Replace this with your call sign and passcode. The passcode is a <a href="https://github.com/magicbug/PHP-APRS-Passcode" title="PHP code to hash a call sign">hashed</a> version of the call sign.</li>
+</ul>
+
+<p>This is the minimum we need to forward packets we receive on the radio to the <abbr title="Automatic Packet Reporting System-Internet Service">APRS-IS</abbr> network. Don’t forget to restart Dire Wolf.</p>
+
+{% highlight bash %}
+$ direwolf -t 0
+Dire Wolf version 1.6
+Includes optional support for:  gpsd hamlib cm108-ptt
+
+Reading config file ~/direwolf.conf
+Audio device for both receive and transmit: plughw:1,0  (channel 0)
+Channel 0: 1200 baud, AFSK 1200 & 2200 Hz, E+, 44100 sample rate.
+Note: PTT not configured for channel 0. (Ignore this if using VOX.)
+Ready to accept AGW client application 0 on port 8000 ...
+Ready to accept KISS TCP client application 0 on port 8001 ...
+
+Now connected to IGate server euro.aprs2.net (78.47.200.124)
+Check server status here http://78.47.200.124:14501
+
+[ig] # aprsc 2.1.11-g80df3b4
+[ig] # logresp ON3CIM verified, server T2NUERNBG
+{% endhighlight %}
+<figcaption class="highlight">↑ Dire Wolf connected to a server in Germany</figcaption>
+
+<p>Checking the IGate server (http://78.47.200.124:14501 in the example above) should list your call sign if the connection succeeded. It shows how many packets have been forwarded and how many were duplicates (meaning they were already reported by another station).</p>
+
+<p>This will not show the station’s symbol on the <a href="https://aprs.fi/#!mt=osm">aprs.fi</a> website yet. We need to enable two more options in the Dire Wolf config file first:</p>
+
+<ul>
+<li><kbd>MYCALL</kbd> (line 142). Replace the ‘N0CALL’ with your own call sign.</li>
+<li><kbd>PBEACON</kbd> (line 365). This will show the little symbol on the map where the IGate is located. Use ‘overlay=R’ since we are only forwarding packets to the internet. You can find your location in degrees, minutes and seconds at the top left of the <a href="https://aprs.fi/#!mt=osm">aprs.fi</a> website.</li>
+</ul>
+
+<p>Restart Dire Wolf once again and it will send an APRS packet over the internet with the IGate’s position.</p>
+
+{% highlight bash %}
+$ direwolf -t 0
+Dire Wolf version 1.6
+-- snip 8< --
+[ig] # logresp ON3CIM verified, server T2LEIPZIG
+[ig] ON3CIM>APDW16:!5052.12NR00442.00E&
+ON3FR-7 audio level = 90(56/32)   [NONE]   __|||||||
+[0.5] ON3FR-7>UP5RQ7,WIDE1-1,WIDE2-1:`zFTlzN[/`"4<}_0<0x0d>
+MIC-E, Human, Yaesu FT3D, En Route
+N 50 52.1700, E 004 42.5600, 10 MPH, course 50, alt 121 ft
+{% endhighlight %}
+<figcaption class="highlight">↑ Dire Wolf reporting my IGate’s position to the APRS-IS network</figcaption>
+
+<p>A little black diamond symbol with an ‘R’ will now show on the map with your call sign.</p>
+
+<figure>
+  <picture>
+    <img src="../../assets/aprs-igate-map.jpg" property="thumbnailUrl" alt="IGate reporting ON3FR on a map" />
+  </picture>
+  <figcaption class="highlight">↑ My IGate reporting <a href="https://www.qrz.com/db/ON3FR" title="ON3FR’s profile on QRZ.com">ON3FR</a> on a map</figcaption>
+</figure>
+
+<p>We went from receiving and decoding APRS packets to sharing the packets with the wider ham community by running our own IGate. We haven’t transmitted anything with our radio yet… stay tuned.</p>
 
 <p><a href="https://hamradioprep.com/what-does-73-mean/" title="Meaning of 73">73</a> de ON3CIM</p>
