@@ -47,6 +47,8 @@ Redirect permanent /feeds/blog.atom                   /feeds/blog.xml
 Redirect permanent /blog.atom                         /feeds/blog.xml
 Redirect permanent /blog.xml                          /feeds/blog.xml
 
+Redirect permanent /wp-login.php                      http://127.0.0.1
+
 <IfModule mod_headers.c>
     # 30 days cache
     <FilesMatch "\.(ico|jpg|jpeg|png|gif|woff2)$">
