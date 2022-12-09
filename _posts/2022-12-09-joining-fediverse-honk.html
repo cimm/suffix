@@ -1,0 +1,140 @@
+---
+layout:          post
+title:           Joining the Fediverse with honk
+date:            2022-12-09 15:00:00
+updated:         2022-12-09 15:00:00
+description:     Self-hosting a Fediverse server with honk.
+---
+
+<p>One of <a href="https://joinmastodon.org/">Mastodon</a>’s (and the <a href="https://fediverse.party/" title="A collection of Fediverse applications">Fediverse</a> by extension) main advantages over Twitter is its decentralized nature. You can pick up and move if your instance no longer suits you. Unlike Twitter you can still interact with your Fediverse friends on other instances. While the decentralized nature offers more freedom and flexibility you still depend on someone else’s goodwill to keep the server up and running. As a techie we can do better, why not host our own?</p>
+
+<p>Mastodon might be the most popular social media Fediverse platform but it’s not the only one: Pleorma, Misskey, GoToSocial, and honk all use ActivityPub under the hood to talk to each other. <a href="https://humungus.tedunangst.com/r/honk" title="ActivityPub server with minimal setup and support costs">Honk</a> might be one of the simplest alternatives to self-host: a single binary is all that’s needed.</p>
+
+<h2>Installing honk</h2>
+
+<p>First <a href="https://humungus.tedunangst.com/r/honk/d">download</a> the latest honk source code and extract the tarball.</p>
+
+{% highlight bash %}
+wget https://humungus.tedunangst.com/r/honk/d/honk-0.9.8.tgz
+tar -xf honk-0.9.8.tgz
+sudo mv honk-0.9.8 /etc/honk
+{% endhighlight %}
+
+<h2>Building honk</h2>
+
+<p>To build honk we need a recent go compiler. The version in the Ubuntu 20.04.5 LTS repository is too old, so we are using the snap package. We also need the gcc compiler and SQLite development library. We can now build honk from within its directory.</p>
+
+{% highlight bash %}
+sudo snap install go --classic
+sudo apt install gcc libsqlite3-dev
+cd /etc/honk
+make
+{% endhighlight %}
+
+<h2>Configuring honk</h2>
+
+<p>Configure honk by setting a username and password, the listenaddr, and servername. I set <code>127.0.0.1:31337</code> as the listen address and my <abbr title="Fully Qualified Domain Name">FQDN</abbr> as server name.</p>
+
+{% highlight bash %}
+./honk init
+{% endhighlight %}
+
+<p>From here running honk is as simple as starting the binary.</p>
+
+{% highlight bash %}
+./honk
+{% endhighlight %}
+
+<h2>Reverse proxy</h2>
+
+<p>Honk does not handle encryption itself and expects a <abbr title="Transport Layer Security">TLS</abbr> frontend. We can use any webserver we like. For Apache we configure a reverse TLS proxy. Replace SERVERNAME by the FQDN used in the honk config above. The certificate is managed by <a href="https://certbot.eff.org/instructions?ws=apache&os=ubuntufocal" title="Configure certbot for Apache on Ubuntu">certbot</a>.</p>
+
+{% highlight apache %}
+ServerTokens Prod
+ServerSignature Off
+TraceEnable off
+LogLevel alert
+
+<VirtualHost *:80 >
+  ServerName SERVERNAME
+</VirtualHost>
+
+<VirtualHost *:443>
+  ServerName SERVERNAME
+  SSLEngine On
+  SSLCertificateFile /etc/letsencrypt/live/SERVERNAME/fullchain.pem
+  SSLCertificateKeyFile /etc/letsencrypt/live/SERVERNAME/privkey.pem
+  Include /etc/letsencrypt/options-ssl-apache.conf
+  ProxyPreserveHost On
+  ProxyPass / http://127.0.0.1:31337/
+  ProxyPassReverse / http://127.0.0.1:31337/
+</VirtualHost>
+{% endhighlight %}
+<figcaption class="highlight">↑ Apache reverse proxy config in /etc/apache2/sites-available/SERVERNAME.conf.</figcaption>
+
+<p>Link the config and reload Apache.</p>
+
+{% highlight apache %}
+sudo ln -s /etc/apache2/sites-available/SERVERNAME.conf /etc/apache2/sites-enabled/
+sudo systemctl reload apache2
+{% endhighlight %}
+
+<h2>Surviving restarts</h2>
+
+<p>Starting the honk server manually is nice the first time but we want the system to automatically start the process after a server restart. First create a new system user so we don’t run the honk process as root.</p>
+
+{% highlight bash %}
+sudo useradd --system honk
+sudo chown -R honk:honk /etc/honk
+{% endhighlight %}
+
+<p>Next add a new systemd service configuration (I stole the sandboxing part from the GoToSocial <a href="https://github.com/superseriousbusiness/gotosocial/blob/main/example/gotosocial.service" title="Systemd gotosocial.service example on GitHub">example</a>).</p>
+
+{% highlight conf %}
+[Unit]
+Description=Honk Server
+
+[Service]
+WorkingDirectory=/etc/honk
+ExecStart=/etc/honk/honk
+Restart=on-failure
+
+User=honk
+Group=honk
+
+# Harden security
+CapabilityBoundingSet=CAP_SET_UID
+DevicePolicy=closed
+LockPersonality=yes
+NoNewPrivileges=yes
+PrivateDevices=yes
+PrivateTmp=yes
+PrivateUsers=yes
+ProtectHostname=yes
+ProtectKernelModules=yes
+ProtectKernelTunables=yes
+ProtectSystem=strict
+ProtectSystem=strict
+ReadWritePaths=/etc/honk
+RestrictAddressFamilies=AF_UNIX AF_INET
+RestrictNamespaces=yes
+RestrictRealtime=yes
+
+[Install]
+WantedBy=default.target
+{% endhighlight %}
+<figcaption class="highlight">↑ Create a /etc/systemd/system/honk.service config file.</figcaption>
+
+<p>All that’s left now is to enable and start the honk service.</>
+
+{% highlight bash %}
+sudo systemctl enable --now honk
+{% endhighlight %}
+
+<p>Check the logs to make sure everything runs smoothly.</p> 
+
+{% highlight bash %}
+journalctl -u honk -f
+{% endhighlight %}
+
+<p>Find me at <a href="https://fedi.suffix.be/u/cimm">@cimm@fedi.suffix.be</a> and share your new fancy Fediverse instance!</p>
