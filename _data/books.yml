@@ -1,0 +1,364 @@
+- name: "1984"
+  author: "George Orwell"
+  isbn13: 9780140009729
+  rating: 5
+- name: "A People’s History of the United States"
+  author: "Howard Zinn"
+  isbn13: 9780060528423
+  rating: 1
+- name: "Angels & Demons"
+  author: "Dan Brown"
+  isbn13: 9781416524793
+  rating: 3
+- name: "Animal Farm"
+  author: "George Orwell"
+  isbn13: 9780451526342
+  rating: 4
+- name: "Armada"
+  author: "Ernest Cline"
+  isbn13: 9780804137270
+  rating: 3
+- name: "Boy"
+  author: "Roald Dahl"
+  isbn13: 9782070333936
+  rating: 2
+- name: "Brave New World"
+  author: "Aldous Huxley"
+  isbn13: 9781508976097
+  rating: 3
+- name: "Ca$hvertising"
+  author: "Drew Eric Whitman"
+  isbn13: 9781601630322
+  rating: 1
+- name: "Catch 22"
+  author: "Joseph Heller"
+  isbn13: 9780552015004
+  rating: 3
+- name: "Champion"
+  author: "Marie Lu"
+  isbn13: 9780147512284
+  rating: 4
+- name: "Children of Dune"
+  author: "Frank Herbert"
+  isbn13: 9780593098240
+  rating: 3
+- name: "Code"
+  author: "Charles Petzold"
+  isbn13: 9780735611313
+  rating: 3
+- name: "Countdown to Zero Day"
+  author: "Kim Zetter"
+  isbn13: 9780770436193
+  rating: 3
+- name: "Data Jack"
+  author: "Christopher Greyson"
+  isbn13: 9781512221213
+  rating: 2
+- name: "Deamon"
+  author: "Daniel Suarez"
+  isbn13: 9780525951117
+  rating: 4
+- name: "Dune Messiah"
+  author: "Frank Herbert"
+  isbn13: 9780441172696
+  rating: 4
+- name: "Dune"
+  author: "Frank Herbert"
+  isbn13: 9780425027066
+  rating: 5
+- name: "Encryption in Everyday Life"
+  author: "Richard White"
+  rating: 0
+  url: "2014-reading-list"
+- name: "Ender’s Game"
+  author: "Orson Scott Card"
+  isbn13: 9780765362339
+  rating: 5
+- name: "Extreme Ownership"
+  author: "Jocko Willink"
+  isbn13: 9781250270962
+  rating: 4
+- name: "Fallen Dragon"
+  author: "Peter F. Hamilton"
+  isbn13: 9780446527088
+  rating: 4
+- name: "Flash Boys"
+  author: "Michael Lewis"
+  isbn13: 9780393244663
+  rating: 5
+- name: "Freedom"
+  author: "Daniel Suarez"
+  isbn13: 9780857381224
+  rating: 4
+- name: "God Emperor of Dune"
+  author: "Frank Herbert"
+  isbn13: 9780593098257
+  rating: 3
+- name: "Harry Potter and the Chamber of Secrets"
+  author: "J.K. Rowling"
+  isbn13: 9781408855669
+  rating: 3
+- name: "Harry Potter and the Goblet of Fire"
+  author: "J.K. Rowling"
+  isbn13: 9780613496742
+  rating: 4
+- name: "Harry Potter and the Half-Blood Prince"
+  author: "J.K. Rowling"
+  isbn13: 9780545582995
+  rating: 3
+- name: "Harry Potter and the Order of the Phoenix"
+  author: "J.K. Rowling"
+  isbn13: 9780545582971
+  rating: 2
+- name: "Harry Potter and the Prisoner of Azkaban"
+  author: "J.K. Rowling"
+  isbn13: 9788498386615
+  rating: 3
+- name: "Harry Potter and the Sorcerer’s Stone"
+  author: "J.K. Rowling"
+  isbn13: 9780747542988
+  rating: 5
+- name: "Het Kattenmeisje: Groene Klauwen"
+  author: "Nico De Braeckeleer"
+  isbn13: 9789059247635
+  rating: 2
+- name: "Het ministerie van Oplossingen"
+  author: "Sanne Rooseboom"
+  isbn13: 9789000351091
+  rating: 4
+- name: "High Output Management"
+  author: "Andrew S. Grove"
+  isbn13: 9780679762881
+  rating: 3
+- name: "Homo deus"
+  author: "Yuval Noah Harari"
+  isbn13: 9780062464316 
+  rating: 4
+- name: "I, Robot"
+  author: "Isaac Asimov"
+  isbn13: 9780553294385
+  rating: 5
+- name: "Information Doesn’t Want to Be Free"
+  author: "Cory Doctorow"
+  isbn13: 9781940450285
+  rating: 3
+- name: "James and Giant Peach"
+  author: "Roald Dahl"
+  isbn13: 9780394912820
+  rating: 3
+- name: "Kingpin"
+  author: "Kevin Poulsen"
+  isbn13: 9780307588685
+  rating: 4
+- name: "Klara and the Sun"
+  author: "Kazuo Ishiguro"
+  isbn13: 9780593396568
+  rating: 3
+- name: "Le Bourgmestre de Furnes"
+  author: "Georges Simenon"
+  isbn13: 9782070410286
+  rating: 1
+- name: "Legend"
+  author: "Marie Lu"
+  isbn13: 9780399256752
+  rating: 3
+- name: "Little Brother"
+  author: "Cory Doctorow"
+  isbn13: 9780765319852
+  rating: 4
+- name: "Lord of the flies"
+  author: "William Golding"
+  isbn13: 9780786516681
+  rating: 2
+- name: "Matilda"
+  author: "Roald Dahl"
+  isbn13: 9780590996839
+  rating: 4
+- name: "Microformats"
+  author: "John Allsopp"
+  isbn13: 9781590598146
+  rating: 3
+  url: "microformats-book"
+- name: "Midnight in Chernobyl"
+  author: "Adam Higginbotham"
+  isbn13: 9781501134616
+  rating: 4
+- name: "Name of the Rose"
+  author: "Umberto Eco"
+  isbn13: 9780446357203
+  rating: 4
+- name: "Need to know"
+  author: "Karen Cleveland"
+  isbn13: 9780525587828
+  rating: 2
+- name: "Neuromancer"
+  author: "William F. Gibson"
+  isbn13: 9780441007462
+  rating: 2
+- name: "Never Split the Difference"
+  author: "Chris Voss"
+  isbn13: 9780062407818
+  rating: 4
+- name: "Pandora’s Star"
+  author: "Peter F. Hamilton"
+  isbn13: 9780345461629
+  rating: 2
+- name: "Peopleware"
+  author: "Tom DeMarco"
+  isbn13: 9780932633439
+  rating: 5
+- name: "Practical Vim"
+  author: "Drew Neil"
+  isbn13: 9781680501278
+  rating: 1
+- name: "Prodigy"
+  author: "Marie Lu"
+  isbn13: 9781410455123
+  rating: 4
+- name: "Project Hail Mary"
+  author: "Andy Weir"
+  isbn13: 9780593395561
+  rating: 4
+  url: "project-hail-mary"
+- name: "Quiet power"
+  author: "Susan Cain"
+  isbn13: 9780803740600
+  rating: 4
+- name: "Ready Player One"
+  author: "Ernest Cline"
+  isbn13: 9781524763282
+  rating: 5
+- name: "Red Plenty"
+  author: "Francis Spufford"
+  isbn13: 9780571225248
+  rating: 5
+- name: "Sandworm"
+  author: "Andy Greenberg"
+  isbn13: 9780385544405
+  rating: 4
+- name: "Sapiens"
+  author: "Yuval Noah Harari"
+  isbn13: 9780099590088
+  rating: 1
+- name: "Seveneves"
+  author: "Neal Stephenson"
+  isbn13: 9780062190376
+  rating: 4
+- name: "Skunk Works"
+  author: "Ben R. Rich"
+  isbn13: 9780316246934
+  rating: 4
+- name: "Steve Jobs"
+  author: "Walter Isaacson"
+  isbn13: 9788937483943
+  rating: 4
+  url: "2014-reading-list"
+- name: "The 7 habits of highly effective people"
+  author: "Stephen R. Covey"
+  isbn13: 9781451639612
+  rating: 1
+- name: "The Accidental Tourist"
+  author: "Anne Tyler"
+  isbn13: 9780345452009
+  rating: 4
+- name: "The BFG"
+  author: "Roald Dahl"
+  isbn13: 9782070336029
+  rating: 4
+- name: "The Bitcoin Primer"
+  author: "David Seaman"
+  rating: 1
+  url: "2014-reading-list"
+- name: "The Box"
+  author: "Marc Levinson"
+  isbn13: 9780691123240
+  rating: 2
+- name: "The Da Vinci Code"
+  author: "Dan Brown"
+  isbn13: 9780307277671
+  rarting: 4
+- name: "The Day of the Triffids"
+  author: "John Wyndham"
+  isbn13: 9780449237212
+  rating: 5
+- name: "The Fellowship of the Ring"
+  author: "J.R.R. Tolkien"
+  isbn13: 9780345015339
+  rating: 5
+- name: "The Girl on the Train"
+  author: "Paula Hawkins"
+  isbn13: 9781594633669
+  rating: 3
+- name: "The Help"
+  author: "Kathryn Stockett"
+  isbn13: 9780399155345
+  rating: 4
+- name: "The Hitchhiker’s Guide to the Galaxy"
+  author: "Douglas Adams"
+  isbn13: 9781850892434
+  rating: 4
+- name: "The Hobbit"
+  author: "J.R.R. Tolkien"
+  isbn13: 9780618002214
+  rating: 4
+- name: "The Kite Runner"
+  author: "Khaled Hosseini"
+  isbn13: 9781408845479
+  rating: 4
+- name: "The Martian"
+  author: "Andy Weir"
+  isbn13: 9780553418026
+  rating: 5
+- name: "The Palmer method of business writing"
+  author: "A.N. Palmer"
+  rating: 4
+  url: "palmer-writing-method"
+- name: "The Player of Games"
+  author: "Iain M. Banks"
+  isbn13: 9780333471104
+  rating: 2
+- name: "The Return of the King"
+  author: "J.R.R. Tolkien"
+  isbn13: 9780345240347
+  rating: 5
+- name: "The Spy and the Traitor"
+  author: "Ben Macintyre"
+  isbn13: 9780771060335
+  rating: 5
+- name: "The Two Towers"
+  author: "J.R.R. Tolkien"
+  isbn13: 9780345339713
+  rating: 5
+- name: "The Woman in Cabin 10"
+  author: "Ruth Ware"
+  isbn13: 9783423261784
+  rating: 2
+- name: "The girl who knew too much"
+  author: "Jayne Ann Krentz"
+  isbn13: 9780399174476
+  rating: 2
+- name: "The little prince"
+  author: "Antoine de Saint-Exupéry"
+  isbn13: 9780152023980
+  rating: 2
+- name: "The man in the high castle"
+  author: "Philip K. Dick"
+  isbn13: 9780544817289
+  rating: 2
+- name: "The trial"
+  author: "Franz Kafka"
+  isbn13: 9780805210408
+  rating: 2
+  url: "2014-reading-list"
+- name: "The witches"
+  author: "Roald Dahl"
+  isbn13: 9780140340204
+  rating: 3
+- name: "Woman in the Window"
+  author: "A.J. Finn"
+  isbn13: 9780008333324
+  rating: 2
+- name: "Zen and the Art of Motorcycle Maintenance"
+  author: "Robert M. Pirsig"
+  isbn13: 9780060589462
+  rarting: 2

@@ -2,29 +2,17 @@
 layout: default
 description: Ideas if you ever want to buy me a present
 title: Wishlist
-items:
-  - ["GRID GAME BOY", "../assets/grid.jpg", "https://gridstudio.cc/products/game-boy", "€260"]
-  - ["Heckler Camera Shelf", "../assets/heckler.jpg", "https://hecklerdesign.com/products/heckler-camera-shelf-for-monitor-arms?variant=37087252316314" , "€64"]
-  - ["Inkplate screen", "../assets/inkplate.png", "https://inkplate.io/", "€212"]
-  - ["LEGO Create Together", "../assets/21226.jpg", "https://www.brickwatch.net/nl-BE/set/21226/Art-Project-Create-Together.html", "€110"]
-  - ["Lamy stub 1.5 mm steel nib", "../assets/lamy-nibs.jpg", "https://www.lacouronneducomte.com/lamy-z50-nib.html", "€7.5"]
-  - ["Lego Apollo Saturn V", "../assets/apollo.jpg", "https://www.brickwatch.net/nl-BE/set/21309/LEGO-NASA-Apollo-Saturn-V.html", "€130"]
-  - ["Mapiful", "../assets/mapiful.jpg", "https://www.mapiful.com", "€40"]
-  - ["Ottomatic", "../assets/ottomatic.png", "https://www.chemexcoffeemaker.com/coffeemakers/ottomatic.html", "$350"]
-  - ["Silence on the Wire", "../assets/silenceonthewire.jpg", "https://nostarch.com/silence.htm", "$32"]
-  - ["Silent Pocket bag", "../assets/silentpocket.jpg", "https://silent-pocket.com", "$50"]
-  - ["TWSBI ECO", "../assets/twsbi-eco.jpg", "https://www.lacouronneducomte.com/twsbi-eco-white-fountain-pen.html" , "€35"]
 ---
 
 <article class="cards">
-  {% for item in page.items %}
-    <a href="{{ item[2] }}" class="card">
-      <label class="badge">{{ item[3] }}</label>
+  {% for item in site.data.wishlist %}
+    <a href="{{ item.url }}" class="card">
+      <label class="badge">{{ item.price}}</label>
       <figure>
         <div class="frame">
-          <img src="{{ item[1] }}" alt="" />
+          <img src="{{ item.image }}" alt="" />
         </div>
-        <figcaption>{{ item[0] }}</figcaption>
+        <figcaption>{{ item.name }}</figcaption>
       </figure>
     </a>
   {% endfor %}

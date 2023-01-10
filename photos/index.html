@@ -1,39 +1,18 @@
 ---
 layout: default
-description: Some photos I took over the last years
+description: Some photos I took over the years
 title: Photos
-photo_sets:
-  - ["https://www.flickr.com/photos/schoeters/7615349328/", "7615349328_467b76530e_m"]
-  - ["https://www.flickr.com/photos/schoeters/6084092870/", "6084092870_0902cf833e_m"]
-  - ["https://www.flickr.com/photos/schoeters/6084092864/", "6084092864_0dbd331a29_m"]
-  - ["https://www.flickr.com/photos/schoeters/6084092862/", "6084092862_b00b98f614_m"]
-  - ["https://www.flickr.com/photos/schoeters/6084092846/", "6084092846_b62141f552_m"]
-  - ["https://www.flickr.com/photos/schoeters/6084092838/", "6084092838_0542df930a_m"]
-  - ["https://www.flickr.com/photos/schoeters/5796671485/", "5796671485_61bd2df625_m"]
-  - ["https://www.flickr.com/photos/schoeters/5796671059/", "5796671059_0e69b81a85_m"]
-  - ["https://www.flickr.com/photos/schoeters/5796670789/", "5796670789_d944f6a1aa_m"]
-  - ["https://www.flickr.com/photos/schoeters/5796670299/", "5796670299_e66c380c27_m"]
-  - ["https://www.flickr.com/photos/schoeters/5480018420/", "5480018420_5ee575149a_m"]
-  - ["https://www.flickr.com/photos/schoeters/5480018182/", "5480018182_610e32cd95_m"]
-  - ["https://www.flickr.com/photos/schoeters/5479417753/", "5479417753_7579ac170f_m"]
-  - ["https://www.flickr.com/photos/schoeters/5234191379/", "5234191379_a01cb5139c_m"]
-  - ["https://www.flickr.com/photos/schoeters/5234191371/", "5234191371_c9a2c31ca7_m"]
-  - ["https://www.flickr.com/photos/schoeters/4910737080/", "4910737080_9d09f041e9_m"]
-  - ["https://www.flickr.com/photos/schoeters/4832092450/", "4832092450_5d39e23bec_m"]
-  - ["https://www.flickr.com/photos/schoeters/4713993741/", "4713993741_2c7bd1ef7b_m"]
-  - ["https://www.flickr.com/photos/schoeters/4713993435/", "4713993435_1519633277_m"]
-  - ["https://www.flickr.com/photos/schoeters/4713993111/", "4713993111_f7c60ddd58_m"]
 ---
 
 <p>Some photos I took over the years, you can find the full collection on my <a href="https://www.flickr.com/photos/schoeters/" rel="me">flickr</a> page.</p>
 
 <section class="cards">
-  {% for photo in page.photo_sets %}
-    <a href="{{ photo.first }}" title="Open larger version on Flickr" class="card">
+  {% for photo in site.data.photos %}
+    <a href="{{ photo.url }}" title="Open larger version on Flickr" class="card">
       <figure>
         <picture class="frame">
-          <source type="image/webp" srcset="../assets/photos/{{ photo.last }}.webp" />
-          <img src="../assets/photos/{{ photo.last }}.jpg" loading="lazy" alt="" />
+          <source type="image/webp" srcset="../assets/photos/{{ photo.filename }}.webp" />
+          <img src="../assets/photos/{{ photo.filename }}.jpg" loading="lazy" alt="" />
         </picture>
       </figure>
     </a>

@@ -1,0 +1,44 @@
+- name: "GRID GAME BOY"
+  image: ../assets/grid.jpg
+  url: https://gridstudio.cc/products/game-boy
+  price: "€260"
+- name: Heckler Camera Shelf
+  image: ../assets/heckler.jpg
+  url: "https://hecklerdesign.com/products/heckler-camera-shelf-for-monitor-arms?variant=37087252316314" 
+  price: "€64"
+- name: "Inkplate screen"
+  image: ../assets/inkplate.png
+  url: https://inkplate.io/
+  price: "€212"
+- name: "LEGO Create Together"
+  image: ../assets/21226.jpg
+  url: https://www.brickwatch.net/nl-BE/set/21226/Art-Project-Create-Together.html
+  price: "€110"
+- name: "Lamy stub 1.5 mm steel nib"
+  image: ../assets/lamy-nibs.jpg
+  url: https://www.lacouronneducomte.com/lamy-z50-nib.html
+  price: "€7.5"
+- name: "Lego Apollo Saturn V"
+  image: ../assets/apollo.jpg
+  url: https://www.brickwatch.net/nl-BE/set/21309/LEGO-NASA-Apollo-Saturn-V.html
+  price: "€130"
+- name: "Mapiful"
+  image: ../assets/mapiful.jpg
+  url: https://www.mapiful.com
+  price: "€40"
+- name: "Ottomatic"
+  image: ../assets/ottomatic.png
+  url: https://www.chemexcoffeemaker.com/coffeemakers/ottomatic.html
+  price: "$350"
+- name: "Silence on the Wire"
+  image: ../assets/silenceonthewire.jpg
+  url: https://nostarch.com/silence.htm
+  price: "$32"
+- name: "Silent Pocket bag"
+  image: ../assets/silentpocket.jpg
+  url: https://silent-pocket.com/
+  price: "$50"
+- name: "TWSBI ECO"
+  image: ../assets/twsbi-eco.jpg
+  url: https://www.lacouronneducomte.com/twsbi-eco-white-fountain-pen.html
+  price: "€35"
