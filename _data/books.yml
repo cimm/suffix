@@ -362,3 +362,7 @@
   author: "Robert M. Pirsig"
   isbn13: 9780060589462
   rarting: 2
+- name: "Harry Potter and the Deathly Hallows"
+  author: "J.K. Rowling"
+  isbn13: 9780545139700
+  rating: 4
