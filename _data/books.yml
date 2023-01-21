@@ -125,7 +125,7 @@
 - name: "Het ministerie van Oplossingen"
   author: "Sanne Rooseboom"
   isbn13: 9789000351091
-  rating: 4
+  rating: 3
 - name: "High Output Management"
   author: "Andrew S. Grove"
   isbn13: 9780679762881
@@ -173,7 +173,7 @@
 - name: "Matilda"
   author: "Roald Dahl"
   isbn13: 9780590996839
-  rating: 4
+  rating: 3
 - name: "Microformats"
   author: "John Allsopp"
   isbn13: 9781590598146
@@ -264,7 +264,7 @@
 - name: "The BFG"
   author: "Roald Dahl"
   isbn13: 9782070336029
-  rating: 4
+  rating: 3
 - name: "The Bitcoin Primer"
   author: "David Seaman"
   rating: 1
@@ -276,7 +276,7 @@
 - name: "The Da Vinci Code"
   author: "Dan Brown"
   isbn13: 9780307277671
-  rarting: 4
+  rating: 4
 - name: "The Day of the Triffids"
   author: "John Wyndham"
   isbn13: 9780449237212
@@ -361,7 +361,7 @@
 - name: "Zen and the Art of Motorcycle Maintenance"
   author: "Robert M. Pirsig"
   isbn13: 9780060589462
-  rarting: 2
+  rating: 2
 - name: "Harry Potter and the Deathly Hallows"
   author: "J.K. Rowling"
   isbn13: 9780545139700

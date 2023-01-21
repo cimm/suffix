@@ -4,35 +4,39 @@ description: Some books I have read
 title: Books
 ---
 
-{% for book in site.data.books %}
-  <section typeof="Book">
+{% assign books_by_rating = site.data.books | sort: "rating" | reverse | group_by: "rating" %}
+{% for rating_group in books_by_rating %}
+  {% assign books_by_name = rating_group.items | sort: "name" %}
+  {% for book in books_by_name %}
+    <section typeof="Book">
 
-    <h1 property="name">
-      {% if book.url %}
-        <span property="review" typeof="Review" resource="#{{ book.url | slugify }}">
-          <a href="{% relbase %}/blog/{{ book.url}}/" property="url" title="My {{ book.url }} book review">{{ book.url }}</a>
-        </span>
-      {% else %}
-        {{ book.name }}
-      {% endif %}
-    </h1>
+      <h1 property="name">
+        {% if book.url %}
+          <span property="review" typeof="Review" resource="#{{ book.url | slugify }}">
+            <a href="{% relbase %}/blog/{{ book.url}}/" property="url" title="My {{ book.name }} book review">{{ book.name }}</a>
+          </span>
+        {% else %}
+          {{ book.name }}
+        {% endif %}
+      </h1>
 
-    <p property="author">{{ book.author }}</p>
+      <p property="author">{{ book.author }}</p>
 
-    <p property="isbn">
-      <a href="https://openlibrary.org/search?isbn={{ book.isbn13 }}" property="mainEntityOfPage" title="{{ book.name }} @ OpenLibrary">{{ book.isbn13 }}</a>
-    </p>
+      <p property="isbn">
+        <a href="https://openlibrary.org/search?isbn={{ book.isbn13 }}" property="mainEntityOfPage" title="{{ book.name }} @ OpenLibrary">{{ book.isbn13 }}</a>
+      </p>
 
-    <p property="review" typeof="Review">
-      {% if book.rating <= 5 %}
-        <span property="reviewRating" typeof="Rating">
-          <meta property="bestRating" content="5">
-          <meta property="ratingValue" content="{{ book.rating }}">
-          {% for i in (1..book.rating) %}★{% endfor %}
-          {%- for i in (book.rating..4) %}☆{% endfor %}
-        </span>
-      {% endif %}
-    </p>
+      <p property="review" typeof="Review">
+        {% if book.rating <= 5 %}
+          <span property="reviewRating" typeof="Rating">
+            <meta property="bestRating" content="5">
+            <meta property="ratingValue" content="{{ book.rating }}">
+            {% for i in (1..book.rating) %}★{% endfor %}
+            {%- for i in (book.rating..4) %}☆{% endfor %}
+          </span>
+        {% endif %}
+      </p>
 
-  </section>
+    </section>
+  {% endfor %}
 {% endfor %}
