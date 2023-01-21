@@ -4,6 +4,7 @@ description: Some books I have read
 title: Books
 ---
 
+<div class="table">
 {% assign books_by_rating = site.data.books | sort: "rating" | reverse | group_by: "rating" %}
 {% for rating_group in books_by_rating %}
   {% assign books_by_name = rating_group.items | sort: "name" %}
@@ -40,3 +41,4 @@ title: Books
     </section>
   {% endfor %}
 {% endfor %}
+</div>

@@ -1,0 +1,32 @@
+.table {
+  display: grid;
+  grid-column-gap: 1em;
+  grid-row-gap: 0;
+  grid-template-columns: 2fr 1fr min-content min-content;
+}
+
+.table section {
+  display: contents;
+}
+
+.table section * {
+  margin: .3em 0;
+}
+
+.table section h1, .table section p[property=author] {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.table section h1 {
+  font-size: 1em;
+  font-weight: unset;
+}
+
+@media only screen and (max-width: 767px) {
+  .table { grid-template-columns: 1fr }
+  .table section { display: unset }
+  .table section h1 { font-weight: bold }
+}
+
