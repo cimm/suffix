@@ -1,0 +1,34 @@
+---
+layout:          post
+title:           Homebrew E-ink Calendar Display
+date:            2023-03-12 14:00:00
+updated:         2023-03-12 16:00:00
+cover_image_url: ../../assets/papercal.jpg
+description:     A Paperd.ink digital calendar for the family.
+---
+
+<figure>
+  <picture>
+    <img src="../../assets/papercal.jpg" property="thumbnailUrl" alt="PaperCal running on a Paperd.ink Classic" />
+  </picture>
+</figure>
+
+<p>I share a digital calendar with my wife. My mind is like a sieve and if it’s not in our shared calendar it probably does not happen. Our calendar is synced with my phone and computer with all its alarms and notifications. While this works great for my wife and I, our kids never know what today’s planning looks like. We have a paper wall calendar as well, but except at the start of the month, is rarely updated.</p>
+
+<h2>Information Radiator</h2>
+
+<p>I wanted a way to share our upcoming events with the kids without them needing a phone. My first idea was to show today’s calendar on a computer screen in the living room. Easy enough, but we don’t need yet another bright <abbr title="Light Emitting Diode">LED</abbr> screen in our lives. What about something more discreet? <a href="https://en.wikipedia.org/wiki/Electronic_paper" title="Electronic paper @ Wikipedia">E-ink</a> screens (think e-readers) are an underestimated technology: unobtrusive, use almost no power, with easy-to-read text, even in bright sunlight. Perfect <a href="https://en.wikipedia.org/wiki/Agile_software_development#Efficient_and_face-to-face_communication" title="A display or board, located prominently near the development team, where passers-by can see it. It presents an up-to-date summary of the product development status.">information radiators</a>. What if I could have an e-ink display with our calendar, so the kids know what’s coming up?</p>
+
+<p>Near Christmas 2022, <a href="https://paperd.ink/">Paperd.ink</a> started shipping their small e-ink displays I preordered. The Paperd.ink Classic is a monochrome 4.2" e-ink display with an <a href="https://eitherway.io/posts/esp32-buyers-guide/" title="ESP32 Buyer’s Guide">ESP32</a> and battery for around €85. It can be programmed via <abbr title="Universal Serial Bus">USB</abbr>-C and the <a href="https://www.arduino.cc/en/software" title="Arduino Software">Arduino <abbr title="Integrated Development Environment">IDE</abbr></a>. A nice little display for my calendar project.</p>
+
+<h2>PaperCal</h2>
+
+<p>Our shared calendar lives on the <a href="https://www.synology.com/en-us/dsm/feature/calendar">Synology <abbr title="Network Attached Storage">NAS</abbr></a> in our home. This means my phone and computer only sync when we are at home, but that’s more than often enough. This also means I will have to write my own program for the Paperd.ink, as all their examples use Google Calendar. Oh, hi there C++, it has been a while!</p>
+
+<p>A few evenings later, <a href="https://github.com/cimm/papercal" title="PaperCal’s source code on Github">PaperCal</a> was born, a small C++ Paperd.ink application with minimalist design that shows today’s and tomorrow’s events from a Synology NAS. When PaperCal starts it connects to a Wi-Fi network, gets the current date from a <abbr title="Network Time Protocol">NTP</abbr> server (the Paperd.ink has no internal clock), and loads today’s and tomorrow’s calendar events via <a href="https://en.wikipedia.org/wiki/CalDAV" title="The CalDav standard @ Wikipedia">CalDAV</a>, after which it refreshes the screen and goes to sleep. When it wakes up, the process is repeated. It has no internal state, it gets what’s needed and sleeps, only to restart a few hours later. Since e-ink displays only need power to refresh, it uses very little power.</p>
+
+<p>The wife and children’s approval factor has been great. They don’t always like dad’s geeky projects, but this time I catch them checking the calendar and even making remarks when their hobbies are missing from the list.</p>
+
+<h2>Make your own</h2>
+
+<p>Feel free to get your own Paperd.ink and install the application. PaperCal is open-source and available on <a href="https://github.com/cimm/papercal" title="Download PaperCal">github</a>. It should work with any CalDAV server, but I have only tested the Synology one.</p>
