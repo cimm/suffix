@@ -86,6 +86,10 @@
   author: "Michael Lewis"
   isbn13: 9780393244663
   rating: 5
+- name: "Flatland"
+  author: "Edwin A. Abbott"
+  isbn13: 9781907727337
+  rating: 4
 - name: "Freedom"
   author: "Daniel Suarez"
   isbn13: 9780857381224
