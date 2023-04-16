@@ -1,0 +1,64 @@
+---
+layout:          post
+title:           Self updating ad blocking with AdGuard Home
+date:            2023-04-10 14:00:00
+updated:         2023-04-10 16:00:00
+description:     Fully automated network-wide DNS ad blocking for free.
+cover_image_url: ../../assets/adguard.png
+---
+
+<figure>
+  <picture>
+    <source type="image/webp" srcset="../../assets/adguard.webp" />
+    <img src="../../assets/adguard.png" property="thumbnailUrl" alt="AdGuard Home dashboard screenshot" />
+  </picture>
+</figure>
+
+<p>We all use ad blockers in our browsers, but what about the other devices on our networks: smartphones or televisions, for example?</p>
+
+<p>That is where a <a href="https://pi-hole.net/" title="A popular network-wide ad blocker">Pi-hole</a> or <a href="https://adguard.com/en/adguard-home/overview.html" title="My favorite network-wide ad blocker">AdGuard Home</a> comes in, as replacement for the network’s <abbr title="Domain Name Server">DNS</abbr>. If an app, website, or device asks for an ad the DNS checks the request with a known list of advertisers and trackers and, if it matches, simply pretends the ad or tracker does not exist. It is not waterproof but works surprisingly well.</p>
+
+<p>I don’t want to babysit a DNS on my <abbr title="Local Area Netwrok">LAN</abbr>, so I run a Raspberry Pi with <a href="https://ubuntu.com/core" title="Self updating Linux distribution">Ubuntu Core</a> and AdGuard Home as a <a href="https://ubuntu.com/core/services/guide/snaps-intro" title="What is a snap?">snap</a>. Ubuntu Core is meant for embedded <abbr title="Internet of Things">IoT</abbr> devices and relies entirely on snap packages. More important for us are the automatic updates. Since snaps update automatically as well and AdGuard automatically updates its block lists, we have a fully hands off network-wide ad and tracking blocker!</p>
+
+<h2>Ubuntu Core</h2>
+
+<p>First, you will need an <abbr title="Secure Digital">SD</abbr> card with Ubuntu Core. The <a href="https://www.raspberrypi.com/software/" title="Raspberry Pi Imager download page">Raspberry Pi Imager</a> makes this dead simple. In the Raspberry Pi Imager, select “Other general-purpose OS” → “Ubuntu” → “Ubuntu Core”. Choose the SD card as storage and write the image.</p>
+
+<p>You will also need an <a href="https://login.ubuntu.com/" title="Free account for Ubuntu related services">Ubuntu One</a> account with <abbr title="Secure Shell">SSH</abbr> key once the Raspberry boots, so create one while the image is being written to the card.</p>
+
+<p>Once written, pop the SD card in the Raspberry Pi and follow the onscreen instructions. You can connect the Pi to your Wi-Fi network but using an Ethernet cable would give it a faster and more stable connection. Not a luxury since it will be responsible for all DNS requests.</p>
+
+<h2>AdGuard Home</h2>
+
+<p>Once Ubuntu Core has been configured, SSH into the Raspberry and install the AdGuard Home snap. AdGuard will complain about the Ubuntu DNSStubListener during setup, so disable that while in command line mode.</p>
+
+{% highlight bash %}
+sudo snap install adguard-home
+sudo mkdir -p /etc/systemd/resolved.conf.d
+sudo vi /etc/systemd/resolved.conf.d/adguardhome.conf
+{% endhighlight %}
+
+<p>Create the adguardhome.conf file and directories if they do not exist yet.</p>
+
+{% highlight bash %}
+[Resolve]
+DNS=127.0.0.1
+DNSStubListener=no
+{% endhighlight %}
+<figcaption class="highlight">↑ Add this to the adguardhome.conf resolved configuration</figcaption>
+
+<p>Restart systemd-resolved, the service that provides network name resolution.</p>
+
+{% highlight bash %}
+sudo systemctl reload-or-restart systemd-resolved
+{% endhighlight %}
+
+<p>Open “http://&lt;ip_of_your_pi&gt;:3000” in your computer’s browser and follow the AdGuard configuration steps.</p>
+
+<h2>Router</h2>
+
+<p>Your router will have a <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> setting. On UniFi networks, this can be found under “Settings” → “Networks” → edit the selected network → “Advanced” → “DHCP Name Server”. Replace that address with the Raspberry’s <abbr title="Internet Protocol">IP</abbr> address. You can often find the IP via your router, or check the Raspberry’s screen.</p>
+
+<p>Once configured, browse around as you normally do, and you will see the AdGuard dashboard come to life.</p>
+
+<p>Network-wide ad blocking is even better with a <a href="https://ublockorigin.com/" title="uBlock Origin, the best content filter">browser based blocker</a>: the more layers, the better, <a href="https://quotegeek.com/quotes-from-movies/shrek/7316/" title="Quote from Shrek">like onions</a>.
