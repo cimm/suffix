@@ -42,3 +42,7 @@
   image: ../assets/twsbi-eco.jpg
   url: https://www.lacouronneducomte.com/twsbi-eco-white-fountain-pen.html
   price: "€35"
+- name: "Nixie Clock"
+  image: ../assets/nixie-clock.webp
+  url: https://www.daliborfarny.com/product/puri-nixie-clock/
+  price: "€1.700"
