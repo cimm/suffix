@@ -240,6 +240,10 @@
   author: "Francis Spufford"
   isbn13: 9780571225248
   rating: 5
+- name: "Remote"
+  author: "Jason Fried"
+  isbn13: 9780091954673
+  rating: 4
 - name: "Rework"
   author: "Jason Fried"
   isbn13: 9780307463746
