@@ -337,6 +337,10 @@
   author: "J.R.R. Tolkien"
   isbn13: 9780345240347
   rating: 5
+- name: "The Signal and the Noise"
+  author: "Nate Silver"
+  isbn13: 9781846147524
+  rating: 4
 - name: "The Spy and the Traitor"
   author: "Ben Macintyre"
   isbn13: 9780771060335
