@@ -42,6 +42,10 @@
   author: "Frank Herbert"
   isbn13: 9780593098240
   rating: 3
+- name: "Clean Code"
+  author: "Robert C. Martin"
+  isbn13: 9780132350884
+  rating: 3
 - name: "Code"
   author: "Charles Petzold"
   isbn13: 9780735611313
