@@ -106,6 +106,10 @@
   author: "David Allen"
   isbn13: 9780670899241
   rating: 2
+- name: "Granny"
+  author: "Anthony Horowitz"
+  isbn13: 9780744536812
+  rating: 2
 - name: "Harry Potter and the Chamber of Secrets"
   author: "J.K. Rowling"
   isbn13: 9781408855669
