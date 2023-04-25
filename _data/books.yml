@@ -2,6 +2,10 @@
   author: "George Orwell"
   isbn13: 9780140009729
   rating: 5
+- name: "A Brief History of Time"
+  author: "Stephen Hawking"
+  isbn13: 9780553103748
+  rating: 5
 - name: "A People’s History of the United States"
   author: "Howard Zinn"
   isbn13: 9780060528423
