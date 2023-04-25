@@ -240,6 +240,10 @@
   author: "Francis Spufford"
   isbn13: 9780571225248
   rating: 5
+- name: "Rework"
+  author: "Jason Fried"
+  isbn13: 9780307463746
+  rating: 4
 - name: "Sandworm"
   author: "Andy Greenberg"
   isbn13: 9780385544405
