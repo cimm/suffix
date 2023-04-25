@@ -102,10 +102,18 @@
   author: "Frank Herbert"
   isbn13: 9780593098257
   rating: 3
+- name: "Getting Things Done"
+  author: "David Allen"
+  isbn13: 9780670899241
+  rating: 2
 - name: "Harry Potter and the Chamber of Secrets"
   author: "J.K. Rowling"
   isbn13: 9781408855669
   rating: 3
+- name: "Harry Potter and the Deathly Hallows"
+  author: "J.K. Rowling"
+  isbn13: 9780545139700
+  rating: 4
 - name: "Harry Potter and the Goblet of Fire"
   author: "J.K. Rowling"
   isbn13: 9780613496742
@@ -391,7 +399,3 @@
   author: "Robert M. Pirsig"
   isbn13: 9780060589462
   rating: 2
-- name: "Harry Potter and the Deathly Hallows"
-  author: "J.K. Rowling"
-  isbn13: 9780545139700
-  rating: 4
