@@ -211,6 +211,10 @@
   author: "Adam Higginbotham"
   isbn13: 9781501134616
   rating: 4
+- name: "Moby Dick"
+  author: "Herman Melville"
+  isbn13: 9780848801830
+  rating: 2
 - name: "Name of the Rose"
   author: "Umberto Eco"
   isbn13: 9780446357203
