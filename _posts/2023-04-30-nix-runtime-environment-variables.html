@@ -1,0 +1,33 @@
+---
+layout:          post
+title:           Nix Runtime Environment Variables
+date:            2023-04-30 20:00:00
+updated:         2023-04-30 22:00:00
+description:     Assigning environment variables at runtime in nix configurations.
+---
+
+<p>How do you include environment variables in your nix configurations when the application runs? Let’s take the <a href="https://devcenter.heroku.com/articles/heroku-cli" title="Application to create and manage Heroku apps directly from the terminal">Heroku <abbr title="Command Line Interface">CLI</abbr></a> client as an example.</p>
+
+<p>The Heroku CLI normally updates itself. An important feature, but not so on nix. Nix wants to be <a href="https://nixos.org/" title="Nix’ homepage">reproducible and declarative</a>. A version change needs to be explicit. Fortunately, Heroku has a method to prevent automatic updates through an environment variable. Add <kbd>HEROKU_DISABLE_AUTOUPDATE=1</kbd> before running the Heroku CLI and all is good. Nice, but how do we add this to our nix configuration? We don’t want to specify the variable manually each time we run the client.</p>
+
+<h2>makeWrapper</h2>
+
+<p>Nix has a solution: wrapper scripts. Add the “makeWrapper” function to your build inputs, and use the “wrapProgram” function to replace the binary with a script that adds the variable before calling the real application.</p>
+
+{% highlight nix %}
+nativeBuildInputs = [ pkgs.makeWrapper ];
+postInstall = ''
+  wrapProgram $out/bin/heroku --set HEROKU_DISABLE_AUTOUPDATE 1
+'';
+{% endhighlight %}
+
+<p>For non-flake declarations, you will also have to include the “makeWrapper” function on the <a href="https://github.com/NixOS/nixpkgs/blob/b00a5321bb61a745357ee2f8107e91369cc392db/pkgs/development/tools/heroku/default.nix#LL1C1-L1C48">first line</a>.</p>
+
+<p>On building the package and inspecting the overall result, you will recognize the Heroku script is exporting the variable as foreseen before invoking the wrapped version.</p>
+
+{% highlight bash %}
+$ cat result/bin/heroku
+#! /nix/store/xxx-bash-5.1-p16/bin/bash -e
+export HEROKU_DISABLE_AUTOUPDATE='1'
+exec -a "$0" "/nix/store/xxx-heroku-7.66.4/bin/.heroku-wrapped"  "$@"
+{% endhighlight %}
