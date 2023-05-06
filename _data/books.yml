@@ -215,6 +215,10 @@
   author: "Herman Melville"
   isbn13: 9780848801830
   rating: 2
+- name: "Mother Night"
+  author: "Kurt Vonnegut"
+  isbn13: 9780385334143
+  rating: 4
 - name: "Name of the Rose"
   author: "Umberto Eco"
   isbn13: 9780446357203
