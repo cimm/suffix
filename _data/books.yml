@@ -292,6 +292,10 @@
   author: "Ben R. Rich"
   isbn13: 9780316246934
   rating: 4
+- name: "Slaughterhouse-Five"
+  author: "Kurt Vonnegut"
+  isbn13: 9780385333849
+  rating: 3
 - name: "Steve Jobs"
   author: "Walter Isaacson"
   isbn13: 9788937483943
