@@ -341,6 +341,10 @@
   author: "J.R.R. Tolkien"
   isbn13: 9780345015339
   rating: 5
+- name: "The Forever War"
+  author: "Joe Haldeman"
+  isbn13: 9780060510862
+  rating: 3
 - name: "The Girl on the Train"
   author: "Paula Hawkins"
   isbn13: 9781594633669
