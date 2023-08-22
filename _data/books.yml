@@ -361,6 +361,10 @@
   author: "J.R.R. Tolkien"
   isbn13: 9780618002214
   rating: 4
+- name: "The Hunger Games"
+  author: "Suzanne Collins"
+  isbn13: 9780439023481
+  rating: 3
 - name: "The Kite Runner"
   author: "Khaled Hosseini"
   isbn13: 9781408845479
