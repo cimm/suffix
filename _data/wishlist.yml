@@ -10,10 +10,6 @@
   image: ../assets/inkplate.png
   url: https://inkplate.io/
   price: "€212"
-- name: "LEGO Create Together"
-  image: ../assets/21226.jpg
-  url: https://www.brickwatch.net/nl-BE/set/21226/Art-Project-Create-Together.html
-  price: "€110"
 - name: "Lamy stub 1.5 mm steel nib"
   image: ../assets/lamy-nibs.jpg
   url: https://www.lacouronneducomte.com/lamy-z50-nib.html
