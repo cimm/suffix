@@ -369,6 +369,10 @@
   author: "Khaled Hosseini"
   isbn13: 9781408845479
   rating: 4
+- name: "The Last Question"
+  author: "Isaac Asimov"
+  isbn13: 9781884214493
+  rating: 4
 - name: "The Martian"
   author: "Andy Weir"
   isbn13: 9780553418026
