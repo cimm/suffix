@@ -1,0 +1,39 @@
+---
+layout:          post
+title:           Spicing my Kindle with KOReader
+date:            2023-09-01 22:00:00
+updated:         2023-09-02 18:00:00
+cover_image_url: ../../assets/koreader-logo.jpg
+description:     In search of a more privacy-friendly e-reader.
+---
+
+<figure>
+  <picture>
+    <source type="image/webp" srcset="../../assets/koreader-logo.webp">
+    <img src="../../assets/koreader-logo.png" alt="KOReader logo" />
+  </picture>
+</figure>
+
+<p>I own a <a href="https://wiki.mobileread.com/wiki/Amazon_Kindle_4" title="Amazon Kindle 4 @ MobileRead">Kindle 4</a>. Over 10 years old and scratched, but still works admirably. I like it. However, it’s no secret that Amazon <a href="https://www.theguardian.com/technology/2020/feb/03/amazon-kindle-data-reading-tracking-privacy" title="Article from the Guardian on what Amazon tracks">tracks</a> our reading habits. That, I don’t like.</p>
+
+<p>I rooted my Kindle and installed <a href="https://koreader.rocks/" title="Custom software for e-reading devices">KOReader</a> because I didn’t want to feel like someone was watching me. KOReader is “a document viewer for E Ink devices.” An application to read books on e-readers, like a Kindle or Kobo. KOReader is free and open-source software with extra features like night mode, <a href="https://calibre-ebook.com/" title="E-book management software">Calibre</a> integration, fonts, statistics, and <a href="https://github.com/koreader/koreader/wiki/Features-list" title="KOReader feature list">more</a>. Its best feature: no tracking!</p>
+
+<h2>Installation</h2>
+
+<p>Installing KOReader is a breeze, but it needs a jailbroken Kindle. Jailbreaking is easy: copy some files on your Kindle over <abbr title="Universal Serial Bus">USB</abbr> and restart the device. The issue is there are too many files for each Kindle version, and that info is buried in the <a href="https://www.mobileread.com/forums">MobileRead forums</a>. Once jailbroken, you’ll need a launcher, and only then can you install the KOReader software.</p>
+
+<p>I expected KOReader to replace the official Kindle software. At least on my old Kindle 4 <abbr title="Non Touch">NT</abbr> 2012, that’s not the case. The Kindle starts as normal, after which you open a launcher (which looks like a book in your reading list), from where you start KOReader. Once running, there is almost no need to return to the Kindle software.</p>
+
+<h2>Experience</h2>
+
+<p>KOReader mostly works as advertised. While maybe not as polished as the official Kindle software, KOReader packs a punch. Don’t like the font? Orientation? Sorting? Language? Screensaver? <abbr title="Secure Shell">SSH</abbr>? Its many features mean there are more menu items to dig through. Like Amazon, KOReader tracks the time and counts the pages you read. Unlike Amazon, it keeps these stats offline and makes them available to you, the reader, not some big multinational. You can even set the screensaver to a nice weekly summary of your reading progress.</p>
+
+<p>KOReader focuses on touch devices, sensible I guess, but my Kindle 4 doesn’t have touch. The hardware buttons work, but need some getting used to. Finding the bottom menu, for example, needed to change the font size, took me a <a href="https://github.com/koreader/koreader/issues/10707" title="How to find the bottom menu on a Kindle 4 @ Github">while</a>. You can open it with the main square button while reading a book.</p>
+
+<p>Then there is the Wi-Fi, activated from the menu, but there is no way to select a Wi-Fi network to connect to. I <a href="https://github.com/koreader/koreader/discussions/7686#discussioncomment-4033468" title="Wi-Fi toggle discussion on Github">learned</a> KOReader doesn’t implement its own Wi-Fi driver, so connecting to a Wi-Fi network needs to be done via the official Kindle software. Although a minor issue, my main concern is that KOReader doesn’t replace Kindle software, which still has internet access. I suppose this means the Kindle is still happily phoning home? It might collect less, since the actual reading is hidden from the official software, but it can still track the books on the device and the time it was active, can’t it?</p>
+
+<p>I work around this by not connecting the device to a Wi-Fi network, but this obviously limits the usefulness of KOReader. You upload books to the Kindle via a cloud service or Calibre, but that only works when Wi-Fi is active. Uploading via USB currently doesn’t work on the KOReader Kindle version. For now, my only option is to exit the application, upload the book via USB, and restart KOReader.</p>
+
+<h2>Conclusion</h2>
+
+<p>KOReader makes my old Kindle feel fresh again, like an old dog learning new tricks. The main goal of installing something different, however, was to liberate the device from Amazon’s tracking. Given that KOReader runs as an application on top of the official Kindle software, I am not sure I attained that goal. My reluctance to enable Wi-Fi, for the same reason, combined with the lack of USB support, limits its usefulness. While KOReader definitely is an e-reader power tool, I am still unsure it offers the one feature I am looking for: privacy.</p>
