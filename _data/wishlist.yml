@@ -14,7 +14,7 @@
   image: ../assets/lamy-nibs.jpg
   url: https://www.lacouronneducomte.com/lamy-z50-nib.html
   price: "€7.5"
-- name: "Lego Apollo Saturn V"
+- name: "LEGO Apollo Saturn V"
   image: ../assets/apollo.jpg
   url: https://www.brickwatch.net/nl-BE/set/21309/LEGO-NASA-Apollo-Saturn-V.html
   price: "€220"
@@ -42,7 +42,3 @@
   image: ../assets/nixie-clock.webp
   url: https://www.daliborfarny.com/product/puri-nixie-clock/
   price: "€1.700"
-- name: "Wooden Desk Drawer"
-  image: ../assets/lego-wooden-desk-drawer.webp
-  url: https://www.brickwatch.net/nl-BE/set/5007111/Wooden-Desk-Drawer-8-Light-Oak.html
-  price: "€200"
