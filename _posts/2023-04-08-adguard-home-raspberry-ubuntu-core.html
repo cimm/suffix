@@ -57,8 +57,19 @@ sudo systemctl reload-or-restart systemd-resolved
 
 <h2>Router</h2>
 
-<p>Your router will have a <abbr title="Dynamic Host Configuration Protocol">DHCP</abbr> setting. On UniFi networks, go to “Settings” → “Networks” → edit the selected network → “Advanced” → “DHCP Name Server”. Replace that address with the <abbr title="Internet Protocol">IP</abbr> address of the Raspberry. You can usually find the IP address in your router’s settings, or check the Raspberry’s screen.</p>
+<p>Your router will have a <abbr title="Domain Name Server">DNS</abbr> <abbr title="Internet Protocol">IP</abbr> setting. On UniFi networks, go to “Settings” → “Networks” → edit the selected network → “DHCP” → “DHCP Service Management” → “DHCP DNS Server”. Replace that address with the IP address of the Raspberry. You can usually find the IP address in your router’s settings and on the Raspberry’s screen. The Raspberry is now responsible to translate domain names in IP addresses. When the browser asks for an ad or tacker it simply responds with “does not exist”. Simple but effective.</p>
 
-<p>Once configured, browse around as usual to watch the AdGuard dashboard come to life.</p>
+<p>Once configured, browse around as usual and watch the AdGuard dashboard come to life.</p>
 
 <p>Adding <a href="https://ublockorigin.com/" title="uBlock Origin, the best content filter">ad blocking</a> capabilities to your browser makes it even better; the more layers of protection, the better, like an <a href="https://quotegeek.com/quotes-from-movies/shrek/7316/" title="Quote from Shrek">onion</a>.</p>
+
+<h2>mDNS (optional)</h2>
+
+<p>You still need to use the Raspberry’s IP address to access the AdGuard dashboard. Not too bad, but we can do better: <abbr title="Multicast DNS">mDNS</abbr> (also known as zeroconf, Bonjour or Avahi). Simply add the <a href="https://snapcraft.io/avahi">avahi</a> snap to the Raspberry Pi and set the hostname to something that makes sense.</p>
+
+{% highlight bash %}
+sudo hostnamectl set-hostname 'adguard'
+sudo snap install avahi
+{% endhighlight %}
+
+<p>You can now access the AdGuard web dashboard via http://adguard.local/ from your <abbr title="Local Area Network">LAN</abbr>.
