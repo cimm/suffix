@@ -329,6 +329,10 @@
   author: "Roald Dahl"
   isbn13: 9782070336029
   rating: 3
+- name: "The billion dollar spy"
+  author: "David E. Hoffman"
+  isbn13: 9781410482891
+  rating: 3
 - name: "The Bitcoin Primer"
   author: "David Seaman"
   rating: 1
