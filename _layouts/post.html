@@ -5,7 +5,7 @@ layout: default
 <article typeof="BlogPosting">
   <header>
     <h1 property="headline">{{ page.title }}</h1>
-    <time datetime="{{ page.date | date_to_xmlschema }}" property="datePublished">{{ page.date | date_to_long_string }}</time>
+    <time datetime="{{ page.date | date_to_xmlschema }}" property="datePublished">{{ page.date | date: "%e %B %Y" }}</time>
     {% if page.description %}
       <p>
         <em property="abstract">{{ page.description }}</em>
