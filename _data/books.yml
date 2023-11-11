@@ -430,6 +430,10 @@
   author: "Jayne Ann Krentz"
   isbn13: 9780399174476
   rating: 2
+- name: "The Invincible"
+  author: "Stanisław Lem"
+  isbn13: 9780816491230
+  rating: 5
 - name: "The little prince"
   author: "Antoine de Saint-Exupéry"
   isbn13: 9780152023980
