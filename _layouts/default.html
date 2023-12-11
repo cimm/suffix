@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="{% relbase %}/assets/favicon.ico" />
     <link rel="alternate" href="{{ page.url | absolute_url | remove: 'index.html' }}" hreflang="en" />
     <link rel="canonical" href="{{ page.url | absolute_url | remove: 'index.html' }}" />
-    <link href="{% relbase %}/feeds/blog.xml" rel="alternate" title="Suffix’s web feed" type="application/atom+xml" />
+    <link href="{% relbase %}/feeds/blog.xml" rel="alternate" title="Suffix’s RSS feed" type="application/atom+xml" />
     <meta property="og:image" content="{{ page.cover_image_url | absolute_url }}" />
     <meta property="og:title" content="{{ page.title }}" />
     <meta property="og:type" content="website" />
@@ -34,7 +34,7 @@
     <header>
       <h1>
 	Suffix
-        <a href="{% relbase %}/feeds/blog.xml" type="application/atom+xml" title="Suffix’s web feed">
+        <a href="{% relbase %}/feeds/blog.xml" type="application/atom+xml" title="Suffix’s RSS feed">
           <svg xmlns="http://www.w3.org/2000/svg" class="rss-accent" width="22" height="22" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg>
         </a>
       </h1>

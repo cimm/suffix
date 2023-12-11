@@ -124,7 +124,7 @@ svg.rss {
 }
 
 svg.rss-accent {
-  stroke: var(--color-accent);
+  stroke: var(--color-rss);
 }
 
 svg.github {
