@@ -1,0 +1,32 @@
+---
+layout:          post
+title:           High system load on a RPi without SD card
+date:            2023-12-12 08:00:00
+updated:         2023-12-12 08:00:00
+description:     Raspberry Pi 3 locking up polling for a missing SD card.
+---
+
+<p>Back in April, I repurposed an old Raspberry Pi 3 (model B+) as a <a href="../adguard-home-raspberry-ubuntu-core/" title="Self updating ad blocking with AdGuard Home">network-wide ad blocker</a>. Using <a href="https://ubuntu.com/core" title="Self updating Linux OS">Ubuntu Core</a> and <a href="https://adguard.com/en/adguard-home/overview.html" title="Network-wide ad blocking">AdGuard Home</a> for a complete hands-off <abbr title="Domain Name Server">DNS</abbr>: the main <abbr title="Operating System">OS</abbr>, all the software, and the block lists automatically update. Earlier this week, after 9 months of trouble-free operation, the DNS started acting wonky. It was fixed with a quick reboot, but the DNS went down again yesterday. Time for a more serious investigation.</p>
+
+<p>The slow <abbr title="Secure SHell">SSH</abbr> connection already hinted at what was wrong. The Raspberry reported an average system load of over 6. Checking the running processes with <kbd>top</kbd> showed a <em><a href="https://www.kernel.org/doc/html/latest/core-api/workqueue.html?highlight=kworker" title="Linux workqueues">kworker</a></em> process locking up around 8% of the <abbr title="Central Processing Unit">CPU</abbr>. That was kind of excessive. Some internet searches later, I had found the culprit. My ancient Raspberry Pi has endured several falls to the floor. One of these broke the <abbr title="Secure Digital">SD</abbr> card slot, so it now runs from a <abbr title="Universal Serial Bus">USB</abbr> stick without an SD card. It <a href="https://jamesachambers.com/raspberry-pi-reclaim-1-cpu-usage-when-ssd-msd-booting/" title="Reclaim ~1% CPU Usage when SSD/USB Booting">turns out</a> the Pi is constantly polling for an SD card. It constantly searches for an SD card it will never find.</p>
+
+<p>The solution? Tell the RPi to ignore the SD card slot. Just stick it in <kbd>/boot/config.txt</kbd> or, for Ubuntu Core, in <kbd>/run/mnt/ubuntu-seed/config.txt</kbd>.</p>
+
+<p>For the Raspberry Pi 3, adding the following dtparam setting at the end of the config.txt and restarting the Pi fixed the issue.</p>
+
+<code>
+  <pre># only check for an SD card at boot
+dtparam=sd_poll_once</pre>
+</code>
+
+<p>If you have a newer Raspberry Pi, you may need to use one of these dtoverlay parameters (untested).</p>
+
+<code>
+  <pre># never check for an SD card
+dtoverlay=sdtweak,enable=off
+
+# only check for an SD card at boot
+dtoverlay=sdtweak,poll_once=on</pre>
+</code>
+
+<p>I checked the running processes using <kbd>top</kbd> after the reboot and, guess what, no more <em>kworker</em> hogging the CPU.</p>
