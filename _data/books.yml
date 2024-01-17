@@ -26,6 +26,10 @@
   author: "Ernest Cline"
   isbn13: 9780804137270
   rating: 3
+- name: "Atomic Habits"
+  author: "James Clear"
+  isbn13: 9781847941831
+  rating: 3
 - name: "Boy"
   author: "Roald Dahl"
   isbn13: 9782070333936
