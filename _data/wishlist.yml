@@ -8,11 +8,11 @@
   price: "€64"
 - name: "Inkplate screen"
   image: ../assets/inkplate.png
-  url: https://inkplate.io/
+  url: https://soldered.com/categories/inkplate/
   price: "€212"
 - name: "Lamy stub 1.5 mm steel nib"
   image: ../assets/lamy-nibs.jpg
-  url: https://www.lacouronneducomte.com/lamy-z50-nib.html
+  url: https://www.lamy.com/en/lamy-nib-guide/
   price: "€7.5"
 - name: "LEGO Apollo Saturn V"
   image: ../assets/apollo.jpg
@@ -36,7 +36,7 @@
   price: "$50"
 - name: "TWSBI ECO"
   image: ../assets/twsbi-eco.jpg
-  url: https://www.lacouronneducomte.com/twsbi-eco-white-fountain-pen.html
+  url: https://www.twsbi.com/collections/fountain-pens/eco
   price: "€35"
 - name: "Nixie Clock"
   image: ../assets/nixie-clock.webp

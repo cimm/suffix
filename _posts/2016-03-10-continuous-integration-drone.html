@@ -21,7 +21,7 @@ apt upgrade
 
 <h2>Firewall</h2>
 
-<p>Let's lock the system down a bit by enabling the firewall via <abbr title="Uncomplicated Firewall">UFW</abbr>.</p>
+<p>Let’s lock the system down a bit by enabling the firewall via <abbr title="Uncomplicated Firewall">UFW</abbr>.</p>
 
 {% highlight bash %}
 ufw allow ssh
@@ -46,7 +46,7 @@ service sshd restart
 
 <h2>Automatic updates</h2>
 
-<p>Set up automatic updates. This will tell Ubuntu to look for and install security patches every so often, not a luxury as you probably won't log in to the <abbr title="Continuous Integration">CI</abbr> server daily.</p>
+<p>Set up automatic updates. This will tell Ubuntu to look for and install security patches every so often, not a luxury as you probably won’t log in to the <abbr title="Continuous Integration">CI</abbr> server daily.</p>
 
 {% highlight bash %}
 dpkg-reconfigure --priority=low unattended-upgrades
@@ -62,7 +62,7 @@ apt-config-auto-update
 
 <h2>Docker</h2>
 
-<p>Let's install Docker. Bonus hipster points.</p>
+<p>Let’s install Docker. Bonus hipster points.</p>
 
 {% highlight bash %}
 curl -fsSL https://get.docker.com/ | sh
@@ -76,7 +76,7 @@ docker run hello-world
 
 <h2>Drone</h2>
 
-<p>Drone needs a database to store its things. I went with SQLite as it's super easy to install but PostgreSQL or MySQL are probably better suited for production systems. Drone doesn't mind and can run with MySQL, PostgreSQL or SQLite.</p>
+<p>Drone needs a database to store its things. I went with SQLite as it’s super easy to install but PostgreSQL or MySQL are probably better suited for production systems. Drone doesn’t mind and can run with MySQL, PostgreSQL or SQLite.</p>
 
 {% highlight bash %}
 apt install sqlite3 libsqlite3-dev
@@ -88,7 +88,7 @@ apt install sqlite3 libsqlite3-dev
 docker pull drone/drone:0.4
 {% endhighlight %}
 
-<p>Let's configure Drone:</p>
+<p>Let’s configure Drone:</p>
 
 {% highlight bash %}
 mkdir /etc/drone
@@ -118,11 +118,11 @@ docker run \
 drone/drone:0.4
 {% endhighlight %}
 
-<p>There you go, open your browser a point it to the server's <abbr title="Internet Protocol">IP</abbr> address. Drone will do its oAuth dance with Github when you log in and list your repositories.</p>
+<p>There you go, open your browser a point it to the server’s <abbr title="Internet Protocol">IP</abbr> address. Drone will do its oAuth dance with Github when you log in and list your repositories.</p>
 
 <h2>Build</h2>
 
-<p>Drone looks for a `.drone.yml` configuration file in your project's root directory. You start from a Docker image of your choosing, run some commands and wait for Drone to tell you if everything works.</p>
+<p>Drone looks for a `.drone.yml` configuration file in your project’s root directory. You start from a Docker image of your choosing, run some commands and wait for Drone to tell you if everything works.</p>
 
 {% highlight yml %}
 build:
@@ -147,21 +147,21 @@ notify:
     username: drone
 {% endhighlight %}
 
-<p>The first 'build' part is the most important one. You can use whatever Docker image you want as a base to start from. We built our own as we need a more recent version of PhantomJS to run our tests.</p>
+<p>The first ‘build’ part is the most important one. You can use whatever Docker image you want as a base to start from. We built our own as we need a more recent version of PhantomJS to run our tests.</p>
 
-<p>The 'commands' section is where you configure your build and get it running, pretty standard Rails stuff here.</p>
+<p>The ‘commands’ section is where you configure your build and get it running, pretty standard Rails stuff here.</p>
 
-<p>The 'environment' section can be used to set&hellip; well&hellip; environment variables. Useful for <a href="https://12factor.net/" title="Twelve-factor app">twelve-factor apps</a>.</p>
+<p>The ‘environment’ section can be used to set&hellip; well&hellip; environment variables. Useful for <a href="https://12factor.net/" title="Twelve-factor app">twelve-factor apps</a>.</p>
 
-<p>The 'compose' section behaves like Docker's <a href="https://docs.docker.com/compose/" title="Docker compose documentation">compose</a> feature and lets you pull other Docker images needed for your build. Isn't that awesome?</p>
+<p>The ‘compose’ section behaves like Docker’s <a href="https://docs.docker.com/compose/" title="Docker compose documentation">compose</a> feature and lets you pull other Docker images needed for your build. Isn’t that awesome?</p>
 
-<p>And finally, the 'notify' section to let everyone know how good of a tester you are.</p>
+<p>And finally, the ‘notify’ section to let everyone know how good of a tester you are.</p>
 
 <h2>Secrets</h2>
 
-<p>Noticed the $$SLACK_WEBHOOK variable in the example? It's possible to <a href="http://readme.drone.io/usage/secrets/" title="Secrets documentation">pull in variables</a> from a `.drone.sec` file from your project's root folder. This is useful for <abbr title="Application Programming Interface">API</abbr> tokens &amp; passwords you rather don't expose.</p>
+<p>Noticed the $$SLACK_WEBHOOK variable in the example? It’s possible to <a href="https://docs.drone.io/secret/repository/" title="Secrets documentation">pull in variables</a> from a `.drone.sec` file from your project’s root folder. This is useful for <abbr title="Application Programming Interface">API</abbr> tokens &amp; passwords you rather don’t expose.</p>
 
-<p>Drone knows how to read and decrypt this file but you'll need to encrypt it yourself. Go to your project's "Secrets" tab in the Drone web interface and add your variables.</p>
+<p>Drone knows how to read and decrypt this file but you’ll need to encrypt it yourself. Go to your project’s “Secrets” tab in the Drone web interface and add your variables.</p>
 
 {% highlight yml %}
 environment:

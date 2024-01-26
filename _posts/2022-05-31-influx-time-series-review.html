@@ -14,7 +14,7 @@ description: Building beautiful dashboards with InfluxDB and Telegraf.
   <figcaption>↑ InfluxDB dashboard with my CO2Mini readings.</figcaption>
 </figure>
 
-<p>I have always been fascinated by dashboards. I used to run a <a href="https://dashingdemo.herokuapp.com/sample" title="A dashboard framework by Shopify written in Ruby">Dashing</a> dashboard at one of my earlier jobs and the animated colorful tiles made our application that little more tangible.</p>
+<p>I have always been fascinated by dashboards. I used to run a <a href="http://dashing.io/" title="A dashboard framework by Shopify written in Ruby">Dashing</a> dashboard at one of my earlier jobs and the animated colorful tiles made our application that little more tangible.</p>
 
 <p><a href="https://github.com/influxdata/influxdb" title="A datastore for metrics, events, and real-time analytics">InfluxDB</a>, an open-source time series database and dashboard. The screenshots look nice so I have been wanting to kick its tires. I already read the CO<sub>2</sub> concentration and temperature from my cheap CO<sub>2</sub> monitor so I combined the two in the colorful dashboard shown above.</p>
 
@@ -49,7 +49,7 @@ curl --request POST localhost:8086/api/v2/write?org=ORG&bucket=BUCKET&precision=
 
 <h2>Telegraf</h2>
 
-<p>I already had a <a href="https://www.co2meter.com/collections/desktop/products/co2mini-co2-indoor-air-quality-monitor">CO2Mini</a> meter from way back which I can read out via <a href="https://github.com/dmage/co2mon">co2mon</a>.</p>
+<p>I already had a <a href="https://web.archive.org/web/20230106162215/https://www.co2meter.com/collections/desktop/products/co2mini-co2-indoor-air-quality-monitor">CO2Mini</a> meter from way back which I can read out via <a href="https://github.com/dmage/co2mon">co2mon</a>.</p>
 
 {% highlight bash %}
 $ co2mond -D /tmp/co2mon

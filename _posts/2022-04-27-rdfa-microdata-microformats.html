@@ -58,7 +58,7 @@ rdfa:        true
   </p>
 </section>
 {% endhighlight %}
-<figcaption class="highlight">↑ Example 3: Book entry from my <a href="{{ 'reading' | absolute_url }}">reading list</a> in RDFa Lite.</figcaption>
+<figcaption class="highlight">↑ Example 3: Book entry from my <a href="{% relbase %}/reading/">reading list</a> in RDFa Lite.</figcaption>
 
 <h2>What To Choose?</h2>
 
@@ -66,4 +66,4 @@ rdfa:        true
 
 <p>While I initially liked the “you simply add special <abbr title="Cascading Style Sheets">CSS</abbr> class names” idea from microformats, I now prefer the more explicit microdata or RDFa attributes. It’s too easy to accidentally remove a class name in a larger project with multiple developers, the attributes at least indicate they have a special purpose. Micorformats are more limited in scope and there is this nagging feeling its glory days are over. Microdata and RDFa Lite seem similar, but I can see how investing time to learn RDF might be powerful in the long run, since it can be used more broadly. Then there is this bit where microdata was <a href="https://www.w3.org/standards/history/microdata" title="Microdata publication history @ W3C">retired</a> until it <a href="https://html.spec.whatwg.org/#microdata" title="Microdata Living Standard @ whatwg">wasn’t</a>? Lastly, this blog has always been a place to experiment and learn about different web technologies and RDFa is an excuse to do so.</p>
 
-<p>That’s why I am slowly moving my blog from microformats to RDFa Lite, starting with my <a href="../reading" title="Books I’ve read">reading</a> list as a first exercise.</p>
+<p>That’s why I am slowly moving my blog from microformats to RDFa Lite, starting with my <a href="{% relbase %}/reading/" title="Books I’ve read">reading</a> list as a first exercise.</p>
