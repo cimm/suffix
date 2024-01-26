@@ -101,6 +101,7 @@ nav li:last-child {
 header h1 {
   font-size: 2em;
   line-height: 1.2em;
+  text-wrap: balance;
 }
 
 /* Footer */
