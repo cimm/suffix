@@ -1,0 +1,78 @@
+---
+layout:      post
+title:       FOSDEM
+date:        2024-02-07 14:00:00
+updated:     2024-02-07 16:00:00
+description: "Learning, coding, connecting: takeaways from FOSDEM 2024."
+---
+
+
+<p><a href="https://fosdem.org/2024/" title="The free event for software developers in Brussels, Belgium">FOSDEM</a> is a name that resonates with open-source enthusiasts worldwide. This massive conference, boasting over 8,000 attendees and 800+ talks, is a true staple in the open-source world. So, per tradition, it was held at the <abbr title="Université libre de Bruxelles">ULB</abbr> in Brussels, a convenient bike ride away. I had no reason to miss out.</p>
+
+<p>FOSDEM is free, jam-packed with informative talks, and this year, the dedicated <a href="https://fosdem.org/2024/schedule/track/ruby/" title="Ruby devroom schedule @ FOSDEM">Ruby devroom</a> made its return. Top it off with catching up with old friends and my wife attending for the first time it was a no-brainer.</p>
+
+<p>But even the best experiences have room for improvement.</p>
+
+<ul>
+  <li>Full rooms. FOSDEM’s rooms, with only a few auditoria, reach capacity swiftly, leading to closed doors—a frequent occurrence. Venturing between talks becomes a gamble, potentially leaving you shut out of the next one. Settling in a room with the highest density of your interests seems the optimal strategy, albeit at the cost of missing other appealing talks. This space crunch is a familiar FOSDEM hurdle, and solutions aren’t easy. A venue with larger rooms would do the trick, but securing free infrastructure for 8,000+ attendees sounds like a challenge.</li>
+  <li>No mandatory COVID-19 measures. Some people chose to skip the conference due to safety concerns in packed rooms, and let’s be honest, mask usage wasn’t as widespread as it could have been. It’s difficult not to draw a connection back to the first issue. Would a mandatory mask policy have addressed these concerns? It’s hard to say. All presentations are live-streamed, which may help a little, but I do understand the real solution will require more effort.</li>
+  <li>Representation Matters: In 2024, the tech world still leans heavily male, and the hacker community is no exception. While the organizers made an effort to include diverse keynote speakers, the devrooms and attendees largely reflected a different reality. My wife, on the other hand, noted the diverse attendance compared to the trade shows she often frequents, a hopeful sign!</li>
+</ul>
+
+<p>Honorable mention to <a href="https://fosdem.sojourner.rocks/">Sojourner</a>, once again proving itself as the ideal <abbr title="Progressive Web App">PWA</abbr> for planning my FOSDEM schedule. Throughout the conference, it served as my go-to tool for navigating the event and checking room availability, saving time and ensuring I didn’t miss any desired presentations.</p>
+
+<h2>Talks Attended</h2>
+
+<ol>
+  <li>
+    <p><a href="https://fosdem.org/2024/schedule/event/fosdem-2024-2293-the-best-case-scenario/">The best `case` scenario</a> by Sandjiv</p>
+    <p>My first talk of the conference and a strong one to open with. Although Sandjiv mentioned feeling nervous, his delivery was flawless. The presentation was engaging, and I picked up some valuable new techniques. I’m definitely going to investigate pattern matching in Ruby further, and his suggestion to start with the simpler cases first seems wise.</p>
+  </li>
+  <li>
+    <p><a href="https://fosdem.org/2024/schedule/event/fosdem-2024-2273-a-front-end-journey-back-to-rails/">A front-end journey back to Rails</a> by Kevin Vanzandberghe</p>
+    <p>I share Kevin’s love for Ruby on Rails, but I often shy away from “modern” <abbr title="User Interface">UI</abbr> choices as they involve switching from Ruby to JavaScript, which disrupts my workflow. Kevin presented some elegant alternatives using components, interactivity, suspense, inline forms, confirmation dialogs, and live updates. He covered the material a bit quickly for my preference, so I’ll explore these techniques further on my own. Luckily Kevin prepared a nice <a href="https://github.com/kvzb/hotwire-resources">list of resources</a>.</p>
+  </li>
+  <li>
+    <p><a href="https://fosdem.org/2024/schedule/event/fosdem-2024-3661-timestamping-with-opentimestamps/">Timestamping with opentimestamps</a> by Timothy M. Redaelli</p>
+    <p>While <a href="https://opentimestamps.org/" title="A timestamping proof standard">OpenTimestamps</a> has piqued my interest for several years, I have yet to find an opportunity to integrate it into my dayjob. Though Timothy’s presentation didn’t offer much new information since I’ve dabbled with OpenTimestamps before, it served as a welcome reminder.</p>
+  </li>
+  <li>
+    <p><a href="https://fosdem.org/2024/schedule/event/fosdem-2024-1729-the-world-of-passkeys/">The wold of Passkeys</a> by Helio Cola</p>
+    <p>I keep hearing that passkeys are the future and will replace passwords, but I still don’t quite understand them. Are passkeys only considered passkeys if they’re synced? How can I sync them without trusting a 3th party with my private keys? What about Yubikeys, are they passkeys? If passkey authentication fails and the relaying party falls back on passwords, doesn’t that mean passwords will still be around? So many questions that Helio’s talk, unfortunately, didn’t cover. The Ruby gem he mentioned offers a chance to explore, though.</p>
+  </li>
+  <li>
+    <p><a href="https://fosdem.org/2024/schedule/event/fosdem-2024-2473-backtracie-and-the-quest-for-prettier-ruby-backtraces/">Backtracie and the quest for prettier Ruby backtraces</a> by Ivo Anjo</p>
+    <p>While Ivo’s talk delved into Ruby’s internals beyond my understanding, his enthusiastic and engaging presentation was infectious. I gleaned some insights into Ruby’s inner workings and was impressed by his inventive approach to unravel Ruby’s internals.</p>
+  </li>
+  <li>
+    <p><a href="https://fosdem.org/2024/schedule/event/fosdem-2024-2723-power-profiling-my-entire-house-with-the-firefox-profiler/">Power profiling my entire house with the Firefox Profiler</a> by Florian Quèze</p>
+    <p>Florian’s presentation captured the true FOSDEM magic. His project, hacking together power monitoring during late-night sessions with a sleeping newborn, resonated with me. Only to uncover that his router is a greater energy hog than his chest freezer. His creative use of the Firefox profiler was a nice touch.</p>
+  </li>
+  <li>
+    <p><a href="https://fosdem.org/2024/schedule/event/fosdem-2024-1669-beyond-passwords-secure-authentication-with-passkeys/">Beyond passwords: secure authentication with passkeys</a> by Remy Bertot</p>
+    <p>Compared to Helio’s talk (reviewed earlier), Remy’s presentation on passkeys resonated more with me. He balanced enthusiasm for their potential benefits with a realistic analysis of the challenges passkeys face. Both talks delved into the semantics of “passkeys as true <abbr title="Two Factor Authentiation">2FA</abbr>,” which felt more relevant for compliance than anything else. Personally, I couldn’t care less. If you’re seeking a balanced introduction to passkeys, watch Remy’s talk! One only wishes passkeys were supported in Firefox on Linux…</p>
+  </li>
+  <li>
+    <p><a href="https://fosdem.org/2024/schedule/event/fosdem-2024-2292--clients-aerc-an-email-client-for-the-discerning-hacker/">[Clients] aerc, an email client for the discerning hacker</a> by Robin Jarry</p>
+    <p>I’ve always contemplated switching to a terminal-based email client, but attempts with <a href="/blog/mutt/" title="The mutt e-mail client">mutt</a> haven’t quite clicked. While <a href="https://aerc-mail.org/" title="Aerc: a pretty good email client">aerc</a> initially piqued my interest, it eventually slipped my mind. Robin’s presentation rekindled my curiosity. I learned that Drew DeVault passed the torch, and Robin is now actively developing aerc. Perhaps I will give aerc a better look this time?</p>
+  </li>
+  <li>
+    <p><a href="https://fosdem.org/2024/schedule/event/fosdem-2024-1721-dapnet-bringing-pagers-back-to-the-21st-century/">DAPNET: Bringing pagers back to the 21st Century</a> by Manoel Casquilho</p>
+    <p>Not only am I old enough to remember pagers from my first job, but I’m old enough to qualify as an <abbr title="Old Man">OM</abbr>! I had no idea pagers were still commercially available today. I learned about <a href="http://www.hampager.de" title="A distributed amateur pager network">DAPNET</a>, an active amateur pager network, and it blew my mind! Adding a node and using a pager today sounds like a ton of fun. Kudos to Manoel for sharing your knowledge and sparking my curiosity!</p>
+  <li>
+    <p><a href="https://fosdem.org/2024/schedule/event/fosdem-2024-2169-passwordless-authentication-in-the-gui/">Passwordless authentication in the GUI</a> by Iker Pedrosa</p>
+    <p>Iker’s presentation explored alternative authentication mechanisms for the GNOME login screen. While the concept was certainly intriguing, my expectation was focused on passkey integration for website logins rather than GNOME itself, my bad.</p>
+  </li>
+  <li>
+    <p><a href="https://fosdem.org/2024/schedule/event/fosdem-2024-2478--structuredemail-structured-vacation-notices-and-structured-email-for-roundcube/">[StructuredEmail] Structured Vaction Notices and Structured Email for Roundcube</a> by Hans-Jörg Happel</p>
+    <p>While the topic overlapped with the following presentation, both Hans-Jörg’s talk on <a href="https://structured.email/" title="Standardizing structured email (SML)">structured emails</a> and the subsequent one could have benefited from being combined into a longer session. Previously aware of <abbr title="K Desktop Environment">KDE</abbr>’s efforts in semantic email extraction, I learned the possibility of embedding JSON-LD snippets within emails. This simple approach allows adding metadata to transactional emails, enabling better understanding by e-mail clients. For instance, Hans-Jörg imagined how inserting a snippet with your “out-of-office” period could inform recipients and avoid scheduling conflicts. I’ll certainly implementing structured formats in our transactional emails.</p>
+  </li>
+  <li>
+    <p><a href="https://fosdem.org/2024/schedule/event/fosdem-2024-2053--structuredemail-when-is-my-flight-semantic-data-extraction-in-kmail-and-nextcloud-mail/">[StructuedEmail] When is my flight? - Semantic data extraction in KMail and Nextcloud Mail</a> by Volker Krause</p>
+    <p>Following Hans-Jörg’s presentation on structured emails, Volker delved into the specific challenges faced by <a href="https://apps.kde.org/itinerary/" title="A digital travel assistant">KDE Itinerary</a> when parsing non-structured emails, such as those containing <abbr title="Portable Document Format">PDF</abbr> attachments.</p>
+  </li>
+</ol>
+
+<h2>Looking Ahead</h2>
+
+<p>FOSDEM remains a magical experience for open-source enthusiasts, and 2024 was no different. To all volunteers: you are the backbone of the event, a huge thank you for all your hard work! See you all in 2025!</p>
