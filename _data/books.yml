@@ -218,6 +218,10 @@
   author: "Roald Dahl"
   isbn13: 9780590996839
   rating: 3
+- name: "Masters of Doom"
+  author: "David Kushner"
+  isbn13: 9780749924898
+  rating: 3
 - name: "Microformats"
   author: "John Allsopp"
   isbn13: 9781590598146
