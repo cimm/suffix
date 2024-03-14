@@ -89,13 +89,13 @@ header {
   text-align: center;
 }
 
-nav li {
-  display: inline;
-  margin-right: 1em;
+nav ul {
+  padding: 0;
 }
 
-nav li:last-child {
-  margin-right: 0;
+nav li {
+  display: inline-block;
+  margin: 0 .5em;
 }
 
 header h1 {
