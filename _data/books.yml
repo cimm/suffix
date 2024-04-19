@@ -325,6 +325,10 @@
   author: "Kurt Vonnegut"
   isbn13: 9780385333849
   rating: 3
+- name: "Starship Troopers"
+  author: "Robert A. Heinlein"
+  isbn13: 9780425015605
+  rating: 3
 - name: "Steve Jobs"
   author: "Walter Isaacson"
   isbn13: 9788937483943
