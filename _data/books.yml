@@ -10,6 +10,10 @@
   author: "Howard Zinn"
   isbn13: 9780060528423
   rating: 1
+- name: "A.I."
+  author: "Lieven Scheire"
+  isbn13: 9789463939591
+  rating: 3
 - name: "American Prometheus"
   author: "Kai Bird"
   isbn13: 9780375412028
@@ -452,6 +456,10 @@
   isbn13: 9780816491230
   rating: 5
   url: "invincible-lem"
+- name: "The Invisible Man"
+  author: "H. G. Wells"
+  isbn13: 9781423776345
+  rating: 2
 - name: "The little prince"
   author: "Antoine de Saint-Exupéry"
   isbn13: 9780152023980
