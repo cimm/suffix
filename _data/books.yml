@@ -66,6 +66,10 @@
   author: "Charles Petzold"
   isbn13: 9780735611313
   rating: 3
+- name: "Contact"
+  author: "Carl Sagan"
+  isbn13: 9780671701802
+  rating: 4
 - name: "Countdown to Zero Day"
   author: "Kim Zetter"
   isbn13: 9780770436193
