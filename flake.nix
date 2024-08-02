@@ -2,7 +2,7 @@
   description = "Jekyll Development Environment";
 
   inputs = {
-    nixpkgs.url = "nixpkgs";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     flake-utils.url = "github:numtide/flake-utils";
   };
 
@@ -11,7 +11,7 @@
       let
         pkgs = nixpkgs.legacyPackages.${system};
 
-        env = pkgs.bundlerEnv {
+        gems = pkgs.bundlerEnv {
           name = "bundler";
           ruby = pkgs.ruby_3_1;
           gemdir = ./.; # points to Gemfile.lock and gemset.nix
@@ -20,7 +20,7 @@
       in with pkgs; {
         # when running `nix develop`
         devShells.default = mkShell {
-          buildInputs = [ env bundix imagemagick ];
+          buildInputs = [ gems bundix imagemagick ];
         };
       }
     );
