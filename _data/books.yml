@@ -341,6 +341,10 @@
   author: "Robert A. Heinlein"
   isbn13: 9780425015605
   rating: 3
+- name: "Starter Villain"
+  author: "John Scalzi"
+  isbn13: 9780765389220
+  rating: 4
 - name: "Steve Jobs"
   author: "Walter Isaacson"
   isbn13: 9788937483943
