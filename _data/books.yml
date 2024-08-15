@@ -66,6 +66,10 @@
   author: "Charles Petzold"
   isbn13: 9780735611313
   rating: 3
+- name: "Command and Control"
+  author: "Eric Schlosser"
+  isbn13: 9781594202278
+  rating: 4
 - name: "Contact"
   author: "Carl Sagan"
   isbn13: 9780671701802
