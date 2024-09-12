@@ -22,10 +22,10 @@ description: Generate an image of a map based on your current Dopplr location wi
   <li>Go to <samp>https://www.dopplr.com/api/AuthSubRequest?scope=http://www.dopplr.com&amp;next=<strong>&lt;your_url&gt;</strong>&amp;session=1</samp>. Replace <samp>&lt;your_url&gt;</samp> with your website's URL.</li>
   <li>Once approved you will be redirected to your URL with a <samp>token=&lt;token_hash&gt;</samp> parameter, copy the token value.</li>
   <li>Start your Rails development console to convert the token to a session hash with <samp>./script/console</samp>.</li>
-  <li>Upgrade the token to a session:<br />
-  <samp>&gt;&gt; d = Dopplr.new<br />
-  &gt;&gt; d.set_token("<strong>&lt;token_hash&gt;</strong>")<br />
-  &gt;&gt; d.upgrade_to_session</samp><br /></li>
+  <li>Upgrade the token to a session:<br>
+  <samp>&gt;&gt; d = Dopplr.new<br>
+  &gt;&gt; d.set_token("<strong>&lt;token_hash&gt;</strong>")<br>
+  &gt;&gt; d.upgrade_to_session</samp><br></li>
   <li>Copy the result—this is your session key—and keep it somewhere safe.</li>
 </ol>
 

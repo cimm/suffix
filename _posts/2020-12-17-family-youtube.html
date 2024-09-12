@@ -8,8 +8,8 @@ cover_image_url: ../../assets/vhs-cassettes.jpg
 ---
 
 <picture>
-  <source type="image/webp" srcset="../../assets/vhs-cassettes.webp" />
-  <img src="../../assets/vhs-cassettes.jpg" alt="VHS cassettes in a box" />
+  <source type="image/webp" srcset="../../assets/vhs-cassettes.webp">
+  <img src="../../assets/vhs-cassettes.jpg" alt="VHS cassettes in a box">
 </picture>
 
 <p>When I was 10 we finally, after a lot of nagging, got an <a href="https://en.wikipedia.org/wiki/8_mm_video_format" title="9 mm video format @ Wikipedia">8 mm</a> camcorder. My brother and I played for movie directors with our family blockbuster “Alone in this Home”. I am sure you can guess the plot of that one. Time flew by, our trusty Sony camcorder long lost, the Hi8 tapes collecting dust. Since “Two is One, One is None” I always knew I should take copies of the tapes, but without a camcorder, video recorder, or <abbr title="Syndicat des Constructeurs d’Appareils Radiorécepteurs et Téléviseurs">SCART</abbr> cable things were put on the back burner. I don’t need yet another copy in a format I can’t watch. I need a digital version to watch on our iPad ‘television’ to bore my kids for hours and to share with the family.</p>
@@ -26,8 +26,8 @@ cover_image_url: ../../assets/vhs-cassettes.jpg
 <p>Not a bad idea indeed. The next part took me longer than I would like to admit but, fast forward a few days, and… project <a href="https://github.com/cimm/vhs/" title="Github source code repository for VHS">VHS</a> was born, a simple static website to host (family) videos! I stored all the videos and cover images in a Backblaze B2 bucket. A <abbr title="JavaScript Object Notation">JSON</abbr> config file contains the title, tags, and description metadata. A little weekly Python script adds a <a href="../signed-urls-backblaze-b2" title="Temporary access to private files in Backblaze B2 with secure links">signed Backblaze URL</a> per video and cover. The static <abbr title="HyperText Markup Language">HTML</abbr> page loads the config and wraps this all in a video album webpage.</p>
 
 <picture>
-  <source type="image/webp" srcset="../../assets/vhs-webpage.webp" />
-  <img src="../../assets/vhs-webpage.png" alt="Video webpage screenshot" />
+  <source type="image/webp" srcset="../../assets/vhs-webpage.webp">
+  <img src="../../assets/vhs-webpage.png" alt="Video webpage screenshot">
 </picture>
 
 <p>My mini-YouTube has been running for 4 months now at an average monthly Backblaze fee of $0.04, or less than a cup of coffee as they say.</p>
