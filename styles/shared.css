@@ -83,6 +83,10 @@ img:not([src*=".svg"]) {
   padding: .3em;
 }
 
+.strike {
+  text-decoration: line-through;
+}
+
 /* Header */
 
 header {
