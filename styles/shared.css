@@ -51,6 +51,7 @@ picture {
 
 figure img,
 picture img {
+  height: auto;
   max-width: 100%;
 }
 
