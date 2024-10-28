@@ -317,6 +317,10 @@
   author: "Jason Fried"
   isbn13: 9780307463746
   rating: 4
+- name: "Russians Among Us"
+  author: "Gordon Corera"
+  isbn13: 9780008318932
+  rating: 3
 - name: "Sandworm"
   author: "Andy Greenberg"
   isbn13: 9780385544405
