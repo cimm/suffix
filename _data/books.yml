@@ -345,6 +345,10 @@
   author: "Kurt Vonnegut"
   isbn13: 9780385333849
   rating: 3
+- name: "Snow Crash"
+  author: "Neal Stephenson"
+  isbn13: 9780553380958
+  rating: 3
 - name: "Starship Troopers"
   author: "Robert A. Heinlein"
   isbn13: 9780425015605
