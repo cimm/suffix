@@ -14,10 +14,20 @@ body {
 }
 
 a {
-  color: var(--color-accent);
+  color: var(--color-link);
+  text-decoration-color: rgba(65,105,225,.33);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 2px;
+}
+a:hover {
+  text-decoration-color: var(--color-link);
 }
 a:visited {
-  color: var(--color-accent-alt);
+  color: var(--color-link-visited);
+  text-decoration-color: var(--color-link-visited-light);
+}
+a:hover:visited {
+  text-decoration-color: var(--color-link-visited);
 }
 
 abbr[title] {
@@ -28,11 +38,21 @@ dt {
   margin: .5em 0;
 }
 
-blockquote, dd {
-  border-left: 3px solid var(--color-accent);
-  color: var(--color-accent);
-  margin-left: 0;
-  padding-left: .8em;
+blockquote {
+  padding: 1em 2em;
+}
+
+blockquote::before {
+  color: var(--color-link);
+  content: "❝";
+  font-size: 3em;
+  left: -5px;
+  position: relative;
+  top: 15px;
+}
+
+cite {
+  display: block;
 }
 
 kbd {
