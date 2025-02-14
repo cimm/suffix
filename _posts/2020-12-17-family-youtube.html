@@ -21,7 +21,7 @@ cover_image_url: ../../assets/vhs-cassettes.jpg
 <h2>A Family YouTube</h2>
 <p>Like Michael, I needed a YouTube without using the actual YouTube to share the videos. A family-friendly, privacy-respecting, non-tracking YouTube.</p>
 
-<blockquote cite="https://mtlynch.io/digitizing-2/">“If I were starting over, I would have used a static site generator like Hugo, Jekyll, or Gridsome.” <em>– <a href="https://mtlynch.io/digitizing-2/" title="My Eight-Year Quest to Digitize 45 Videotapes (Part Two)">Michael Lynch</a></em></blockquote>
+<blockquote cite="https://mtlynch.io/digitizing-2/">If I were starting over, I would have used a static site generator like Hugo, Jekyll, or Gridsome. <cite>– <a href="https://mtlynch.io/digitizing-2/" title="My Eight-Year Quest to Digitize 45 Videotapes (Part Two)">Michael Lynch</a></cite></blockquote>
 
 <p>Not a bad idea indeed. The next part took me longer than I would like to admit but, fast forward a few days, and… project <a href="https://github.com/cimm/vhs/" title="Github source code repository for VHS">VHS</a> was born, a simple static website to host (family) videos! I stored all the videos and cover images in a Backblaze B2 bucket. A <abbr title="JavaScript Object Notation">JSON</abbr> config file contains the title, tags, and description metadata. A little weekly Python script adds a <a href="../signed-urls-backblaze-b2" title="Temporary access to private files in Backblaze B2 with secure links">signed Backblaze URL</a> per video and cover. The static <abbr title="HyperText Markup Language">HTML</abbr> page loads the config and wraps this all in a video album webpage.</p>
 
