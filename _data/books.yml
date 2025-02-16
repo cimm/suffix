@@ -14,6 +14,7 @@
   author: "Lieven Scheire"
   isbn13: 9789463939591
   rating: 3
+  url: "2024-reading-list"
 - name: "All Systems Red"
   author: "Martha Wells"
   isbn13: 9780765397539
@@ -74,10 +75,12 @@
   author: "Eric Schlosser"
   isbn13: 9781594202278
   rating: 4
+  url: "2024-reading-list"
 - name: "Contact"
   author: "Carl Sagan"
   isbn13: 9780671701802
   rating: 4
+  url: "2024-reading-list"
 - name: "Countdown to Zero Day"
   author: "Kim Zetter"
   isbn13: 9780770436193
@@ -126,10 +129,11 @@
   author: "Edwin A. Abbott"
   isbn13: 9781907727337
   rating: 4
-- name: "Four futures"
+- name: "Four Futures"
   author: "Peter Frase"
   isbn13: 9781781688137
   rating: 2
+  url: "2024-reading-list"
 - name: "Freedom"
   author: "Daniel Suarez"
   isbn13: 9780857381224
@@ -329,6 +333,7 @@
   author: "Gordon Corera"
   isbn13: 9780008318932
   rating: 3
+  url: "2024-reading-list"
 - name: "Sandworm"
   author: "Andy Greenberg"
   isbn13: 9780385544405
@@ -357,10 +362,12 @@
   author: "Robert A. Heinlein"
   isbn13: 9780425015605
   rating: 3
+  url: "2024-reading-list"
 - name: "Starter Villain"
   author: "John Scalzi"
   isbn13: 9780765389220
   rating: 4
+  url: "2024-reading-list"
 - name: "Steve Jobs"
   author: "Walter Isaacson"
   isbn13: 9788937483943
@@ -496,7 +503,7 @@
   author: "Philip K. Dick"
   isbn13: 9780544817289
   rating: 2
-- name: "The trial"
+- name: "The Trial"
   author: "Franz Kafka"
   isbn13: 9780805210408
   rating: 2

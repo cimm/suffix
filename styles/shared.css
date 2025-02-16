@@ -84,7 +84,7 @@ hr {
   border-top: 1px solid var(--color-box-border);
 }
 
-time[property="datePublished"] {
+header time[property="datePublished"] {
   color: var(--color-muted);
 }
 
