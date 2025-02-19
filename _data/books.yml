@@ -445,6 +445,10 @@
   author: "Isaac Asimov"
   isbn13: 9781884214493
   rating: 4
+- name: "The Magician’s Nephew"
+  author: "C.S. Lewis"
+  isbn13: 9780064405058
+  rating: 3
 - name: "The Martian"
   author: "Andy Weir"
   isbn13: 9780553418026
