@@ -70,7 +70,7 @@ module Jekyll
       FileUtils.mkdir_p(ASSET_DIR) unless File.directory?(ASSET_DIR)
       filename = URI(url).path.split('/').last
       path = File.join(ASSET_DIR, filename)
-      return path if File.exists?(path)
+      return path if File.exist?(path)
       io = URI.open(url)
       FileUtils.mv(io.path, path)
       FileUtils.chmod(0644, path)
@@ -82,7 +82,7 @@ module Jekyll
       basename_no_ext = File.basename(image_url, ".*")
       basename_new_ext = [basename_no_ext, type].join('.')
       resized_path = File.join(ASSET_DIR, basename_new_ext)
-      return resized_path if File.exists?(resized_path) && image_width(resized_path) <= RESIZED_IMAGE_WIDTH
+      return resized_path if File.exist?(resized_path) && image_width(resized_path) <= RESIZED_IMAGE_WIDTH
       system("convert #{image_url} -resize #{RESIZED_IMAGE_WIDTH} #{resized_path}")
       resized_path
     end
@@ -135,7 +135,7 @@ module Jekyll
     end
 
     def image_width(image_path)
-      return unless File.exists?(image_path)
+      return unless File.exist?(image_path)
       %x[identify -format '%w' #{image_path}].to_i
     end
   end

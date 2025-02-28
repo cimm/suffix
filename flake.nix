@@ -2,7 +2,7 @@
   description = "Jekyll Development Environment";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     flake-utils.url = "github:numtide/flake-utils";
   };
 
@@ -13,7 +13,7 @@
 
         gems = pkgs.bundlerEnv {
           name = "bundler";
-          ruby = pkgs.ruby_3_1;
+          ruby = pkgs.ruby_3_4;
           gemdir = ./.; # points to Gemfile.lock and gemset.nix
         };
 
