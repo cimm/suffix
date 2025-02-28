@@ -445,6 +445,10 @@
   author: "Isaac Asimov"
   isbn13: 9781884214493
   rating: 4
+- name: "The Lion, the Witch and the Wardrobe"
+  author: "C.S. Lewis"
+  isbn13: 9780590254762
+  rating: 3
 - name: "The Magician’s Nephew"
   author: "C.S. Lewis"
   isbn13: 9780064405058
