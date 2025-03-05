@@ -21,6 +21,7 @@
         # when running `nix develop`
         devShells.default = mkShell {
           buildInputs = [ gems bundix imagemagick ];
+          BUNDLE_FORCE_RUBY_PLATFORM = "true";
         };
       }
     );
