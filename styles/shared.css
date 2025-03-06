@@ -108,6 +108,10 @@ img:not([src*=".svg"]) {
   text-decoration: line-through;
 }
 
+.nowrap {
+  white-space: nowrap
+}
+
 /* Header */
 
 header {

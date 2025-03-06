@@ -1,0 +1,71 @@
+---
+layout:          post
+title:           Beautiful map images with QGIS
+date:            2025-03-06 22:00:00
+updated:         2025-03-06 22:00:00
+description:     Making nice static map images with QGIS.
+cover_image_url: ../../assets/map-crevacol-wide.jpg
+---
+
+<figure>
+  <picture>
+    <source type="image/webp" srcset="../../assets/map-crevacol-wide.webp">
+    <img src="../../assets/map-crevacol-wide.jpg" width="660" height="200" alt="Map of the Alps with a marker and label for the Crévacol ski resort located in Italy">
+  </picture>
+</figure>
+
+<p>The image above shows the location of the <a href="https://www.crevacol.it/" title="Official Crévacol website">Crévacol ski resort</a> in Italy. This small, 20-kilometer resort with only 2 chairlifts is truly a hidden ski gem. I want to build a webpage showcasing the various resorts I've visited, and I thought it would be nice to include a small visual for each one, so I started looking into creating map images. Let's see how the image above was created.
+
+<h2>QGIS</h2>
+
+<p><a href="https://qgis.org" title="The official QGIS website">QGIS</a> is a powerful tool for spatial visualization, capable of a wide range of tasks, though I only use a small fraction of its features. Here, we'll focus on building a simple map image.</p>
+
+<p>If you haven't already, start by installing QGIS. On Nix, it's as easy as running <kbd class="nowrap">nix-shell --packages qgis --run qgis</kbd>.</p>
+
+<h2>Choosing a Basemap</h2>
+
+<p>To begin, we'll need a basemap as the background, known as an XYZ Tile Layer in QGIS. <a href="https://www.geohowtos.com/howtos/xyz-tiles/xyz-tiles-qgis">Geo How-tos</a> has a wide selection to choose from, some of which may require an <abbr title="Application Programming Interface">API</abbr> key, as indicated in the top-right info box.</p>
+
+<p>For the image at the top of this post, I chose the “Esri - WorldTerrain” basemap, as it's a good fit for a ski resort, with its terrain-focused design and mostly white and gray colors that allow the marker to stand out.</p>
+
+<p>In QGIS, right-click the “XYZ Tiles” in the “Browser” window and choose “New connection”. Add a name (you can choose this freely). The <abbr title="Uniform Resource Locator">URL</abbr> and tile resolution settings can be found in the Geo How-tos info box.</p>
+
+<h2>Adding a Marker</h2>
+
+<p>Next, we'll add the marker. QGIS is a powerful tool, and you don't simply add a marker; instead, you load markers (or routes) from an external source. While there may be simpler ways, I typically create a GPX file with the marker's position and label, allowing for multiple markers if needed.</p>
+
+{% highlight xml %}
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" version="1.1">
+  <trk>
+    <trkseg>
+      <trkpt lat="45.82989" lon="7.15107">
+        <name>Crévacol</name>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>
+{% endhighlight %}
+<figcaption class="highlight">↑ Example GPX file with a single marker and label</figcaption>
+
+<p>In QGIS, use the “Browser” section to locate the GPX file (it has a database icon), expand it, and double-click its “track_points” to add a new layer with the marker to the map. Alternatively, you can drag and drop the GPX file into the “Layers” section.</p>
+
+<p>If you don't immediately see the marker, right-click the “track_point” layer and choose “Zoom to layer(s)” to center the map on the marker.</p>
+
+<p>Right-click the new layer and choose “Properties…” to customize the marker's style, such as color, image, text size, and font.</p>
+
+<h2>Export as Image</h2>
+
+<figure>
+  <picture>
+    <source type="image/webp" srcset="../../assets/map-skiresorts-wide.webp">
+    <img src="../../assets/map-skiresorts-wide.jpg" width="660" height="250" alt="Map of the Alps with a marker for each ski resort I visited">
+  </picture>
+  <figcaption>Another map of the Alps with each resort I visited, this time with country borders.</figcaption>
+</figure>
+ 
+<p>To print the image, choose “Project → New print layout…” and give it a name. In the new window, right-click the blank rectangle and choose “Page Properties…”, where you can set the desired dimensions for the image. The “pt” setting seems to match what I would call pixels, though the “px” unit doesn't seem to work as I expected.</p>
+
+<p>Click the "Add Map" icon in the left sidebar and drag a rectangle where you want your map to appear. You can now fine-tune the map position and zoom level with the "Move item content" icon in the same sidebar.</p>
+
+<p>Finally, to export the image, choose "Layout → Export as Image…".</p>
