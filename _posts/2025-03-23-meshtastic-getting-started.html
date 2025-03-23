@@ -1,0 +1,140 @@
+---
+layout:          post
+title:           Getting Started with Meshtastic
+date:            2025-03-23 09:00:00
+updated:         2025-03-23 09:00:00
+description:     A simple off-grid two-node setup from the command line.
+cover_image_url: ../../assets/meshtastic-heltecv3.jpg
+---
+
+<figure>
+  <picture>
+    <source type="image/webp" srcset="../../assets/meshtastic-heltecv3.webp">
+    <img src="../../assets/meshtastic-heltecv3.jpg" width="300" height="350" alt="A Heltec v3 board with antenna showing the Meshtastic node info on its display">
+  </picture>
+</figure>
+
+<p><a href="https://meshtastic.org/" title="An open source, off-grid, decentralized, mesh network built to run on affordable, low-power devices">Meshtastic</a> offers a glimpse into off-grid communication, and the <a href="https://heltec.org/project/wifi-lora-32-v3/" title="Heltec LoRa 32 board product page">Heltec V3</a> boards are a popular entry point. While there are fancier devices like the <a href="https://lilygo.cc/products/t-deck" title="A standalone Meshtastic node with screen and keyboard">LilyGO T-Deck</a> or <a href="https://muzi.works/" title="A nice collection of Meshtatic nodes">Muzi.works</a>, we’ll start with the basics. I picked up two Heltec V3 boards for €22 each (check <a href="https://www.tinytronics.nl">TinyTronics</a>, <a href="https://hamparts.shop/">hamparts.shop</a> or <a href="https://nettigo.eu">Nettigo</a> for some European stores).</p>
+
+<p>First, I attached the included stubby antennas. Always connect antennas first with devices that transmit, or you might damage them. Then, using the Meshtastic <a href="https://flasher.meshtastic.org/" title="Flash the Mestastic firmware via a browser">web flasher</a>, I flashed the first board with the latest firmware. The flasher worked flawlessly with Chromium on Linux (Firefox does <a href="https://caniuse.com/webusb" title="Can I Use page for WebUSB">not support</a> WebUSB yet).</p>
+
+<h2>The Phone Node</h2>
+
+<p>Meshtastic offers <a href="https://meshtastic.org/docs/software/" title="Links to the different mobile apps, web client, etc.">multiple configuration options</a>: a mobile app, a web <abbr title="User Interface">UI</abbr>, and a Python <abbr title="Command Line Interface">CLI</abbr> (more on that later). For this first device, we’ll use the mobile app over Bluetooth, which is likely the most common approach. We’ll refer to this first board as the <em>phone node</em>.</p>
+
+<p>Powered by a <abbr title="Universal Serial Bus">USB</abbr> power bank (a USB adapter or <abbr title="Lithium Polymer">LiPo</abbr> battery would also work), the <em>phone node</em> was ready for configuration. Connecting via Bluetooth using the Meshtastic app is straightforward. The device’s name is displayed on its screen and shows a pairing code when connecting through the Meshtastic mobile app. After pairing, I set the device’s region and saved the configuration, triggering a reboot. We’ll leave other settings at their defaults.</o>
+
+<h2>The Computer Node</h2>
+
+<p>Next, we’ll flash the second board, designated the <em>computer node</em>, using the same web flasher. However, we’ll configure this node via the Meshtastic CLI. Since the device is already connected via USB for flashing, it’s convenient to configure it immediately.</p>
+
+<p>First, let’s verify connectivity (the <kbd>--port</kbd> parameter might be optional). This will print the node’s configuration.</p>
+
+{% highlight bash %}
+meshtastic --port /dev/ttyUSB0 --info
+{% endhighlight %}
+
+<p>If successful, we’ll proceed with configuration. Note that the following settings are specific to my location in Belgium (EU_868 and <abbr title="Central European Standard Time">CEST</abbr>). Adjust them as needed for your region.</p>
+
+{% highlight bash %}
+meshtastic \
+--set lora.region EU_868 \
+--set device.tzdef CET-1CEST,M3.5.0,M10.5.0/3 \
+--set-time $(date +%s) \ # Current UNIX timestamp, will be forgotten on reset
+--set device.led_heartbeat_disabled true # The blinking light annoyed me
+{% endhighlight %}
+<figcaption class="highlight">↑ While these commands should theoretically run in a single execution, I needed to run them individually.</figcaption>
+
+<p>Both nodes now operates entirely offline, without Wi-Fi connectivity.</p>
+
+<figure>
+  <picture>
+    <source type="image/webp" srcset="../../assets/meshtastic-heltec-phone.webp">
+    <img src="../../assets/meshtastic-heltec-phone.jpg" width="220" height="360" alt="A Heltec v3 board on top of an iPhone with the Meshtastic app open">
+  </picture>
+</figure>
+
+<h2>Sending Messages</h2>
+
+<p>Upon reboot, the <em>computer node</em> might be detected by the <em>phone node</em>, triggering a notification on your phone. The nodes can see each other!</p>
+
+<p>To test message relay, we’ll use the <kbd>--reply</kbd> command on the <em>computer node</em>. This will listen to incoming messages and reply automatically.</p>
+
+{% highlight bash %}
+meshtastic --reply
+{% endhighlight %}
+
+<p>On your phone, ensure you’re subscribed to the <em>phone node</em> via <abbr title="Bluetooth Low Energy">BLE</abbr> and open the "Primary channel" in the messages section. I went all out and texted an extremely creative "hi." After a brief "waiting for acknowledgment" period, the <em>computer node</em> should receive and reply to the message, which will then appear on your phone.</p>
+
+<p>Now, don’t be rude and answer your phone from the <em>computer node</em> with the command line client:</p>
+
+{% highlight bash %}
+meshtastic --no-nodes --no-time --sendtext "Hi me, got your message! Cheers, other me."
+{% endhighlight %}
+
+<p>Bravo, you are now living the off-grid life and can send messages, without the need for any intermediary, completely self-reliant to… yourself.</p>
+
+<h2>Private Channels</h2>
+
+<p>While I didn’t detect other Meshtastic nodes in range, the "Primary channel" means that any nearby node would receive the message as well, it’s public.</p>
+
+<p>For private communication, we can create a new channel on any of the nodes and share its encryption key. On the <em>computer node</em>:</p>
+
+{% highlight bash %}
+meshtastic --ch-add "MyPrivateChannel" --ch-set psk random
+meshtastic --info # Verify the new channel
+mesttattic --qr-all
+{% endhighlight %}
+
+<p>Scanning the generated <abbr title="Quick Response">QR</abbr> code with your phone adds the private channel with the correct password, ensuring encrypted communication.</p>
+
+<h2>Direct Messaging</h2>
+
+<p>Direct messaging is also possible:</p>
+
+{% highlight bash %}
+meshtastic --sendtext "Hi there" --dest '!a01bc234'
+{% endhighlight %}
+<figcaption class="highlight">↑ The !a01bc234 is an example destination, use the ID of your phone node.</figcaption>
+
+<p>While the message was received by my phone (indicated by a push notification and a red counter on the speech bubble icon), it didn’t appear in the message list. This highlights the beta nature of Meshtastic, where occasional quirks are to be expected.</p>
+
+<h2>Internet Bridging</h2>
+
+<p>Meshtastic's true potential as a mesh network is realized when multiple nodes are within range, allowing messages to hop from one node to the next and extending the network's reach. However, we can further expand this connectivity by connecting to the internet through MQTT, enabling communication between nodes across the continent.</p>
+
+<p>By enabling internet connectivity, we can bridge the gap between local Meshtastic networks. While this clearly deviates from the fully off-grid concept, it provides a fallback when nearby nodes are scarce. Let's configure the <em>computer node</em> for internet connectivity and MQTT:</p>
+
+{% highlight bash %}
+meshtastic \
+--set network.wifi_enabled true \
+--set network.wifi_ssid MyWiFiNetwork \
+--set network.wifi_psk MyWifiPa$$w0rd \
+{% endhighlight %}
+
+<p>After executing this command, the device’s display will show a new screen indicating its WiFi connection status. This alone is not enough to send and receive messages via the internet, we also have to enable MQTT:</p>
+
+{% highlight bash %}
+meshtastic \
+--set mqtt.enabled true \
+--set lora.ignore_mqtt false \
+--set lora.config_ok_to_mqtt true \
+--ch-index 0 \
+--ch-set uplink_enabled true \
+--ch-set downlink_enabled true \
+{% endhighlight %}
+
+<p>This setup allows the <em>phone node</em>, still without an internet connection, remember, to communicate with distant nodes. Messages are relayed through the <em>computer node</em> to the MQTT server, which then forwards them to internet-connected nodes. The <em>phone node</em> needs “Ok to MQTT” (under the LoRa config) enabled for this to work.</p>
+
+<h2>Adding to the map</h2>
+
+<p>To make your node visible on a <a href="https://meshtastic.liamcottle.net" title="A map showing online Meshtastic nodes">map</a>, ensure WiFi is enabled as described above. Although the Heltec lacks GPS functionality, we can assign a fixed position for it to show up on the map. By default, the node sends MQTT updates every 15 minutes, but this interval can be adjusted.</p>
+
+{% highlight bash %}
+meshtastic
+--set mqtt.enabled true \
+--set mqtt.map_reporting_enabled true \
+--set position.fixed_position true \
+--setlat 50.8449861 \
+--setlon 4.3499932
+{% endhighlight %}
