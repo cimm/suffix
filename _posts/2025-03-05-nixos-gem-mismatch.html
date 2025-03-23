@@ -2,7 +2,7 @@
 layout:          post
 title:           NixOS Ruby on Rails Gem Mismatches
 date:            2025-03-05 22:00:00
-updated:         2025-03-22 20:00:00
+updated:         2025-03-23 09:00:00
 description:     Dealing with platform-specific gems in a Nix development environment.
 ---
 
@@ -63,11 +63,13 @@ PLATFORMS
 
 <ol>
   <li>Ensure a Clean Slate: Exit any existing Nix development shells. <kbd>echo $SHLVL</kbd> should be 1. Though I’m not sure it’s essential, it helps prevent potential conflicts from nested environments.</li>
-  <li>Create a Temporary Bundler Environment: Run <kbd>nix-shell -p ruby_3_4 -p bundler -p bundix</kbd> to set up a temporary environment with the necessary Ruby, Bundler, and Bundix tools.</li>
+  <li>Create a Temporary Bundler Environment: Run <kbd>nix-shell -p ruby_3_4 -p bundix</kbd> to set up a temporary environment with Ruby and Bundix. I didn’t include Bundler here since its already bundled —no pun intended— with Ruby.</li>
   <li>Update the Gemfile: Add the new gem or modify existing gems in your Gemfile as you normally would.</li>
-  <li>Update Gemfile.lock and gemset.nix: Execute <kbd>BUNDLE_FORCE_RUBY_PLATFORM="true" bundle lock --update; bundix</kbd> to update Gemfile.lock with the new or modified gems and generate the updated gemset.nix with the correct hashes.</li>
+  <li>Update the lock files: Execute <kbd>BUNDLE_FORCE_RUBY_PLATFORM="true" bundle lock --update; bundix</kbd> to update the Gemfile.lock with the new or modified gems and generate the updated gemset.nix with the correct hashes. The bundle command will only update the Gemfile.lock but doesn’t install the gems, we’ll leave that to Nix.</li>
   <li>Exit the Temporary Environment: Close the nix-shell.</li>
-  <li>Start the Development Environment: Run <kdb>nix develop</kbd> to apply the changes and install the updated gems.</li>
+  <li>Start the Development Environment: Run <kbd>nix develop</kbd> to apply the changes and install the updated gems.</li>
 </ol>
 
 <p>This approach has improved the reliability of my Ruby on Rails development environments in NixOS, eliminating those frustrating hash mismatches and making gem management smoother.</p>
+
+<p>Thank you, Tucker Shea, for <a href="https://github.com/cimm/suffix/pull/10" title="GitHub pull request from Tucker">clarifying</a> how to update the Gemfile.lock without installing the gems themselves!</p>
