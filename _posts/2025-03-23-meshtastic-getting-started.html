@@ -16,13 +16,13 @@ cover_image_url: ../../assets/meshtastic-heltecv3.jpg
 
 <p><a href="https://meshtastic.org/" title="An open source, off-grid, decentralized, mesh network built to run on affordable, low-power devices">Meshtastic</a> offers a glimpse into off-grid communication, and the <a href="https://heltec.org/project/wifi-lora-32-v3/" title="Heltec LoRa 32 board product page">Heltec V3</a> boards are a popular entry point. While there are fancier devices like the <a href="https://lilygo.cc/products/t-deck" title="A standalone Meshtastic node with screen and keyboard">LilyGO T-Deck</a> or <a href="https://muzi.works/" title="A nice collection of Meshtatic nodes">Muzi.works</a>, we’ll start with the basics. I picked up two Heltec V3 boards for €22 each (check <a href="https://www.tinytronics.nl">TinyTronics</a>, <a href="https://hamparts.shop/">hamparts.shop</a> or <a href="https://nettigo.eu">Nettigo</a> for some European stores).</p>
 
-<p>First, I attached the included stubby antennas. Always connect antennas first with devices that transmit, or you might damage them. Then, using the Meshtastic <a href="https://flasher.meshtastic.org/" title="Flash the Mestastic firmware via a browser">web flasher</a>, I flashed the first board with the latest firmware. The flasher worked flawlessly with Chromium on Linux (Firefox does <a href="https://caniuse.com/webusb" title="Can I Use page for WebUSB">not support</a> WebUSB yet).</p>
+<p>First, I attached the included stubby antennas. Always connect antennas first with devices that transmit, or you might damage them. Then, using the Meshtastic <a href="https://flasher.meshtastic.org/" title="Flash the Mestastic firmware via a browser">web flasher</a>, I flashed the first board with the latest firmware. The flasher worked flawlessly with Chromium on Linux (Firefox does <a href="https://caniuse.com/webusb" title="Can I Use page for WebUSB">not support</a> WebUSB).</p>
 
 <h2>The Phone Node</h2>
 
 <p>Meshtastic offers <a href="https://meshtastic.org/docs/software/" title="Links to the different mobile apps, web client, etc.">multiple configuration options</a>: a mobile app, a web <abbr title="User Interface">UI</abbr>, and a Python <abbr title="Command Line Interface">CLI</abbr> (more on that later). For this first device, we’ll use the mobile app over Bluetooth, which is likely the most common approach. We’ll refer to this first board as the <em>phone node</em>.</p>
 
-<p>Powered by a <abbr title="Universal Serial Bus">USB</abbr> power bank (a USB adapter or <abbr title="Lithium Polymer">LiPo</abbr> battery would also work), the <em>phone node</em> was ready for configuration. Connecting via Bluetooth using the Meshtastic app is straightforward. The device’s name is displayed on its screen and shows a pairing code when connecting through the Meshtastic mobile app. After pairing, I set the device’s region and saved the configuration, triggering a reboot. We’ll leave other settings at their defaults.</o>
+<p>Powered by a <abbr title="Lithium Polymer">LiPo</abbr> battery (a <abbr title="Universal Serial Bus">USB</abbr> power bank or adaptor would also work), the <em>phone node</em> was ready for configuration. Connecting via Bluetooth using the Meshtastic app is straightforward. The device’s name is displayed on its screen and shows a pairing code when connecting through the Meshtastic mobile app. After pairing, I set the device’s region and saved the configuration, triggering a reboot. We’ll leave other settings at their defaults.</o>
 
 <h2>The Computer Node</h2>
 
@@ -46,13 +46,6 @@ meshtastic \
 <figcaption class="highlight">↑ While these commands should theoretically run in a single execution, I needed to run them individually.</figcaption>
 
 <p>Both nodes now operates entirely offline, without Wi-Fi connectivity.</p>
-
-<figure>
-  <picture>
-    <source type="image/webp" srcset="../../assets/meshtastic-heltec-phone.webp">
-    <img src="../../assets/meshtastic-heltec-phone.jpg" width="220" height="360" alt="A Heltec v3 board on top of an iPhone with the Meshtastic app open">
-  </picture>
-</figure>
 
 <h2>Sending Messages</h2>
 
@@ -97,11 +90,11 @@ meshtastic --sendtext "Hi there" --dest '!a01bc234'
 {% endhighlight %}
 <figcaption class="highlight">↑ The !a01bc234 is an example destination, use the ID of your phone node.</figcaption>
 
-<p>While the message was received by my phone (indicated by a push notification and a red counter on the speech bubble icon), it didn’t appear in the message list. This highlights the beta nature of Meshtastic, where occasional quirks are to be expected.</p>
+<p>While the message was received by my phone (indicated by a push notification and a red counter on the speech bubble icon), it didn’t appear in the message list. This highlights the beta nature of Meshtastic, with its occasional quirks.</p>
 
 <h2>Internet Bridging</h2>
 
-<p>Meshtastic's true potential as a mesh network is realized when multiple nodes are within range, allowing messages to hop from one node to the next and extending the network's reach. However, we can further expand this connectivity by connecting to the internet through MQTT, enabling communication between nodes across the continent.</p>
+<p>Meshtastic's true potential as a mesh network is realized when multiple nodes are within range, allowing messages to hop from one node to the next and extending the network's reach. However, we can further expand this connectivity by connecting to the internet through <abbr title="MQ Telemetry Transport">MQTT</abbr>, enabling communication between nodes across the continent.</p>
 
 <p>By enabling internet connectivity, we can bridge the gap between local Meshtastic networks. While this clearly deviates from the fully off-grid concept, it provides a fallback when nearby nodes are scarce. Let's configure the <em>computer node</em> for internet connectivity and MQTT:</p>
 
@@ -109,7 +102,7 @@ meshtastic --sendtext "Hi there" --dest '!a01bc234'
 meshtastic \
 --set network.wifi_enabled true \
 --set network.wifi_ssid MyWiFiNetwork \
---set network.wifi_psk MyWifiPa$$w0rd \
+--set network.wifi_psk MyWifiPa$$w0rd
 {% endhighlight %}
 
 <p>After executing this command, the device’s display will show a new screen indicating its WiFi connection status. This alone is not enough to send and receive messages via the internet, we also have to enable MQTT:</p>
@@ -121,12 +114,12 @@ meshtastic \
 --set lora.config_ok_to_mqtt true \
 --ch-index 0 \
 --ch-set uplink_enabled true \
---ch-set downlink_enabled true \
+--ch-set downlink_enabled true
 {% endhighlight %}
 
 <p>This setup allows the <em>phone node</em>, still without an internet connection, remember, to communicate with distant nodes. Messages are relayed through the <em>computer node</em> to the MQTT server, which then forwards them to internet-connected nodes. The <em>phone node</em> needs “Ok to MQTT” (under the LoRa config) enabled for this to work.</p>
 
-<h2>Adding to the map</h2>
+<h2>Nodes on a Map</h2>
 
 <p>To make your node visible on a <a href="https://meshtastic.liamcottle.net" title="A map showing online Meshtastic nodes">map</a>, ensure WiFi is enabled as described above. Although the Heltec lacks GPS functionality, we can assign a fixed position for it to show up on the map. By default, the node sends MQTT updates every 15 minutes, but this interval can be adjusted.</p>
 
@@ -138,3 +131,13 @@ meshtastic
 --setlat 50.8449861 \
 --setlon 4.3499932
 {% endhighlight %}
+
+<h2>Range Test</h2>
+
+<p>I was intrigued by the range of these little Heltec devices. I placed one node in the attic and took the other with me on a short walk, sending occasional messages along the way. The solid green lines indicate messages that were successfully received by my attic node, while the red dashed lines represent those that failed to go through. It’s worth noting that this informal test was in a dense urban area with some elevation changes; take it for what it’s worth.</p>
+
+<figure>
+  <picture>
+    <img src="../../assets/meshtastic-range-test.svg" width="553" height="240" alt="A graph featuring red and green lines labeled with distance measurements from a central node, with a maximum successful distance of 500 meters indicated.">
+  </picture>
+</figure>
