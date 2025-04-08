@@ -55,10 +55,10 @@
     platforms = [];
     source = {
       remotes = ["https://rubygems.org"];
-      sha256 = "0kmx36jjh2sahd989vcvw74lrlv07dqc3rnxchc5sj2ywqsw3w3g";
+      sha256 = "0059n2hqiv3afahq1wc4ymr7lpka7vkisvmkx7azgnkvzfz6caby";
       type = "gem";
     };
-    version = "3.3.2";
+    version = "3.3.3";
   };
   em-websocket = {
     dependencies = ["eventmachine" "http_parser.rb"];
@@ -107,10 +107,10 @@
     platforms = [];
     source = {
       remotes = ["https://rubygems.org"];
-      sha256 = "1sa2v1fffc0yc3alpqz4a35gjc0n3mavskdwci6yrc6crad289s4";
+      sha256 = "1v8nmvs1bh82d8j0aidf4slbj5zcrwlc3xmc53ci7kzcps6icd8g";
       type = "gem";
     };
-    version = "4.30.0";
+    version = "4.30.2";
   };
   "http_parser.rb" = {
     groups = ["default"];
@@ -171,10 +171,10 @@
     platforms = [];
     source = {
       remotes = ["https://rubygems.org"];
-      sha256 = "1p4l5ycdxfsr8b51gnvlvhq6s21vmx9z4x617003zbqv3bcqmj6x";
+      sha256 = "01lbdaizhkxmrw4y8j3wpvsryvnvzmg0pfs56c52laq2jgdfmq1l";
       type = "gem";
     };
-    version = "2.10.1";
+    version = "2.10.2";
   };
   kramdown = {
     dependencies = ["rexml"];
@@ -317,10 +317,10 @@
     platforms = [];
     source = {
       remotes = ["https://rubygems.org"];
-      sha256 = "1cbvgvl24ki6jlxjccx2j1vwwcpg36bivksmx78i43m35j6nf8bz";
+      sha256 = "0nlhfjkbrxy0qzzdbvi0cvvwgfr3nxgafvapby83yvmz316xhva7";
       type = "gem";
     };
-    version = "1.85.1";
+    version = "1.86.3";
   };
   terminal-table = {
     dependencies = ["unicode-display_width"];
