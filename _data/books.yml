@@ -2,6 +2,10 @@
   author: "George Orwell"
   isbn13: 9780140009729
   rating: 5
+- name: "1Q84"
+  author: "村上春樹"
+  isbn13: 9780099549062
+  rating: 3
 - name: "A Brief History of Time"
   author: "Stephen Hawking"
   isbn13: 9780553103748
