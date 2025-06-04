@@ -1,0 +1,58 @@
+---
+layout:          post
+title:           Rails’ Connection Pool
+date:            2025-06-04 09:00:00
+updated:         2025-06-04 09:00:00
+description:     In which I learn to read YAML syntax.
+---
+
+<p>Encountering a production issue that works perfectly on your local machine is a classic developer’s dilemma. Today I faced this while debugging “ActiveRecord::ConnectionTimeoutError” issues in a Ruby on Rails application.</p>
+
+{% highlight bash %}
+could not obtain a connection from the pool within 5.000 seconds (waited 5.000 seconds); all pooled connections were in use
+{% endhighlight %}
+
+<p>The error indicated that the Rails application was running out of database connections. By default, Rails opens 5 concurrent connections to the PostgreSQL database. The fix is usually straightforward: increase the “pool” size in the “database.yml” configuration.</p>
+
+Here’s what the initial configuration looked like:
+
+{% highlight yml %}
+default: &default
+  adapter: postgresql
+  pool: 10
+
+development:
+  <<: *default
+  database: my-dev-database
+{% endhighlight %}
+
+<p>I tested this on my local development machine, and everything seemed fine. It works on my machine, right? Running <kbd>ActiveRecord::Base.connection_pool.size</kbd> in my local Rails console confirmed the pool size was indeed increased to 10. Feeling confident, I deployed to production.</p>
+
+<p>However, the errors persisted. Checking the connection pool size on the production server via the Rails console still showed 5, not the expected 10. Can you spot the mistake?</p>
+
+<p>My first thoughts was to the production environment itself. Was <a href="https://scalingo.com/" title="Managed hosting for webapplications">Scalingo</a>, the managed hosting platform this application runs on, overriding the configuration? Was there a smaller default pool size for the one-off containers in which I was testing?</p>
+
+<p>Turns out, the problem was much simpler and lay in my understanding of YAML syntax. I had assumed that since “production”, “testing”, and “staging” weren’t explicitly defined in the “database.yml” file, they would automatically inherit from the “default” block. The “development” key is mentioned since it needs a different database name. This application had been running for years, so this couldn’t be wrong, right?</p>
+
+<p>Wrong.</p>
+
+<p>Rails does not automatically pick up the “default” configuration unless the environments are explicitly defined. Even if an environment doesn’t have any specific overrides, you still need to include its key in the database configuration to ensure Rails uses the configuration parameters from the “default” block. I am unsure if this is according to the YAML spec or a Rails specific rule.</p>
+
+<p>The solution was to explicitly define the “production” environment key, even if it just inherits from the “defaults” block:</p>
+
+{% highlight yml %}
+default: &default
+  adapter: postgresql
+  pool: 10
+
+production:
+  <<: *default
+
+development:
+  <<: *default
+  database: my-dev-database
+{% endhighlight %}
+
+<p>After deploying the corrected configuration file and restarting the production server, <kbd>ActiveRecord::Base.connection_pool.size</kbd> now shows a connection pool of 10 and the “ActiveRecord::ConnectionTimeoutError” issues were resolved.</p>
+
+<p>Today was a good reminder that even subtle misconfigurations in seemingly straightforward YAML files can lead to unexpected behavior in production.</p>
