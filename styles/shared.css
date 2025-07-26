@@ -161,3 +161,13 @@ svg.github {
   vertical-align: bottom;
   stroke: var(--color-muted);
 }
+
+/* Animations between pages */
+
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-group(*) {
+  animation-duration: 0.3s;
+}
