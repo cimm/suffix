@@ -31,7 +31,7 @@ description:     Dealing with platform-specific gems in a Nix development enviro
       });
 }
 {% endhighlight %}
-<figcaption class="highlight">↑ A basic flake.nix example for a Ruby on Rails development environment</figcaption>
+<figcaption>↑ A basic flake.nix example for a Ruby on Rails development environment</figcaption>
 
   <p>This setup works beautifully, but the process of adding or updating gems introduces a wrinkle. While you can use <a href="https://bundler.io/" title="A tool to manage Ruby gems">Bundler</a> as usual, Nix requires an additional step with <a href="https://github.com/nix-community/bundix" title="Tool to generates a Nix expression for Bundler-managed applications">bundix</a>. Bundix generates a gemset.nix file, analogous to the Gemfile.lock, which provides the necessary Nix derivations for each gem.</p>
 
@@ -46,7 +46,7 @@ error: 1 dependencies of derivation '/nix/store/wgzzjpwnnw1ijsjk2j07rhcr4ypdch3n
 error: 1 dependencies of derivation '/nix/store/7kcwxkpp5478zhs1lfpipc0s37px1yg0-bundler.drv' failed to build
 error: 1 dependencies of derivation '/nix/store/q654nfnvswani2pcxb17bn9xaxzydkch-nix-shell-env.drv' failed to build
 {% endhighlight %}
-<figcaption class="highlight">↑ Example error message when running `nix develop` with platform-specific gems</figcaption>
+<figcaption>↑ Example error message when running `nix develop` with platform-specific gems</figcaption>
 
 <p>The culprit? Platform-specific configurations in the Gemfile.lock file. Bundler, by default, includes the platform’s architecture in the PLATFORMS section of Gemfile.lock. This is where the problems arise.</p>
 
@@ -57,7 +57,7 @@ PLATFORMS
 -  x86_64-linux
 +  ruby
 {% endhighlight %}
-<figcaption class="highlight">↑ Gemfile.lock section before and after applying BUNDLE_FORCE_RUBY_PLATFORM="true"</figcaption>
+<figcaption>↑ Gemfile.lock section before and after applying BUNDLE_FORCE_RUBY_PLATFORM="true"</figcaption>
 
 <p>My refined workflow for installing or updating gems:</p>
 

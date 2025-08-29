@@ -42,7 +42,7 @@ card 1: Device [USB PnP Sound Device], device 0: USB Audio [USB Audio]
   Subdevices: 1/1
   Subdevice #0: subdevice #0
 {% endhighlight %}
-<figcaption class="highlight">↑ The Digirig is “card 1” here</figcaption>
+<figcaption>↑ The Digirig is “card 1” here</figcaption>
 
 <p>Turn the microphone input of the Digirig on via <kbd>amixer</kbd>, we don’t want to mute the incoming audio (you can also use <kbd>alsamixer</kbd> if you prefer a <abbr title="Terminal User Interface">TUI</abbr>). The card number should match the number you found above.</p>
 
@@ -55,14 +55,14 @@ $ amixer --card 1 set 'Mic' unmute
 $ amixer --card 1 set 'Mic' 100%
 $ amixer --card 1 set 'Auto Gain Control' mute
 {% endhighlight %}
-<figcaption class="highlight">↑ Set the Digirig speaker and microphone to max and mute the automatic gain control</figcaption>
+<figcaption>↑ Set the Digirig speaker and microphone to max and mute the automatic gain control</figcaption>
 
 <p>Install <a href="https://github.com/wb2osz/direwolf" title="A software AX.25 packet encoder and decoder">Dire Wolf</a> and edit the configuration file (copy the example config from ‘/etc/direwolf.conf’ to the home directory). In the config file, look for and uncomment the line with ‘ADEVICE’ (line 77) and make sure it matches the card number from above.</p>
 
 {% highlight bash %}
 ADEVICE  plughw:1,0
 {% endhighlight %}
-<figcaption class="highlight">↑ ~/direwolf.config at line 77</figcaption>
+<figcaption>↑ ~/direwolf.config at line 77</figcaption>
 
 <p>Start Dire Wolf. The <kbd>-t</kbd> flag disables the Dire Wolf colors since it turns my black terminal white, but that’s optional.</p>
 
@@ -85,7 +85,7 @@ Position with time, House, SQ3PLX http://microsat.com.pl/
 N 50 54.4000, E 004 37.5300
 WX3in1Plus2.0 U=12.4V,T=21.6C/70.8F
 {% endhighlight %}
-<figcaption class="highlight">↑ Dire Wolf captured a first packet from <a href="https://www.qrz.com/db/ON6SX" title="ON6SX’s profile on QRZ.com">ON6SX</a> while the Baofeng volume is set too loud</figcaption>
+<figcaption>↑ Dire Wolf captured a first packet from <a href="https://www.qrz.com/db/ON6SX" title="ON6SX’s profile on QRZ.com">ON6SX</a> while the Baofeng volume is set too loud</figcaption>
 
 <p>Dire Wolf will now listen for APRS packets and decode them as they come in. Note that there won’t be any audible sound since the audio is piped directly to the computer. If you don’t see packets come in from time to time, you might be in a region with low APRS activity, check the <a href="https://aprs.fi/#!mt=osm">aprs.fi</a> website to make sure.</p>
 
@@ -122,7 +122,7 @@ Check server status here http://78.47.200.124:14501
 [ig] # aprsc 2.1.11-g80df3b4
 [ig] # logresp ON3CIM verified, server T2NUERNBG
 {% endhighlight %}
-<figcaption class="highlight">↑ Dire Wolf connected to a server in Germany</figcaption>
+<figcaption>↑ Dire Wolf connected to a server in Germany</figcaption>
 
 <p>Checking the IGate server (http://78.47.200.124:14501 in the example above) should list your call sign if the connection succeeded. It counts the forwarded and duplicated (already reported by another station) packets.</p>
 
@@ -146,7 +146,7 @@ ON3FR-7 audio level = 90(56/32)   [NONE]   __|||||||
 MIC-E, Human, Yaesu FT3D, En Route
 N 50 52.1700, E 004 42.5600, 10 MPH, course 50, alt 121 ft
 {% endhighlight %}
-<figcaption class="highlight">↑ Dire Wolf reporting my IGate’s position to the APRS-IS network</figcaption>
+<figcaption>↑ Dire Wolf reporting my IGate’s position to the APRS-IS network</figcaption>
 
 <p>A little black diamond symbol with an ‘R’ will now show on the map with your call sign.</p>
 
@@ -154,7 +154,7 @@ N 50 52.1700, E 004 42.5600, 10 MPH, course 50, alt 121 ft
   <picture>
     <img src="../../assets/aprs-igate-map.jpg" property="thumbnailUrl" alt="IGate reporting ON3FR on a map">
   </picture>
-  <figcaption class="highlight">↑ My IGate reporting <a href="https://www.qrz.com/db/ON3FR" title="ON3FR’s profile on QRZ.com">ON3FR</a> on a map</figcaption>
+  <figcaption>↑ My IGate reporting <a href="https://www.qrz.com/db/ON3FR" title="ON3FR’s profile on QRZ.com">ON3FR</a> on a map</figcaption>
 </figure>
 
 <p>We went from receiving and decoding APRS packets to sharing the packets with the wider ham community by running our own IGate. We haven’t transmitted anything with our radio yet… stay tuned.</p>

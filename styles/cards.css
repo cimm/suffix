@@ -13,46 +13,46 @@
   position: relative;
   text-decoration: none;
   width: 100%;
-}
 
-.card figure {
-  padding: 8%;
-  text-align: left;
-}
+  figure {
+    padding: 8%;
+    text-align: left;
 
-.card figure .frame {
-  display: block;
-  height: 180px;
-  position: relative;
-  text-align: center;
-}
+    img {
+      bottom: 0;
+      height: auto;
+      left: 0;
+      margin: auto;
+      max-height: 180px;
+      max-width: 100%;
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: auto;
+    }
 
-.card figure img {
-  bottom: 0;
-  height: auto;
-  left: 0;
-  margin: auto;
-  max-height: 180px;
-  max-width: 100%;
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: auto;
-}
+    figcaption {
+      border-bottom: thin solid;
+      display: inline;
+      margin: 0;
+      padding-bottom: .2em;
+      color: inherit;
+    }
 
-.card figure figcaption {
-  border-bottom: thin solid;
-  display: inline;
-  margin: 0;
-  padding-bottom: .2em;
-  color: inherit;
-}
+    .frame {
+      display: block;
+      height: 180px;
+      position: relative;
+      text-align: center;
+    }
 
-.card .badge {
-  background-color: var(--color-foreground);
-  color: var(--color-background);
-  padding: .05em .5em;
-  position: absolute;
-  right: 0;
-  z-index: 1;
+    .badge {
+      background-color: var(--color-foreground);
+      color: var(--color-background);
+      padding: .05em .5em;
+      position: absolute;
+      right: 0;
+      z-index: 1;
+    }
+  }
 }

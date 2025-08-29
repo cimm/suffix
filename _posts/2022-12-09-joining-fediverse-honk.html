@@ -70,7 +70,7 @@ LogLevel alert
   ProxyPassReverse / http://127.0.0.1:31337/
 </VirtualHost>
 {% endhighlight %}
-<figcaption class="highlight">↑ Apache reverse proxy config in /etc/apache2/sites-available/SERVERNAME.conf.</figcaption>
+<figcaption>↑ Apache reverse proxy config in /etc/apache2/sites-available/SERVERNAME.conf.</figcaption>
 
 <p>Link the config and reload Apache.</p>
 
@@ -123,7 +123,7 @@ RestrictRealtime=yes
 [Install]
 WantedBy=default.target
 {% endhighlight %}
-<figcaption class="highlight">↑ Create a /etc/systemd/system/honk.service config file.</figcaption>
+<figcaption>↑ Create a /etc/systemd/system/honk.service config file.</figcaption>
 
 <p>All that’s left now is to enable and start the honk service.</p>
 

@@ -43,7 +43,7 @@ meshtastic \
 --set-time $(date +%s) \ # Current UNIX timestamp, will be forgotten on reset
 --set device.led_heartbeat_disabled true # The blinking light annoyed me
 {% endhighlight %}
-<figcaption class="highlight">↑ While these commands should theoretically run in a single execution, I needed to run them individually.</figcaption>
+<figcaption>↑ While these commands should theoretically run in a single execution, I needed to run them individually.</figcaption>
 
 <p>Both nodes now operates entirely offline, without Wi-Fi connectivity.</p>
 
@@ -88,7 +88,7 @@ mesttattic --qr-all
 {% highlight bash %}
 meshtastic --sendtext "Hi there" --dest '!a01bc234'
 {% endhighlight %}
-<figcaption class="highlight">↑ The !a01bc234 is an example destination, use the ID of your phone node.</figcaption>
+<figcaption>↑ The !a01bc234 is an example destination, use the ID of your phone node.</figcaption>
 
 <p>While the message was received by my phone (indicated by a push notification and a red counter on the speech bubble icon), it didn’t appear in the message list. This highlights the beta nature of Meshtastic, with its occasional quirks.</p>
 

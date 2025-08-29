@@ -46,7 +46,7 @@ buildGoModule rec {
   };
 }
 {% endhighlight %}
-<figcaption class="highlight">↑ Example default.nix for the bluewalker package.</figcaption>
+<figcaption>↑ Example default.nix for the bluewalker package.</figcaption>
 
 <p>The configuration includes two <abbr title="Secure Hash Algorithm">SHA</abbr>-256 hashes, which was the most cryptic part at first. Nix will calculate the hash of the downloaded source to make sure it matches what I had while packaging, a security measure. Both hashes need to be calculated and added to the config.</p>
 
