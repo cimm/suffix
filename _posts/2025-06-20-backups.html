@@ -1,0 +1,122 @@
+---
+layout:          post
+title:           How I take backups
+date:            2025-06-20 09:00:00
+updated:         2025-09-27 17:00:00
+description:     Two is one and one is none.
+---
+
+<p>This post documents my current backup system, mostly as a reminder for my future self. My laptop is my primary machine; while it usually sits on my desk, it also accompanies me to work a few times a week. Here’s the two-tiered strategy I use to make sure my data is safe.</p>
+
+<h2>Tier 1: Clonezilla for Bare-Metal Recovery</h2>
+
+<p>My primary, full-system backup solution is <a href="https://clonezilla.org/" title="The Free and Open Source Software for Disk Imaging and Cloning">Clonezilla</a>. I run it from a bootable <abbr title="Universal Serial Bus">USB</abbr> stick to create a complete, bit-for-bit disk image on an external drive. This ensures that I don’t miss a single configuration file or dependency I might need later. If the laptop’s internal drive ever fails, I can simply swap in a new one, restore the latest Clonezilla image, and be back up and running in a matter of hours.</p>
+
+<p>I don’t encrypt the Clonezilla backups. The external drive is kept physically locked away and is only connected during the backup process. This simplifies things and means there’s no master password for me to forget.</p>
+
+<p>However, Clonezilla isn’t perfect for daily use. It comes with a few drawbacks:</p>
+
+<ul>
+  <li>Its <a href="https://en.wikipedia.org/wiki/Ncurses" title="ncurses article @ Wikipedia">ncurses</a>-based interface can be confusing, and I always worry about accidentally overwriting my source drive instead of the destination.</li>
+  <li>Because it creates an identical clone, the image may not work correctly on different hardware. A drive replacement is fine, but restoring to an entirely new laptop could cause compatibility issues. (I can still mount the image and restore <a href="../clonezilla-restore-file" title="Restore a single Clonezilla file or folder">individual files</a>, so it’s not a complete deal-breaker).</li>
+  <li>Clonezilla backups are not deduplicated. Since I’m imaging the entire drive, I can only store one or two versions on the external disk before running out of space.</li>
+  <li>The backup process is time-consuming, and I can’t use my laptop while it’s running. While this guarantees a consistent state (no files are changing), it also means I don’t perform these backups as often as I should. My last one was four months ago, which is far from ideal.</li>
+</ul>
+
+<p>These limitations led me to my secondary backup solution, which is faster, automated, and encrypted.</p>
+
+<h2>Tier 2: Restic for Automated, Incremental Backups</h2>
+
+<p><a href="https://restic.net/" title="Restic is a modern backup program that can back up your files">Restic</a> is a modern, command-line backup tool. It creates versioned snapshots of specified directories and stores them in a “repository,” which can be a local folder or a remote system. The real magic is that it compresses, deduplicates, and encrypts all data by default. The initial backup can be slow, but subsequent snapshots are incredibly fast because they only copy the changed data blocks.</p>
+
+<p>My restic repository lives on my Synology <abbr title="Network Attached Storage">NAS</abbr>, and the backups are sent securely over <abbr title="Secure File Transfer Protocol">SFTP</abbr>.</p>
+
+<h3>Setup and Configuration</h3>
+
+<h4>1. Enable SFTP on the Synology NAS</h4>
+
+<p>In the Synology Control Panel, go to File Services → FTP. On that screen, find and enable the SFTP service (do not use the standard FTPS service). I kept the default port 22. Next, you need to grant your user permission to connect. Go to Control Panel → User & Group, edit your user, and in the Applications tab, check the “Allow” box for SFTP.</p>
+
+<h4>2. Configure the <abbr title="Secure Shell">SSH</abbr> Client</h4>
+
+<p>You should now be able to connect to the NAS. If you have many SSH keys, you might get a “Too many authentication failures” error. You can fix this by telling SSH to only use the specific identity file for this connection. To make this permanent and simplify the command, I added the following to my <kbd>~/.ssh/config</kbd> file:</p>
+
+{% highlight bash %}
+Host nas
+  HostName nas.example.com
+  User me
+  IdentitiesOnly yes
+{% endhighlight %}
+
+<h4>3. Initialize the Restic Repository</h4>
+
+<p>With SFTP access configured, you can now initialize a new restic repository on the NAS. This command is run from the laptop; restic connects over SFTP and creates the necessary directory structure.</p>
+
+{% highlight bash %}
+restic init --repo sftp:nas:/drop/restic-repo
+{% endhighlight %}
+
+<h3>Common Restic Commands</h3>
+
+<p>Here is a list of commands I use most frequently.</p>
+
+<h4>Create a Backup</h4>
+
+<p>This command backs up my documents directory. Restic can store snapshots from multiple directories (and even multiple machines) in the same repository.</p>
+
+{% highlight bash %}
+restic backup --repo sftp:nas:/drop/restic-repo ~/Documents/
+{% endhighlight %}
+
+<h4>List Snapshots</h4>
+
+<p>After a backup, you can confirm it worked by listing the snapshots in the repository.</p>
+
+{% highlight bash %}
+restic snapshots --repo sftp:nas:/drop/restic-repo
+{% endhighlight %}
+
+<h4>Compare Snapshots</h4>
+
+<p>You can see the exact changes between any two snapshots using their IDs.</p>
+
+{% highlight bash %}
+restic diff --repo sftp:nas:/drop/restic-repo d56ed9d5 1c100c47
+{% endhighlight %}
+
+<h4>Restore Files</h4>
+
+<p>Restic can restore a backup in place, but this will overwrite newer files and remove any files not present in the snapshot. That’s a bit too <em><abbr title="You Only Live Once">YOLO</abbr></em> for my taste, so I always restore to a temporary directory to be safe.</p>
+
+{% highlight bash %}
+restic restore --repo sftp:nas:/drop/restic-repo --target /tmp latest
+{% endhighlight %}
+
+<h4>Maintain the Repository</h4>
+
+<p>Over time, the repository will grow. I periodically run a check to verify its integrity.</p>
+
+{% highlight bash %}
+restic check --repo sftp:nas:/drop/restic-repo
+{% endhighlight %}
+
+<p>To clean up old snapshots, I use the forget command with a retention policy. The <kbd>--prune</kbd> flag is necessary to actually delete the orphaned data and free up disk space.</p>
+
+{% highlight bash %}
+# This policy keeps 3 daily, 5 weekly, 7 monthly, and 9 yearly snapshots
+restic forget --repo sftp:nas:/drop/restic-repo \
+    --keep-daily 3 --keep-weekly 5 --keep-monthly 7 --keep-yearly 9
+{% endhighlight %}
+
+<p>I automate the backup and forget commands using a systemd timer, which runs daily.</p>
+
+<h2>Why Use Both?</h2>
+
+<p>This two-tiered system gives me the best of both worlds.</p>
+
+<ul>
+  <li>Clonezilla is my disaster recovery plan. I am certain it backs up my whole drive, so no configuration is ever missed. The USB drive is stored offline, making it invulnerable to accidental deletion or malware.</li>
+  <li>restic is my daily, automated safety net. It’s always connected and running, making it easy to perform frequent backups and restore individual files quickly. However, being online makes it more vulnerable to user error or a security breach.</li>
+</ul>
+
+<p>By using two different backup solutions, I’m not putting all my eggs in one basket. If a critical bug were ever discovered in Clonezilla or restic that could corrupt backups, I’d still have an alternative to fall back on.</p>
