@@ -6,6 +6,12 @@ updated:         2025-03-23 09:00:00
 description:     Dealing with platform-specific gems in a Nix development environment.
 ---
 
+<figure>
+  <picture>
+    <img src="../../assets/gem.svg" width="100" height="133" alt="Drawing of a ruby gem stone in grayscale">
+  </picture>
+</figure>
+
 <p>I’ve been leveraging Nix <a href="https://nixos.wiki/wiki/flakes" title="Flakes @ NixOS wiki">flakes</a> to manage my Ruby on Rails projects, aiming for clean, isolated development environments. The magic of <kbd>nix develop</kbd> is fantastic: it seamlessly sets up everything from the correct Ruby version and required gems, to even the PostgreSQL database.</p>
 
 {% highlight nix %}
