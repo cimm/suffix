@@ -6,6 +6,7 @@
   author: "村上春樹"
   isbn13: 9780099549062
   rating: 3
+  read: 2025
 - name: "A Brief History of Time"
   author: "Stephen Hawking"
   isbn13: 9780553103748
@@ -18,15 +19,18 @@
   author: "Lieven Scheire"
   isbn13: 9789463939591
   rating: 3
+  read: 2024
   url: "2024-reading-list"
 - name: "All Systems Red"
   author: "Martha Wells"
   isbn13: 9780765397539
   rating: 4
+  read: 2025
 - name: "American Prometheus"
   author: "Kai Bird"
   isbn13: 9780375412028
   rating: 3
+  read: 2023
 - name: "Angels & Demons"
   author: "Dan Brown"
   isbn13: 9781416524793
@@ -43,10 +47,12 @@
   author: "Martha Wells"
   isbn13: 9781250186928
   rating: 5
+  read: 2025
 - name: "Atomic Habits"
   author: "James Clear"
   isbn13: 9781847941831
   rating: 3
+  read: 2024
 - name: "Boy"
   author: "Roald Dahl"
   isbn13: 9782070333936
@@ -67,6 +73,7 @@
   author: "Marie Lu"
   isbn13: 9780147512284
   rating: 4
+  read: 2022
 - name: "Children of Dune"
   author: "Frank Herbert"
   isbn13: 9780593098240
@@ -83,11 +90,13 @@
   author: "Eric Schlosser"
   isbn13: 9781594202278
   rating: 4
+  read: 2024
   url: "2024-reading-list"
 - name: "Contact"
   author: "Carl Sagan"
   isbn13: 9780671701802
   rating: 4
+  read: 2024
   url: "2024-reading-list"
 - name: "Countdown to Zero Day"
   author: "Kim Zetter"
@@ -101,6 +110,7 @@
   author: "Daniel Suarez"
   isbn13: 9780525951117
   rating: 4
+  read: 2022
 - name: "Dune Messiah"
   author: "Frank Herbert"
   isbn13: 9780441172696
@@ -112,6 +122,7 @@
 - name: "Encryption in Everyday Life"
   author: "Richard White"
   rating: 0
+  read: 2014
   url: "2014-reading-list"
 - name: "Ender’s Game"
   author: "Orson Scott Card"
@@ -121,6 +132,7 @@
   author: "Blaine Harden"
   isbn13: 9781611734522
   rating: 4
+  read: 2023
 - name: "Extreme Ownership"
   author: "Jocko Willink"
   isbn13: 9781250270962
@@ -141,6 +153,7 @@
   author: "Peter Frase"
   isbn13: 9781781688137
   rating: 2
+  read: 2024
   url: "2024-reading-list"
 - name: "Freedom"
   author: "Daniel Suarez"
@@ -166,14 +179,17 @@
   author: "J.K. Rowling"
   isbn13: 9780545139700
   rating: 4
+  read: 2023
 - name: "Harry Potter and the Goblet of Fire"
   author: "J.K. Rowling"
   isbn13: 9780613496742
   rating: 4
+  read: 2022
 - name: "Harry Potter and the Half-Blood Prince"
   author: "J.K. Rowling"
   isbn13: 9780545582995
   rating: 3
+  read: 2023
 - name: "Harry Potter and the Order of the Phoenix"
   author: "J.K. Rowling"
   isbn13: 9780545582971
@@ -214,14 +230,17 @@
   author: "John Wilander"
   isbn13: 9798985025422
   rating: 3
+  read: 2025
 - name: "In the Lives of Puppets"
   author: "TJ Klune"
   isbn13: 9781250217448
   rating: 4
+  read: 2025
 - name: "Information Doesn’t Want to Be Free"
   author: "Cory Doctorow"
   isbn13: 9781940450285
   rating: 3
+  read: 2014
 - name: "James and Giant Peach"
   author: "Roald Dahl"
   isbn13: 9780394912820
@@ -230,6 +249,7 @@
   author: "Peter F. Hamilton"
   isbn13: 9780345490711
   rating: 3
+  read: 2023
 - name: "Kingpin"
   author: "Kevin Poulsen"
   isbn13: 9780307588685
@@ -238,6 +258,7 @@
   author: "Kazuo Ishiguro"
   isbn13: 9780593396568
   rating: 3
+  read: 2022
 - name: "Le Bourgmestre de Furnes"
   author: "Georges Simenon"
   isbn13: 9782070410286
@@ -266,11 +287,13 @@
   author: "David Kushner"
   isbn13: 9780749924898
   rating: 3
+  read: 2024
   url: "masters-of-doom"
 - name: "Microformats"
   author: "John Allsopp"
   isbn13: 9781590598146
   rating: 3
+  read: 2008
   url: "microformats-book"
 - name: "Midnight in Chernobyl"
   author: "Adam Higginbotham"
@@ -284,6 +307,7 @@
   author: "Kurt Vonnegut"
   isbn13: 9780385334143
   rating: 4
+  read: 2023
 - name: "Name of the Rose"
   author: "Umberto Eco"
   isbn13: 9780446357203
@@ -300,10 +324,12 @@
   author: "Chris Voss"
   isbn13: 9780062407818
   rating: 4
+  read: 2022
 - name: "Nothing to Envy"
   author: "Barbara Demick"
   isbn13: 9781400159840
   rating: 4
+  read: 2023
 - name: "Pandora’s Star"
   author: "Peter F. Hamilton"
   isbn13: 9780345461629
@@ -320,10 +346,12 @@
   author: "Marie Lu"
   isbn13: 9781410455123
   rating: 4
+  read: 2022
 - name: "Project Hail Mary"
   author: "Andy Weir"
   isbn13: 9780593395561
   rating: 4
+  read: 2021
   url: "project-hail-mary"
 - name: "Quiet power"
   author: "Susan Cain"
@@ -349,6 +377,7 @@
   author: "Gordon Corera"
   isbn13: 9780008318932
   rating: 3
+  read: 2024
   url: "2024-reading-list"
 - name: "Sandworm"
   author: "Andy Greenberg"
@@ -370,24 +399,29 @@
   author: "Kurt Vonnegut"
   isbn13: 9780385333849
   rating: 3
+  read: 2023
 - name: "Snow Crash"
   author: "Neal Stephenson"
   isbn13: 9780553380958
   rating: 3
+  read: 2025
 - name: "Starship Troopers"
   author: "Robert A. Heinlein"
   isbn13: 9780425015605
   rating: 3
+  read: 2024
   url: "2024-reading-list"
 - name: "Starter Villain"
   author: "John Scalzi"
   isbn13: 9780765389220
   rating: 4
+  read: 2024
   url: "2024-reading-list"
 - name: "Steve Jobs"
   author: "Walter Isaacson"
   isbn13: 9788937483943
   rating: 4
+  read: 2014
   url: "2014-reading-list"
 - name: "The 7 habits of highly effective people"
   author: "Stephen R. Covey"
@@ -405,9 +439,11 @@
   author: "David E. Hoffman"
   isbn13: 9781410482891
   rating: 3
+  read: 2023
 - name: "The Bitcoin Primer"
   author: "David Seaman"
   rating: 1
+  read: 2014
   url: "2014-reading-list"
 - name: "The Box"
   author: "Marc Levinson"
@@ -429,6 +465,7 @@
   author: "Joe Haldeman"
   isbn13: 9780060510862
   rating: 3
+  read: 2023
 - name: "The Girl on the Train"
   author: "Paula Hawkins"
   isbn13: 9781594633669
@@ -449,6 +486,7 @@
   author: "Suzanne Collins"
   isbn13: 9780439023481
   rating: 3
+  read: 2023
 - name: "The Kite Runner"
   author: "Khaled Hosseini"
   isbn13: 9781408845479
@@ -457,10 +495,12 @@
   author: "Isaac Asimov"
   isbn13: 9781884214493
   rating: 4
+  read: 2023
 - name: "The Lion, the Witch and the Wardrobe"
   author: "C.S. Lewis"
   isbn13: 9780590254762
   rating: 3
+  read: 2025
 - name: "The Magician’s Nephew"
   author: "C.S. Lewis"
   isbn13: 9780064405058
@@ -477,6 +517,7 @@
   author: "Iain M. Banks"
   isbn13: 9780333471104
   rating: 2
+  read: 2022
 - name: "The Return of the King"
   author: "J.R.R. Tolkien"
   isbn13: 9780345240347
@@ -493,10 +534,12 @@
   author: "刘慈欣"
   isbn13: 9780765377067
   rating: 2
+  read: 2023
 - name: "The Time Machine"
   author: "H. G. Wells"
   isbn13: 9781680294040
   rating: 2
+  read: 2023
   url: "time-machine-hg-wells"
 - name: "The Two Towers"
   author: "J.R.R. Tolkien"
@@ -514,6 +557,7 @@
   author: "Stanisław Lem"
   isbn13: 9780816491230
   rating: 5
+  read: 2023
   url: "invincible-lem"
 - name: "The Invisible Man"
   author: "H. G. Wells"
@@ -531,6 +575,7 @@
   author: "Franz Kafka"
   isbn13: 9780805210408
   rating: 2
+  read: 2014
   url: "2014-reading-list"
 - name: "The witches"
   author: "Roald Dahl"
