@@ -4,6 +4,26 @@ description: Some books I have read
 title: Reading
 ---
 
+<link rel="stylesheet" href="{% relbase %}/styles/chart.css">
+
+{% assign books_by_date = site.data.books | sort: "read" | group_by: "read" | slice: -5, 5 %}
+
+{% assign highest_read = 0 %}
+{% for date_group in books_by_date %}
+  {% if date_group.size > highest_read %}
+    {% assign highest_read = date_group.size %}
+  {% endif %}
+{% endfor %}
+
+<div class="chart">
+  {% for date_group in books_by_date %}
+    <div>
+      <progress class="prog" value="{{ date_group.size }}" max="{{ highest_read }}">{{ date_group.size }}</progress>
+      {{ date_group.name }}
+    </div>
+  {% endfor %}
+</div>
+
 <div class="table">
 {% assign books_by_rating = site.data.books | sort: "rating" | reverse | group_by: "rating" %}
 {% for rating_group in books_by_rating %}

@@ -1,0 +1,31 @@
+
+.chart {
+  --bar-width: 5rem;
+
+  display: grid;
+  grid-column-gap: 10px;
+  grid-template-columns: repeat(5, 1fr);
+  justify-items: center;
+  margin-bottom: 1rem;
+  text-align: center;
+  width: 100%;
+
+  progress {
+    appearance: none;
+    background-color: var(--color-box-background); /* unfilled in Firefox */
+    border-width: 0;
+    display: block;
+    height: var(--bar-width);
+    transform: rotate(-90deg);
+    width: calc(var(--bar-width) - 1rem);
+  }
+  progress::-moz-progress-bar {
+    background-color: var(--color-foreground); /* filled in Firefox */
+  }
+  progress::-webkit-progress-bar {
+    background-color: var(--color-box-background); /* unfilled in Chrome */
+  }
+  progress::-webkit-progress-value {
+    background-color: var(--color-foreground); /* filled in Chrome */
+  }
+}
