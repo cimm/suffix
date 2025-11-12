@@ -466,6 +466,11 @@
   isbn13: 9780060510862
   rating: 3
   read: 2023
+- name: "The Four Agreements"
+  author: "Don Miguel Ruiz"
+  isbn13: 9781878424938
+  rating: 1
+  read: 2025
 - name: "The Girl on the Train"
   author: "Paula Hawkins"
   isbn13: 9781594633669
