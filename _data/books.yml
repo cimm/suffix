@@ -586,6 +586,11 @@
   author: "Roald Dahl"
   isbn13: 9780140340204
   rating: 3
+- name: "The worm Ouroboros"
+  author: "Eric Rücker Eddison"
+  isbn13: 9780760773642
+  rating: 2
+  read: 2025
 - name: "Woman in the Window"
   author: "A.J. Finn"
   isbn13: 9780008333324
