@@ -7,6 +7,7 @@
   isbn13: 9780099549062
   rating: 3
   read: 2025
+  url: "2025-reading-list"
 - name: "A Brief History of Time"
   author: "Stephen Hawking"
   isbn13: 9780553103748
@@ -26,6 +27,7 @@
   isbn13: 9780765397539
   rating: 4
   read: 2025
+  url: "2025-reading-list"
 - name: "American Prometheus"
   author: "Kai Bird"
   isbn13: 9780375412028
@@ -48,6 +50,7 @@
   isbn13: 9781250186928
   rating: 5
   read: 2025
+  url: "2025-reading-list"
 - name: "Atomic Habits"
   author: "James Clear"
   isbn13: 9781847941831
@@ -231,11 +234,13 @@
   isbn13: 9798985025422
   rating: 3
   read: 2025
+  url: "2025-reading-list"
 - name: "In the Lives of Puppets"
   author: "TJ Klune"
   isbn13: 9781250217448
   rating: 4
   read: 2025
+  url: "2025-reading-list"
 - name: "Information Doesn’t Want to Be Free"
   author: "Cory Doctorow"
   isbn13: 9781940450285
@@ -405,6 +410,7 @@
   isbn13: 9780553380958
   rating: 3
   read: 2025
+  url: "2025-reading-list"
 - name: "Starship Troopers"
   author: "Robert A. Heinlein"
   isbn13: 9780425015605
@@ -471,6 +477,7 @@
   isbn13: 9781878424938
   rating: 1
   read: 2025
+  url: "2025-reading-list"
 - name: "The Girl on the Train"
   author: "Paula Hawkins"
   isbn13: 9781594633669
@@ -506,6 +513,7 @@
   isbn13: 9780590254762
   rating: 3
   read: 2025
+  url: "2025-reading-list"
 - name: "The Magician’s Nephew"
   author: "C.S. Lewis"
   isbn13: 9780064405058
@@ -591,6 +599,7 @@
   isbn13: 9780760773642
   rating: 2
   read: 2025
+  url: "2025-reading-list"
 - name: "Woman in the Window"
   author: "A.J. Finn"
   isbn13: 9780008333324
