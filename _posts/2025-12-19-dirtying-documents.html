@@ -1,6 +1,6 @@
 ---
 layout:          post
-title:           My Workflow for Sharing Official Documents
+title:           Workflow for Sharing Official Documents
 date:            2025-12-19 10:00:00
 updated:         2025-12-19 10:00:00
 description:     Dirtying the documents I share online.
@@ -24,11 +24,11 @@ description:     Dirtying the documents I share online.
 
 <p>If my data is stolen, it’s easier to prove the source if the scan is low-resolution and looks “off.” It hopefully also makes the document less useful for identity theft if the quality is lacking.</p>
 
-<p>No one needs a 4000×3000 pixel, high-fidelity photo of my ID. High resolution only helps bad actors. I downsize the image with squoosh.app and convert it to a JPEG with around 70% quality. This intentional quality loss is a bonus; it remains legible for verification but loses the “pristine” look in case of forgery.</p>
+<p>No one needs a 4000×3000 pixel, high-fidelity photo of my ID. High resolution only helps bad actors. I downsize the image with squoosh.app and convert it to a JPEG with around 70% quality. This intentional quality loss is a bonus; it remains legible for verification but loses the pristine look in case of forgery.</p>
 
 <h2>Visual Watermark</h2>
 
-<p>Next, I add a transparent watermark. This helps identify who lost my data in the case of a data breach. I include the name of the service I am sharing it with.</p>
+<p>Next, I add an almost transparent watermark. This helps identify who lost my data in the case of a data breach. I include the name of the service I am sharing it with.</p>
 
 <p>ImageMagick can do this, of course. It places the text in the center with low opacity—enough to be legible, but not so much that it jumps out too much.</p>
 
@@ -40,7 +40,7 @@ magick input.jpg -pointsize 72 -gravity center -fill "rgba(255,255,255,0.3)" -an
 
 <h2>Steganography</h2>
 
-<p>This week, I added an extra layer of “invisible” tracking using steganography to my workflow. This embeds a hidden text note directly into the image data.</p>
+<p>This week, I added an extra layer of invisible tracking using steganography to my workflow. This embeds a hidden text note directly into the image data.</p>
 
 <p>You must do this after watermarking and resizing, as those processes will destroy the hidden metadata.</p>
 
@@ -48,11 +48,21 @@ magick input.jpg -pointsize 72 -gravity center -fill "rgba(255,255,255,0.3)" -an
 steghide embed -cf to_share.jpg -ef <(echo "Shared with example.com in 2025")
 {% endhighlight %}
 
-<p>Now, the file itself contains a hidden “receipt” of when and where it was used.</p>
+<p>Alternatively, you can use the hyphen method shown below. However, note that passing a password directly within the command is less secure, as it may be recorded in your shell history.</p>
+
+{% highlight bash %}
+echo "Shared with example.com in 2025" | steghide embed -cf to_share.jpg -p "" -ef -
+{% endhighlight %}
+
+<p>Now, the file itself contains a hidden “receipt” of when and where it was uploaded. The embedded data can be extracted via:</p>
+
+{% highlight bash %}
+steghide extract -sf to_share.jpg -xf extract.txt
+{% endhighlight %}
 
 <h2>Reality Check</h2>
 
-<p>It is important to note that these methods are not foolproof:</p>
+<p>It is important to note that these methods are not waterproof:</p>
 
 <ul>
   <li>Steganography is fragile; if the receiving website automatically resizes my upload, the hidden note is gone.</li>
