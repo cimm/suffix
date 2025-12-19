@@ -1,0 +1,62 @@
+---
+layout:          post
+title:           My Workflow for Sharing Official Documents
+date:            2025-12-19 10:00:00
+updated:         2025-12-19 10:00:00
+description:     Dirtying the documents I share online.
+---
+
+<figure>
+  <picture>
+    <img src="../../assets/steganography.svg" width="200" height="144" alt="Doodle of a loupe inspecting a photo">
+  </picture>
+</figure>
+
+<p>Sharing sensitive personal information online—whether it’s a national ID, driver’s license, or passport—always makes me uneasy. With data breaches being a matter of “when, not if,” it’s important to minimize our digital footprint.</p>
+
+<p>While the best defense is simply not sharing the data at all, modern life often makes that impossible. Whether you’re renting a holiday cottage, opening a bank account, or complying with some website’s verification process, you eventually have to share sensitive documents.</p>
+
+<p>I like “dirtying” my documents to make them less valuable to hackers and easier to track if a leak occurs.</p>
+
+<h2>Loose quality</h2>
+
+<p>Before I upload anything, I strip the EXIF data (metadata like location and device info), resize the image, and convert it to grayscale.</p>
+
+<p>If my data is stolen, it’s easier to prove the source if the scan is low-resolution and looks “off.” It hopefully also makes the document less useful for identity theft if the quality is lacking.</p>
+
+<p>No one needs a 4000×3000 pixel, high-fidelity photo of my ID. High resolution only helps bad actors. I downsize the image with squoosh.app and convert it to a JPEG with around 70% quality. This intentional quality loss is a bonus; it remains legible for verification but loses the “pristine” look in case of forgery.</p>
+
+<h2>Visual Watermark</h2>
+
+<p>Next, I add a transparent watermark. This helps identify who lost my data in the case of a data breach. I include the name of the service I am sharing it with.</p>
+
+<p>ImageMagick can do this, of course. It places the text in the center with low opacity—enough to be legible, but not so much that it jumps out too much.</p>
+
+{% highlight bash %}
+magick input.jpg -pointsize 72 -gravity center -fill "rgba(255,255,255,0.3)" -annotate 0 "EXAMPLE.COM" to_share.jpg
+{% endhighlight %}
+
+<p>I often play with the <abbr title="Red Green Blue Alpha">RGBA</abbr> settings to fine-tune the opacity depending on the document’s background.</p>
+
+<h2>Steganography</h2>
+
+<p>This week, I added an extra layer of “invisible” tracking using steganography to my workflow. This embeds a hidden text note directly into the image data.</p>
+
+<p>You must do this after watermarking and resizing, as those processes will destroy the hidden metadata.</p>
+
+{% highlight bash %}
+steghide embed -cf to_share.jpg -ef <(echo "Shared with example.com in 2025")
+{% endhighlight %}
+
+<p>Now, the file itself contains a hidden “receipt” of when and where it was used.</p>
+
+<h2>Reality Check</h2>
+
+<p>It is important to note that these methods are not foolproof:</p>
+
+<ul>
+  <li>Steganography is fragile; if the receiving website automatically resizes my upload, the hidden note is gone.</li>
+  <li>Watermarks can, of course, be manually edited out.</li>
+</ul>
+
+<p>However, these steps provide me some peace of mind. By adding layers of friction, my data is that little harder to use for automated identity theft.</p>
