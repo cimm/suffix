@@ -1,0 +1,192 @@
+- resort: SuperDévoluy
+  coordinates: [44.66731, 5.90720]
+  dates: []
+- resort: 4 Vallées
+  coordinates: [46.1207, 7.2897]
+  dates: []
+- resort: Val de Wanne
+  coordinates: [50.35421, 5.91912]
+  dates: [2003-02-02]
+- resort: Les Trois Vallées
+  coordinates: [45.3215, 6.5854]
+  dates: [2004-04-11, 2004-04-12, 2004-04-13, 2004-04-14, 2004-04-15, 2004-04-16]
+- resort: Les 2 Alpes
+  coordinates: [45.0089, 6.1706]
+  dates: [2007-12-22, 2007-12-23, 2007-12-23, 2007-12-24, 2007-12-25, 2007-12-26, 2007-12-27, 2007-12-28, 2007-12-29]
+- resort: Alpe d’Huez
+  coordinates: [45.1084, 6.0832]
+  dates: [2009-03-08, 2009-03-09, 2009-03-10, 2003-03-11, 2009-03-12, 2009-03-13, 2009-03-14]
+- resort: Zell am Zee
+  coordinates: [47.33135, 12.75648]
+  dates: [2010-02-15, 2010-02-16, 2010-02-17, 2010-02-19, 2010-02-20]
+- resort: Kaprun
+  coordinates: [47.21822, 12.69579]
+  dates: [2010-02-18]
+- resort: Monte Popolo
+  coordinate: [47.40361, 13.41508]
+  dates: [2014-01-26, 2014-01-27, 2014-01-28, 2014-01-29, 2014-01-30, 2014-01-31]
+- resort: Karwendel
+  coordinates: [47.42809, 11.70168]
+  dates: [2016-02-16, 2016-02-17, 2016-02-18]
+- resort: Les Arcs
+  coordinates: [45.57135, 6.8071]
+  dates: [2017-04-03, 2017-04-04, 2017-04-05, 2017-04-06, 2017-04-07]
+- resort: Anzère
+  coordinates: [46.31367, 7.40977]
+  dates: [2018-01-28, 2018-01-29, 2018-01-30, 2018-01-31, 2018-02-01, 2018-02-02]
+- resort: Kronplatz
+  coordinates: [46.73112, 11.94412]
+  dates: [2020-02-23, 2020-02-24, 2020-02-24, 2020-02-26, 2020-02-27, 2020-02-28]
+- resort: La Clusaz
+  coordinates: [45.88404, 6.44098]
+  dates: [2021-12-16]
+- resort: Le Grand-Bornand
+  coordinates: [45.95987, 6.48105]
+  dates: [2021-12-17, 2021-12-18]
+- resort: Zillertal Arena
+  coordinates: [47.2434, 12.0273]
+  dates: [2022-02-28, 2022-03-01, 2022-03-02, 2022-03-03, 2022-03-04, 2022-03-04, 2023-03-05]
+- resort: Sölden
+  coordinates: [46.95367, 10.97731]
+  dates: [2022-03-19, 2022-03-20]
+- resort: Obergurgl
+  coordinates: [46.87974, 11.05024]
+  dates: [2022-03-21, 2022-03-22]
+- resort: Arêches Beaufort
+  coordinates: [45.66158, 6.54472]
+  dates: [2023-01-03, 2023-01-04, 2023-01-05]
+- resort: Les Contamines-Montjoie
+  coordinates: [45.79955, 6.72204]
+  dates: [2023-01-06, 2023-01-07]
+- resort: Damüls Mellau
+  coordinates: [47.31367, 9.87452]
+  dates: [2023-02-10, 2023-02-11]
+- resort: Diedamskopf
+  coordinates: [47.32899, 10.02493]
+  dates: [2023-02-12]
+- resort: Seiser Alm
+  coordinates: [46.5413, 11.6269]
+  dates: [2024-12-14]
+- resort: Val Gardena
+  coordinates: [46.5546, 11.7397]
+  dates: [2024-12-15, 2024-12-16]
+- resort: Belvedere
+  coordinates: [46.48205, 11.78385]
+  dates: [2024-12-15]
+- resort: Arabba
+  coordinates: [46.49201, 11.85657]
+  dates: [2024-12-15]
+- resort: Alta Badia
+  coordinates: [46.5650, 11.8921]
+  dates: [2024-12-15, 2024-12-16]
+- resort: Loser-Altaussee
+  coordinates: [47.66027, 13.76261]
+  dates: [2024-01-04]
+- resort: Riesneralm
+  coordinates: [47.37567, 14.10577]
+  dates: [2024-01-05]
+- resort: Tauplitz / Bad Mitterndorf
+  coordinates: [47.57746, 13.98104]
+  dates: [2023-12-31, 2024-01-02, 2024-01-03, 2024-01-04, 2024-01-05]
+- resort: La Thuile
+  coordinates: [45.69248, 6.92043]
+  dates: [2024-03-11]
+- resort: La Rosière
+  coordinates: [45.69217, 6.91989]
+  dates: [2024-03-11]
+- resort: Pila
+  coordinates: [45.6928, 7.3073]
+  dates: [2024-03-12]
+- resort: Crévacol
+  coordinates: [45.82986, 7.15108]
+  dates: [2024-03-10, 2024-12-14]
+- resort: Monterosa
+  coordinates: [45.8610, 7.8362]
+  dates: [2024-12-15]
+- resort: Les Orres
+  coordinates: [44.48263, 6.56913]
+  dates: [2025-01-01]
+- resort: Saint-Léger-les-Mélèzes
+  coordinates: [44.64576, 6.21601]
+  dates: [2025-01-02]
+- resort: Chaillol
+  coordinates: [44.69099, 6.15999]
+  dates: [2025-01-02]
+- resort: Orcières Merlette
+  coordinates: [44.71225, 6.32467]
+  dates: [2024-12-31, 2025-01-03]
+- resort: Melchsee-Frutt
+  coordinates: [46.78166, 8.28148]
+  dates: [2025-02-07]
+- resort: Meiringen-Hasliberg
+  coordinates: [46.74755, 8.21837]
+  dates: [2025-02-08]
+- resort: Lermoos Grubigstein
+  coordinates: [47.38823, 10.86188]
+  dates: [2025-02-20]
+- resort: Biberwier - Marienberg
+  coordinates: [47.35718, 10.89386]
+  dates: [2025-02-20]
+- resort: 3 Zinnen
+  coordinats: [46.69276, 12.36996]
+  dates: [2025-02-21, 2025-02-22]
+- resort: Val Comelico - Padola
+  coordinats: [46.62969, 12.44389]
+  dates: [2025-02-21]
+- resort: La Berra - La Roche
+  coordinates: [46.6269, 7.1346]
+  dates: [2025-11-28]
+- resort: Schönried - Saanenmöser - Zweisimmen - St. Stephan
+  coordinates: [46.4627, 7.3206]
+  dates: [2025-11-28]
+- resort: Ovronnaz
+  coordinates: [46.19529, 7.16472]
+  dates: [2025-11-29]
+- resort: Les Marecottes
+  coordinates: [46.1394, 7.0078]
+  dates: [2025-11-29]
+- resort: Charmey
+  coordinates: [46.6117, 7.0855]
+  dates: [2025-11-30]
+- resort: Metabief
+  coordinates: [46.7434, 6.3451]
+  dates: [2025-11-30]
+- resort: Vercorin
+  coordinates: [46.2385, 7.5279]
+  dates: [2025-12-28, 2026-01-02]
+- resort: Saint-Luc - Chandolin
+  coordinates: [46.2328, 7.5877]
+  dates: [2025-12-29, 2025-12-31]
+- resort: Zinal - Grimentz
+  coordinates: [46.1870, 7.5437]
+  dates: [2025-12-30, 2026-01-01]
+- resort: Sörenberg
+  coordinates: [46.8086, 8.0385]
+  dates: [2026-02-06]
+- resort: Gstaad - Saanen - Rougemont
+  coordinates: [46.5065, 7.3237]
+  dates: [2026-02-07]
+- resort: Leysin
+  coordinates: [46.3108, 7.0306]
+  dates: [2026-02-27]
+- resort: Thollon les Memises
+  coordinates: [46.3749, 6.6827]
+  dates: [2026-02-27]
+- resort: Arolla
+  coordinates: [46.0228, 7.4723]
+  dates: [2026-02-28]
+- resort: Evolène
+  coordinates: [46.1149, 7.4561]
+  dates: [2026-02-28]
+- resort: Leukerbad
+  coordinates: [46.3717, 7.6414]
+  dates: [2026-03-01]
+- resort: Lauchernalp
+  coordinates: [46.3800, 7.7365]
+  dates: [2026-03-01]
+- resort: Bürchen - Törbel
+  coordinates: [46.2540, 7.8241]
+  dates: [2026-03-02]
+- resort: Unterbäch - Eischoll
+  coordinates: [46.2657, 7.7860]
+  dates: [2026-03-02]
