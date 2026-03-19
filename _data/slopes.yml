@@ -33,7 +33,7 @@
   dates: [2017-04-03, 2017-04-04, 2017-04-05, 2017-04-06, 2017-04-07]
 - resort: Anzère
   coordinates: [46.31367, 7.40977]
-  dates: [2018-01-28, 2018-01-29, 2018-01-30, 2018-01-31, 2018-02-01, 2018-02-02]
+  dates: [2018-01-28, 2018-01-29, 2018-01-30, 2018-01-31, 2018-02-01, 2018-02-02, 2026-03-15]
 - resort: Kronplatz
   coordinates: [46.73112, 11.94412]
   dates: [2020-02-23, 2020-02-24, 2020-02-24, 2020-02-26, 2020-02-27, 2020-02-28]
@@ -190,3 +190,18 @@
 - resort: Unterbäch - Eischoll
   coordinates: [46.2657, 7.7860]
   dates: [2026-03-02]
+- resort: Nax - Mont Noble
+  coordinates: [46.215908, 7.468487]
+  dates: [2026-03-14]
+- resort: Belalp
+  coordinates: [46.292496, 7.841113]
+  dates: [2026-03-16]
+- resort: Visperterminen
+  coordinates: [46.265186, 7.916852]
+  dates: [2026-03-16]
+- resort: Domobianca
+  coordinates: [46.098446, 8.238705]
+  dates: [2026-03-17]
+- resort: Villars - Gryon
+  coordinates: [46.329787, 7.135691]
+  dates: [2026-03-18]
