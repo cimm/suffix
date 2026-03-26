@@ -14,6 +14,20 @@
   text-decoration: none;
   width: 100%;
 
+  label {
+    background-color: var(--color-box-background);
+    padding: .05em .5em;
+    position: absolute;
+    right: 0;
+    z-index: 1;
+
+  }
+
+  label.badge {
+    background-color: var(--color-foreground);
+    color: var(--color-background);
+  }
+
   figure {
     padding: 8%;
     text-align: left;
@@ -44,15 +58,6 @@
       height: 180px;
       position: relative;
       text-align: center;
-    }
-
-    .badge {
-      background-color: var(--color-foreground);
-      color: var(--color-background);
-      padding: .05em .5em;
-      position: absolute;
-      right: 0;
-      z-index: 1;
     }
   }
 }
