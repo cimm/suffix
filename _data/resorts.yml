@@ -1,0 +1,343 @@
+- name: Dévoluy
+  coordinates: [44.669079, 5.912374]
+  country_code: FR
+  openskimap_object: 8e5dbdde0808be45e5e47253e905635c9f867c3b
+- name: 4 Vallées
+  coordinates: [46.124223, 7.268922]
+  country_code: CH
+  openskimap_object: 0ed72c1a44d748a815d1efcd54caacf169610f05
+- name: Val de Wanne
+  coordinates: [50.355861, 5.915075]
+  country_code: BE
+  dates: [2003-02-02]
+  openskimap_object: 716e7e82aea0c0c0d665b380b9972d3e25ab1610
+- name: Les Trois Vallées
+  coordinates: [45.340912, 6.579951]
+  country_code: FR
+  dates: [2004-04-11, 2004-04-12, 2004-04-13, 2004-04-14, 2004-04-15, 2004-04-16]
+  openskimap_object: 68b126bc3175516c9263aed7635d14e37ff360dc
+- name: Les Deux Alpes
+  coordinates: [45.008272, 6.150132]
+  country_code: FR
+  dates: [2007-12-22, 2007-12-23, 2007-12-23, 2007-12-24, 2007-12-25, 2007-12-26, 2007-12-27, 2007-12-28, 2007-12-29]
+  openskimap_object: 5bd589496339e89cf9be3d93c86e7e6c41f72208
+- name: Alpe d’Huez
+  coordinates: [45.115492, 6.085778]
+  country_code: FR
+  dates: [2009-03-08, 2009-03-09, 2009-03-10, 2003-03-11, 2009-03-12, 2009-03-13, 2009-03-14]
+  openskimap_object: 721dd142d0af653027c7569e1bd0799586bdefa1
+- name: Zell am Zee
+  coordinates: [47.325945, 12.760973]
+  country_code: AT
+  dates: [2010-02-15, 2010-02-16, 2010-02-17, 2010-02-19, 2010-02-20]
+  openskimap_object: 66df7f28d6136f0c1c76b4b3f09f8f0c46443547
+- name: Kaprun
+  coordinates: [47.218197, 12.695758]
+  country_code: AT
+  dates: [2010-02-18]
+  openskimap_object: bc0361849d0e6e33ef5d9cd035522200a3125df1
+- name: Eben im Pongau
+  coordinates: [47.403963, 13.413934]
+  country_code: AT
+  dates: [2014-01-26, 2014-01-27, 2014-01-28, 2014-01-29, 2014-01-30, 2014-01-31]
+  openskimap_object: 2d535973472e98eaf7e0625bca32a9dfc4208315
+- name: Karwendel
+  coordinates: [47.429312, 11.696999]
+  country_code: AT
+  dates: [2016-02-16, 2016-02-17, 2016-02-18]
+  openskimap_object: 30bc41293e2bbe23ddf14558edaf19a307eb57e7
+- name: Les Arcs
+  coordinates: [45.570652, 6.806837]
+  country_code: FR
+  dates: [2017-04-03, 2017-04-04, 2017-04-05, 2017-04-06, 2017-04-07]
+  openskimap_object: dec537b602584db89d89ab114a619f1ae356398e
+- name: Anzère
+  coordinates: [46.313608, 7.402543]
+  country_code: CH
+  dates: [2018-01-28, 2018-01-29, 2018-01-30, 2018-01-31, 2018-02-01, 2018-02-02, 2026-03-15]
+  openskimap_object: 23c484a02dad8207dee185a68f77c03e314a395d
+- name: Kronplatz
+  coordinates: [46.730776, 11.943829]
+  country_code: IT
+  dates: [2020-02-23, 2020-02-24, 2020-02-24, 2020-02-26, 2020-02-27, 2020-02-28]
+  openskimap_object: 58adfdcc1f3720f634945368fd104a0af9868482
+- name: La Clusaz
+  coordinates: [45.887475, 6.435374]
+  country_code: FR
+  dates: [2021-12-16]
+  openskimap_object: 9cb83fdd2a49011eec76e3d1bbc2af8f582888a9
+- name: Le Grand-Bornand
+  coordinates: [45.964440, 6.471261]
+  country_code: FR
+  dates: [2021-12-17, 2021-12-18]
+  openskimap_object: 8af93a64c41b59fca4705d30c106ef29fb24e042
+- name: Zillertal Arena
+  coordinates: [47.244975, 12.046234]
+  country_code: AT
+  dates: [2022-02-28, 2022-03-01, 2022-03-02, 2022-03-03, 2022-03-04, 2022-03-04, 2023-03-05]
+  openskimap_object: 1fa4a7e5d1d2ef4fd2fd32a1a078f922036fdc65
+- name: Sölden
+  coordinates: [46.953670, 10.977219]
+  country_code: AT
+  dates: [2022-03-19, 2022-03-20]
+  openskimap_object: 78e5f98d8527df7216b08962f372659abcd4f711
+- name: Obergurgl
+  coordinates: [46.878283, 11.046339]
+  country_code: AT
+  dates: [2022-03-21, 2022-03-22]
+  openskimap_object: 601bfb3f203a581f551010122bccc17ed19aafe3
+- name: Arêches Beaufort
+  coordinates: [45.661902, 6.544616]
+  country_code: FR
+  dates: [2023-01-03, 2023-01-04, 2023-01-05]
+  openskimap_object: d19b617dc3a4c9a07b0f8b3360f7f5a20d384a48
+- name: Les Contamines
+  coordinates: [45.791279, 6.685570]
+  country_code: FR
+  dates: [2023-01-06, 2023-01-07]
+  openskimap_object: 10f2ef5a778b65fdea26f0662b08e83c8b979356
+- name: Damüls Mellau
+  coordinates: [47.301469, 9.878987]
+  country_code: AT
+  dates: [2023-02-10, 2023-02-11]
+  openskimap_object: f83cb97ace9308e949a7638a1922ba589f5cc40d
+- name: Diedamskopf
+  coordinates: [47.333019, 10.029367]
+  country_code: AT
+  dates: [2023-02-12]
+  openskimap_object: 9159a8a28bc8accd268e8eeb330ae53c379b1391
+- name: Seiser Alm
+  coordinates: [46.543434, 11.644503]
+  country_code: IT
+  dates: [2024-12-14]
+  openskimap_object: 6c2c802a4ed9e8dbf548c062c08b8e7dcd81f86a
+- name: Val Gardena
+  coordinates: [46.562678, 11.746552]
+  country_code: IT
+  dates: [2024-12-15, 2024-12-16]
+  openskimap_object: fc172b6fc8f8c454471e679be1c8b2ecc884621e
+- name: Belvedere
+  coordinates: [46.484356, 11.780961]
+  country_code: IT
+  dates: [2024-12-15]
+  openskimap_object: 1bade97254f875ff0151ee7480606607cd91cdd7
+- name: Arabba
+  coordinates: [46.491648, 11.859674]
+  country_code: IT
+  dates: [2024-12-15]
+  openskimap_object: 96be13b1dd69f96a46471628f93fb9efdcb8fa4b
+- name: Alta Badia
+  coordinates: [46.564083, 11.891082]
+  country_code: IT
+  dates: [2024-12-15, 2024-12-16]
+  openskimap_object: 41ca531357e0d2a532b8ab94e3e9fe74ddbe88c4
+- name: Loser-Altaussee
+  coordinates: [47.658252, 13.766221]
+  country_code: AT
+  dates: [2024-01-04]
+  openskimap_object: 3342cbf4e2ed75049fb8b2c91f838b44ddf29f30
+- name: Riesneralm
+  coordinates: [47.375278, 14.102429]
+  country_code: AT
+  dates: [2024-01-05]
+  openskimap_object: f3d7a11fd271a539a636205e40ea78ca2fe333fe
+- name: Tauplitz / Bad Mitterndorf
+  coordinates: [47.581036, 13.979482]
+  country_code: AT
+  dates: [2023-12-31, 2024-01-02, 2024-01-03, 2024-01-04, 2024-01-05]
+  openskimap_object: d9dbd36650fb264e3fd35269d10a3645bf7d0493
+- name: La Thuile
+  coordinates: [45.694997, 6.924641]
+  country_code: IT
+  dates: [2024-03-11]
+  openskimap_object: 064c258440982ec02bbffeb24ad3acffc7fa5ef0
+- name: La Rosière
+  coordinates: [45.632159, 6.825608]
+  country_code: FR
+  dates: [2024-03-11]
+  openskimap_object: 83bf001212a45f36d773e3653ed82452b7e4fbd1
+- name: Pila
+  coordinates: [45.672798, 7.309150]
+  country_code: IT
+  dates: [2024-03-12]
+  openskimap_object: 80f1b9fb69d6d58d8c0211a019de956673e86a18
+- name: Crévacol
+  coordinates: [45.835048, 7.146341]
+  country_code: IT
+  dates: [2024-03-10, 2024-12-14]
+  openskimap_object: 3be9f18be370e3f03e39bbe190a2902d5b33051c
+- name: Monterosa
+  coordinates: [45.856531, 7.819218]
+  country_code: IT
+  dates: [2024-12-15]
+  openskimap_object: 5ffd86e2374dc98261a846de36bfc510ab758dfc
+- name: Les Orres
+  coordinates: [44.485691, 6.563053]
+  country_code: FR
+  dates: [2025-01-01]
+  openskimap_object: 1baf81db9b44d9666be0ce83407209f4df36e080
+- name: Saint-Léger-les-Mélèzes
+  coordinates: [44.663659, 6.219314]
+  country_code: FR
+  dates: [2025-01-02]
+  openskimap_object: 0b3e2debf15563d3d845af1dd2dd094deb27812f
+- name: Chaillol
+  coordinates: [44.663659, 6.219314]
+  country_code: FR
+  dates: [2025-01-02]
+  openskimap_object: 5fa47ccbd1d702e3a8c21ef47b92d9fa38d46e0e
+- name: Orcières Merlette
+  coordinates: [44.663659, 6.219314]
+  country_code: FR
+  dates: [2024-12-31, 2025-01-03]
+  openskimap_object: 824c7b22068010ed9590671f95a41f7eaf5f3819
+- name: Melchsee-Frutt
+  coordinates: [46.784335, 8.281501]
+  country_code: CH
+  dates: [2025-02-07]
+  openskimap_object: f04f5c36668c9ba4e5256ccbd611698f3df75688
+- name: Meiringen-Hasliberg
+  coordinates: [46.751725, 8.229432]
+  country_code: CH
+  dates: [2025-02-08]
+  openskimap_object: 73a929fdb6f99344480b7fc4e7f2e457e444b217
+- name: Lermoos Grubigstein
+  coordinates: [47.388231, 10.861882]
+  country_code: AT
+  dates: [2025-02-20]
+  openskimap_object: d5a7de306263a468a29d6d1c9fa093ed27b6452d
+- name: Biberwier - Marienberg
+  coordinates: [47.350333, 10.883060]
+  country_code: AT
+  dates: [2025-02-20]
+  openskimap_object: 8f63ee82162e69c39d10e6a73b73d005b4028fcd
+- name: 3 Zinnen
+  coordinates: [46.682096, 12.358218]
+  country_code: IT
+  dates: [2025-02-21, 2025-02-22]
+  openskimap_object: 821aa14c10ce779e7c45215e77815b7f98110d5c
+- name: Val Comelico - Padola
+  coordinates: [46.622453, 12.455616]
+  country_code: IT
+  dates: [2025-02-21]
+  openskimap_object: db90dc6eea9a9fc67972a2205182bfb955d949ea
+- name: La Berra
+  coordinates: [46.677188, 7.165783]
+  country_code: CH
+  dates: [2025-11-28]
+  openskimap_object: 06d3de5fdf75d4c67dc8555d73c2238ea97d4a5a
+- name: Saanenmöser - Zweisimmen
+  coordinates: [46.512456, 7.343354]
+  country_code: CH
+  dates: [2025-11-28]
+  openskimap_object: a1a0c4585d1fe87ca6ff3104e6e5ff5dc93af329
+- name: Ovronnaz
+  coordinates: [46.202544, 7.138183]
+  country_code: CH
+  dates: [2025-11-29]
+  openskimap_object: a17fb1054ab25ddba56c074389ad663ec0009f6a
+- name: Les Marecottes
+  coordinates: [46.117931, 6.996463]
+  country_code: CH
+  dates: [2025-11-29]
+  openskimap_object: 8580b969db7a1619c928b6e0808e2cdb8350396c
+- name: Charmey
+  coordinates: [46.627724, 7.205651]
+  country_code: CH
+  dates: [2025-11-30]
+  openskimap_object: a10f881088e5a0f7f638228f6be67fcfa2eec94a
+- name: Metabief
+  coordinates: [46.738625, 6.343291]
+  country_code: FR
+  dates: [2025-11-30]
+  openskimap_object: f8a135103929215d692c27c3b10670b5b8ff1e7b
+- name: Vercorin
+  coordinates: [46.238570, 7.527984]
+  country_code: CH
+  dates: [2025-12-28, 2026-01-02]
+  openskimap_object: d6582b43907eabfba13b7f54f9c96dc569d64e62
+- name: Saint-Luc - Chandolin
+  coordinates: [46.236433, 7.582000]
+  country_code: CH
+  dates: [2025-12-29, 2025-12-31]
+  openskimap_object: 170c8c0d276b50ceeb50658829c7dcd487fcd18c
+- name: Zinal - Grimentz
+  coordinates: [46.145498, 7.572368]
+  country_code: CH
+  dates: [2025-12-30, 2026-01-01]
+  openskimap_object: ed495f08be5bb41505f6fdf15bc569477b1cd358
+- name: Sörenberg
+  coordinates: [46.808615, 8.038596]
+  country_code: CH
+  dates: [2026-02-06]
+  openskimap_object: 110c472bd3eabb683e1002a1654c3299ef8ccc7c
+- name: Gstaad - Saanen - Rougemont
+  coordinates: [46.468592, 7.236627]
+  country_code: CH
+  dates: [2026-02-07]
+  openskimap_object: 4c623c993b79a2c02ca2ec60de4bb18383242239
+- name: Leysin
+  coordinates: [46.366585, 7.024235]
+  country_code: CH
+  dates: [2026-02-27]
+  openskimap_object: db5c95e86ebbda55f5c2bcd992d5855a0f9c86cb
+- name: Thollon-les-Mémises
+  coordinates: [46.380046, 6.722340]
+  country_code: FR
+  dates: [2026-02-27]
+  openskimap_object: d3c7b897d3dac0b590961eb352677d3070e52fe1
+- name: Arolla
+  coordinates: [46.022863, 7.472390]
+  country_code: CH
+  dates: [2026-02-28]
+  openskimap_object: 5a706bbb2360489535ce7ca853764fae32dd424c
+- name: Evolène
+  coordinates: [46.114997, 7.456182]
+  country_code: CH
+  dates: [2026-02-28]
+  openskimap_object: 7f97f3d4fc41aa2b1745adb87cd0373744b36c25
+- name: Leukerbad
+  coordinates: [46.380334, 7.616367]
+  country_code: CH
+  dates: [2026-03-01]
+  openskimap_object: 8670be6e92ca77d06d45ba7c8ed5cf3e716bc320
+- name: Lauchernalp
+  coordinates: [46.421158, 7.762950]
+  country_code: CH
+  dates: [2026-03-01]
+  openskimap_object: 76fbc6ed10135d6683a91a5b89dbf01fa757b80b
+- name: Moosalp
+  coordinates: [46.266605, 7.825562]
+  country_code: CH
+  dates: [2026-03-02]
+  openskimap_object: e876d1a921e6e04fed57331a03f9f5298a20e069
+- name: Unterbäch - Eischoll
+  coordinates: [46.273824, 7.797158]
+  country_code: CH
+  dates: [2026-03-02]
+  openskimap_object: 0ed67f04f2e5d0f8e1b8be3507c577fcfcb60215
+- name: Nax
+  coordinates: [46.215908, 7.468487]
+  country_code: CH
+  dates: [2026-03-14]
+  openskimap_object: 2443e6d5755d0c52af63db1476e83f4f6dee52ac
+- name: Belalp
+  coordinates: [46.377927, 7.976081]
+  country_code: CH
+  dates: [2026-03-16]
+  openskimap_object: e9c0a197353bef2c6ed47d85c268582cae8ad8ea
+- name: Visperterminen
+  coordinates: [46.252442, 7.928561]
+  country_code: CH
+  dates: [2026-03-16]
+  openskimap_object: 0c827a420edfb4e2372113eea954115ebd9f0af4
+- name: Domobianca
+  coordinates: [46.098446, 8.238705]
+  country_code: IT
+  dates: [2026-03-17]
+  openskimap_object: d9332bf3676666dc7fb5749ff99faf2f6edc0d59
+- name: Villars - Gryon
+  coordinates: [46.328287, 7.130151]
+  country_code: CH
+  dates: [2026-03-18]
+  openskimap_object: 669b5ff8d29a5a73f293dec2f318ed7554c32511
