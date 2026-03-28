@@ -1,0 +1,29 @@
+---
+layout: default
+description: TODO
+title: Ski Resorts
+---
+
+<p>It started as a joke: “Wouldn’t it be wild if we skied every single resort in the Alps?” Well, the joke’s on us, because here we are, a running list of the peaks we’ve conquered so far. I know, I know—finishing the whole range is impossible, but one can dream, right?</p>
+
+<p>Two resorts in the list aren’t actually in the Alps. Can you spot the imposters?</p>
+
+<section class="cards">
+  {% assign sorted_resorts = site.data.resorts | sort: "name" %}
+  {% for resort in sorted_resorts %}
+    <a href="https://openskimap.org/?obj={{ resort.openskimap_object }}" class="card" title="Find {{ resort.name }} on OpenSkiMap">
+      <label>{{ resort.country_code | country_code_to_flag }}</label>
+      <figure>
+        <div class="frame">
+          <picture>
+            <img src="../{% ski_map resort %}" loading="lazy" alt="{{ resort.name }} map" width="200px" height="200px" />
+          </picture>
+        </div>
+        {% if resort.dates %}{{ resort.dates.size }}×{% endif %}
+        <figcaption>
+          {{ resort.name }}
+        </figcaption>
+      </figure>
+    </a>
+  {% endfor %}
+</section>

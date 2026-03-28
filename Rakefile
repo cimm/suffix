@@ -8,5 +8,5 @@ host   = config['deploy']['host']
 desc "Generate static site and rsync to webserver"
 task :deploy do
   sh "jekyll build"
-  sh "rsync --recursive --compress --delete --delete-excluded --exclude 'Gemfile*' --exclude 'Rakefile' -e ssh _site/. #{user}@#{host}:#{path}"
+  sh "rsync --recursive --compress --delete --delete-excluded --exclude 'Gemfile*' --exclude 'Rakefile' --exclude 'locationthumb.py' -e ssh _site/. #{user}@#{host}:#{path}"
 end

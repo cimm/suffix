@@ -116,11 +116,11 @@
   country_code: IT
   dates: [2024-12-15, 2024-12-16]
   openskimap_object: fc172b6fc8f8c454471e679be1c8b2ecc884621e
-- name: Belvedere
-  coordinates: [46.484356, 11.780961]
+- name: Val di Fassa
+  coordinates: [46.483823, 11.726580]
   country_code: IT
   dates: [2024-12-15]
-  openskimap_object: 1bade97254f875ff0151ee7480606607cd91cdd7
+  openskimap_object: b2b864607dae86c2f7f50d24865a005277f4fbf1
 - name: Arabba
   coordinates: [46.491648, 11.859674]
   country_code: IT
@@ -206,7 +206,7 @@
   country_code: AT
   dates: [2025-02-20]
   openskimap_object: d5a7de306263a468a29d6d1c9fa093ed27b6452d
-- name: Biberwier - Marienberg
+- name: Biberwier
   coordinates: [47.350333, 10.883060]
   country_code: AT
   dates: [2025-02-20]
@@ -271,7 +271,7 @@
   country_code: CH
   dates: [2026-02-06]
   openskimap_object: 110c472bd3eabb683e1002a1654c3299ef8ccc7c
-- name: Gstaad - Saanen - Rougemont
+- name: Gstaad - Wispile - Rougemont
   coordinates: [46.468592, 7.236627]
   country_code: CH
   dates: [2026-02-07]

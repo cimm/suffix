@@ -5,5 +5,6 @@ _config.yml
 .sass-cache/
 assets/lego/*.jpg
 assets/lego/*.webp
+assets/resorts/*.png
 .jekyll-cache
 .ruby-version
