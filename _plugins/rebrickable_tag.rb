@@ -83,7 +83,7 @@ module Jekyll
       basename_new_ext = [basename_no_ext, type].join('.')
       resized_path = File.join(ASSET_DIR, basename_new_ext)
       return resized_path if File.exist?(resized_path) && image_width(resized_path) <= RESIZED_IMAGE_WIDTH
-      system("convert #{image_url} -resize #{RESIZED_IMAGE_WIDTH} #{resized_path}")
+      system("magick #{image_url} -resize #{RESIZED_IMAGE_WIDTH} #{resized_path}")
       resized_path
     end
 
