@@ -76,6 +76,8 @@ PLATFORMS
   <li>Start the Development Environment: Run <kbd>nix develop</kbd> to apply the changes and install the updated gems.</li>
 </ol>
 
+<p>If the issue persists, try removing all previously installed gems from the “~/.local/share/gem/ruby” folder and then run Bundler again.</p>
+
 <p>This approach has improved the reliability of my Ruby on Rails development environments in NixOS, eliminating those frustrating hash mismatches and making gem management smoother.</p>
 
 <p>Thank you, Tucker Shea, for <a href="https://github.com/cimm/suffix/pull/10" title="GitHub pull request from Tucker">clarifying</a> how to update the Gemfile.lock without installing the gems themselves!</p>
