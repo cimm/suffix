@@ -437,6 +437,11 @@
   author: "Anne Tyler"
   isbn13: 9780345452009
   rating: 4
+- name: "The Attention Merchants"
+  author: "Tim Wu"
+  isbn13: 9780385352017
+  rating: 3
+  read: 2026
 - name: "The BFG"
   author: "Roald Dahl"
   isbn13: 9782070336029
