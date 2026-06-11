@@ -12,7 +12,7 @@ description:     Dealing with platform-specific gems in a Nix development enviro
   </picture>
 </figure>
 
-<p>I’ve been leveraging Nix <a href="https://nixos.wiki/wiki/flakes" title="Flakes @ NixOS wiki">flakes</a> to manage my Ruby on Rails projects, aiming for clean, isolated development environments. The magic of <kbd>nix develop</kbd> is fantastic: it seamlessly sets up everything from the correct Ruby version and required gems, to even the PostgreSQL database.</p>
+<p>I’ve been leveraging Nix <a href="https://nixos.wiki/wiki/flakes" title="Flakes @ NixOS wiki">flakes</a> to manage my Ruby on Rails projects, aiming for clean, isolated development environments. The magic of <kbd>nix develop</kbd> is fantastic: it seamlessly sets up everything from the correct Ruby version and required gems to the PostgreSQL database.</p>
 
 {% highlight nix %}
 {
@@ -39,7 +39,7 @@ description:     Dealing with platform-specific gems in a Nix development enviro
 {% endhighlight %}
 <figcaption>↑ A basic flake.nix example for a Ruby on Rails development environment</figcaption>
 
-  <p>This setup works beautifully, but the process of adding or updating gems introduces a wrinkle. While you can use <a href="https://bundler.io/" title="A tool to manage Ruby gems">Bundler</a> as usual, Nix requires an additional step with <a href="https://github.com/nix-community/bundix" title="Tool to generates a Nix expression for Bundler-managed applications">bundix</a>. Bundix generates a gemset.nix file, analogous to the Gemfile.lock, which provides the necessary Nix derivations for each gem.</p>
+  <p>This setup works beautifully, but the process of adding or updating gems introduces a wrinkle. While you can use <a href="https://bundler.io/" title="A tool to manage Ruby gems">Bundler</a> as usual, Nix requires an additional step with <a href="https://github.com/nix-community/bundix" title="Tool to generate a Nix expression for Bundler-managed applications">bundix</a>. Bundix generates a gemset.nix file, analogous to the Gemfile.lock, which provides the necessary Nix derivations for each gem.</p>
 
 <p>However, I kept encountering frustrating hash mismatch errors when running <kbd>nix develop</kbd>, preventing certain gems from installing. These errors were sporadic, affecting various gems. Sometimes downgrading gem versions offered a temporary fix, sometimes not.</p>
 
@@ -56,7 +56,7 @@ error: 1 dependencies of derivation '/nix/store/q654nfnvswani2pcxb17bn9xaxzydkch
 
 <p>The culprit? Platform-specific configurations in the Gemfile.lock file. Bundler, by default, includes the platform’s architecture in the PLATFORMS section of Gemfile.lock. This is where the problems arise.</p>
 
-<p>The solution is to instruct Bundler to ignore the current machine’s platform and install only Ruby platform gems. This forces native gems to be compiled from source, ensuring greater portability and consistency. You can achieve this by setting the environment variable <kdb>BUNDLE_FORCE_RUBY_PLATFORM="true"</kdb>.</p>
+<p>The solution is to instruct Bundler to ignore the current machine’s platform and install only Ruby platform gems. This forces native gems to be compiled from source, ensuring greater portability and consistency. You can achieve this by setting the environment variable <kbd>BUNDLE_FORCE_RUBY_PLATFORM="true"</kbd>.</p>
 
 {% highlight diff %}
 PLATFORMS
@@ -69,9 +69,9 @@ PLATFORMS
 
 <ol>
   <li>Ensure a Clean Slate: Exit any existing Nix development shells. <kbd>echo $SHLVL</kbd> should be 1. Though I’m not sure it’s essential, it helps prevent potential conflicts from nested environments.</li>
-  <li>Create a Temporary Bundler Environment: Run <kbd>nix-shell -p ruby_3_4 -p bundix</kbd> to set up a temporary environment with Ruby and Bundix. I didn’t include Bundler here since its already bundled —no pun intended— with Ruby.</li>
+  <li>Create a Temporary Bundler Environment: Run <kbd>nix-shell -p ruby_3_4 -p bundix</kbd> to set up a temporary environment with Ruby and Bundix. I didn’t include Bundler here since it’s already bundled —no pun intended— with Ruby.</li>
   <li>Update the Gemfile: Add the new gem or modify existing gems in your Gemfile as you normally would.</li>
-  <li>Update the lock files: Execute <kbd>BUNDLE_FORCE_RUBY_PLATFORM="true" bundle lock --update; bundix</kbd> to update the Gemfile.lock with the new or modified gems and generate the updated gemset.nix with the correct hashes. The bundle command will only update the Gemfile.lock but doesn’t install the gems, we’ll leave that to Nix.</li>
+  <li>Update the lock files: Execute <kbd>BUNDLE_FORCE_RUBY_PLATFORM="true" bundle lock --update; bundix</kbd> to update the Gemfile.lock with the new or modified gems and generate the updated gemset.nix with the correct hashes. The bundle command only updates the Gemfile.lock and does not install the gems; we’ll leave that to Nix.</li>
   <li>Exit the Temporary Environment: Close the nix-shell.</li>
   <li>Start the Development Environment: Run <kbd>nix develop</kbd> to apply the changes and install the updated gems.</li>
 </ol>
