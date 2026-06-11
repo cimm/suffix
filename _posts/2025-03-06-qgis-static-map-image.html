@@ -14,7 +14,7 @@ cover_image_url: ../../assets/map-crevacol-wide.jpg
   </picture>
 </figure>
 
-<p>The image above shows the location of the <a href="https://www.crevacol.it/" title="Official Crévacol website">Crévacol ski resort</a> in Italy. This small, 20-kilometer resort with only 2 chairlifts is truly a hidden ski gem. I want to build a webpage showcasing the various resorts I've visited, and I thought it would be nice to include a small visual for each one, so I started looking into creating map images. Let's see how the image above was created.
+<p>The image above shows the location of the <a href="https://www.crevacol.it/" title="Official Crévacol website">Crévacol ski resort</a> in Italy. This small, 20-kilometer resort with only two chairlifts is truly a hidden ski gem. I want to build a webpage showcasing the various resorts I've visited, and I thought it would be nice to include a small visual for each one, so I started looking into creating map images. Let's see how the image above was created.</p>
 
 <h2>QGIS</h2>
 
@@ -28,7 +28,7 @@ cover_image_url: ../../assets/map-crevacol-wide.jpg
 
 <p>For the image at the top of this post, I chose the “Esri - WorldTerrain” basemap, as it's a good fit for a ski resort, with its terrain-focused design and mostly white and gray colors that allow the marker to stand out.</p>
 
-<p>In QGIS, right-click the “XYZ Tiles” in the “Browser” window and choose “New connection”. Add a name (you can choose this freely). The <abbr title="Uniform Resource Locator">URL</abbr> and tile resolution settings can be found in the Geo How-tos info box.</p>
+<p>In QGIS, right-click the “XYZ Tiles” in the “Browser” window and choose “New Connection…”. Add a name (you can choose this freely). The <abbr title="Uniform Resource Locator">URL</abbr> and tile resolution settings can be found in the Geo How-tos info box.</p>
 
 <h2>Adding a Marker</h2>
 
@@ -50,7 +50,7 @@ cover_image_url: ../../assets/map-crevacol-wide.jpg
 
 <p>In QGIS, use the “Browser” section to locate the GPX file (it has a database icon), expand it, and double-click its “track_points” to add a new layer with the marker to the map. Alternatively, you can drag and drop the GPX file into the “Layers” section.</p>
 
-<p>If you don't immediately see the marker, right-click the “track_point” layer and choose “Zoom to layer(s)” to center the map on the marker.</p>
+<p>If you don't immediately see the marker, right-click the “track_points” layer and choose “Zoom to Layer(s)” to center the map on the marker.</p>
 
 <p>Right-click the new layer and choose “Properties…” to customize the marker's style, such as color, image, text size, and font.</p>
 
@@ -64,8 +64,8 @@ cover_image_url: ../../assets/map-crevacol-wide.jpg
   <figcaption>Another map of the Alps with each resort I visited, this time with country borders.</figcaption>
 </figure>
  
-<p>To print the image, choose “Project → New print layout…” and give it a name. In the new window, right-click the blank rectangle and choose “Page Properties…”, where you can set the desired dimensions for the image. The “pt” setting seems to match what I would call pixels, though the “px” unit doesn't seem to work as I expected.</p>
+<p>To print the image, choose “Project → New Print Layout…” and give it a name. In the new window, right-click the blank rectangle and choose “Page Properties…”, where you can set the desired dimensions for the image. The “pt” setting seems to match what I would call pixels, though the “px” unit doesn't seem to work as I expected.</p>
 
-<p>Click the "Add Map" icon in the left sidebar and drag a rectangle where you want your map to appear. You can now fine-tune the map position and zoom level with the "Move item content" icon in the same sidebar.</p>
+<p>Click the “Add Map” icon in the left sidebar and drag a rectangle where you want your map to appear. You can now fine-tune the map position and zoom level with the “Move Item Content” icon in the same sidebar.</p>
 
-<p>Finally, to export the image, choose "Layout → Export as Image…".</p>
+<p>Finally, to export the image, choose “Layout → Export as Image…”.</p>
