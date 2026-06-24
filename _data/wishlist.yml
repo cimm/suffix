@@ -42,3 +42,7 @@
   image: ../assets/nixie-clock.webp
   url: https://www.daliborfarny.com/product/puri-nixie-clock/
   price: "€1.700"
+- name: "Prismo for AeroPress"
+  image: ../assets/prismo.webp
+  url: https://fellowproducts.com/products/prismo
+  price: "€25"
