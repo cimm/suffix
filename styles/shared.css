@@ -115,6 +115,7 @@ img:not([src*=".svg"]) {
 
 header {
   text-align: center;
+  text-wrap: balance;
 
   nav {
     ul {
@@ -130,7 +131,6 @@ header {
   h1 {
     font-size: 2em;
     line-height: 1.2em;
-    text-wrap: balance;
   }
 
   time[property="datePublished"] {
