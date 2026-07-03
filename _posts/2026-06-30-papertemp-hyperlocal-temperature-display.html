@@ -1,0 +1,40 @@
+---
+layout:          post
+title:           Hyper-local Temperature Display
+date:            2026-06-28 17:00:00
+updated:         2026-06-28 17:00:00
+description:     Building a small temperature display as a weekend project.
+cover_image_url: ../../assets/papertemp.webp
+---
+
+<figure>
+  <picture>
+    <img src="../../assets/papertemp.webp" width="300" height="300" alt="Paperd.Ink e-ink display with forecasted and actual temperatures side by side">
+  </picture>
+</figure>
+
+<p>We are in the thick of a brutal heatwave, which means I am currently playing my favorite seasonal sport: the Window Game.</p>
+
+<p>The rules are simple but high-stakes: you trap the cool air inside all day, and then you wait for the exact moment the outdoor temperature drops below the indoor temperature to fling the windows open.</p>
+
+<p>The trouble is timing.</p>
+
+<p>Up until now, I’ve been relying on the hourly forecasts from the national weather service. But generic city forecasts aren't exactly tailored to my street. My backyard can easily bake a few degrees warmer than the official report, and when you’re desperate to cool down a house, every single degree counts.</p>
+
+<p>Time for a quick weekend project.</p>
+
+<h2>The Hardware Setup</h2>
+
+<p>A few years ago, I built <a href="../eink-calendar/" title="Homebrew E-ink Calendar Display">papercal</a>, a little application that displays our family calendar on a <a href="https://www.paperd.ink/" title="paperd.ink website">paperd.ink</a> e-ink device. As luck would have it, I had a second one of these devices just lying around in my parts bin.</p>
+
+<p>Since the heavy lifting of the codebase was already done, swapping out the calendar <abbr title="User Interface">UI</abbr> for a temperature display was a breeze. My goal was simple: show the forecasted temperature on one side and the actual, real-time temperature on the other. Paired with our indoor thermostat, I’d finally have the perfect data dashboard to win the Window Game.</p>
+
+<h2>Finding a Hyper-Local Data Source</h2>
+
+<p>There was just one catch: I don’t actually own an outdoor thermometer. To get true backyard accuracy, I needed a hyper-local data source. I started digging through online weather maps with crowdsourced weather stations. I found a public <a href="https://weathermap.netatmo.com/" title="Netatmo weather map">Netatmo</a> weather station practically sitting on my doorstep. It almost certainly belongs to one of my neighbors. (If you’re reading this, neighbor, thanks for the free data!)</p>
+
+<h2>Enter papertemp</h2>
+
+<p>And so, <a href="https://github.com/cimm/papertemp" title="papertemp repository @ GitHub">papertemp</a> was born, a quickly hacked-together weekend project that puts the current forecasted and live-measured temperatures side by side.</p>
+
+<p>Now, with just a quick glance at the screen, I know exactly when it’s safe to crack the windows and let that sweet, cool breeze roll in.</p>
