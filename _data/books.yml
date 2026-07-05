@@ -460,6 +460,11 @@
   author: "Marc Levinson"
   isbn13: 9780691123240
   rating: 2
+- name: "The Creative Gene"
+  author: "Hideo Kojima"
+  isbn13: 9781974725915
+  rating: 3
+  read: 2026
 - name: "The Da Vinci Code"
   author: "Dan Brown"
   isbn13: 9780307277671
