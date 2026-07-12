@@ -246,6 +246,11 @@
   isbn13: 9781940450285
   rating: 3
   read: 2014
+- name: "Inherit the Stars"
+  author: "James P. Hogan"
+  isbn13: 9780345281258
+  rating: 5
+  read: 2026
 - name: "James and Giant Peach"
   author: "Roald Dahl"
   isbn13: 9780394912820
