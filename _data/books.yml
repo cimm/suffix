@@ -344,6 +344,11 @@
   isbn13: 9781400159840
   rating: 4
   read: 2023
+- name: "Old Man’s War"
+  author: "John Scalzi"
+  isbn13: 9780765348272
+  rating: 4
+  read: 2026
 - name: "Pandora’s Star"
   author: "Peter F. Hamilton"
   isbn13: 9780345461629
