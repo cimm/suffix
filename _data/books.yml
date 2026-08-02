@@ -255,6 +255,11 @@
   isbn13: 9780345281258
   rating: 5
   read: 2026
+- name: "Interstellar"
+  author: "Avi Loeb"
+  isbn13: 9781399807920
+  rating: 2
+  read: 2026
 - name: "James and Giant Peach"
   author: "Roald Dahl"
   isbn13: 9780394912820
