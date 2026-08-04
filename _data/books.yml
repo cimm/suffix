@@ -239,6 +239,11 @@
   rating: 3
   read: 2025
   url: "2025-reading-list"
+- name: "In Order to Live"
+  author: "박연미"
+  isbn13: 9780143109747 
+  rating: 5
+  read: 2026
 - name: "In the Lives of Puppets"
   author: "TJ Klune"
   isbn13: 9781250217448
