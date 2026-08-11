@@ -635,6 +635,11 @@
   rating: 2
   read: 2025
   url: "2025-reading-list"
+- name: "We Are Legion (We Are Bob)"
+  author: "Dennis E. Taylor"
+  isbn13: 9781668221570
+  rating: 3
+  read: 2026
 - name: "Woman in the Window"
   author: "A.J. Finn"
   isbn13: 9780008333324
