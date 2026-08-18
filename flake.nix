@@ -13,7 +13,7 @@
 
         gems = pkgs.bundlerEnv {
           name = "bundler";
-          ruby = pkgs.ruby_3_4;
+          ruby = pkgs.ruby_4_0;
           gemdir = ./.; # points to Gemfile.lock and gemset.nix
         };
 
