@@ -126,6 +126,11 @@
   author: "Frank Herbert"
   isbn13: 9780425027066
   rating: 5
+- name: "Dungeon Crawler Carl"
+  author: "Matt Dinniman"
+  isbn13: 9780593820254
+  rating: 3
+  read: 2026
 - name: "Encryption in Everyday Life"
   author: "Richard White"
   rating: 0
