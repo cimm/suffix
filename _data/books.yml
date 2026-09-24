@@ -109,6 +109,11 @@
   author: "Kim Zetter"
   isbn13: 9780770436193
   rating: 3
+- name: "Dark Matter"
+  author: "Blake Crouch"
+  isbn13: 9781101904220
+  rating: 4
+  read: 2026
 - name: "Data Jack"
   author: "Christopher Greyson"
   isbn13: 9781512221213
