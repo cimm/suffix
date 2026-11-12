@@ -654,6 +654,11 @@
   rating: 2
   read: 2025
   url: "2025-reading-list"
+- name: "This Is How They Tell Me the World Ends"
+  author: "Nicole Perlroth"
+  isbn13: 9781635576054
+  rating: 3
+  read: 2026
 - name: "We Are Legion (We Are Bob)"
   author: "Dennis E. Taylor"
   isbn13: 9781668221570
