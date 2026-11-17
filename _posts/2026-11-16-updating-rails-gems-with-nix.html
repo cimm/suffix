@@ -1,0 +1,47 @@
+---
+layout:      post
+title:       Updating Ruby Gems in Nix
+date:        2026-11-16 10:00:00
+updated:     2026-11-16 10:00:00
+description: Fixing the BUNDLE_FROZEN error in a nix-managed Rails project.
+---
+
+<figure>
+  <picture>
+    <img src="../../assets/gem.svg" width="100" height="133" alt="Drawing of a ruby gem stone in grayscale">
+  </picture>
+</figure>
+
+<p>I manage my Ruby on Rails projects with Nix. Each project has a `<a href="https://wiki.nixos.org/wiki/Flakes" title="Flakes @ Official NixOS Wiki">flake.nix</a>` that sets up all the dependencies for the development environment, so starting work is as simple as running <kbd>nix develop</kbd> in the project directory.</p>
+
+<p>This setup is great for reproducibility, except when it’s time to update gems. When I run <kbd>bundle update</kbd> inside my flake’s dev shell, Bundler will immediately stop me:</p>
+
+{% highlight bash %}
+$ bundle update
+Bundler is unlocking, but the lockfile can’t be updated because frozen mode is set
+{% endhighlight %}
+
+<p>Trying to unset the flag or override it with <code>BUNDLE_FROZEN=0</code> did’t work. When Nix packages the Ruby environment, it wraps the `bundle` and `ruby` binaries with <code>BUNDLE_FROZEN=1</code> hardcoded and points <code>GEM_HOME</code> to a read-only `/nix/store/...` path. Because the Nix store is immutable, Bundler isn’t allowed to download or write new gems there anyway.</p>
+
+<h2>The Fix: Use an Ephemeral Nix Shell</h2>
+
+<p>Instead of fighting the wrapped binaries inside the flake environment, the cleanest way to update the dependencies is to temporarily step outside of it into an ephemeral shell with standard, unwrapped Ruby tools.</p>
+
+<ol>
+  <li>
+    <p><strong>Exit the flake environment</strong> and start a temporary shell with `ruby`, `bundler`, and `bundix`: <kbd>nix shell nixpkgs#ruby nixpkgs#bundler nixpkgs#bundix</kbd>.</p>
+    <p>(Note: Run <kbd>bundle config list</kbd> inside this shell to verify `frozen` is no longer enforced.)</p>
+  </li>
+  <li>
+    <p><strong>Update the gem lockfile:</strong> Rather than running <kbd>bundle update</kbd>—which will try to download and compile native extensions locally—use <kbd>bundle lock --update</kbd> to only resolve the dependency tree and rewrite `Gemfile.lock`.</p>
+    <p>(Note: To update a specific gem, pass its name to the lock command: <kbd>bundle lock --update gem_name</kbd>.)</p>
+  </li>
+  <li>
+    <p><strong>Regenerate `gemset.nix`:</strong> Run <kbd>bundix</kbd> to update the `gemset.nix`.</p>
+  </li>
+  <li>
+    <p><strong>Return to the project environment:</strong> Exit the temporary shell and run <kbd>nix develop</kbd> again. Nix will pick up the changes in `gemset.nix`, build the updated gems into the store, and drop you back into the locked development shell.</p>
+  </li>
+</ol>
+
+<p>If you’re running into a “<code>hash mismatch in fixed-output derivation</code>” error, see my other post on <a href="../nixos-gem-mismatch/">gem mismatches</a>.
